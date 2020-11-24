@@ -1,0 +1,8 @@
+﻿Scaffold-DbContext "Data Source=RAMIN-PC;Initial Catalog=InventoryProject;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -o EFModels -f -Tables Storages,Products,Images -context InventoryDbContext
+
+
+Scaffold-DbContext "Data Source=RAMIN-PC;Initial Catalog=InventoryProject;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "DataAccess.EFModels" -ContextDir "DataAccess" -Context InventoryDbContext -Force -Tables Storages,Products,Images 
+
+
+cd C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax
+dotnet tool install --global dotnet-ef

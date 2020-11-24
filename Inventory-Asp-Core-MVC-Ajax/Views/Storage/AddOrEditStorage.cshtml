@@ -1,0 +1,41 @@
+﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.StorageModel
+@{
+    // to remove header and footer from modal
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-controller="Storage" asp-action="AddOrEditStorage" asp-route-id="@Model.Id"
+              onsubmit="return jQueryAjaxPostToAddOrEditStorage(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" type="text" class="form-control">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Phone" class="control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">#</div>
+                        </div>
+                        <input asp-for="Phone" type="text" class="form-control">
+                    </div>
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-success text-white btn-lg btn-block" />
+            </div>
+        </form>
+    </div>
+</div>

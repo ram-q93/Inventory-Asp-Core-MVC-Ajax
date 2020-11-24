@@ -1,0 +1,38 @@
+﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.StorageModel
+@{
+    ViewData["Title"] = "CreateStorage";
+}
+
+<h4>New Storage Entry</h4>
+<hr />
+<form asp-controller="Storage" asp-action="CreateStorage">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input asp-for="Name" type="text" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <input asp-for="Phone" type="text" class="form-control" >
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <input asp-for="Address" class="form-control"/>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Add New Storage" class="btn btn-success btn-lg btn-block" />
+    </div>
+</form>
+<br />
+<br />
+<div>
+    <a asp-controller="Storage" asp-action="Storages" class="btn btn-primary btn-lg btn-block">Back to Storage Table</a>
+</div>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+ }

@@ -1,0 +1,18 @@
+﻿
+@model IEnumerable<Inventory_Asp_Core_MVC_Ajax.Models.Classes.StorageModel>
+@{
+    ViewData["Title"] = "Storages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center"><i class="fas fa-comments-dollar text-success"></i>Storage Table</h2>
+<br />
+
+<div id="view-all-storages">
+    @await Html.PartialAsync("_Storages", Model)
+</div>
+
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

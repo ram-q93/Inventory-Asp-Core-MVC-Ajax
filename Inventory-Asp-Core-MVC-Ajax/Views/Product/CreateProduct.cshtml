@@ -1,0 +1,59 @@
+﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>New Product Entry</h4>
+<hr />
+<form asp-controller="Product" asp-action="CreateProduct">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="StorageId" />
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <input asp-for="Name" type="text" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <input asp-for="Barcode" type="text" class="form-control">
+            <span asp-validation-for="Barcode" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <input asp-for="Type" type="text" class="form-control">
+            <span asp-validation-for="Type" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <input asp-for="Quantity" type="number" class="form-control">
+            <span asp-validation-for="Quantity" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <input asp-for="Price" type="text" class="form-control">
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <input asp-for="IsAvailable" type="checkbox" class="form-control-plaintext">
+            @Html.DisplayNameFor(model => model.IsAvailable)
+        </div>
+    </div>
+    <br />
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <textarea asp-for="Description" class="form-control" rows="2"> </textarea>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Add New Product" class="btn btn-success btn-lg btn-block" />
+    </div>
+</form>
+<br />
+<div>
+    <a asp-controller="Product" asp-action="Products" asp-route-StorageId="@Model.StorageId"
+       class="btn btn-primary btn-lg btn-block">Back to Product Table</a>
+</div>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

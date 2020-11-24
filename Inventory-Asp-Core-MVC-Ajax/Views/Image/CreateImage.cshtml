@@ -1,0 +1,29 @@
+﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.ImageModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>New Image Entry</h4>
+<hr />
+<form asp-controller="Image" asp-action="CreateImage" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ProductId" />
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <input asp-for="Data" type="file" id="file1" name="file1" multiple="multiple" />
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Add New Image" class="btn btn-success btn-lg btn-block" />
+    </div>
+</form>
+<br />
+
+<div>
+    <a asp-controller="Image" asp-action="ProductImages" asp-route-productId=@Model.ProductId class="btn btn-primary btn-lg btn-block">Back to Product Details</a>
+</div>
+
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

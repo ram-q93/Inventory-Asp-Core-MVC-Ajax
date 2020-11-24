@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Inventory_Asp_Core_MVC_Ajax.Models.Classes.StorageModel>
+
+@*For displaying storage info*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage","Storage",null,Context.Request.Scheme)','New Storage')"
+                   class="btn btn-success text-white"><i class="fas fa-random"></i>New Storage</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int index = 1; }
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>
+                    @(index++)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => s.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => s.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => s.Address)
+                </td>
+                <td>
+                    <a asp-controller="Product" asp-action="Products" asp-route-storageId="@s.Id"
+                       class="btn btn-info">View Products</a>
+                </td>
+                <td>
+                    <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage","Storage",new { id =s.Id}
+                                               ,Context.Request.Scheme)','Update Storage')"
+                       class="btn btn-warning text-white"><i class="fas fa-pencil-alt"></i>Edit</a>
+                    <a asp-controller="Storage" asp-action="DeleteStorage" asp-route-id="@s.Id"
+                       class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.StorageModel
+@{
+    ViewData["Title"] = "DeleteStorage";
+}
+
+<h4>Delete Storage</h4>
+<hr />
+<div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <b>Store @Html.DisplayNameFor(model => model.Name) : </b> 
+            @Html.DisplayFor(modelItem => modelItem.Name)
+        </div>
+        <div class="form-group col-md-6">
+            <b>Store @Html.DisplayNameFor(model => model.Phone) : </b> 
+            @Html.DisplayFor(modelItem => modelItem.Phone)
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <b>Store @Html.DisplayNameFor(model => model.Address) : </b> 
+            @Html.DisplayFor(modelItem => modelItem.Address)
+        </div>
+    </div>
+</div>
+<br />
+<form asp-controller="Storage" asp-action="DeleteStorage">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Delete" class="btn btn-danger btn-lg btn-block" />
+</form>
+<br />
+<br />
+<div>
+    <a asp-controller="Storage" asp-action="Storages" class="btn btn-primary btn-lg btn-block">Back to Storage Table</a>
+</div>
