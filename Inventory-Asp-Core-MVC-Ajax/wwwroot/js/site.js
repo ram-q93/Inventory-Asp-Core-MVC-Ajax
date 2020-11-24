@@ -3,6 +3,16 @@
 
 // Write your JavaScript code.
 
+$(function () {
+    $("#loaderbody").addClass('hide');
+
+    $(document).bind('ajaxStart', function () {
+        $("#loaderbody").removeClass('hide');
+    }).bind('ajaxStop', function () {
+        $("#loaderbody").addClass('hide');
+    });
+});
+
 showStorageInPopup = (url, title) => {
     // from this function we have to make jquery ajax get request to AddOrEditStorage method with int param in Storage controller
     $.ajax({
@@ -30,18 +40,47 @@ jQueryAjaxPostToAddOrEditStorage = form => {
                     $("#form-modal .modal-title").html('');
                     $("#form-modal .modal-body").html('');
                     $("#form-modal").modal('hide'); 
+                    $.notify('Submited successfully', { globalPosition: 'top center', className: 'success' })
+                    console.log("data : " + data);
+                    console.log("res is Valid");
                 }
                 else {
                     $("#form-modal .modal-body").html(res.html);
+                    console.log("res NOT Valid");
                 }
             },
             error: function (err) {
                 console.log(err);
             }
         })
-        //to prevent default form submit event
-        return false;
     }catch(e) {
         console.log(e);
     }
+    //to prevent default form submit event
+    return false;
+};
+
+jQueryAjaxDeleteStorage = form => {
+    if (confirm('Are you sure to delete this form?')) {
+        try {
+            $.ajax({
+                type: 'POST',
+                url: form.action,
+                data: new FormData(form),
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    $("#view-all-storages").html(res.html);
+                    $.notify('Deleted successfully', { globalPosition: 'top center', className: 'success' })
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    //to prevent default form submit event
+    return false;
 };

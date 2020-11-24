@@ -1,9 +1,8 @@
-﻿using Helper.Library.Extensions;
-using Helper.Library.Services;
+﻿using Helper.Library.Attributes;
+using Helper.Library.Extensions;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
@@ -11,12 +10,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
     public class StorageController : Controller
     {
         public readonly IStorageBiz storageBiz;
-        private readonly ILogger logger;
 
-        public StorageController(IStorageBiz storageBiz, ILogger logger)
+        public StorageController(IStorageBiz storageBiz)
         {
             this.storageBiz = storageBiz;
-            this.logger = logger;
         }
 
 
@@ -25,18 +22,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         [HttpGet, ActionName("Storages")]
         public async Task<IActionResult> Storages()
         {
-            try
-            {
-                var storageResults = await storageBiz.List();
-                if (!storageResults.Success)
-                    return View();
-                return View(storageResults.Data);
-            }
-            catch (Exception e)
-            {
-                logger.Exception(e);
-                return NotFound();
-            }
+            var storageResults = await storageBiz.List();
+            if (!storageResults.Success)
+                return View();
+            return View(storageResults.Data);
         }
 
         #endregion
@@ -44,6 +33,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         #region AddOrEditStorage
 
         [HttpGet, ActionName("AddOrEditStorage")]
+        [NoDirectAccess]
         public async Task<IActionResult> AddOrEdit(int id = 0)
         {
             if (id == 0)
@@ -68,106 +58,27 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
                 return Json(new { isValid = false, html = this.RenderRazorViewToString("AddOrEditStorage", model) });
             if (id == 0)
             {
-                var result = await storageBiz.Add(model);
-                if (!result.Success)
+                if (!(await storageBiz.Add(model)).Success)
                     return View(model);
-                logger.Info($"New Storage Added  {model}");
             }
             else
             {
-                var result = await storageBiz.Edit(model);
-                if (!result.Success)
+                if (!(await storageBiz.Edit(model)).Success)
                     return View(model);
-                logger.Info($"Storage Edited  {model}");
             }
-            return Json(new { isValid = true, html = this.RenderRazorViewToString("_Storages", await storageBiz.List()) });
-        }
-
-        #endregion
-
-        #region Edit
-
-        [HttpGet, ActionName("EditStorage")]
-        public async Task<IActionResult> Edit(int? id)
-        {
-            try
-            {
-                if (id == null)
-                    return NotFound();
-                var storageResult = await storageBiz.GetById((int)id);
-                if (!storageResult.Success)
-                    return NotFound();
-                return View(model: storageResult.Data);
-            }
-            catch (Exception e)
-            {
-                logger.Exception(e);
-                return NotFound();
-            }
-        }
-
-        [HttpPost, ActionName("EditStorage")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind] StorageModel model)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return View(model);
-                var result = await storageBiz.Edit(model);
-                if (!result.Success)
-                    return View(model);
-                logger.Info($"Storage Edited  {model}");
-                return RedirectToAction("Storages");
-            }
-            catch (Exception e)
-            {
-                logger.Exception(e);
-                return NotFound();
-            }
+            return Json(new { isValid = true, html = this.RenderRazorViewToString("_Storages", (await storageBiz.List()).Data) });
         }
 
         #endregion
 
         #region Delete
 
-        [HttpGet, ActionName("DeleteStorage")]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            try
-            {
-                if (id == null)
-                    return NotFound();
-                var storageResult = await storageBiz.GetById((int)id);
-                if (!storageResult.Success || storageResult?.Data == null)
-                    return NotFound();
-                return View(model: storageResult.Data);
-            }
-            catch (Exception e)
-            {
-                logger.Exception(e);
-                return NotFound();
-            }
-        }
-
         [HttpPost, ActionName("DeleteStorage")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteStorage(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            try
-            {
-                if (id == null)
-                    return NotFound();
-                var result = await storageBiz.Delete((int)id);
-                if (!result.Success)
-                    return RedirectToAction("DeleteStorage", new { id });
-                return RedirectToAction("Storages");
-            }
-            catch (Exception e)
-            {
-                logger.Exception(e);
-                return NotFound();
-            }
+            await storageBiz.Delete(id);
+            return Json(new { html = this.RenderRazorViewToString("_Storages", (await storageBiz.List()).Data) });
         }
 
         #endregion

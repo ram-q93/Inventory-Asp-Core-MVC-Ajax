@@ -49,7 +49,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 return Result<IList<StorageModel>>.Failed(Error.WithCode(ErrorCodes.StoresNotFound));
             }
             return Result<IList<StorageModel>>.Successful(
-                result.Data.Select(store => mapper.Map<Storage, StorageModel>(store)).ToList());
+                result.Data.Select(store => mapper.Map<Storage, StorageModel>(store)).OrderByDescending(s => s.UpdatedDate).ToList());
         }
 
         #endregion
@@ -136,7 +136,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         #region LoadSampleData
         private async Task LoadSampleData()
         {
-            var storageRresult = await repository.ListAsync<Storage>();
+            var storageRresult = await repository.ListAsNoTrackingAsync<Storage>();
             if (storageRresult?.Data?.Count == 0)
             {
                 //-----------Request for image------------//

@@ -17,7 +17,8 @@
                 @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
-                <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage","Storage",null,Context.Request.Scheme)','New Storage')"
+                <a onclick="showStorageInPopup(
+        '@Url.Action("AddOrEditStorage", "Storage", null, Context.Request.Scheme)', 'New Storage')"
                    class="btn btn-success text-white"><i class="fas fa-random"></i>New Storage</a>
             </th>
         </tr>
@@ -44,11 +45,15 @@
                        class="btn btn-info">View Products</a>
                 </td>
                 <td>
-                    <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage","Storage",new { id =s.Id}
-                                               ,Context.Request.Scheme)','Update Storage')"
+                    <a onclick="showStorageInPopup(
+        '@Url.Action("AddOrEditStorage", "Storage", new { id = s.Id}, Context.Request.Scheme)', 'Update Storage')"
                        class="btn btn-warning text-white"><i class="fas fa-pencil-alt"></i>Edit</a>
-                    <a asp-controller="Storage" asp-action="DeleteStorage" asp-route-id="@s.Id"
-                       class="btn btn-danger">Delete</a>
+
+                    <form asp-controller="Storage" asp-action="DeleteStorage" asp-route-id="@s.Id" 
+                          onsubmit="return jQueryAjaxDeleteStorage(this)" class="d-inline">
+                        <input type="hidden" asp-for="@s.Id" />
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </form>
                 </td>
             </tr>
         }
