@@ -46,7 +46,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             var result = await repository.ListAsNoTrackingAsync<Storage>();
             if (!result.Success)
             {
-                return Result<IList<StorageModel>>.Failed(Error.WithCode(ErrorCodes.StoresNotFound));
+                return Result<IList<StorageModel>>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
             }
             return Result<IList<StorageModel>>.Successful(
                 result.Data.Select(store => mapper.Map<Storage, StorageModel>(store)).OrderByDescending(s => s.UpdatedDate).ToList());
@@ -61,7 +61,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id);
             if (result?.Success != true || result?.Data == null)
             {
-                return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoreNotFoundById));
+                return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
             }
             return Result<StorageModel>.Successful(mapper.Map<Storage, StorageModel>(result.Data));
         }
@@ -88,7 +88,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == model.Id);
             if (result?.Success != true || result?.Data == null)
             {
-                return Result.Failed(Error.WithCode(ErrorCodes.StoreNotFoundById));
+                return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
             }
             var store = mapper.Map<StorageModel, Storage>(model);
             store.UpdatedDate = DateTime.Now;
@@ -107,7 +107,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 includes: p => p.Products.Select(p => p.Images));
             if (!storeResult.Success || storeResult?.Data == null)
             {
-                return Result.Failed(Error.WithCode(ErrorCodes.StoreNotFoundById));
+                return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
             }
             storeResult.Data.Products.ToList().ForEach(p => p.Images.Clear());
             storeResult.Data.Products.Clear();
@@ -126,7 +126,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 includes: s => s.Products);
             if (!productResults.Success)
             {
-                return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoreProductsNotFound));
+                return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StorageProductsNotFound));
             }
             return Result<StorageModel>.Successful(mapper.Map<Storage, StorageModel>(productResults.Data));
         }

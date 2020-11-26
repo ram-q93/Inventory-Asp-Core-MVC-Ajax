@@ -16,10 +16,10 @@
         public const int ProductJoinedWithStoreNotFoundByProductId = 2004;
         #endregion
 
-        #region Store
-        public const int StoreNotFoundById = 3001;
-        public const int StoresNotFound = 3002;
-        public const int StoreProductsNotFound = 3003;
+        #region Storage
+        public const int StorageNotFoundById = 3001;
+        public const int StoragesNotFound = 3002;
+        public const int StorageProductsNotFound = 3003;
         #endregion
 
         #region Image

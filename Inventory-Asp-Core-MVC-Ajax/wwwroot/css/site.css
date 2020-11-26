@@ -80,8 +80,11 @@ a.btn:hover {
     cursor: pointer !important;
 }
 
-/*loader*/
-.loaderbody {
+
+/*loader
+ -------------------------------------------------- */
+
+/*.loaderbody {
     width: 100%;
     height: 100%;
     left: 0px;
@@ -92,9 +95,9 @@ a.btn:hover {
 }
 
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
-    border-radius: 50%;
+    border: 16px solid #f3f3f3;*/ /* Light grey */
+    /*border-top: 16px solid #3498db;*/ /* Blue */
+    /*border-radius: 50%;
     width: 80px;
     height: 80px;
     animation: spin 2s linear infinite;
@@ -115,4 +118,4 @@ a.btn:hover {
 
 .hide {
     display: none;
-}
+}*/

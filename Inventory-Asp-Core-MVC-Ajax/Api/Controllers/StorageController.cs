@@ -55,18 +55,20 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         public async Task<IActionResult> AddOrEdit(int id, [Bind] StorageModel model)
         {
             if (!ModelState.IsValid)
-                return Json(new { isValid = false, html = this.RenderRazorViewToString("AddOrEditStorage", model) });
+                return response(false, "AddOrEditStorage", model);
             if (id == 0)
             {
-                if (!(await storageBiz.Add(model)).Success)
-                    return View(model);
+                var result = await storageBiz.Add(model);
+                if (!result.Success)
+                    return response(false, "AddOrEditStorage", model, result);
             }
             else
             {
-                if (!(await storageBiz.Edit(model)).Success)
-                    return View(model);
+                var result = await storageBiz.Edit(model);
+                if (!result.Success)
+                    return response(false, "AddOrEditStorage", model, result);
             }
-            return Json(new { isValid = true, html = this.RenderRazorViewToString("_Storages", (await storageBiz.List()).Data) });
+            return response(true, "_Storages", (await storageBiz.List()).Data);
         }
 
         #endregion
@@ -77,10 +79,20 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            await storageBiz.Delete(id);
-            return Json(new { html = this.RenderRazorViewToString("_Storages", (await storageBiz.List()).Data) });
+            var result = await storageBiz.Delete(id);
+            if (!result.Success)
+                return response(false, "_Storages", null, result);
+            return response(true, "_Storages", (await storageBiz.List()).Data);
         }
 
         #endregion
+
+        private IActionResult response(bool success, string view, object model = null, Helper.Library.Models.Result result = null) => Json(new
+        {
+            success,
+            error = success ? "" : $"Error {result?.Error?.Code}",
+            html = this.RenderRazorViewToString(view, model)
+        });
+
     }
 }
