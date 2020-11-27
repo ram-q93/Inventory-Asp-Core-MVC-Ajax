@@ -1,16 +1,18 @@
 ﻿using AutoMapper;
+using Helper.Library.Enums;
 using Helper.Library.Models;
 using Helper.Library.Services;
-using Inventory_Asp_Core_MVC_Ajax.Api;
 using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -40,17 +42,50 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region List
 
-        public async Task<Result<IList<StorageModel>>> List()
+        public async Task<ResultList<StorageModel>> List(PagingModel pagingModel)
         {
             await LoadSampleData();
-            var result = await repository.ListAsNoTrackingAsync<Storage>();
-            if (!result.Success)
+            PagingModel p = null;
+
+            if (pagingModel.Sort == null)
+                p = new PagingModel<Storage>(s => s.UpdatedDate, SortDirection.DESC);
+            else
+                p = new PagingModel<Storage>(pagingModel, s => s.UpdatedDate);
+            var resultList = await repository.ListAsNoTrackingAsync<Storage>(p);
+            pagingModel.PageNumber = 0;
+            pagingModel.PageSize = 10;
+            pagingModel.Sort = "UpdatedDate";
+            pagingModel.SortDirection = SortDirection.DESC;
+            var resultList2 = await repository.ListAsNoTrackingAsync<Storage>(pagingModel);
+            // var r = await Listttttt(repository.GetCurrentContext(), p);
+            if (!resultList.Success)
             {
-                return Result<IList<StorageModel>>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
+                return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
             }
-            return Result<IList<StorageModel>>.Successful(
-                result.Data.Select(store => mapper.Map<Storage, StorageModel>(store)).OrderByDescending(s => s.UpdatedDate).ToList());
+            return new ResultList<StorageModel>()
+            {
+                Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)),
+                PageNumber = resultList.PageNumber,
+                PageSize = resultList.PageSize,
+                TotalCount = resultList.TotalCount,
+                Success = true
+            };
         }
+
+        public async Task<ResultList<TEntity>> Listttttt<TEntity>(DbContext db,
+         PagingModel<TEntity> model)
+         where TEntity : class
+        {
+            List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions
+                .ToListAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db)
+                .Set<TEntity>()).Sort<TEntity>(model.SortBy, model.SortDirection)
+                .Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
+            IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
+            int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db).Set<TEntity>()), new CancellationToken());
+            return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
+        }
+
+
 
         #endregion
 
@@ -179,10 +214,39 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 watch.Start();
                 await repository.CommitAsync();
                 watch.Stop();
-                Console.WriteLine($"db persist duration : {watch.ElapsedMilliseconds}");
+                logger.Info($"db persist duration : {watch.ElapsedMilliseconds}");
             }
         }
 
         #endregion
+    }
+
+    public static class QueryableExtensions
+    {
+        public static IQueryable<TEntity> Sort<TEntity>(
+          this IQueryable<TEntity> query,
+          Expression<Func<TEntity, object>> sortBy,
+          SortDirection direction)
+        {
+            if (sortBy == null)
+                return query;
+            switch (direction)
+            {
+                case SortDirection.ASC:
+                    return (IQueryable<TEntity>)query.OrderBy<TEntity, object>(sortBy);
+                case SortDirection.DESC:
+                    return (IQueryable<TEntity>)query.OrderByDescending<TEntity, object>(sortBy);
+                default:
+                    return (IQueryable<TEntity>)query.OrderBy<TEntity, object>(sortBy);
+            }
+        }
+
+        public static IQueryable<TEntity> Sort<TEntity>(
+          this IQueryable<TEntity> query,
+          params SortModel<TEntity>[] sorts)
+        {
+            ((IEnumerable<SortModel<TEntity>>)sorts).ToList<SortModel<TEntity>>().ForEach((Action<SortModel<TEntity>>)(sort => query.Sort<TEntity>(sort.SortBy, sort.SortDirection)));
+            return query;
+        }
     }
 }

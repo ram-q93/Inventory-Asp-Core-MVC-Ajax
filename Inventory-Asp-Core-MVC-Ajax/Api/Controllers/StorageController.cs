@@ -1,5 +1,6 @@
 ﻿using Helper.Library.Attributes;
 using Helper.Library.Extensions;
+using Helper.Library.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +21,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         #region Storages
 
         [HttpGet, ActionName("Storages")]
-        public async Task<IActionResult> Storages()
+        public async Task<IActionResult> Storages(PagingModel pagingModel)
         {
-            var storageResults = await storageBiz.List();
+            var storageResults = await storageBiz.List(pagingModel);
             if (!storageResults.Success)
                 return View();
             return View(storageResults.Data);
@@ -52,7 +53,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [HttpPost, ActionName("AddOrEditStorage")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(int id, [Bind] StorageModel model)
+        public async Task<IActionResult> AddOrEdit(int id, [Bind] StorageModel model, PagingModel pagingModel)
         {
             if (!ModelState.IsValid)
                 return response(false, "AddOrEditStorage", model);
@@ -68,7 +69,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
                 if (!result.Success)
                     return response(false, "AddOrEditStorage", model, result);
             }
-            return response(true, "_Storages", (await storageBiz.List()).Data);
+            return response(true, "_Storages", (await storageBiz.List(pagingModel)).Data);
         }
 
         #endregion
@@ -77,12 +78,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [HttpPost, ActionName("DeleteStorage")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, PagingModel pagingModel)
         {
             var result = await storageBiz.Delete(id);
             if (!result.Success)
                 return response(false, "_Storages", null, result);
-            return response(true, "_Storages", (await storageBiz.List()).Data);
+            return response(true, "_Storages", (await storageBiz.List(pagingModel)).Data);
         }
 
         #endregion

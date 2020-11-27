@@ -5,7 +5,7 @@ using Helper.Library.Services;
 using System;
 using System.Threading.Tasks;
 
-namespace Inventory_Asp_Core_MVC_Ajax.Api
+namespace Inventory_Asp_Core_MVC_Ajax.Businesses
 {
     public class InventoryHttpClient : BaseHttpClient
     {
