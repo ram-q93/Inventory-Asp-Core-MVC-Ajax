@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Helper.Library.Enums;
-using Helper.Library.Models;
-using Helper.Library.Services;
+using AspNetCore.Lib.Enums;
+using AspNetCore.Lib.Models;
+using AspNetCore.Lib.Services;
 using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;

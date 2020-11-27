@@ -1,5 +1,5 @@
-﻿using Helper.Library.Attributes;
-using Helper.Library.Models;
+﻿using AspNetCore.Lib.Attributes;
+using AspNetCore.Lib.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

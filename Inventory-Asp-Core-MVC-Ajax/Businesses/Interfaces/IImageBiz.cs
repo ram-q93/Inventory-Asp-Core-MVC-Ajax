@@ -1,4 +1,4 @@
-﻿using Helper.Library.Models;
+﻿using AspNetCore.Lib.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using System.Collections.Generic;
 using System.Threading.Tasks;

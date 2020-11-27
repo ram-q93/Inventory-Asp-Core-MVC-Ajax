@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Helper.Library">
-      <HintPath>..\..\Helper.Library\Helper.Library\bin\Debug\netcoreapp3.1\Helper.Library.dll</HintPath>
+    <Reference Include="AspNetCore.Lib">
+      <HintPath>..\..\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\bin\Debug\netcoreapp3.1\AspNetCore.Lib.dll</HintPath>
     </Reference>
   </ItemGroup>
 

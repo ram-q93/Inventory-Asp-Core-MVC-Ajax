@@ -1,6 +1,6 @@
-﻿using Helper.Library.Attributes;
-using Helper.Library.Extensions;
-using Helper.Library.Models;
+﻿using AspNetCore.Lib.Attributes;
+using AspNetCore.Lib.Extensions;
+using AspNetCore.Lib.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -88,7 +88,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-        private IActionResult response(bool success, string view, object model = null, Helper.Library.Models.Result result = null) => Json(new
+        private IActionResult response(bool success, string view, object model = null, Result result = null) => Json(new
         {
             success,
             error = success ? "" : $"Error {result?.Error?.Code}",

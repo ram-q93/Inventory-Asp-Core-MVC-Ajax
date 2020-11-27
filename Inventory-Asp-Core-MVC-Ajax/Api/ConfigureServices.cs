@@ -1,5 +1,5 @@
-﻿using Helper.Library.Configurations;
-using Helper.Library.Enums;
+﻿using AspNetCore.Lib.Configurations;
+using AspNetCore.Lib.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Linq;

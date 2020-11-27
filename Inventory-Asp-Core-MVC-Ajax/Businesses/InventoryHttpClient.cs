@@ -1,7 +1,7 @@
-﻿using Helper.Library.Enums;
-using Helper.Library.HttpClients;
-using Helper.Library.Models;
-using Helper.Library.Services;
+﻿using AspNetCore.Lib.Enums;
+using AspNetCore.Lib.HttpClients;
+using AspNetCore.Lib.Models;
+using AspNetCore.Lib.Services;
 using System;
 using System.Threading.Tasks;
 
