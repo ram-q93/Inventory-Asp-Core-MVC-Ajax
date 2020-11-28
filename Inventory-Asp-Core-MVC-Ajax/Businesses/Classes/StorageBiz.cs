@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-using AspNetCore.Lib.Enums;
+﻿using AspNetCore.Lib.Enums;
 using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services;
+using AutoMapper;
 using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -45,19 +46,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public async Task<ResultList<StorageModel>> List(PagingModel pagingModel)
         {
             await LoadSampleData();
-            PagingModel p = null;
-
-            if (pagingModel.Sort == null)
-                p = new PagingModel<Storage>(s => s.UpdatedDate, SortDirection.DESC);
-            else
-                p = new PagingModel<Storage>(pagingModel, s => s.UpdatedDate);
-            var resultList = await repository.ListAsNoTrackingAsync<Storage>(p);
-            pagingModel.PageNumber = 0;
-            pagingModel.PageSize = 10;
-            pagingModel.Sort = "UpdatedDate";
-            pagingModel.SortDirection = SortDirection.DESC;
-            var resultList2 = await repository.ListAsNoTrackingAsync<Storage>(pagingModel);
-            // var r = await Listttttt(repository.GetCurrentContext(), p);
+            var resultList = await repository.ListAsNoTrackingAsync<Storage>(pagingModel, pagingModel.Sort);
             if (!resultList.Success)
             {
                 return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
@@ -72,8 +61,18 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             };
         }
 
-        public async Task<ResultList<TEntity>> Listttttt<TEntity>(DbContext db,
-         PagingModel<TEntity> model)
+        public async Task<ResultList<TEntity>> ListAsNoTrackingAsync<TEntity>(DbContext context,
+       PagingModel model, string Sort)
+       where TEntity : class
+        {
+            List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions.ToListAsync<TEntity>(((IQueryable<TEntity>)EntityFrameworkQueryableExtensions.AsNoTracking<TEntity>(((DbContext)(object)context).Set<TEntity>())).Sort<TEntity>(model, Sort).Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
+            IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
+            int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((DbContext)(object)context).Set<TEntity>(), new CancellationToken());
+            return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
+        }
+
+
+        public async Task<ResultList<TEntity>> Listttttt<TEntity>(DbContext db, PagingModel<TEntity> model)
          where TEntity : class
         {
             List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions
@@ -86,6 +85,31 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         }
 
 
+
+        #endregion
+
+        #region Search
+
+        public async Task<ResultList<StorageModel>> Search(StorageFilterModel filterModel)
+        {
+            var resultList = await repository.ListAsNoTrackingAsync<Storage>(s =>
+            (filterModel.Name == null || filterModel.Name.Contains(s.Name)) &&
+            (filterModel.Phone == null || filterModel.Phone.Contains(s.Phone)) &&
+            (filterModel.Address == null || filterModel.Address.Contains(s.Address)),
+            filterModel.PagingModel, filterModel.PagingModel.Sort);
+            if (!resultList.Success)
+            {
+                return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
+            }
+            return new ResultList<StorageModel>()
+            {
+                Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)),
+                PageNumber = resultList.PageNumber,
+                PageSize = resultList.PageSize,
+                TotalCount = resultList.TotalCount,
+                Success = true
+            };
+        }
 
         #endregion
 
@@ -247,6 +271,34 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         {
             ((IEnumerable<SortModel<TEntity>>)sorts).ToList<SortModel<TEntity>>().ForEach((Action<SortModel<TEntity>>)(sort => query.Sort<TEntity>(sort.SortBy, sort.SortDirection)));
             return query;
+        }
+
+        public static IQueryable<TEntity> Sort<TEntity>(this IQueryable<TEntity> query, PagingModel model, string propertyName)
+        {
+            if (propertyName == null)
+                return query;
+            // LAMBDA: x => x.[PropertyName]
+            var parameter = Expression.Parameter(typeof(TEntity), "x");
+            Expression property = Expression.Property(parameter, propertyName);
+            var lambda = Expression.Lambda(property, parameter);
+
+            // REFLECTION: source.OrderBy(x => x.Property)
+            MethodInfo orderByMethod = null;
+            switch (model.SortDirection)
+            {
+                case SortDirection.ASC:
+                    orderByMethod = typeof(Queryable).GetMethods().First(x => x.Name == "OrderBy" && x.GetParameters().Length == 2);
+                    break;
+                case SortDirection.DESC:
+                    orderByMethod = typeof(Queryable).GetMethods().First(x => x.Name == "OrderByDescending" && x.GetParameters().Length == 2);
+                    break;
+                default:
+                    orderByMethod = typeof(Queryable).GetMethods().First(x => x.Name == "OrderBy" && x.GetParameters().Length == 2);
+                    break;
+            }
+            var orderByGeneric = orderByMethod.MakeGenericMethod(typeof(TEntity), property.Type);
+            var result = orderByGeneric.Invoke(null, new object[] { query, lambda });
+            return (IQueryable<TEntity>)result;
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using AspNetCore.Lib.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InventoryProject.Business.Interfaces
@@ -13,5 +12,7 @@ namespace InventoryProject.Business.Interfaces
         Task<Result<StorageModel>> GetById(int id);
         Task<ResultList<StorageModel>> List(PagingModel pagingModel);
         Task<Result<StorageModel>> ListStorageAndProductsByStoreId(int storeId);
+        Task<ResultList<StorageModel>> Search(StorageFilterModel filterModel);
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AspNetCore.Lib.Attributes;
+using AspNetCore.Lib.Enums;
 using AspNetCore.Lib.Extensions;
 using AspNetCore.Lib.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
@@ -21,11 +22,35 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         #region Storages
 
         [HttpGet, ActionName("Storages")]
-        public async Task<IActionResult> Storages(PagingModel pagingModel)
+        public async Task<IActionResult> Storages()
         {
-            var storageResults = await storageBiz.List(pagingModel);
+            var storageResults = await storageBiz.List(new PagingModel()
+            { PageNumber = 0, PageSize = 5, Sort = "UpdatedDate", SortDirection = SortDirection.DESC });
             if (!storageResults.Success)
+            {
                 return View();
+            }
+            ViewBag.PageSize = storageResults.PageSize;
+            ViewBag.CurrentPage = storageResults.PageNumber;
+            ViewBag.TotalItemCount = storageResults.TotalCount;
+            return View(storageResults.Items);
+        }
+
+        #endregion
+
+        #region Storages
+
+        [HttpGet, ActionName("Search")]
+        public async Task<IActionResult> Search(string PageNumber,[Bind] StorageFilterModel filterModel)
+        {
+            var storageResults = await storageBiz.Search(filterModel);
+            if (!storageResults.Success)
+            {
+                return View();
+            }
+            ViewBag.PageSize = storageResults.PageSize;
+            ViewBag.CurrentPage = storageResults.PageNumber;
+            ViewBag.TotalItemCount = storageResults.TotalCount;
             return View(storageResults.Data);
         }
 
