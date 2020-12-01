@@ -28,16 +28,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = 5;
             var storageResults = await storageBiz.List(new PagingModel()
-            { PageNumber = pageNumber, PageSize = pageSize, Sort = "UpdatedDate", SortDirection = SortDirection.DESC });
+            { PageNumber = pageNumber-1, PageSize = pageSize, Sort = "UpdatedDate", SortDirection = SortDirection.DESC });
             if (!storageResults.Success)
             {
                 return View();
             }
-
             return View(new SearchStorage()
             {
                 StorageModels = new StaticPagedList<StorageModel>(storageResults.Items,
-                storageResults.PageNumber, storageResults.PageSize, (int)storageResults.TotalCount),
+                storageResults.PageNumber+1, storageResults.PageSize, (int)storageResults.TotalCount),
                 SearchQuery = ""
             });
         }
