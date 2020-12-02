@@ -23,22 +23,24 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         #region Storages
 
         [HttpGet, ActionName("Storages")]
-        public async Task<IActionResult> Storages(string query, int? page)
+        public async Task<IActionResult> Storages(int? page = null) => View(await GetSearchStorage(page));
+
+        private async Task<SearchStorage> GetSearchStorage(int? page = null)
         {
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = 5;
             var storageResults = await storageBiz.List(new PagingModel()
-            { PageNumber = pageNumber-1, PageSize = pageSize, Sort = "UpdatedDate", SortDirection = SortDirection.DESC });
+            { PageNumber = pageNumber - 1, PageSize = pageSize, Sort = "UpdatedDate", SortDirection = SortDirection.DESC });
             if (!storageResults.Success)
             {
-                return View();
+                return null;
             }
-            return View(new SearchStorage()
+            return new SearchStorage()
             {
                 StorageModels = new StaticPagedList<StorageModel>(storageResults.Items,
-                storageResults.PageNumber+1, storageResults.PageSize, (int)storageResults.TotalCount),
+                storageResults.PageNumber + 1, storageResults.PageSize, (int)storageResults.TotalCount),
                 SearchQuery = ""
-            });
+            };
         }
 
         #endregion
@@ -99,7 +101,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
                 if (!result.Success)
                     return response(false, "AddOrEditStorage", model, result);
             }
-            return response(success: true, view: "_Storages", model: (await storageBiz.List(pagingModel)).Data);
+
+            return response(success: true, view: "_Storages", model: await GetSearchStorage());
         }
 
         #endregion
@@ -113,7 +116,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             var result = await storageBiz.Delete(id);
             if (!result.Success)
                 return response(false, "_Storages", null, result);
-            return response(true, "_Storages", (await storageBiz.List(pagingModel)).Data);
+            return response(true, "_Storages", await GetSearchStorage());
         }
 
         #endregion
@@ -124,6 +127,5 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             error = success ? "" : $"Error {result?.Error?.Code}",
             html = this.RenderRazorViewToString(view, model)
         });
-
     }
 }
