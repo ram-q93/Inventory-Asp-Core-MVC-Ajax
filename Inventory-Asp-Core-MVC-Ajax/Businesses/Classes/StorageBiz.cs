@@ -6,7 +6,6 @@ using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -43,50 +42,51 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region List
 
-        public async Task<ResultList<StorageModel>> List(PagingModel pagingModel, string searchBy)
+        public async Task<ResultList<StorageModel>> List(PagingModel pagingModel, string searchQuery)
         {
             await LoadSampleData();
-            var resultList = await repository.ListAsNoTrackingAsync<Storage>(pagingModel, pagingModel.Sort);
+            var resultList = await repository.ListAsNoTrackingAsync<Storage>(s => searchQuery == null ||
+                (s.Name != null && s.Name.Contains(searchQuery)) ||
+                (s.Phone != null && s.Phone.Contains(searchQuery)) ||
+                (s.Address != null && s.Address.Contains(searchQuery)),
+                pagingModel, pagingModel.Sort);
+
             if (!resultList.Success)
             {
                 return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
             }
             return new ResultList<StorageModel>()
             {
-                Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)).Where(s =>
-                searchBy == null ||
-                searchBy.Contains(s.Name) ||
-                searchBy.Contains(s.Phone) ||
-                searchBy.Contains(s.Address)).ToList(),
+                Success = true,
+                Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)).ToList(),
                 PageNumber = resultList.PageNumber,
                 PageSize = resultList.PageSize,
-                TotalCount = resultList.TotalCount,
-                Success = true
+                TotalCount = resultList.TotalCount
             };
         }
 
-        public async Task<ResultList<TEntity>> ListAsNoTrackingAsync<TEntity>(DbContext context,
-       PagingModel model, string Sort)
-       where TEntity : class
-        {
-            List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions.ToListAsync<TEntity>(((IQueryable<TEntity>)EntityFrameworkQueryableExtensions.AsNoTracking<TEntity>(((DbContext)(object)context).Set<TEntity>())).Sort<TEntity>(model, Sort).Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
-            IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
-            int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((DbContext)(object)context).Set<TEntity>(), new CancellationToken());
-            return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
-        }
+        // public async Task<ResultList<TEntity>> ListAsNoTrackingAsync<TEntity>(DbContext context,
+        //PagingModel model, string Sort)
+        //where TEntity : class
+        // {
+        //     List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions.ToListAsync<TEntity>(((IQueryable<TEntity>)EntityFrameworkQueryableExtensions.AsNoTracking<TEntity>(((DbContext)(object)context).Set<TEntity>())).Sort<TEntity>(model, Sort).Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
+        //     IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
+        //     int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((DbContext)(object)context).Set<TEntity>(), new CancellationToken());
+        //     return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
+        // }
 
 
-        public async Task<ResultList<TEntity>> Listttttt<TEntity>(DbContext db, PagingModel<TEntity> model)
-         where TEntity : class
-        {
-            List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions
-                .ToListAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db)
-                .Set<TEntity>()).Sort<TEntity>(model.SortBy, model.SortDirection)
-                .Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
-            IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
-            int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db).Set<TEntity>()), new CancellationToken());
-            return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
-        }
+        // public async Task<ResultList<TEntity>> Listttttt<TEntity>(DbContext db, PagingModel<TEntity> model)
+        //  where TEntity : class
+        // {
+        //     List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions
+        //         .ToListAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db)
+        //         .Set<TEntity>()).Sort<TEntity>(model.SortBy, model.SortDirection)
+        //         .Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
+        //     IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
+        //     int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db).Set<TEntity>()), new CancellationToken());
+        //     return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
+        // }
 
 
 
