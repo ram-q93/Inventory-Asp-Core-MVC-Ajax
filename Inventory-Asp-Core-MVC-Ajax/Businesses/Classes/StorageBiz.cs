@@ -43,7 +43,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region List
 
-        public async Task<ResultList<StorageModel>> List(PagingModel pagingModel)
+        public async Task<ResultList<StorageModel>> List(PagingModel pagingModel, string searchBy)
         {
             await LoadSampleData();
             var resultList = await repository.ListAsNoTrackingAsync<Storage>(pagingModel, pagingModel.Sort);
@@ -53,7 +53,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             }
             return new ResultList<StorageModel>()
             {
-                Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)),
+                Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)).Where(s =>
+                searchBy == null ||
+                searchBy.Contains(s.Name) ||
+                searchBy.Contains(s.Phone) ||
+                searchBy.Contains(s.Address)).ToList(),
                 PageNumber = resultList.PageNumber,
                 PageSize = resultList.PageSize,
                 TotalCount = resultList.TotalCount,

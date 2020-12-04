@@ -1,66 +1,51 @@
 ﻿@using Inventory_Asp_Core_MVC_Ajax.Businesses
 @model Inventory_Asp_Core_MVC_Ajax.Models.Classes.SearchStorage
-@{int index = (Model.StorageModels.PageNumber * Model.StorageModels.PageSize) -
-            (Model.StorageModels.PageSize - 1); }
 
+@{ int Index = (Model.StorageModels.PageNumber * Model.StorageModels.PageSize) - (Model.StorageModels.PageSize - 1);
+    var FirstStorage = Model.StorageModels.FirstOrDefault();}
+
+<div  class="navbar-search pull-right">
+    <form class="form-inline my-2 my-lg-0" method="get" asp-controller="Storage" asp-action="Storages">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchBy">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div>
+<br />
 @*For displaying storage info*@
 @if (Model.StorageModels.Count() == 0)
 {
 <div class="alert alert-info">No Storages Availale</div> }
 else
 {
-<form asp-controller="Storage" asp-action="Search" onsubmit="return jQueryAjaxPostToSearchStorage(this);" autocomplete="off">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <input  type="text" class="form-control">
-        </div>
-        <div class="form-group col-md-6">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">#</div>
-                </div>
-                <input type="text" class="form-control">
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <input class="form-control" />
-        </div>
-    </div>
-    <br />
-    <div class="form-group">
-        <input type="submit" value="Search" class="btn btn-success text-white btn-lg btn-block" />
-    </div>
-
-</form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                #
-            </th>
-            <th>
-                <label asp-for="@Model.StorageModels.FirstOrDefault().Name"></label>
-            </th>
-            <th>
-                <label asp-for="@Model.StorageModels.FirstOrDefault().Phone"></label>
-            </th>
-            <th>
-                <label asp-for="@Model.StorageModels.FirstOrDefault().Address"></label>
-            </th>
-            <th>
-                <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    <label asp-for="@FirstStorage.Name"></label>
+                </th>
+                <th>
+                    <label asp-for="@FirstStorage.Phone"></label>
+                </th>
+                <th>
+                    <label asp-for="@FirstStorage.Address"></label>
+                </th>
+                <th>
+                    <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
                                                new { id = 0}, Context.Request.Scheme)', 'New Storage')"
-                   class="btn btn-success text-white"><i class="fas fa-random"></i>New Storage</a>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var s in Model.StorageModels)
-        {
+                       class="btn btn-success text-white"><i class="fas fa-random"></i>New Storage</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model.StorageModels)
+            {
 <tr>
     <td>
-        @(index++)
+        @(Index++)
     </td>
     <td>
         @Html.DisplayFor(m => s.Name)
@@ -86,8 +71,9 @@ else
     </td>
 </tr>
 }
-    </tbody>
-</table>}
+        </tbody>
+    </table>
+</div>}
 <br />
 <p class="align-items-center">
     <pager class="pager-container" list="@Model.StorageModels"

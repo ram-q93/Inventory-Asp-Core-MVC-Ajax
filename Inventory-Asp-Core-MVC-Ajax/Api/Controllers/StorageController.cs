@@ -23,14 +23,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         #region Storages
 
         [HttpGet, ActionName("Storages")]
-        public async Task<IActionResult> Storages(int? page = null) => View(await GetSearchStorage(page));
+        public async Task<IActionResult> Storages(int? page = null, string searchBy = null) =>
+            View(await GetSearchStorage(page, searchBy));
 
-        private async Task<SearchStorage> GetSearchStorage(int? page = null)
+        private async Task<SearchStorage> GetSearchStorage(int? page = null, string searchBy = null)
         {
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = 5;
             var storageResults = await storageBiz.List(new PagingModel()
-            { PageNumber = pageNumber - 1, PageSize = pageSize, Sort = "UpdatedDate", SortDirection = SortDirection.DESC });
+            { PageNumber = pageNumber - 1, PageSize = pageSize, Sort = "UpdatedDate", SortDirection = SortDirection.DESC }, searchBy);
             if (!storageResults.Success)
             {
                 return null;

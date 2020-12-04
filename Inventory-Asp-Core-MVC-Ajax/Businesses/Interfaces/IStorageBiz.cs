@@ -10,7 +10,7 @@ namespace InventoryProject.Business.Interfaces
         Task<Result> Delete(int id);
         Task<Result> Edit(StorageModel model);
         Task<Result<StorageModel>> GetById(int id);
-        Task<ResultList<StorageModel>> List(PagingModel pagingModel);
+        Task<ResultList<StorageModel>> List(PagingModel pagingModel, string searchBy);
         Task<Result<StorageModel>> ListStorageAndProductsByStoreId(int storeId);
         Task<ResultList<StorageModel>> Search(StorageFilterModel filterModel);
 
