@@ -1,0 +1,90 @@
+﻿
+@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.SearchProductModel
+@{
+    var FirstProduct = Model.ProductPagedList.First();
+    ViewData["Title"] = "Products";
+}
+
+<div class="form-row">
+    <div class="form-group col-md-3">
+        <h2>Product Table</h2>
+    </div>
+    <div class="form-group col-md-2">
+        <a asp-controller="Product" asp-action="CreateProduct" asp-route-storeId="@FirstProduct.StorageId"
+           class="btn btn-success"> Add New Product</a>
+    </div>
+    <div class="form-group col-md-2">
+        <a asp-controller="Storage" asp-action="Storages" class="btn btn-primary ">Back to Store Table</a>
+    </div>
+</div>
+
+
+@* For displaying products *@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => FirstProduct.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => FirstProduct.Barcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => FirstProduct.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => FirstProduct.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => FirstProduct.IsAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => FirstProduct.Price)
+            </th>
+            <th>
+                View Details
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pro in Model.ProductPagedList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => pro.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => pro.Barcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => pro.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => pro.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => pro.IsAvailable)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => pro.Price)
+                </td>
+                <td>
+                    <a asp-controller="Image" asp-action="ProductImages" asp-route-productId="@pro.Id" class="btn btn-info">Details</a>
+                </td>
+                <td>
+                    <a asp-controller="Product" asp-action="EditProduct" asp-route-id="@pro.Id" class="btn btn-secondary">Edit</a>
+                </td>
+                @* @if (User.Identity.IsAuthenticated)*@
+                <td>
+                    <a asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@pro.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

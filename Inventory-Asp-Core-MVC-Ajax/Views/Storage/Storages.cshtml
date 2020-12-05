@@ -1,17 +1,45 @@
 ﻿
 @model Inventory_Asp_Core_MVC_Ajax.Models.Classes.SearchStorage
-
 @{
-    var sth = Model;
     ViewData["Title"] = "Storages";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var searchPlaceHolder = Model.SearchQuery == null ? "Search..." : Model.SearchQuery;
 }
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-center"><i class="fas fa-comments-dollar text-success"></i>Storage Table</h2>
+        </div>
+        <div class="col-4">
+            <form class="form-inline my-2 my-lg-0" method="get" asp-controller="Storage" asp-action="Storages">
+                <input class="form-control mr-sm-2 form-control-sm" type="search" placeholder="@searchPlaceHolder" aria-label="Search" name="query">
+                <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-1">
+            <a asp-controller="Storage" asp-action="Storages" class="btn btn-outline-secondary my-2 my-sm-0 btn-sm">Clear</a>
+        </div>
+    </div>
+    <br />
+    <div id="view-all-storages">
+        @await Html.PartialAsync("_Storages", Model)
+    </div>
+</div>
 
-<h2 class="text-center"><i class="fas fa-comments-dollar text-success"></i>Storage Table</h2>
-<br />
+<div class="modal fade bd-example-modal-lg" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
-<div id="view-all-storages">
-    @await Html.PartialAsync("_Storages", Model)
+            </div>
+        </div>
+    </div>
 </div>
 
 

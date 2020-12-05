@@ -1,32 +1,17 @@
 ﻿@using Inventory_Asp_Core_MVC_Ajax.Businesses
 @model Inventory_Asp_Core_MVC_Ajax.Models.Classes.SearchStorage
 
-@{ int Index = (Model.StorageModels.PageNumber * Model.StorageModels.PageSize) - (Model.StorageModels.PageSize - 1);
-    var FirstStorage = Model.StorageModels.FirstOrDefault();
-    var searchPlaceHolder = Model.SearchQuery == null ? "Search" : Model.SearchQuery;}
+@{ var Index = (Model.StorageModels.PageNumber * Model.StorageModels.PageSize) - (Model.StorageModels.PageSize - 1);
+    var FirstStorage = Model.StorageModels.FirstOrDefault();}
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-4">
-            <form class="form-inline my-2 my-lg-0" method="get" asp-controller="Storage" asp-action="Storages">
-                <input class="form-control mr-sm-2" type="search" placeholder="@searchPlaceHolder" aria-label="Search" name="query">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-        <div class="col-12 col-md">
-            <a asp-controller="Storage" asp-action="Storages" class="btn btn-outline-success my-2 my-sm-0">Clear</a>
-        </div>
-    </div>
-</div>
 
-<br />
 @*For displaying storage info*@
 @if (Model.StorageModels.Count() == 0)
 {
 <div class="alert alert-info">No Storages Availale</div> }
 else
 {
-<div>
+<div class="container-fluid">
     <table class="table">
         <thead>
             <tr>
@@ -82,6 +67,7 @@ else
         </tbody>
     </table>
 </div>}
+
 <br />
 <p class="align-items-center">
     <pager class="pager-container" list="@Model.StorageModels"
