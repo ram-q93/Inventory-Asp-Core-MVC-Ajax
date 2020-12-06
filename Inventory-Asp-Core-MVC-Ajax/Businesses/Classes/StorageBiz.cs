@@ -94,26 +94,26 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region Search
 
-        public async Task<ResultList<StorageModel>> Search(StorageFilterModel filterModel)
-        {
-            var resultList = await repository.ListAsNoTrackingAsync<Storage>(s =>
-            (filterModel.Name == null || filterModel.Name.Contains(s.Name)) &&
-            (filterModel.Phone == null || filterModel.Phone.Contains(s.Phone)) &&
-            (filterModel.Address == null || filterModel.Address.Contains(s.Address)),
-            filterModel.PagingModel, filterModel.PagingModel.Sort);
-            if (!resultList.Success)
-            {
-                return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
-            }
-            return new ResultList<StorageModel>()
-            {
-                Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)),
-                PageNumber = resultList.PageNumber,
-                PageSize = resultList.PageSize,
-                TotalCount = resultList.TotalCount,
-                Success = true
-            };
-        }
+        //public async Task<ResultList<StorageModel>> Search(StorageFilterModel filterModel)
+        //{
+        //    var resultList = await repository.ListAsNoTrackingAsync<Storage>(s =>
+        //    (filterModel.Name == null || filterModel.Name.Contains(s.Name)) &&
+        //    (filterModel.Phone == null || filterModel.Phone.Contains(s.Phone)) &&
+        //    (filterModel.Address == null || filterModel.Address.Contains(s.Address)),
+        //    filterModel.PagingModel, filterModel.PagingModel.Sort);
+        //    if (!resultList.Success)
+        //    {
+        //        return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
+        //    }
+        //    return new ResultList<StorageModel>()
+        //    {
+        //        Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)),
+        //        PageNumber = resultList.PageNumber,
+        //        PageSize = resultList.PageSize,
+        //        TotalCount = resultList.TotalCount,
+        //        Success = true
+        //    };
+        //}
 
         #endregion
 

@@ -27,7 +27,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             View(await GetSearchStorage(page, query));
 
 
-        private async Task<SearchStorage> GetSearchStorage(int? page = null, string searchQuery = null)
+        private async Task<StorageFilterModel> GetSearchStorage(int? page = null, string searchQuery = null)
         {
             var storageResults = await storageBiz.List(new PagingModel()
             {
@@ -38,7 +38,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             }, searchQuery);
             if (!storageResults.Success)
                 return null;
-            return new SearchStorage()
+            return new StorageFilterModel()
             {
                 StorageModels = new StaticPagedList<StorageModel>(storageResults.Items,
                 storageResults.PageNumber + 1, storageResults.PageSize, (int)storageResults.TotalCount),
@@ -50,19 +50,19 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #region Search
 
-        [HttpGet, ActionName("Search")]
-        public async Task<IActionResult> Search(string PageNumber, [Bind] StorageFilterModel filterModel)
-        {
-            var storageResults = await storageBiz.Search(filterModel);
-            if (!storageResults.Success)
-            {
-                return View();
-            }
-            ViewBag.PageSize = storageResults.PageSize;
-            ViewBag.CurrentPage = storageResults.PageNumber;
-            ViewBag.TotalItemCount = storageResults.TotalCount;
-            return View(storageResults.Data);
-        }
+        //[HttpGet, ActionName("Search")]
+        //public async Task<IActionResult> Search(string PageNumber, [Bind] StorageFilterModel filterModel)
+        //{
+        //    var storageResults = await storageBiz.Search(filterModel);
+        //    if (!storageResults.Success)
+        //    {
+        //        return View();
+        //    }
+        //    ViewBag.PageSize = storageResults.PageSize;
+        //    ViewBag.CurrentPage = storageResults.PageNumber;
+        //    ViewBag.TotalItemCount = storageResults.TotalCount;
+        //    return View(storageResults.Data);
+        //}
 
         #endregion
 
