@@ -14,8 +14,9 @@
             <a asp-controller="Storage" asp-action="Storages" class="btn btn-primary ">Back to Store Table</a>
         </div>
         <div class="col-4">
-            <form class="form-inline my-2 my-lg-0" method="get" asp-controller="Product" asp-action="Products" 
-                  asp-route-storageId="@Model.ProductPagedList.First().StorageId">
+            <form class="form-inline my-2 my-lg-0" method="get" asp-controller="Product" asp-action="Products"
+                  asp-route-storageId="1">
+                <input type="hidden" asp-for="@Model.ProductPagedList.First().StorageId" />
                 <input class="form-control mr-sm-2 form-control-sm" type="search" placeholder=@searchPlaceHolder
                        aria-label="Search" name="query">
                 <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">Search</button>

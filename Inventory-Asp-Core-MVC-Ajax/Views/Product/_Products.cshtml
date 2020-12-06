@@ -80,7 +80,8 @@ else
 <p class="align-items-center">
     <pager class="pager-container" list="@Model.ProductPagedList"
            options="@SitePagedListRenderOptions.Boostrap4" asp-action="Products" asp-controller="Product"
-           asp-route-query="@Model.SearchQuery" asp-route-storageId="@Model.ProductPagedList.Count == 0 ? 0 : Model.ProductPagedList?.First()?.StorageId" />
+           asp-route-storageId="@Model.ProductPagedList.Count == 0 ? 0 : Model.ProductPagedList?.First()?.StorageId" 
+           asp-route-query="@Model.SearchQuery"/>
 </p>
 
 
