@@ -2,6 +2,7 @@
 @model Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductFilterModel
 @{
     var Index = (Model.ProductPagedList.PageNumber * Model.ProductPagedList.PageSize) - (Model.ProductPagedList.PageSize - 1);
+    var storageId = Model.ProductPagedList.Count == 0 ? 0 : Model.ProductPagedList?.First()?.StorageId;
 }
 
 @* For displaying products *@
@@ -11,7 +12,7 @@
 else
 {
     var FirstProduct = Model.ProductPagedList.First();
-    
+
     <div class="container-fluid">
         <table class="table">
             <thead>
@@ -33,7 +34,7 @@ else
                     </th>
                     <th>
                         <a onclick="showProductInPopup('@Url.Action("AddOrEditProduct", "Product",
-                                               new { id = 0}, Context.Request.Scheme)', 'New Product')"
+                                               new { id = 0, storageId=storageId}, Context.Request.Scheme)', 'New Product')"
                            class="btn btn-success text-white"><i class="fas fa-random"></i>New Product</a>
                     </th>
                 </tr>
@@ -80,8 +81,7 @@ else
 <p class="align-items-center">
     <pager class="pager-container" list="@Model.ProductPagedList"
            options="@SitePagedListRenderOptions.Boostrap4" asp-action="Products" asp-controller="Product"
-           asp-route-storageId="@Model.ProductPagedList.Count == 0 ? 0 : Model.ProductPagedList?.First()?.StorageId" 
-           asp-route-query="@Model.SearchQuery"/>
+           asp-route-storageId=@storageId asp-route-query="@Model.SearchQuery" />
 </p>
 
 

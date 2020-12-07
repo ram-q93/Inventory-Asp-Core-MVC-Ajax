@@ -88,7 +88,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [HttpPost, ActionName("AddOrEditStorage")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(int id, [Bind] StorageModel model, PagingModel pagingModel)
+        public async Task<IActionResult> AddOrEdit(int id, [Bind] StorageModel model)
         {
             if (!ModelState.IsValid)
                 return response(false, "AddOrEditStorage", model);

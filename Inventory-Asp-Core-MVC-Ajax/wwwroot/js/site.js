@@ -118,3 +118,47 @@ function SubmitedSuccessfully() {
     Command: toastr["success"]("Submited successfully")
 };
 
+showProductInPopup = (url, title) => {
+    $.ajax({
+        type: "Get",
+        url: url,
+        success: function (res) {
+            $("#product-form-modal .modal-title").html(title);
+            $("#product-form-modal .modal-body").html(res);
+            $("#product-form-modal").modal('show');
+        }
+    })
+};
+
+jQueryAjaxPostToAddOrEditProduct = form => {
+    try {
+        $.ajax({
+            type: 'POST',
+            url: form.action,
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                if (res.success) {
+                    $("#view-all-products").html(res.html);
+                    $("#product-form-modal .modal-title").html('');
+                    $("#product-form-modal .modal-body").html('');
+                    $("#product-form-modal").modal('hide');
+                    SubmitedSuccessfully();
+                }
+                else {
+                    toastr.error(res.error)
+                    $("#product-form-modal .modal-body").html(res.html);
+                }
+            },
+            error: function (err) {
+                toastr.error("Error in submitting product")
+                console.log(err);
+            }
+        })
+    } catch (e) {
+        console.log(e);
+    }
+    //to prevent default form submit event
+    return false;
+};
