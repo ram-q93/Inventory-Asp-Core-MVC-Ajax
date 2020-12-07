@@ -47,82 +47,82 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-        #region Create
+        //#region Create
 
-        [HttpGet, ActionName("CreateProduct")]
-        public IActionResult Create(int? storeId)
-        {
-            if (storeId == null)
-                return NotFound();
-            return View(new ProductModel() { StorageId = (int)storeId });
-        }
+        //[HttpGet, ActionName("CreateProduct")]
+        //public IActionResult Create(int? storeId)
+        //{
+        //    if (storeId == null)
+        //        return NotFound();
+        //    return View(new ProductModel() { StorageId = (int)storeId });
+        //}
 
 
-        [HttpPost, ActionName("CreateProduct")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind] ProductModel productModel)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return View(productModel);
-                var result = await productBiz.Add(productModel);
-                if (!result.Success)
-                    return View(productModel);
-                return RedirectToAction("Products", new { productModel.StorageId });
-            }
-            catch (Exception e)
-            {
-                logger.Exception(e);
-                return NotFound();
-            }
-        }
+        //[HttpPost, ActionName("CreateProduct")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind] ProductModel productModel)
+        //{
+        //    try
+        //    {
+        //        if (!ModelState.IsValid)
+        //            return View(productModel);
+        //        var result = await productBiz.Add(productModel);
+        //        if (!result.Success)
+        //            return View(productModel);
+        //        return RedirectToAction("Products", new { productModel.StorageId });
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        logger.Exception(e);
+        //        return NotFound();
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
-        #region Edit
+        //#region Edit
 
-        [HttpGet, ActionName("EditProduct")]
-        public async Task<IActionResult> Edit(int? id)
-        {
-            try
-            {
-                if (id == null)
-                    return NotFound();
-                var result = await productBiz.GetById((int)id);
-                if (!result.Success)
-                    return NotFound();
-                return View(model: result.Data);
-            }
-            catch (Exception e)
-            {
-                logger.Exception(e);
-                return NotFound();
-            }
-        }
+        //[HttpGet, ActionName("EditProduct")]
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    try
+        //    {
+        //        if (id == null)
+        //            return NotFound();
+        //        var result = await productBiz.GetById((int)id);
+        //        if (!result.Success)
+        //            return NotFound();
+        //        return View(model: result.Data);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        logger.Exception(e);
+        //        return NotFound();
+        //    }
+        //}
 
-        [HttpPost, ActionName("EditProduct")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind] ProductModel productModel)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return View(productModel);
-                var result = await productBiz.Edit(productModel);
-                if (!result.Success)
-                    return View(productModel);
-                logger.Info($"Product Edited  {productModel}");
-                return RedirectToAction("Products", new { productModel.StorageId });
-            }
-            catch (Exception e)
-            {
-                logger.Exception(e);
-                return NotFound();
-            }
-        }
+        //[HttpPost, ActionName("EditProduct")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit([Bind] ProductModel productModel)
+        //{
+        //    try
+        //    {
+        //        if (!ModelState.IsValid)
+        //            return View(productModel);
+        //        var result = await productBiz.Edit(productModel);
+        //        if (!result.Success)
+        //            return View(productModel);
+        //        logger.Info($"Product Edited  {productModel}");
+        //        return RedirectToAction("Products", new { productModel.StorageId });
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        logger.Exception(e);
+        //        return NotFound();
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
         #region AddOrEditProduct
 
