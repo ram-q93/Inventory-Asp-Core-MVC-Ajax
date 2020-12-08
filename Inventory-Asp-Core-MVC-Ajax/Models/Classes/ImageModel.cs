@@ -8,7 +8,7 @@
 
         public byte[] Data { get; set; }
 
-        public string ImageDataURL { get; set; }
+        public string ConvertedData { get; set; }
 
         public int? ProductId { get; set; }
 

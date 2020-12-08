@@ -65,31 +65,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             };
         }
 
-        // public async Task<ResultList<TEntity>> ListAsNoTrackingAsync<TEntity>(DbContext context,
-        //PagingModel model, string Sort)
-        //where TEntity : class
-        // {
-        //     List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions.ToListAsync<TEntity>(((IQueryable<TEntity>)EntityFrameworkQueryableExtensions.AsNoTracking<TEntity>(((DbContext)(object)context).Set<TEntity>())).Sort<TEntity>(model, Sort).Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
-        //     IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
-        //     int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((DbContext)(object)context).Set<TEntity>(), new CancellationToken());
-        //     return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
-        // }
-
-
-        // public async Task<ResultList<TEntity>> Listttttt<TEntity>(DbContext db, PagingModel<TEntity> model)
-        //  where TEntity : class
-        // {
-        //     List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions
-        //         .ToListAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db)
-        //         .Set<TEntity>()).Sort<TEntity>(model.SortBy, model.SortDirection)
-        //         .Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
-        //     IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
-        //     int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db).Set<TEntity>()), new CancellationToken());
-        //     return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
-        // }
-
-
-
         #endregion
 
         #region Search
@@ -177,6 +152,16 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             repository.Remove(storeResult.Data);
             await repository.CommitAsync();
             return Result.Successful();
+        }
+
+        #endregion
+
+        #region ExistsWithName
+
+        public async Task<bool> ExistsWithName(string name)
+        {
+            var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(s => s.Name == name);
+            return result.Success;
         }
 
         #endregion
@@ -304,5 +289,29 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             var result = orderByGeneric.Invoke(null, new object[] { query, lambda });
             return (IQueryable<TEntity>)result;
         }
+
+        // public async Task<ResultList<TEntity>> ListAsNoTrackingAsync<TEntity>(DbContext context,
+        //PagingModel model, string Sort)
+        //where TEntity : class
+        // {
+        //     List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions.ToListAsync<TEntity>(((IQueryable<TEntity>)EntityFrameworkQueryableExtensions.AsNoTracking<TEntity>(((DbContext)(object)context).Set<TEntity>())).Sort<TEntity>(model, Sort).Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
+        //     IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
+        //     int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((DbContext)(object)context).Set<TEntity>(), new CancellationToken());
+        //     return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
+        // }
+
+
+        // public async Task<ResultList<TEntity>> Listttttt<TEntity>(DbContext db, PagingModel<TEntity> model)
+        //  where TEntity : class
+        // {
+        //     List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions
+        //         .ToListAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db)
+        //         .Set<TEntity>()).Sort<TEntity>(model.SortBy, model.SortDirection)
+        //         .Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
+        //     IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
+        //     int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db).Set<TEntity>()), new CancellationToken());
+        //     return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
+        // }
+
     }
 }

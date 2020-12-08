@@ -58,16 +58,17 @@ else
                         <td>
                             @Html.DisplayFor(m => p.Price)
                         </td>
-                        @*<td>
-                                <a asp-controller="Product" asp-action="Products" asp-route-storageId="@s.Id" class="btn btn-info">View Products</a>
-                            </td>*@
                         <td>
+                            <a onclick="showProductDetailsInPopup('@Url.Action("ProductDetails", "Product",
+                                       new { id = p.Id}, Context.Request.Scheme)', 'Product Details')"
+                               class="btn btn-info text-white">Details</a>
+
                             <a onclick="showProductInPopup('@Url.Action("AddOrEditProduct", "Product",
                                        new { id = p.Id}, Context.Request.Scheme)', 'Update Product')"
                                class="btn btn-warning text-white"><i class="fas fa-pencil-alt"></i></a>
-                            <form asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@p.Id"
+
+                            <form asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@p.Id" asp-route-storageId="@p.StorageId"
                                   onsubmit="return jQueryAjaxDeleteProduct(this)" class="d-inline">
-                                <input type="hidden" asp-for="@p.Id" />
                                 <input type="submit" value="Delete" class="btn btn-danger" />
                             </form>
                         </td>

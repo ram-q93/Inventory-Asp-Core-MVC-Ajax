@@ -1,0 +1,74 @@
+﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductModel
+@{
+    ViewData["Title"] = "Product Details";
+    Layout = null;
+    var product = Model;
+    var storage = Model.StorageModel;
+}
+
+@* For displaying Storage info*@
+<dv>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <b>Store @Html.DisplayNameFor(model => storage.Name)  : </b> @Html.DisplayFor(modelItem => storage.Name)
+        </div>
+        <div class="form-group col-md-3">
+            <b>Store @Html.DisplayNameFor(model => storage.Phone)  : </b> @Html.DisplayFor(modelItem => storage.Phone)
+        </div>
+        <div class="form-group col-md-3">
+            <b>@Html.DisplayNameFor(model => storage.Address)  : </b> @Html.DisplayFor(modelItem => storage.Address)
+        </div>
+    </div>
+</dv>
+<hr />
+
+@* For displaying Product info*@
+<dv>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <b>Product @Html.DisplayNameFor(m => product.Name)  : </b>
+            @Html.DisplayFor(modelItem => product.Name)
+        </div>
+        <div class="form-group col-md-3">
+            <b>@Html.DisplayNameFor(m => product.Barcode)  : </b>
+            @Html.DisplayFor(modelItem => product.Barcode)
+        </div>
+        <div class="form-group col-md-3">
+            <b>@Html.DisplayNameFor(m => product.Quantity)  : </b>
+            @Html.DisplayFor(modelItem => product.Quantity)
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <b>Product @Html.DisplayNameFor(m => product.Type) : </b>
+            @Html.DisplayFor(modelItem => product.Type)
+        </div>
+        <div class="form-group col-md-3">
+            <b> @Html.DisplayNameFor(m => product.IsAvailable) : </b>
+            @Html.DisplayFor(modelItem => product.IsAvailable)
+        </div>
+        <div class="form-group col-md-3">
+            <b>@Html.DisplayNameFor(m => product.Price) : </b>
+            @Html.DisplayFor(modelItem => product.Price)
+        </div>
+    </div>
+    <div class="form-row">
+        <b>@Html.DisplayNameFor(m => product.Description) : </b>
+        @Html.DisplayFor(modelItem => product.Description)
+    </div>
+</dv>
+<br /><br />
+
+@* For displaying Images*@
+@foreach (var image in Model.ImageModels)
+{
+    <tr>
+        <td>
+            <figure class="figure">
+                <img src="data:image/jpeg;base64,@(image.ConvertedData)"
+                     class="rounded mx-auto d-block img-fluid" alt="Responsive image">
+                <figcaption class="figure-caption">A caption for the above image.</figcaption>
+            </figure>
+        </td>
+    </tr>
+}

@@ -15,6 +15,7 @@
         public const int ProductsNotFoundByStoreId = 2003;
         public const int ProductJoinedWithStoreNotFoundByProductId = 2004;
         public const int PagedListFilteredBySearchQueryNotFound = 2005;
+        public const int ProductDetailsNotFoundById = 2006;
         #endregion
 
         #region Storage

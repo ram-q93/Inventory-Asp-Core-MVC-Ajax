@@ -17,8 +17,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
     {
         private readonly IRepository repository;
         private readonly IMapper mapper;
-        public ProductBiz(IRepository repository,
-                               IMapper mapper)
+        public ProductBiz(IRepository repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;
@@ -44,7 +43,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         public async Task<ResultList<ProductModel>> GetStoragePagedListProductFilteredBySearchQuery(int storageId, int? page, string searchQuery)
         {
-            var resultList = await repository.ListAsNoTrackingAsync<Product>(p => p.StorageId == storageId && 
+            var resultList = await repository.ListAsNoTrackingAsync<Product>(p => p.StorageId == storageId &&
                 searchQuery == null ||
                 (p.Name != null && p.Name.Contains(searchQuery))
                 //||
@@ -157,6 +156,31 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         }
 
         #endregion
+
+        #region Details
+
+        public async Task<Result<ProductModel>> Details(int id)
+        {
+            var storageResult = await repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id,
+                p => p.Images, p => p.Storage);
+            if (!storageResult.Success)
+            {
+                return Result<ProductModel>.Failed(Error.WithCode(ErrorCodes.ProductDetailsNotFoundById));
+            }
+            var productModel = mapper.Map<Product, ProductModel>(storageResult.Data);
+            productModel.StorageModel = mapper.Map<Storage, StorageModel>(storageResult.Data.Storage);
+            productModel.ImageModels = storageResult.Data.Images.Select(i => new ImageModel()
+            {
+                Id = i.Id,
+                Title = i.Title,
+                ConvertedData = Convert.ToBase64String(i.Data),
+                ProductId = i.productId
+            }).ToList();
+            return Result<ProductModel>.Successful(productModel);
+        }
+
+        #endregion
+
 
     }
 }

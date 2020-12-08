@@ -41,7 +41,7 @@ jQueryAjaxPostToAddOrEditStorage = form => {
                     $("#form-modal .modal-title").html('');
                     $("#form-modal .modal-body").html('');
                     $("#form-modal").modal('hide'); 
-                    SubmitedSuccessfully();
+                    SubmitedSuccessfully("Storage");
                 }
                 else {
                     toastr.error(res.error)
@@ -97,7 +97,7 @@ jQueryAjaxDeleteStorage = form => {
     return false;
 };
 
-function SubmitedSuccessfully() {
+function SubmitedSuccessfully(title) {
     toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -115,7 +115,7 @@ function SubmitedSuccessfully() {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-    Command: toastr["success"]("Submited successfully")
+    Command: toastr["success"](title + " Submited successfully")
 };
 
 showProductInPopup = (url, title) => {
@@ -144,7 +144,7 @@ jQueryAjaxPostToAddOrEditProduct = form => {
                     $("#product-form-modal .modal-title").html('');
                     $("#product-form-modal .modal-body").html('');
                     $("#product-form-modal").modal('hide');
-                    SubmitedSuccessfully();
+                    SubmitedSuccessfully("Product");
                 }
                 else {
                     toastr.error(res.error)
@@ -161,4 +161,75 @@ jQueryAjaxPostToAddOrEditProduct = form => {
     }
     //to prevent default form submit event
     return false;
+};
+
+jQueryAjaxDeleteProduct = form => {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted Product, you will not be able to recover",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+    }).then((willDelete) => {
+        if (willDelete)
+            try {
+                $.ajax({
+                    type: 'POST',
+                    url: form.action,
+                    data: new FormData(form),
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.success) {
+                            toastr.success("Product Deleted successfully")
+                            $("#view-all-products").html(res.html);
+                        } else {
+                            toastr.error(res.error)
+                        }
+                    },
+                    error: function (err) {
+                        toastr.error("Error in Deleting Product")
+                        console.log(err);
+                    }
+                })
+            } catch (e) {
+                console.log(e);
+            }
+    });
+    //to prevent default form submit event
+    return false;
+};
+
+showProductDetailsInPopup = (url, title) => {
+    $.ajax({
+        type: "Get",
+        url: url,
+        success: function (res) {
+            $("#product-form-modal .modal-title").html(title);
+            $("#product-form-modal .modal-body").html(res);
+            $("#product-form-modal").modal('show');
+        }
+    })
+};
+
+CheckNameAvailability = () => {
+    var name = $("#txtName").val();
+    $.ajax({
+        type: "POST",
+        url: "/Storage/CheckName",
+        data: '{username: "' + name + '" }',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            var message = $("#message");
+            if (response) {
+                message.css("color", "green");
+                message.html("Name is available");
+            }
+            else {
+                message.css("color", "red");
+                message.html("Name is NOT available");
+            }
+        }
+    });
 };

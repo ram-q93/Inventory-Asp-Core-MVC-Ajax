@@ -47,83 +47,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-        //#region Create
-
-        //[HttpGet, ActionName("CreateProduct")]
-        //public IActionResult Create(int? storeId)
-        //{
-        //    if (storeId == null)
-        //        return NotFound();
-        //    return View(new ProductModel() { StorageId = (int)storeId });
-        //}
-
-
-        //[HttpPost, ActionName("CreateProduct")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind] ProductModel productModel)
-        //{
-        //    try
-        //    {
-        //        if (!ModelState.IsValid)
-        //            return View(productModel);
-        //        var result = await productBiz.Add(productModel);
-        //        if (!result.Success)
-        //            return View(productModel);
-        //        return RedirectToAction("Products", new { productModel.StorageId });
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logger.Exception(e);
-        //        return NotFound();
-        //    }
-        //}
-
-        //#endregion
-
-        //#region Edit
-
-        //[HttpGet, ActionName("EditProduct")]
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    try
-        //    {
-        //        if (id == null)
-        //            return NotFound();
-        //        var result = await productBiz.GetById((int)id);
-        //        if (!result.Success)
-        //            return NotFound();
-        //        return View(model: result.Data);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logger.Exception(e);
-        //        return NotFound();
-        //    }
-        //}
-
-        //[HttpPost, ActionName("EditProduct")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit([Bind] ProductModel productModel)
-        //{
-        //    try
-        //    {
-        //        if (!ModelState.IsValid)
-        //            return View(productModel);
-        //        var result = await productBiz.Edit(productModel);
-        //        if (!result.Success)
-        //            return View(productModel);
-        //        logger.Info($"Product Edited  {productModel}");
-        //        return RedirectToAction("Products", new { productModel.StorageId });
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logger.Exception(e);
-        //        return NotFound();
-        //    }
-        //}
-
-        //#endregion
-
         #region AddOrEditProduct
 
         [HttpGet, ActionName("AddOrEditProduct")]
@@ -150,69 +73,50 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         public async Task<IActionResult> AddOrEdit(int id, [Bind] ProductModel model)
         {
             if (!ModelState.IsValid)
-                return response(false, "AddOrEditProduct", model);
+                return Respo(false, "AddOrEditProduct", model);
             if (id == 0)
             {
                 var result = await productBiz.Add(model);
                 if (!result.Success)
-                    return response(false, "AddOrEditProduct", model, result);
+                    return Respo(false, "AddOrEditProduct", model, result);
             }
             else
             {
                 var result = await productBiz.Edit(model);
                 if (!result.Success)
-                    return response(false, "AddOrEditProduct", model, result);
+                    return Respo(false, "AddOrEditProduct", model, result);
             }
-            return response(success: true, view: "_Products", model: await GetProductFilterModel(model.StorageId));
+            return Respo(success: true, view: "_Products", model: await GetProductFilterModel(model.StorageId));
         }
 
         #endregion
 
         #region Delete
 
-        [HttpGet, ActionName("DeleteProduct")]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            try
-            {
-                if (id == null)
-                    return NotFound();
-                var result = await productBiz.GetById((int)id);
-                if (!result.Success || result?.Data == null)
-                    return NotFound();
-                return View(model: result.Data);
-            }
-            catch (Exception e)
-            {
-                logger.Exception(e);
-                return NotFound();
-            }
-        }
-
         [HttpPost, ActionName("DeleteProduct")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete([Bind] ProductModel productModel)
+        public async Task<IActionResult> Delete(int id, int storageId)
         {
-            try
-            {
-                if (productModel?.Id == null)
-                    return NotFound();
-                var result = await productBiz.Delete((int)productModel.Id);
-                if (!result.Success)
-                    return RedirectToAction("DeleteProduct", new { productModel.Id });
-                return RedirectToAction("Products", new { productModel.StorageId });
-            }
-            catch (Exception e)
-            {
-                logger.Exception(e);
-                return NotFound();
-            }
+            var result = await productBiz.Delete(id);
+            if (!result.Success)
+                return Respo(false, "_Products", null, result);
+            return Respo(true, "_Products", await GetProductFilterModel(storageId));
         }
 
         #endregion
 
+        #region ProductDetails
 
-        private IActionResult response(bool success, string view, object model = null, Result result = null) => Json(new
+        [HttpGet, ActionName("ProductDetails")]
+        public async Task<IActionResult> Details(int id)
+        {
+            var productResult = await productBiz.Details(id);
+            return View(productResult.Data);
+        }
+
+        #endregion
+
+        private IActionResult Respo(bool success, string view, object model, Result result = null) => Json(new
         {
             success,
             error = success ? "" : $"Error {result?.Error?.Code}",

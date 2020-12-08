@@ -13,7 +13,9 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" type="text" class="form-control">
+                    @*<input asp-for="Name" type="text" class="form-control">*@
+                    <input asp-for="Name" class="form-control" id="txtName" type="text" onkeyup="ClearMessage()" />
+                    <input id="btnCheck" type="button" value="Show Availability" onclick="CheckNameAvailability()" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">

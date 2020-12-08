@@ -114,7 +114,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [HttpPost, ActionName("DeleteStorage")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, PagingModel pagingModel)
+        public async Task<IActionResult> Delete(int id)
         {
             var result = await storageBiz.Delete(id);
             if (!result.Success)
@@ -124,7 +124,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-        private IActionResult response(bool success, string view, object model = null, Result result = null) => Json(new
+        [HttpPost]
+        public JsonResult CheckName(string name)
+            => Json(storageBiz.ExistsWithName(name).GetAwaiter().GetResult());
+
+        
+        private IActionResult response(bool success, string view, object model, Result result = null) => Json(new
         {
             success,
             error = success ? "" : $"Error {result?.Error?.Code}",

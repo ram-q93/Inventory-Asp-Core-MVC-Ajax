@@ -1,4 +1,5 @@
-﻿using AspNetCore.Lib.Models;
+﻿using AspNetCore.Lib.Extensions;
+using AspNetCore.Lib.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
 {
     public class Util
     {
-      
+
 
     }
 }
