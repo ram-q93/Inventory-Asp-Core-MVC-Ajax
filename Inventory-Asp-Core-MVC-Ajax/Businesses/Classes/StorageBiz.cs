@@ -156,12 +156,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #endregion
 
-        #region ExistsWithName
+        #region CheckIfNameIsAvailable
 
-        public async Task<bool> ExistsWithName(string name)
+        public async Task<bool> CheckIfNameIsAvailable(string name)
         {
             var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(s => s.Name == name);
-            return result.Success;
+            return result.Data == null;
         }
 
         #endregion

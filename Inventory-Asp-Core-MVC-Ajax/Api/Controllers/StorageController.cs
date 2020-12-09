@@ -124,11 +124,16 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-        [HttpPost]
-        public JsonResult CheckName(string name)
-            => Json(storageBiz.ExistsWithName(name).GetAwaiter().GetResult());
+        #region CheckName
 
-        
+        [HttpGet, ActionName("CheckName")]
+        public async Task<JsonResult> CheckIfNameIsAvailable(string name) =>
+             Json(await storageBiz.CheckIfNameIsAvailable(name));
+
+        #endregion
+
+
+
         private IActionResult response(bool success, string view, object model, Result result = null) => Json(new
         {
             success,

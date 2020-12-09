@@ -6,7 +6,7 @@ using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using Microsoft.AspNetCore.Mvc;
 using PagedList.Core;
-using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
@@ -14,15 +14,18 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
     public class ProductController : Controller
     {
         private readonly IProductBiz productBiz;
+        private readonly IImageBiz imageBiz;
         private readonly ISerializer serializer;
         private readonly ILogger logger;
 
         public ProductController(
-            IProductBiz productBusiness,
+            IProductBiz productBiz,
+            IImageBiz imageBiz,
             ISerializer serializer,
             ILogger logger)
         {
-            this.productBiz = productBusiness;
+            this.productBiz = productBiz;
+            this.imageBiz = imageBiz;
             this.serializer = serializer;
             this.logger = logger;
         }
@@ -51,7 +54,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [HttpGet, ActionName("AddOrEditProduct")]
         [NoDirectAccess]
-        public async Task<IActionResult> AddOrEdit(int id = 0, int storageId = 0)
+        public async Task<IActionResult> AddOrEdit(int id, int storageId)
         {
             if (id == 0)
             {
@@ -76,6 +79,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
                 return Respo(false, "AddOrEditProduct", model);
             if (id == 0)
             {
+                model.ImageModels= new List<ImageModel>() { imageBiz.CreateImageModel(Request.Form.Files) };
                 var result = await productBiz.Add(model);
                 if (!result.Success)
                     return Respo(false, "AddOrEditProduct", model, result);

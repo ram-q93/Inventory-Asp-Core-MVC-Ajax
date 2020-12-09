@@ -12,7 +12,7 @@ namespace InventoryProject.Business.Interfaces
         Task<Result<StorageModel>> GetById(int id);
         Task<ResultList<StorageModel>> List(PagingModel pagingModel, string searchQuery);
         Task<Result<StorageModel>> ListStorageAndProductsByStoreId(int storeId);
-        Task<bool> ExistsWithName(string name);
+        Task<bool> CheckIfNameIsAvailable(string name);
         //Task<ResultList<StorageModel>> Search(StorageFilterModel filterModel);
 
     }

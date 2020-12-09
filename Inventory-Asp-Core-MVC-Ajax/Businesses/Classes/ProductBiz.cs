@@ -94,6 +94,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public async Task<Result> Add(ProductModel productModel)
         {
             var product = mapper.Map<ProductModel, Product>(productModel);
+            product.Images = productModel.ImageModels.Select(i => mapper.Map<ImageModel, Image>(i)).ToList();
             product.CreatedDate = DateTime.Now;
             product.UpdatedDate = DateTime.Now;
             repository.Add(product);

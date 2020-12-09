@@ -211,25 +211,3 @@ showProductDetailsInPopup = (url, title) => {
         }
     })
 };
-
-CheckNameAvailability = () => {
-    var name = $("#txtName").val();
-    $.ajax({
-        type: "POST",
-        url: "/Storage/CheckName",
-        data: '{username: "' + name + '" }',
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (response) {
-            var message = $("#message");
-            if (response) {
-                message.css("color", "green");
-                message.html("Name is available");
-            }
-            else {
-                message.css("color", "red");
-                message.html("Name is NOT available");
-            }
-        }
-    });
-};

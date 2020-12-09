@@ -11,12 +11,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" >
                     <label asp-for="Name" class="control-label"></label>
-                    @*<input asp-for="Name" type="text" class="form-control">*@
-                    <input asp-for="Name" class="form-control" id="txtName" type="text" onkeyup="ClearMessage()" />
-                    <input id="btnCheck" type="button" value="Show Availability" onclick="CheckNameAvailability()" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <input asp-for="Name" type="text" class="form-control">
+                    <span asp-validation-for="Name" class="text-danger" id="lblStatus"></span>
+                  
                 </div>
                 <div class="form-group col-md-6">
                     <label asp-for="Phone" class="control-label"></label>
@@ -47,3 +46,68 @@
 
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+@*<script type="text/javascript">
+    function CheckNameAvailability() {
+        var username = $("#txtName").val();
+        $.ajax({
+            type: "POST",
+            url: "/Storage/CheckName",
+            data: '{name: "' + name + '" }',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                var message = $("#message");
+                if (response) {
+                    //Email available.
+                    message.css("color", "green");
+                    message.html("Email is available");
+                }
+                else {
+                    //Email not available.
+                    message.css("color", "red");
+                    message.html("Email is NOT available");
+                }
+            }
+        });
+    };
+
+    function ClearMessage() {
+        $("#message").html("");
+    };
+</script>*@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Name').on('change', function () {
+            var Name = $("#Name").val();
+            $.ajax({
+                type: "GET",
+                url: "Storage/CheckName?name=" + Name,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        });
+    });
+    //function OnSuccess
+    function OnSuccess(response) {
+        var msg = $("#lblStatus");
+        switch (response) {
+            case "true":
+                msg.show();
+                msg.css("color","red");
+                msg.html("Name already exists.");
+                break;
+            case "false":
+                msg.show();
+                msg.css("color","green");
+                msg.html("Name Available");
+                break;
+        }
+    }
+
+</script>

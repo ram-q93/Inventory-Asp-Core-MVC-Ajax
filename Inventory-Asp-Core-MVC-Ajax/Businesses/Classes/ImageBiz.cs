@@ -1,11 +1,13 @@
-﻿using AutoMapper;
-using AspNetCore.Lib.Models;
+﻿using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services;
+using AutoMapper;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -73,6 +75,25 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         }
 
         #endregion
+
+        public ImageModel CreateImageModel(IFormFileCollection files)
+        {
+            var imageModels = new List<ImageModel>();
+            foreach (var file in files)
+            {
+                MemoryStream ms = new MemoryStream();
+                file.CopyTo(ms);
+                imageModels.Add(new ImageModel()
+                {
+                    Title = file.FileName,
+                    Data = ms.ToArray()
+                });
+                ms.Close();
+                ms.Dispose();
+            }
+            return imageModels.First();
+        }
+
 
         #region Delete
 

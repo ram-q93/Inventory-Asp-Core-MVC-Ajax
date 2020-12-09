@@ -38,7 +38,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 
         [Required(ErrorMessage = "You must provide a price.")]
         [PrecisionAndScale(8, 2, ErrorMessage = "Price must not exceed $999999.99")]
-        [Display(Name = "قیمت($)", Prompt = "قیمت($)")]
+        [Display(Name = "Price($)", Prompt = "Price($)")]
         public decimal Price { get; set; }
 
         public int StorageId { get; set; }

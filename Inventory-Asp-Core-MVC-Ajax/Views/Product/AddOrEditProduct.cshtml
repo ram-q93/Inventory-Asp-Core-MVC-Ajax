@@ -53,6 +53,13 @@
                     <textarea asp-for="Description" class="form-control" rows="2"> </textarea>
                 </div>
             </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="file" accept="image/*" id="file-id" name="file"
+                           multiple="multiple" onchange="loadFile(event)" />
+                    <img id="output" />
+                </div>
+            </div>
             <br />
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-success text-white btn-lg btn-block" />
@@ -60,6 +67,16 @@
         </form>
     </div>
 </div>
+
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+</script>
 
 
 @section Scripts{
