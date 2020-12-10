@@ -1,4 +1,5 @@
 ﻿using AspNetCore.Lib.Models;
+using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -40,9 +41,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.EFModels
 
         public int StorageId { get; set; }
 
+        public int SupplierId { get; set; }
+
+        public int ImageId { get; set; }
+
         public Storage Storage { get; set; }
 
-        public ICollection<Image> Images { get; set; }
+        public Supplier Supplier { get; set; }
+
+        public Image Image { get; set; }
+
+     
 
 
     }

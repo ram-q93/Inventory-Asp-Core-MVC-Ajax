@@ -79,12 +79,20 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         public async Task<Result<ProductModel>> GetById(int id)
         {
-            var result = await repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id);
+            var result = await repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id, p => p.Image);
             if (result?.Success != true || result?.Data == null)
             {
                 return Result<ProductModel>.Failed(Error.WithCode(ErrorCodes.ProductNotFoundById));
             }
-            return Result<ProductModel>.Successful(mapper.Map<Product, ProductModel>(result.Data));
+            var productModel = mapper.Map<Product, ProductModel>(result.Data);
+            //productModel.ImageModels = new ImageModel()
+            //{
+            //    Id = result.Data.Image.Id,
+            //    Title = result.Data.Image.Title,
+            //    ConvertedData = Convert.ToBase64String(result.Data.Image.Data),
+            //    ProductId = result.Data.Image.productId
+            //};
+            return Result<ProductModel>.Successful(productModel);
         }
 
         #endregion
@@ -94,7 +102,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public async Task<Result> Add(ProductModel productModel)
         {
             var product = mapper.Map<ProductModel, Product>(productModel);
-            product.Images = productModel.ImageModels.Select(i => mapper.Map<ImageModel, Image>(i)).ToList();
+            //product.Images = productModel.ImageModels.Select(i => mapper.Map<ImageModel, Image>(i)).ToList();
             product.CreatedDate = DateTime.Now;
             product.UpdatedDate = DateTime.Now;
             repository.Add(product);
@@ -127,12 +135,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public async Task<Result> Delete(int id)
         {
             var result = await repository.FirstOrDefaultAsync<Product>(p => p.Id == id,
-                includes: p => p.Images);
+                includes: p => p.Image);
             if (!result.Success || result?.Data == null)
             {
                 return Result.Failed(result.Error);
             }
-            result.Data.Images.Clear();
+            result.Data.Image = null;
             repository.Remove(result.Data);
             await repository.CommitAsync();
             return Result.Successful();
@@ -163,20 +171,20 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public async Task<Result<ProductModel>> Details(int id)
         {
             var storageResult = await repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id,
-                p => p.Images, p => p.Storage);
+                p => p.Image, p => p.Storage);
             if (!storageResult.Success)
             {
                 return Result<ProductModel>.Failed(Error.WithCode(ErrorCodes.ProductDetailsNotFoundById));
             }
             var productModel = mapper.Map<Product, ProductModel>(storageResult.Data);
             productModel.StorageModel = mapper.Map<Storage, StorageModel>(storageResult.Data.Storage);
-            productModel.ImageModels = storageResult.Data.Images.Select(i => new ImageModel()
-            {
-                Id = i.Id,
-                Title = i.Title,
-                ConvertedData = Convert.ToBase64String(i.Data),
-                ProductId = i.productId
-            }).ToList();
+            //productModel.ImageModels = storageResult.Data.Images.Select(i => new ImageModel()
+            //{
+            //    Id = i.Id,
+            //    Title = i.Title,
+            //    ConvertedData = Convert.ToBase64String(i.Data),
+            //    ProductId = i.productId
+            //}).ToList();
             return Result<ProductModel>.Successful(productModel);
         }
 

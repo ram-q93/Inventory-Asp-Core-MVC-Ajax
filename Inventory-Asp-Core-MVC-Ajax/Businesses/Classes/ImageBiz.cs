@@ -76,7 +76,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #endregion
 
-        public ImageModel CreateImageModel(IFormFileCollection files)
+        public List<ImageModel> CreateImageModels(IFormFileCollection files)
         {
             var imageModels = new List<ImageModel>();
             foreach (var file in files)
@@ -91,7 +91,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 ms.Close();
                 ms.Dispose();
             }
-            return imageModels.First();
+            return imageModels;
         }
 
 

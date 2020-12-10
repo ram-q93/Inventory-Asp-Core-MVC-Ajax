@@ -7,6 +7,7 @@ using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using Microsoft.AspNetCore.Mvc;
 using PagedList.Core;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
@@ -39,11 +40,18 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         private async Task<ProductFilterModel> GetProductFilterModel(int storageId, string query = null, int? page = null)
         {
-            var ProductResults = await productBiz.GetStoragePagedListProductFilteredBySearchQuery(storageId, page, query);
+            var result = await productBiz.GetStoragePagedListProductFilteredBySearchQuery(storageId, page, query);
+            if (result.TotalCount == 0)
+                return new ProductFilterModel()
+                {
+                    ProductPagedList = new StaticPagedList<ProductModel>(new[] { new ProductModel() { StorageId = storageId } },
+                    result.PageNumber + 1, result.PageSize, (int)result.TotalCount),
+                    SearchQuery = query
+                };
             return new ProductFilterModel()
             {
-                ProductPagedList = new StaticPagedList<ProductModel>(ProductResults.Items,
-                ProductResults.PageNumber + 1, ProductResults.PageSize, (int)ProductResults.TotalCount),
+                ProductPagedList = new StaticPagedList<ProductModel>(result.Items,
+                result.PageNumber + 1, result.PageSize, (int)result.TotalCount),
                 SearchQuery = query
             };
         }
@@ -73,19 +81,22 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         [HttpPost, ActionName("AddOrEditProduct")]
         [ValidateAntiForgeryToken]
         [NoDirectAccess]
-        public async Task<IActionResult> AddOrEdit(int id, [Bind] ProductModel model)
+        public async Task<IActionResult> AddOrEdit( [Bind] ProductModel model)
         {
             if (!ModelState.IsValid)
                 return Respo(false, "AddOrEditProduct", model);
-            if (id == 0)
+            if (model.Id == 0)
             {
-                model.ImageModels= new List<ImageModel>() { imageBiz.CreateImageModel(Request.Form.Files) };
+                model.ImageModels =  imageBiz.CreateImageModels(Request.Form.Files) ;
                 var result = await productBiz.Add(model);
                 if (!result.Success)
                     return Respo(false, "AddOrEditProduct", model, result);
             }
             else
             {
+                var images = imageBiz.CreateImageModels(Request.Form.Files);
+                images.First().Id = model.ImageModels.First().Id;
+                model.ImageModels = images;
                 var result = await productBiz.Edit(model);
                 if (!result.Success)
                     return Respo(false, "AddOrEditProduct", model, result);

@@ -6,7 +6,7 @@
 }
 
 @* For displaying products *@
-@if (Model.ProductPagedList.Count() == 0)
+@if (Model.ProductPagedList.First().Id == 0)
 {
     <div class="alert alert-info">No Products Availale</div> }
 else
@@ -31,11 +31,6 @@ else
                     </th>
                     <th>
                         <label asp-for="@FirstProduct.Price"></label>
-                    </th>
-                    <th>
-                        <a onclick="showProductInPopup('@Url.Action("AddOrEditProduct", "Product",
-                                               new { id = 0, storageId=storageId}, Context.Request.Scheme)', 'New Product')"
-                           class="btn btn-success text-white"><i class="fas fa-random"></i>New Product</a>
                     </th>
                 </tr>
             </thead>

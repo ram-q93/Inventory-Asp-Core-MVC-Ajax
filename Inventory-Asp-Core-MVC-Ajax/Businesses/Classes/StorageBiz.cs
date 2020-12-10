@@ -141,16 +141,16 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         public async Task<Result> Delete(int id)
         {
-            var storeResult = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id,
-                includes: p => p.Products.Select(p => p.Images));
-            if (!storeResult.Success || storeResult?.Data == null)
-            {
-                return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
-            }
-            storeResult.Data.Products.ToList().ForEach(p => p.Images.Clear());
-            storeResult.Data.Products.Clear();
-            repository.Remove(storeResult.Data);
-            await repository.CommitAsync();
+            //var storeResult = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id,
+            //    includes: p => p.Products.Select(p => p.Images));
+            //if (!storeResult.Success || storeResult?.Data == null)
+            //{
+            //    return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
+            //}
+            //storeResult.Data.Products.ToList().ForEach(p => p.Images.Clear());
+            //storeResult.Data.Products.Clear();
+            //repository.Remove(storeResult.Data);
+            //await repository.CommitAsync();
             return Result.Successful();
         }
 
@@ -211,14 +211,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                         p.CreatedDate = DateTime.Now;
                         p.UpdatedDate = DateTime.Now;
                         imageByteArrList?.RemoveAt(1);
-                        p.Images = Enumerable.Range(1, 8).Select(c =>
-                        {
-                            var image = new Image()
-                            {
-                                Title = $"{p.Name}-{new Random().Next(30, 100000)}{c}.jpg",
-                                Data = imageByteArrList[index++]
-                            };
-                            return image;
+                        //p.Images = Enumerable.Range(1, 8).Select(c =>
+                        //{
+                        //    var image = new Image()
+                        //    {
+                        //        Title = $"{p.Name}-{new Random().Next(30, 100000)}{c}.jpg",
+                        //        Data = imageByteArrList[index++]
+                        //    };
+                        //    return image;
                         }).ToList();
                     });
                 });
