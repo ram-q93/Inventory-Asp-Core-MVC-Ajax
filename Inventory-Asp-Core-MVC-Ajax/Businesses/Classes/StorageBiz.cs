@@ -2,6 +2,7 @@
 using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services;
 using AutoMapper;
+using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
@@ -141,16 +142,16 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         public async Task<Result> Delete(int id)
         {
-            //var storeResult = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id,
-            //    includes: p => p.Products.Select(p => p.Images));
-            //if (!storeResult.Success || storeResult?.Data == null)
-            //{
-            //    return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
-            //}
+            var storeResult = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id,
+                includes: p => p.Products.Select(p => p.Image));
+            if (!storeResult.Success || storeResult?.Data == null)
+            {
+                return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
+            }
             //storeResult.Data.Products.ToList().ForEach(p => p.Images.Clear());
-            //storeResult.Data.Products.Clear();
-            //repository.Remove(storeResult.Data);
-            //await repository.CommitAsync();
+            storeResult.Data.Products.Clear();
+            repository.Remove(storeResult.Data);
+            await repository.CommitAsync();
             return Result.Successful();
         }
 
@@ -199,6 +200,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 imageByteArrList = Enumerable.Repeat(imageByteArrList, 500).SelectMany(arr => arr).ToList();
                 //---------- Request for image------------//
 
+                string supplierFile = System.IO.File.ReadAllText("Supplier.json");
+                var suppliers = serializer.DeserializeFromJson<IList<Supplier>>(supplierFile).ToList();
                 string file = System.IO.File.ReadAllText("generated.json");
                 var storages = serializer.DeserializeFromJson<IList<Storage>>(file).ToList();
                 var index = 1;
@@ -210,16 +213,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     {
                         p.CreatedDate = DateTime.Now;
                         p.UpdatedDate = DateTime.Now;
+                        p.Supplier = suppliers[new Random().Next(1, 6)];
                         imageByteArrList?.RemoveAt(1);
-                        //p.Images = Enumerable.Range(1, 8).Select(c =>
-                        //{
-                        //    var image = new Image()
-                        //    {
-                        //        Title = $"{p.Name}-{new Random().Next(30, 100000)}{c}.jpg",
-                        //        Data = imageByteArrList[index++]
-                        //    };
-                        //    return image;
-                        }).ToList();
+                        p.Image = new Image()
+                        {
+                            Title = $"{p.Name}-{new Random().Next(30, 100000)}.jpg",
+                            Data = imageByteArrList[index++]
+                        };
+                   
                     });
                 });
                 storages.ForEach(s => repository.Add(s));

@@ -1,0 +1,44 @@
+[
+  {
+    "Name": "Micronaut",
+    "Phone": "(977) 442-2127",
+    "Address": "Story Street - Hiwasse - Georgia",
+    "EmergencyMobile": "(842) 489-3267",
+    "Enabled": true
+  },
+  {
+    "Name": "Rodeomad",
+    "Phone": "(907) 504-2201",
+    "Address": "Ashland Place - Inkerman - Utah",
+    "EmergencyMobile": "(944) 583-3073",
+    "Enabled": true
+  },
+  {
+    "Name": "Optyk",
+    "Phone": "(955) 511-3166",
+    "Address": "Decatur Street - Torboy - Montana",
+    "EmergencyMobile": "(890) 550-2219",
+    "Enabled": true
+  },
+  {
+    "Name": "Zork",
+    "Phone": "(802) 542-3829",
+    "Address": "Summit Street - Wikieup - Connecticut",
+    "EmergencyMobile": "(964) 423-3827",
+    "Enabled": true
+  },
+  {
+    "Name": "Recrisys",
+    "Phone": "(995) 553-3492",
+    "Address": "Richardson Street - Nanafalia - Oregon",
+    "EmergencyMobile": "(860) 567-2922",
+    "Enabled": true
+  },
+  {
+    "Name": "Plasto",
+    "Phone": "(900) 541-2531",
+    "Address": "Lincoln Terrace - Skyland - Illinois",
+    "EmergencyMobile": "(850) 572-2940",
+    "Enabled": true
+  }
+]

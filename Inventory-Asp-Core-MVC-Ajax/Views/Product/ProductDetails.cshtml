@@ -59,16 +59,13 @@
 </dv>
 <br /><br />
 
-@* For displaying Images*@
-@foreach (var image in Model.ImageModels)
-{
+@* For displaying Image*@
     <tr>
         <td>
             <figure class="figure">
-                <img src="data:image/jpeg;base64,@(image.ConvertedData)"
+                <img src="data:image/jpeg;base64,@(Model.ImageModel.ConvertedData)"
                      class="rounded mx-auto d-block img-fluid" alt="Responsive image">
                 <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
         </td>
     </tr>
-}

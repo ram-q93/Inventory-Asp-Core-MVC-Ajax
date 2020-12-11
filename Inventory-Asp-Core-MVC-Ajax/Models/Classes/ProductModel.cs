@@ -43,9 +43,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 
         public int StorageId { get; set; }
 
+        public int ImageId { get; set; }
+
         public StorageModel StorageModel { get; set; }
 
-        public ICollection<ImageModel> ImageModels { get; set; }
+        public ImageModel ImageModel { get; set; }
 
         public override string ToString() =>
              $"Product: ({Name} - {Barcode} - {Type} - {Quantity} - {IsAvailable} - {Price}" +

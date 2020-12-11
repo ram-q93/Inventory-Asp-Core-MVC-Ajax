@@ -92,7 +92,10 @@ namespace Inventory_Asp_Core_MVC_Ajax
             //       implementation.Name.Equals($"I{service.Name}", StringComparison.OrdinalIgnoreCase)))
             //.WithScopedLifetime());
 
-            services.AddAutoMapper(typeof(StorageProfile), typeof(ProductProfile), typeof(ImageProfile));
+            services.AddAutoMapper(typeof(StorageProfile), 
+                typeof(ProductProfile), 
+                typeof(ImageProfile),
+                typeof(SupplierProfile)); 
             new ConfigureServices().AddServices(services);
 
         }

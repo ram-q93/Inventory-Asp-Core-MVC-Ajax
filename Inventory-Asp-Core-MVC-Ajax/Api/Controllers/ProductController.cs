@@ -16,19 +16,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
     {
         private readonly IProductBiz productBiz;
         private readonly IImageBiz imageBiz;
-        private readonly ISerializer serializer;
-        private readonly ILogger logger;
 
         public ProductController(
             IProductBiz productBiz,
-            IImageBiz imageBiz,
-            ISerializer serializer,
-            ILogger logger)
+            IImageBiz imageBiz)
         {
             this.productBiz = productBiz;
             this.imageBiz = imageBiz;
-            this.serializer = serializer;
-            this.logger = logger;
         }
 
 
@@ -87,16 +81,16 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
                 return Respo(false, "AddOrEditProduct", model);
             if (model.Id == 0)
             {
-                model.ImageModels =  imageBiz.CreateImageModels(Request.Form.Files) ;
+                model.ImageModel =  imageBiz.CreateImageModel(Request.Form.Files) ;
                 var result = await productBiz.Add(model);
                 if (!result.Success)
                     return Respo(false, "AddOrEditProduct", model, result);
             }
             else
             {
-                var images = imageBiz.CreateImageModels(Request.Form.Files);
-                images.First().Id = model.ImageModels.First().Id;
-                model.ImageModels = images;
+                var image = imageBiz.CreateImageModel(Request.Form.Files);
+                image.Id = model.ImageModel.Id;
+                model.ImageModel = image;
                 var result = await productBiz.Edit(model);
                 if (!result.Success)
                     return Respo(false, "AddOrEditProduct", model, result);

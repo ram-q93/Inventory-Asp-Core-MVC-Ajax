@@ -18,7 +18,5 @@ namespace Inventory_Asp_Core_MVC_Ajax.EFModels
 
         public byte[] Data { get; set; }
 
-        public int productId { get; set; }
-        public Product product { get; set; }
     }
 }

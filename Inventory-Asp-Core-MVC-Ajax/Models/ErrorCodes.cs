@@ -2,13 +2,6 @@
 {
     public class ErrorCodes
     {
-        #region Auth
-        public const int UserNameAlreadyExists = 1001;
-        public const int UserEmailAlreadyExists = 1002;
-        public const int UserCreationFailed = 1003;
-        public const int UserLoginFailed = 1004;
-        #endregion
-
         #region Product
         public const int ProductNotFoundById = 2001;
         public const int ProductsNotFound = 2002;
@@ -27,6 +20,19 @@
         #region Image
         public const int ImagesNotFoundByProductId = 4001;
         public const int ImageNotFoundById = 4002;
+        #endregion
+
+        #region Supplier
+        public const int SuppliersNotFound = 5001;
+        public const int SupplierNotFoundById = 5002;
+        public const int SupplierDetailsNotFoundById = 5003;
+        #endregion
+
+        #region Auth
+        public const int UserNameAlreadyExists = 4040;
+        public const int UserEmailAlreadyExists = 4041;
+        public const int UserCreationFailed = 4042;
+        public const int UserLoginFailed = 4043;
         #endregion
     }
 }

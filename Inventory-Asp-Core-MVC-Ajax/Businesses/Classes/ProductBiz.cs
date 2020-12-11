@@ -39,7 +39,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #endregion
 
-        #region GetPagedListFilteredBySearchQuery
+        #region GetStoragePagedListProductFilteredBySearchQuery
 
         public async Task<ResultList<ProductModel>> GetStoragePagedListProductFilteredBySearchQuery(int storageId, int? page, string searchQuery)
         {
@@ -85,13 +85,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 return Result<ProductModel>.Failed(Error.WithCode(ErrorCodes.ProductNotFoundById));
             }
             var productModel = mapper.Map<Product, ProductModel>(result.Data);
-            //productModel.ImageModels = new ImageModel()
-            //{
-            //    Id = result.Data.Image.Id,
-            //    Title = result.Data.Image.Title,
-            //    ConvertedData = Convert.ToBase64String(result.Data.Image.Data),
-            //    ProductId = result.Data.Image.productId
-            //};
+            productModel.ImageModel = new ImageModel()
+            {
+                Id = result.Data.Image.Id,
+                Title = result.Data.Image.Title,
+                ConvertedData = Convert.ToBase64String(result.Data.Image.Data)
+            };
             return Result<ProductModel>.Successful(productModel);
         }
 

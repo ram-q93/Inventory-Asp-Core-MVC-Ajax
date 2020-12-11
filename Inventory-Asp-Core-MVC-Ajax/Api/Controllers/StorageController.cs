@@ -132,8 +132,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-
-
         private IActionResult response(bool success, string view, object model, Result result = null) => Json(new
         {
             success,

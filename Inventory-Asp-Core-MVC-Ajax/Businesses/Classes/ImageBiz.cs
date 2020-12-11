@@ -28,24 +28,24 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         public async Task<Result<StorageModel>> GetStoreProductsAndImages(int productId)
         {
-            var productAndStorageResult = await repository.FirstOrDefaultAsNoTrackingAsync<Product>(p =>
-                p.Id == productId, includes: p => p.Storage);
-            if (!productAndStorageResult.Success || productAndStorageResult.Data == null)
-            {
-                return Result<StorageModel>.Failed(
-                    Error.WithCode(ErrorCodes.ProductJoinedWithStoreNotFoundByProductId));
-            }
-            var imagesResult = await repository.ListAsNoTrackingAsync<Image>(i => i.productId == productId);
-            if (!imagesResult.Success)
-            {
-                return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.ImagesNotFoundByProductId));
-            }
-            var storeModel = mapper.Map<Storage, StorageModel>(productAndStorageResult.Data.Storage);
-            storeModel.ProductModels = new List<ProductModel>() {
-                mapper.Map<Product, ProductModel>(productAndStorageResult.Data) };
-            storeModel.ProductModels.First().ImageModels =
-                imagesResult.Data.Select(i => mapper.Map<Image, ImageModel>(i)).ToList();
-            return Result<StorageModel>.Successful(storeModel);
+            //var productAndStorageResult = await repository.FirstOrDefaultAsNoTrackingAsync<Product>(p =>
+            //    p.Id == productId, includes: p => p.Storage);
+            //if (!productAndStorageResult.Success || productAndStorageResult.Data == null)
+            //{
+            //    return Result<StorageModel>.Failed(
+            //        Error.WithCode(ErrorCodes.ProductJoinedWithStoreNotFoundByProductId));
+            //}
+            //var imagesResult = await repository.ListAsNoTrackingAsync<Image>(i => i.productId == productId);
+            //if (!imagesResult.Success)
+            //{
+            //    return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.ImagesNotFoundByProductId));
+            //}
+            //var storeModel = mapper.Map<Storage, StorageModel>(productAndStorageResult.Data.Storage);
+            //storeModel.ProductModels = new List<ProductModel>() {
+            //    mapper.Map<Product, ProductModel>(productAndStorageResult.Data) };
+            //storeModel.ProductModels.First().ImageModels =
+            //    imagesResult.Data.Select(i => mapper.Map<Image, ImageModel>(i)).ToList();
+            return Result<StorageModel>.Successful();
         }
 
         #endregion
@@ -76,23 +76,28 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #endregion
 
-        public List<ImageModel> CreateImageModels(IFormFileCollection files)
+        #region CreateImageModel
+
+        public ImageModel CreateImageModel(IFormFileCollection files)
         {
-            var imageModels = new List<ImageModel>();
-            foreach (var file in files)
+            var imageModels = files.Select(file =>
             {
                 MemoryStream ms = new MemoryStream();
                 file.CopyTo(ms);
-                imageModels.Add(new ImageModel()
+                var imageModel = new ImageModel()
                 {
                     Title = file.FileName,
                     Data = ms.ToArray()
-                });
+                };
                 ms.Close();
                 ms.Dispose();
-            }
-            return imageModels;
+                return imageModel;
+            }).ToList();
+
+            return imageModels.Where(i => i.Data != null).First();
         }
+
+        #endregion
 
 
         #region Delete

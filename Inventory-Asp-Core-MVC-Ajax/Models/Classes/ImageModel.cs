@@ -12,8 +12,5 @@
 
         public string Caption { get; set; }
 
-        public int? ProductId { get; set; }
-
-        public ProductModel ProductModel { get; set; }
     }
 }
