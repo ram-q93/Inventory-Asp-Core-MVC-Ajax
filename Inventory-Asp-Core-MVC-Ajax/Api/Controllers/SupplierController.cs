@@ -92,7 +92,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-        #region ProductDetails
+        #region SupplierDetails
 
         [HttpGet, ActionName("SupplierDetails")]
         public async Task<IActionResult> Details(int id)

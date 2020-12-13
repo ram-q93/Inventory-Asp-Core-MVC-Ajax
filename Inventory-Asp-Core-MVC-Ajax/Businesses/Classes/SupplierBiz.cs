@@ -35,17 +35,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result<SupplierFilterModel>> GetSupplierPagedListFilteredBySearchQuery(int? page, string searchQuery) =>
             Result<SupplierFilterModel>.TryAsync(async () =>
             {
+                var pagingModel = new PagingModel()
+                {
+                    PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
+                    PageSize = 5,
+                    Sort = "UpdatedDate",
+                    SortDirection = SortDirection.DESC
+                };
                 var resultList = await repository.ListAsNoTrackingAsync<Supplier>(s => searchQuery == null ||
                     (s.Name != null && s.Name.Contains(searchQuery)) ||
                     (s.Address != null && s.Address.Contains(searchQuery)),
-                    new PagingModel()
-                    {
-                        PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
-                        PageSize = 5,
-                        Sort = "UpdatedDate",
-                        SortDirection = SortDirection.DESC
-                    },
-                    "UpdatedDate");
+                    pagingModel, "UpdatedDate");
 
                 if (!resultList.Success)
                 {
@@ -67,82 +67,87 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region GetById
 
-        public async Task<Result<SupplierModel>> GetById(int id)
-        {
-            var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == id);
-            if (result?.Success != true || result?.Data == null)
+        public Task<Result<SupplierModel>> GetById(int id) =>
+            Result<SupplierModel>.TryAsync(async () =>
             {
-                return Result<SupplierModel>.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById));
-            }
-            return Result<SupplierModel>.Successful(mapper.Map<Supplier, SupplierModel>(result.Data));
-        }
+                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == id);
+                if (result?.Success != true || result?.Data == null)
+                {
+                    return Result<SupplierModel>.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById));
+                }
+                return Result<SupplierModel>.Successful(mapper.Map<Supplier, SupplierModel>(result.Data));
+            });
 
         #endregion
 
         #region Add
 
-        public async Task<Result> Add(SupplierModel model)
-        {
-            var store = mapper.Map<SupplierModel, Supplier>(model);
-            store.CreatedDate = DateTime.Now;
-            store.UpdatedDate = DateTime.Now;
-            repository.Add(store);
-            await repository.CommitAsync();
-            logger.Info($"Supplier Added:{model}");
-            return Result.Successful();
-        }
+        public Task<Result> Add(SupplierModel model) =>
+            Result.TryAsync(async () =>
+            {
+                var store = mapper.Map<SupplierModel, Supplier>(model);
+                store.CreatedDate = DateTime.Now;
+                store.UpdatedDate = DateTime.Now;
+                repository.Add(store);
+                await repository.CommitAsync();
+                logger.Info($"Supplier Added:{model}");
+                return Result.Successful();
+            });
 
         #endregion
 
         #region Edit
-        public async Task<Result> Edit(SupplierModel model)
-        {
-            var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == model.Id);
-            if (result?.Success != true || result?.Data == null)
+        public Task<Result> Edit(SupplierModel model) =>
+            Result.TryAsync(async () =>
             {
-                return Result.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById));
-            }
-            var store = mapper.Map<SupplierModel, Supplier>(model);
-            store.UpdatedDate = DateTime.Now;
-            repository.Update(store);
-            await repository.CommitAsync();
-            logger.Info($"Supplier Edited:{model}");
-            return Result.Successful();
-        }
+                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == model.Id);
+                if (result?.Success != true || result?.Data == null)
+                {
+                    return Result.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById));
+                }
+                var store = mapper.Map<SupplierModel, Supplier>(model);
+                store.UpdatedDate = DateTime.Now;
+                repository.Update(store);
+                await repository.CommitAsync();
+                logger.Info($"Supplier Edited:{model}");
+                return Result.Successful();
+            });
 
         #endregion
 
         #region Delete
 
-        public async Task<Result> Delete(int id)
-        {
-            var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == id,
-                includes: p => p.Products.Select(p => p.Image));
-            if (!result.Success || result?.Data == null)
+        public Task<Result> Delete(int id) =>
+            Result.TryAsync(async () =>
             {
-                return Result.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById));
-            }
-            result.Data.Products.Clear();
-            repository.Remove(result.Data);
-            await repository.CommitAsync();
-            logger.Warn($"Supplier Deleted: Id={result.Data.Id} Name={result.Data.Name}");
-            return Result.Successful();
-        }
+                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == id,
+                    includes: p => p.Products.Select(p => p.Image));
+                if (!result.Success || result?.Data == null)
+                {
+                    return Result.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById));
+                }
+                result.Data.Products.Clear();
+                repository.Remove(result.Data);
+                await repository.CommitAsync();
+                logger.Warn($"Supplier Deleted: Id={result.Data.Id} Name={result.Data.Name}");
+                return Result.Successful();
+            });
 
         #endregion
 
         #region Details
 
-        public async Task<Result<SupplierModel>> Details(int id)
-        {
-            var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == id);
-            if (!result.Success)
+        public Task<Result<SupplierModel>> Details(int id) =>
+            Result<SupplierModel>.TryAsync(async () =>
             {
-                return Result<SupplierModel>.Failed(Error.WithCode(ErrorCodes.SupplierDetailsNotFoundById));
-            }
-            var supplierModel = mapper.Map<Supplier, SupplierModel>(result.Data);
-            return Result<SupplierModel>.Successful(supplierModel);
-        }
+                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == id);
+                if (!result.Success)
+                {
+                    return Result<SupplierModel>.Failed(Error.WithCode(ErrorCodes.SupplierDetailsNotFoundById));
+                }
+                var supplierModel = mapper.Map<Supplier, SupplierModel>(result.Data);
+                return Result<SupplierModel>.Successful(supplierModel);
+            });
 
         #endregion
     }

@@ -24,31 +24,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             this.mapper = mapper;
         }
 
-        #region Get Store, Products And Images
-
-        public async Task<Result<StorageModel>> GetStoreProductsAndImages(int productId)
-        {
-            //var productAndStorageResult = await repository.FirstOrDefaultAsNoTrackingAsync<Product>(p =>
-            //    p.Id == productId, includes: p => p.Storage);
-            //if (!productAndStorageResult.Success || productAndStorageResult.Data == null)
-            //{
-            //    return Result<StorageModel>.Failed(
-            //        Error.WithCode(ErrorCodes.ProductJoinedWithStoreNotFoundByProductId));
-            //}
-            //var imagesResult = await repository.ListAsNoTrackingAsync<Image>(i => i.productId == productId);
-            //if (!imagesResult.Success)
-            //{
-            //    return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.ImagesNotFoundByProductId));
-            //}
-            //var storeModel = mapper.Map<Storage, StorageModel>(productAndStorageResult.Data.Storage);
-            //storeModel.ProductModels = new List<ProductModel>() {
-            //    mapper.Map<Product, ProductModel>(productAndStorageResult.Data) };
-            //storeModel.ProductModels.First().ImageModels =
-            //    imagesResult.Data.Select(i => mapper.Map<Image, ImageModel>(i)).ToList();
-            return Result<StorageModel>.Successful();
-        }
-
-        #endregion
 
         #region AddImages
 
@@ -78,27 +53,27 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region CreateImageModel
 
-        public ImageModel CreateImageModel(IFormFileCollection files)
-        {
-            var imageModels = files.Select(file =>
-            {
-                MemoryStream ms = new MemoryStream();
-                file.CopyTo(ms);
-                var imageModel = new ImageModel()
+        public Result<ImageModel> CreateImageModel(IFormFileCollection files) =>
+            Result<ImageModel>.Try(() =>
+           {
+               var imageModels = files.Select(file =>
                 {
-                    Title = file.FileName,
-                    Data = ms.ToArray()
-                };
-                ms.Close();
-                ms.Dispose();
-                return imageModel;
-            }).ToList();
+                    MemoryStream ms = new MemoryStream();
+                    file.CopyTo(ms);
+                    var imageModel = new ImageModel()
+                    {
+                        Title = file.FileName,
+                        Data = ms.ToArray()
+                    };
+                    ms.Close();
+                    ms.Dispose();
+                    return imageModel;
+                }).ToList();
 
-            return imageModels.Where(i => i.Data != null).First();
-        }
+               return Result<ImageModel>.Successful(imageModels.Where(i => i.Data != null).First());
+           });
 
         #endregion
-
 
         #region Delete
 

@@ -32,6 +32,11 @@ else
                     <th>
                         <label asp-for="@FirstProduct.Price"></label>
                     </th>
+                    <th>
+                        <a onclick="showProductInPopup('@Url.Action("AddOrEditProduct", "Product",
+                                               new { id = 0, storageId=storageId}, Context.Request.Scheme)', 'New Product')"
+                           class="btn btn-success text-white"><i class="fas fa-random"></i>New Product</a>
+                    </th>
                 </tr>
             </thead>
             <tbody>

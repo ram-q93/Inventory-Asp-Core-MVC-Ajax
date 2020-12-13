@@ -1,13 +1,10 @@
 ﻿using AspNetCore.Lib.Attributes;
 using AspNetCore.Lib.Extensions;
 using AspNetCore.Lib.Models;
-using AspNetCore.Lib.Services;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using Microsoft.AspNetCore.Mvc;
 using PagedList.Core;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
@@ -75,20 +72,20 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         [HttpPost, ActionName("AddOrEditProduct")]
         [ValidateAntiForgeryToken]
         [NoDirectAccess]
-        public async Task<IActionResult> AddOrEdit( [Bind] ProductModel model)
+        public async Task<IActionResult> AddOrEdit([Bind] ProductModel model)
         {
             if (!ModelState.IsValid)
                 return Respo(false, "AddOrEditProduct", model);
             if (model.Id == 0)
             {
-                model.ImageModel =  imageBiz.CreateImageModel(Request.Form.Files) ;
+                model.ImageModel = imageBiz.CreateImageModel(Request.Form.Files).Data;
                 var result = await productBiz.Add(model);
                 if (!result.Success)
                     return Respo(false, "AddOrEditProduct", model, result);
             }
             else
             {
-                var image = imageBiz.CreateImageModel(Request.Form.Files);
+                var image = imageBiz.CreateImageModel(Request.Form.Files).Data;
                 image.Id = model.ImageModel.Id;
                 model.ImageModel = image;
                 var result = await productBiz.Edit(model);

@@ -1,4 +1,5 @@
 ﻿using AspNetCore.Lib.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -26,8 +27,24 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
         [Display(Name = "Products")]
         public ICollection<ProductModel> ProductModels { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            return obj is StorageModel model &&
+                   Id == model.Id &&
+                   Name == model.Name &&
+                   Phone == model.Phone &&
+                   Address == model.Address;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Name, Phone, Address);
+        }
+
         public override string ToString() =>
              $"Store: ({Name} - {Phone} - {Address} - {ProductModels} )";
+
+
 
     }
 }

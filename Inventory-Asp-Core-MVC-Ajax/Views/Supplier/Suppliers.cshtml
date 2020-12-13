@@ -1,36 +1,35 @@
-﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductFilterModel
+﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.SupplierFilterModel
 @{
-    ViewData["Title"] = "Products";
+    ViewData["Title"] = "Supplier";
     var searchPlaceHolder = Model.SearchQuery == null ? "Search..." : @Model.SearchQuery;
-    var storageId = @Model.ProductPagedList.First().StorageId;
 }
 
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <h2 class="text-center"><i class="fas fa-comments-dollar text-success"></i>Product Table</h2>
+            <h2 class="text-center"><i class="fas fa-comments-dollar text-success"></i>Supplier Table</h2>
         </div>
         <div class="col-4">
-            <form class="form-inline my-2 my-lg-0" method="get" asp-controller="Product" asp-action="Products">
-                <input type="hidden" asp-for="@storageId" />
+            <form class="form-inline my-2 my-lg-0" method="get" asp-controller="Supplier" asp-action="Suppliers">
+                <input type="hidden" />
                 <input class="form-control mr-sm-2 form-control-sm" type="search" placeholder=@searchPlaceHolder
                        aria-label="Search" name="query">
                 <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">Search</button>
             </form>
         </div>
         <div class="col-1">
-            <a asp-controller="Product" asp-action="Products" asp-route-storageId="@Model.ProductPagedList.First().StorageId"
+            <a asp-controller="Supplier" asp-action="Suppliers"
                class="btn btn-outline-secondary my-2 my-sm-0 btn-sm">Clear</a>
         </div>
     </div>
     <br />
-    <div id="view-all-products">
-        @await Html.PartialAsync("_Products", Model)
+    <div id="view-all-suppliers">
+        @await Html.PartialAsync("_Suppliers", Model)
     </div>
 </div>
 
-<div class="modal fade bd-example-modal-xl" id="product-form-modal" tabindex="-1" 
+<div class="modal fade bd-example-modal-xl" id="supplier-form-modal" tabindex="-1" 
      role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">

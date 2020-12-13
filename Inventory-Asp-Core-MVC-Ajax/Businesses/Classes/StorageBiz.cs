@@ -8,13 +8,11 @@ using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
@@ -43,194 +41,180 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region List
 
-        public async Task<ResultList<StorageModel>> List(PagingModel pagingModel, string searchQuery)
-        {
-            await LoadSampleData();
-            var resultList = await repository.ListAsNoTrackingAsync<Storage>(s => searchQuery == null ||
-                (s.Name != null && s.Name.Contains(searchQuery)) ||
-                (s.Phone != null && s.Phone.Contains(searchQuery)) ||
-                (s.Address != null && s.Address.Contains(searchQuery)),
-                pagingModel, pagingModel.Sort);
-
-            if (!resultList.Success)
+        public Task<ResultList<StorageModel>> List(PagingModel pagingModel, string searchQuery) =>
+            ResultList<StorageModel>.TryAsync(async () =>
             {
-                return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
-            }
-            return new ResultList<StorageModel>()
-            {
-                Success = true,
-                Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)).ToList(),
-                PageNumber = resultList.PageNumber,
-                PageSize = resultList.PageSize,
-                TotalCount = resultList.TotalCount
-            };
-        }
+                await LoadSampleData();
+                var resultList = await repository.ListAsNoTrackingAsync<Storage>(s => searchQuery == null ||
+                    (s.Name != null && s.Name.Contains(searchQuery)) ||
+                    (s.Phone != null && s.Phone.Contains(searchQuery)) ||
+                    (s.Address != null && s.Address.Contains(searchQuery)),
+                    pagingModel, pagingModel.Sort);
 
-        #endregion
-
-        #region Search
-
-        //public async Task<ResultList<StorageModel>> Search(StorageFilterModel filterModel)
-        //{
-        //    var resultList = await repository.ListAsNoTrackingAsync<Storage>(s =>
-        //    (filterModel.Name == null || filterModel.Name.Contains(s.Name)) &&
-        //    (filterModel.Phone == null || filterModel.Phone.Contains(s.Phone)) &&
-        //    (filterModel.Address == null || filterModel.Address.Contains(s.Address)),
-        //    filterModel.PagingModel, filterModel.PagingModel.Sort);
-        //    if (!resultList.Success)
-        //    {
-        //        return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
-        //    }
-        //    return new ResultList<StorageModel>()
-        //    {
-        //        Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)),
-        //        PageNumber = resultList.PageNumber,
-        //        PageSize = resultList.PageSize,
-        //        TotalCount = resultList.TotalCount,
-        //        Success = true
-        //    };
-        //}
+                if (!resultList.Success)
+                {
+                    return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
+                }
+                return new ResultList<StorageModel>()
+                {
+                    Success = true,
+                    Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)).ToList(),
+                    PageNumber = resultList.PageNumber,
+                    PageSize = resultList.PageSize,
+                    TotalCount = resultList.TotalCount
+                };
+            });
 
         #endregion
 
         #region GetById
 
-        public async Task<Result<StorageModel>> GetById(int id)
-        {
-            var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id);
-            if (result?.Success != true || result?.Data == null)
+        public Task<Result<StorageModel>> GetById(int id) =>
+            Result<StorageModel>.TryAsync(async () =>
             {
-                return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
-            }
-            return Result<StorageModel>.Successful(mapper.Map<Storage, StorageModel>(result.Data));
-        }
+                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id);
+                if (result?.Success != true || result?.Data == null)
+                {
+                    return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
+                }
+                return Result<StorageModel>.Successful(mapper.Map<Storage, StorageModel>(result.Data));
+            });
 
         #endregion
 
         #region Add
 
-        public async Task<Result> Add(StorageModel model)
-        {
-            var store = mapper.Map<StorageModel, Storage>(model);
-            store.CreatedDate = DateTime.Now;
-            store.UpdatedDate = DateTime.Now;
-            repository.Add(store);
-            await repository.CommitAsync();
-            return Result.Successful();
-        }
+        public Task<Result> Add(StorageModel model) =>
+            Result.TryAsync(async () =>
+            {
+                var store = mapper.Map<StorageModel, Storage>(model);
+                store.CreatedDate = DateTime.Now;
+                store.UpdatedDate = DateTime.Now;
+                repository.Add(store);
+                await repository.CommitAsync();
+                return Result.Successful();
+            });
 
         #endregion
 
         #region Edit
-        public async Task<Result> Edit(StorageModel model)
-        {
-            var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == model.Id);
-            if (result?.Success != true || result?.Data == null)
+
+        public Task<Result> Edit(StorageModel model) =>
+            Result.TryAsync(async () =>
             {
-                return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
-            }
-            var store = mapper.Map<StorageModel, Storage>(model);
-            store.UpdatedDate = DateTime.Now;
-            repository.Update(store);
-            await repository.CommitAsync();
-            return Result.Successful();
-        }
+                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == model.Id);
+                if (result?.Success != true || result?.Data == null)
+                {
+                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
+                }
+                var store = mapper.Map<StorageModel, Storage>(model);
+                store.UpdatedDate = DateTime.Now;
+                repository.Update(store);
+                await repository.CommitAsync();
+                return Result.Successful();
+            });
 
         #endregion
 
         #region Delete
 
-        public async Task<Result> Delete(int id)
-        {
-            var storeResult = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id,
-                includes: p => p.Products.Select(p => p.Image));
-            if (!storeResult.Success || storeResult?.Data == null)
+        public Task<Result> Delete(int id) =>
+            Result.TryAsync(async () =>
             {
-                return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
-            }
-            //storeResult.Data.Products.ToList().ForEach(p => p.Images.Clear());
-            storeResult.Data.Products.Clear();
-            repository.Remove(storeResult.Data);
-            await repository.CommitAsync();
-            return Result.Successful();
-        }
+                var storeResult = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id,
+                    includes: p => p.Products.Select(p => p.Image));
+                if (!storeResult.Success || storeResult?.Data == null)
+                {
+                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
+                }
+                //storeResult.Data.Products.ToList().ForEach(p => p.Images.Clear());
+                storeResult.Data.Products.Clear();
+                repository.Remove(storeResult.Data);
+                await repository.CommitAsync();
+                return Result.Successful();
+            });
 
         #endregion
 
         #region CheckIfNameIsAvailable
 
-        public async Task<bool> CheckIfNameIsAvailable(string name)
-        {
-            var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(s => s.Name == name);
-            return result.Data == null;
-        }
+        public Task<Result<bool>> CheckIfNameIsAvailable(string name) =>
+            Result<bool>.TryAsync(async () =>
+            {
+                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(s => s.Name == name);
+                return Result<bool>.Successful(result.Data == null);
+            });
 
         #endregion
 
         #region ListStorageAndProductsByStoreId
 
-        public async Task<Result<StorageModel>> ListStorageAndProductsByStoreId(int storeId)
-        {
-            var productResults = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(s => s.Id == storeId,
-                includes: s => s.Products);
-            if (!productResults.Success)
+        public Task<Result<StorageModel>> ListStorageAndProductsByStoreId(int storeId) =>
+            Result<StorageModel>.TryAsync(async () =>
             {
-                return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StorageProductsNotFound));
-            }
-            return Result<StorageModel>.Successful(mapper.Map<Storage, StorageModel>(productResults.Data));
-        }
+                var productResults = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(s => s.Id == storeId,
+                    includes: s => s.Products);
+                if (!productResults.Success)
+                {
+                    return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StorageProductsNotFound));
+                }
+                return Result<StorageModel>.Successful(mapper.Map<Storage, StorageModel>(productResults.Data));
+            });
 
         #endregion
 
         #region LoadSampleData
-        private async Task LoadSampleData()
-        {
-            var storageRresult = await repository.ListAsNoTrackingAsync<Storage>();
-            if (storageRresult?.Data?.Count == 0)
+        private Task<Result> LoadSampleData() =>
+            Result.TryAsync(async () =>
             {
-                //-----------Request for image------------//
-                var tasks = new ConcurrentBag<Task<Result<byte[]>>>();
-                for (int i = 0; i < 100; i++)
+                var storageRresult = await repository.ListAsNoTrackingAsync<Storage>();
+                if (storageRresult?.Data?.Count == 0)
                 {
-                    tasks.Add(new InventoryHttpClient(serializer, logger).SendHttpRequestToGetImageByteArray());
-                    Thread.Sleep(50);
-                }
-                await Task.WhenAll(tasks);
-                var imageByteArrList = tasks.Where(t => t.Result.Success).Select(t => t.Result.Data).ToList();
-                imageByteArrList = Enumerable.Repeat(imageByteArrList, 500).SelectMany(arr => arr).ToList();
-                //---------- Request for image------------//
+                    //-----------Request for image------------//
+                    //var tasks = new ConcurrentBag<Task<Result<byte[]>>>();
+                    //for (int i = 0; i < 10; i++)
+                    //{
+                    //    tasks.Add(new InventoryHttpClient(serializer, logger).SendHttpRequestToGetImageByteArray());
+                    //    Thread.Sleep(50);
+                    //}
+                    //await Task.WhenAll(tasks);
+                    //var imageByteArrList = tasks.Where(t => t.Result.Success).Select(t => t.Result.Data).ToList();
+                    //imageByteArrList = Enumerable.Repeat(imageByteArrList, 700).SelectMany(arr => arr).ToList();
+                    //---------- Request for image------------//
 
-                string supplierFile = System.IO.File.ReadAllText("Supplier.json");
-                var suppliers = serializer.DeserializeFromJson<IList<Supplier>>(supplierFile).ToList();
-                string file = System.IO.File.ReadAllText("generated.json");
-                var storages = serializer.DeserializeFromJson<IList<Storage>>(file).ToList();
-                var index = 1;
-                storages.ForEach(s =>
-                {
-                    s.CreatedDate = DateTime.Now;
-                    s.UpdatedDate = DateTime.Now;
-                    s.Products.ToList().ForEach(p =>
+                    string supplierFile = System.IO.File.ReadAllText("Supplier.json");
+                    var suppliers = serializer.DeserializeFromJson<IList<Supplier>>(supplierFile).ToList();
+                    string file = System.IO.File.ReadAllText("generated.json");
+                    var storages = serializer.DeserializeFromJson<IList<Storage>>(file).ToList();
+                    var index = 1;
+                    storages.ForEach(s =>
                     {
-                        p.CreatedDate = DateTime.Now;
-                        p.UpdatedDate = DateTime.Now;
-                        p.Supplier = suppliers[new Random().Next(1, 6)];
-                        imageByteArrList?.RemoveAt(1);
-                        p.Image = new Image()
+                        s.CreatedDate = DateTime.Now;
+                        s.UpdatedDate = DateTime.Now;
+                        s.Products.ToList().ForEach(p =>
                         {
-                            Title = $"{p.Name}-{new Random().Next(30, 100000)}.jpg",
-                            Data = imageByteArrList[index++]
-                        };
-                   
+                            p.CreatedDate = DateTime.Now;
+                            p.UpdatedDate = DateTime.Now;
+                            p.Supplier = suppliers[new Random().Next(1, 9)];
+                            //imageByteArrList?.RemoveAt(1);
+                            p.Image = new Image()
+                            {
+                                Title = $"{p.Name}-{new Random().Next(30, 100000)}.jpg",
+                                //Data = imageByteArrList[index++],
+                                Caption = $"This is caption...{new Random().Next(30, 100000)}"
+                            };
+
+                        });
                     });
-                });
-                storages.ForEach(s => repository.Add(s));
-                var watch = Stopwatch.StartNew();
-                watch.Start();
-                await repository.CommitAsync();
-                watch.Stop();
-                logger.Info($"db persist duration : {watch.ElapsedMilliseconds}");
-            }
-        }
+                    storages.ForEach(s => repository.Add(s));
+                    var watch = Stopwatch.StartNew();
+                    watch.Start();
+                    await repository.CommitAsync();
+                    watch.Stop();
+                    logger.Info($"db persist duration : {watch.ElapsedMilliseconds}");
+                }
+                return Result.Successful();
+            });
 
         #endregion
     }

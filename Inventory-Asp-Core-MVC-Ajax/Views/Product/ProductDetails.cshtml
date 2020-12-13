@@ -4,23 +4,9 @@
     Layout = null;
     var product = Model;
     var storage = Model.StorageModel;
+    var supplier = Model.SupplierModel;
 }
 
-@* For displaying Storage info*@
-<dv>
-    <div class="form-row">
-        <div class="form-group col-md-3">
-            <b>Store @Html.DisplayNameFor(model => storage.Name)  : </b> @Html.DisplayFor(modelItem => storage.Name)
-        </div>
-        <div class="form-group col-md-3">
-            <b>Store @Html.DisplayNameFor(model => storage.Phone)  : </b> @Html.DisplayFor(modelItem => storage.Phone)
-        </div>
-        <div class="form-group col-md-3">
-            <b>@Html.DisplayNameFor(model => storage.Address)  : </b> @Html.DisplayFor(modelItem => storage.Address)
-        </div>
-    </div>
-</dv>
-<hr />
 
 @* For displaying Product info*@
 <dv>
@@ -57,15 +43,67 @@
         @Html.DisplayFor(modelItem => product.Description)
     </div>
 </dv>
-<br /><br />
+<hr />
 
+@* For displaying Storage info*@
+<dv>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <b>Storage @Html.DisplayNameFor(model => storage.Name)  : </b> @Html.DisplayFor(modelItem => storage.Name)
+        </div>
+        <div class="form-group col-md-3">
+            <b>Storage @Html.DisplayNameFor(model => storage.Phone)  : </b> @Html.DisplayFor(modelItem => storage.Phone)
+        </div>
+        <div class="form-group col-md-3">
+            <b>@Html.DisplayNameFor(model => storage.Address)  : </b> @Html.DisplayFor(modelItem => storage.Address)
+        </div>
+    </div>
+</dv>
+<hr />
+
+@* For displaying Storage info*@
+<dv>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <b>
+                Supplier @Html.DisplayNameFor(model => supplier.Name)  :
+            </b> @Html.DisplayFor(modelItem => supplier.Name)
+        </div>
+        <div class="form-group col-md-3">
+                <b>Supplier @Html.DisplayNameFor(model => supplier.Phone)  : 
+                    </b> @Html.DisplayFor(modelItem => supplier.Phone)
+            </div>
+        <div class="form-group col-md-3">
+            <b>
+                Supplier @Html.DisplayNameFor(model => supplier.EmergencyMobile)  :
+            </b> @Html.DisplayFor(modelItem => supplier.EmergencyMobile)
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <b>
+                Supplier @Html.DisplayNameFor(model => supplier.Enabled)  :
+            </b> @Html.DisplayFor(modelItem => supplier.Enabled)
+        </div>
+        <div class="form-group col-md-3">
+            <b>
+                @Html.DisplayNameFor(model => supplier.Address)  :
+            </b> @Html.DisplayFor(modelItem => supplier.Address)
+        </div>
+    </div>
+ 
+</dv>
+<hr />
+
+<br />
+<br />
 @* For displaying Image*@
-    <tr>
-        <td>
-            <figure class="figure">
-                <img src="data:image/jpeg;base64,@(Model.ImageModel.ConvertedData)"
-                     class="rounded mx-auto d-block img-fluid" alt="Responsive image">
-                <figcaption class="figure-caption">A caption for the above image.</figcaption>
-            </figure>
-        </td>
-    </tr>
+<tr>
+    <td>
+        <figure class="figure">
+            <img src="data:image/jpeg;base64,@(Model.ImageModel.ConvertedData)"
+                 class="rounded mx-auto d-block img-fluid" alt="Responsive image">
+            <figcaption class="figure-caption">@Model.ImageModel.Caption</figcaption>
+        </figure>
+    </td>
+</tr>

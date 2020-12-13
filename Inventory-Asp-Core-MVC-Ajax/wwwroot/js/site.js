@@ -211,3 +211,85 @@ showProductDetailsInPopup = (url, title) => {
         }
     })
 };
+
+showSupplierInPopup = (url, title) => {
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (res) {
+            $("#supplier-form-modal .modal-title").html(title);
+            $("#supplier-form-modal .modal-body").html(res);
+            $("#supplier-form-modal").modal('show');
+        }
+    })
+};
+
+jQueryAjaxPostToAddOrEditSupplier = form => {
+    try {
+        $.ajax({
+            type: 'POST',
+            url: form.action,
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                if (res.success) {
+                    $("#view-all-suppliers").html(res.html);
+                    $("#supplier-form-modal .modal-title").html('');
+                    $("#supplier-form-modal .modal-body").html('');
+                    $("#supplier-form-modal").modal('hide');
+                    SubmitedSuccessfully("Supplier");
+                }
+                else {
+                    toastr.error(res.error)
+                    $("#supplier-form-modal .modal-body").html(res.html);
+                }
+            },
+            error: function (err) {
+                toastr.error("Error in submitting supplier")
+                console.log(err);
+            }
+        })
+    } catch (e) {
+        console.log(e);
+    }
+    //to prevent default form submit event
+    return false;
+};
+
+jQueryAjaxDeleteSupplier = form => {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted supplier, \"All\" products of this supplier will permanently go away!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+    }).then((willDelete) => {
+        if (willDelete)
+            try {
+                $.ajax({
+                    type: 'POST',
+                    url: form.action,
+                    data: new FormData(form),
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.success) {
+                            toastr.success("Suplier deleted successfully")
+                            $("#view-all-suppliers").html(res.html);
+                        } else {
+                            toastr.error(res.error)
+                        }
+                    },
+                    error: function (err) {
+                        toastr.error("Error in deleting supplier")
+                        console.log(err);
+                    }
+                })
+            } catch (e) {
+                console.log(e);
+            }
+    });
+    //to prevent default form submit event
+    return false;
+};

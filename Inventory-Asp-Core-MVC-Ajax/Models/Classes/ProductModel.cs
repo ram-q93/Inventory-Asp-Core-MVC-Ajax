@@ -1,5 +1,6 @@
 ﻿using AspNetCore.Lib.Attributes;
 using AspNetCore.Lib.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -45,13 +46,37 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 
         public int ImageId { get; set; }
 
+        public int SupplierId { get; set; }
+
         public StorageModel StorageModel { get; set; }
 
         public ImageModel ImageModel { get; set; }
 
+        public SupplierModel SupplierModel { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ProductModel model &&
+                   Id == model.Id &&
+                   Name == model.Name &&
+                   Barcode == model.Barcode &&
+                   Type == model.Type &&
+                   Quantity == model.Quantity &&
+                   Description == model.Description &&
+                   IsAvailable == model.IsAvailable &&
+                   Price == model.Price;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Name, Barcode, Type, Quantity, Description, IsAvailable, Price);
+        }
+
         public override string ToString() =>
              $"Product: ({Name} - {Barcode} - {Type} - {Quantity} - {IsAvailable} - {Price}" +
             $" - StorId({StorageId}) - {Description})";
+
+
 
     }
 }

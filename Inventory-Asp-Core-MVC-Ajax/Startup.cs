@@ -71,32 +71,14 @@ namespace Inventory_Asp_Core_MVC_Ajax
                 options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddScoped<IRepository, Repository<InventoryDbContext>>();
 
-            //services.AddDbContext<IdentityAppDbContext>(options =>
-            //  options.UseSqlServer(Configuration.GetConnectionString("Default")));
-            //services.AddIdentity<DAL.EFModels.User, Role>(options =>
-            //{
-            //    options.User.RequireUniqueEmail = true;
-            //    options.Password.RequiredLength = 4;
-            //    options.Password.RequireNonAlphanumeric = false;
-            //    options.Password.RequireUppercase = false;
-            //    options.Password.RequireDigit = false;
-            //}
-            //).AddEntityFrameworkStores<IdentityAppDbContext>();
-
-            // services.Scan(scan => scan.FromCallingAssembly().AddClasses().AsMatchingInterface());
-            //services.Scan(scan => scan
-            //.FromCallingAssembly()
-            // .FromApplicationDependencies(a => a.FullName.Contains("InventoryProject"))
-            //  .AddClasses(publicOnly: true)
-            //.AsMatchingInterface((service, filter) => filter.Where(implementation =>
-            //       implementation.Name.Equals($"I{service.Name}", StringComparison.OrdinalIgnoreCase)))
-            //.WithScopedLifetime());
-
             services.AddAutoMapper(typeof(StorageProfile), 
                 typeof(ProductProfile), 
                 typeof(ImageProfile),
                 typeof(SupplierProfile)); 
+
             new ConfigureServices().AddServices(services);
+
+            services.AddHttpContextAccessor();
 
         }
     }
