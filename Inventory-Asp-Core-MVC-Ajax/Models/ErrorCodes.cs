@@ -26,6 +26,7 @@
         public const int SuppliersNotFound = 5001;
         public const int SupplierNotFoundById = 5002;
         public const int SupplierDetailsNotFoundById = 5003;
+        public const int EnabaledSuppliersNotFoundForSelectList = 5004;
         #endregion
 
         #region Auth

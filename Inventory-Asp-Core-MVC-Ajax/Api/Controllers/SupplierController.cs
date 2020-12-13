@@ -103,6 +103,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
+        #region supplier-select-list
+
+        [HttpGet, ActionName("supplier-select-list")]
+        public async Task<IActionResult> SupplierSelectList(string name)
+        {
+            var result = await supplierBiz.SupplierSelectList(name);
+            return Json(result.Data);
+        }
+
+        #endregion
+
         private IActionResult Respo(bool success, string view, object model, Result result = null) => Json(new
         {
             success,

@@ -12,5 +12,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces
         Task<Result<SupplierFilterModel>> GetSupplierPagedListFilteredBySearchQuery(int? page, string searchQuery);
         Task<Result<SupplierModel>> GetById(int id);
         Task<Result<SupplierModel>> Details(int id);
+        Task<Result<object>> SupplierSelectList(string name);
     }
 }

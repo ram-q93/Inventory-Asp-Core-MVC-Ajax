@@ -150,5 +150,20 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             });
 
         #endregion
+
+        #region
+
+        public Task<Result<object>> SupplierSelectList(string name) =>
+            Result<object>.TryAsync(async () =>
+            {
+                var result = await repository.ListAsNoTrackingAsync<Supplier>(s => s.Enabled);
+                if (!result.Success)
+                {
+                    return Result<object>.Failed(Error.WithCode(ErrorCodes.EnabaledSuppliersNotFoundForSelectList));
+                }
+                return Result<object>.Successful(result.Data.Select(s => new { s.Id, s.Name }));
+            });
+
+        #endregion
     }
 }

@@ -2756,3 +2756,12 @@ StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.SupplierBiz.<>c
    at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
 
 ===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-13 20:07:26.587
+Message: First Level Message: Exception of type 'System.Exception' was thrown.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass5_0.<<List>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 47
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.ResultList`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\ResultList.cs:line 93
+
+===========================================================================
