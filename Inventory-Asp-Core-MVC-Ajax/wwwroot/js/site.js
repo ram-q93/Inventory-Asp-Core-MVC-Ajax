@@ -293,3 +293,23 @@ jQueryAjaxDeleteSupplier = form => {
     //to prevent default form submit event
     return false;
 };
+
+function convert(a) {
+    alert("Handler for .keyup() called.");
+    console.log("hiiiiiii")
+    var sendData = { xx: Number(a) };
+    $.ajax({
+        url: "@Url.Action("ToMoney")",
+        type: "GET",
+        data: JSON.stringify(sendData),
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        success: function (data) {
+
+            $("#moneyText").text(data.t);
+        }
+
+    });
+}

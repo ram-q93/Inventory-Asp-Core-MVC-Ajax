@@ -29,6 +29,10 @@
         public const int EnabaledSuppliersNotFoundForSelectList = 5004;
         #endregion
 
+        #region Report
+        public const int ErrorInProductReport = 6001;
+        #endregion
+
         #region Auth
         public const int UserNameAlreadyExists = 4040;
         public const int UserEmailAlreadyExists = 4041;
