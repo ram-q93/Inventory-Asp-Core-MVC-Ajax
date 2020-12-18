@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory-Asp-Core-MVC-Ajax", "Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax.csproj", "{6CBAC8EB-0A9C-4D04-BBEE-2F679E956A00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Core.Mvc", "PagedList.Core.Mvc\PagedList.Core.Mvc.csproj", "{6136A7CE-3280-43F0-937B-B8F26B136ABC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PagedList.Core.Mvc", "PagedList.Core.Mvc\PagedList.Core.Mvc.csproj", "{6136A7CE-3280-43F0-937B-B8F26B136ABC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

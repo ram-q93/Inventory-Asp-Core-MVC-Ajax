@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+<body>
+
+    @model IList<Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductModel>
+    @{
+        var Index = 1;
+    }
+
+    @* For displaying products *@
+    @if (Model.First().Id == 0)
+    {
+        <div class="alert alert-info">No Products Availale</div> }
+    else
+    {
+        var FirstProduct = Model.First();
+
+        <div class="container-fluid">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            <label asp-for="@FirstProduct.Name"></label>
+                        </th>
+                        <th>
+                            <label asp-for="@FirstProduct.Quantity"></label>
+                        </th>
+                        <th>
+                            <label asp-for="@FirstProduct.IsAvailable"></label>
+                        </th>
+                        <th>
+                            <label asp-for="@FirstProduct.Price"></label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model)
+                    {
+                        <tr>
+                            <td>
+                                @(Index++)
+                            </td>
+                            <td>
+                                Name
+                            </td>
+                            <td>
+                                Quantity
+                            </td>
+                            <td>
+                                IsAvailable
+                            </td>
+                            <td>
+                                Price
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>}
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+
+
+

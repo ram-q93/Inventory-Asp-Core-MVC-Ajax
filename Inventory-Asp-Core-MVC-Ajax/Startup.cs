@@ -71,14 +71,16 @@ namespace Inventory_Asp_Core_MVC_Ajax
                 options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddScoped<IRepository, Repository<InventoryDbContext>>();
 
-            services.AddAutoMapper(typeof(StorageProfile), 
-                typeof(ProductProfile), 
+            services.AddAutoMapper(typeof(StorageProfile),
+                typeof(ProductProfile),
                 typeof(ImageProfile),
-                typeof(SupplierProfile)); 
+                typeof(SupplierProfile));
 
             new ConfigureServices().AddServices(services);
 
             services.AddHttpContextAccessor();
+
+
 
         }
     }
