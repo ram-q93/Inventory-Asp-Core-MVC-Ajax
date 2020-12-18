@@ -9,5 +9,7 @@
         public decimal? MinPrice { get; set; }
         public int? StorageId { get; set; }
         public int? SupplierId { get; set; }
+
+        
     }
 }

@@ -51,6 +51,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     (s.Address != null && s.Address.Contains(searchQuery)),
                     pagingModel, pagingModel.Sort);
 
+                //var r = await repository.ListAsNoTrackingAsync<Storage>(
+                //    new PagingModel<Storage>(pagingModel, s => s.UpdatedDate));
+
                 if (!resultList.Success)
                 {
                     return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
