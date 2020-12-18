@@ -4,7 +4,6 @@
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
 </head>
 <body>
 
@@ -29,16 +28,16 @@
                             #
                         </th>
                         <th>
-                            <label asp-for="@FirstProduct.Name"></label>
+                            <label asp-for="@(FirstProduct.Name)"></label>
                         </th>
                         <th>
-                            <label asp-for="@FirstProduct.Quantity"></label>
+                            <label asp-for="@(FirstProduct.Quantity)"></label>
                         </th>
                         <th>
-                            <label asp-for="@FirstProduct.IsAvailable"></label>
+                            <label asp-for="@(FirstProduct.IsAvailable)"></label>
                         </th>
                         <th>
-                            <label asp-for="@FirstProduct.Price"></label>
+                            <label asp-for="@(FirstProduct.Price)"></label>
                         </th>
                     </tr>
                 </thead>
@@ -50,16 +49,16 @@
                                 @(Index++)
                             </td>
                             <td>
-                                Name
+                                @(p.Name)
                             </td>
                             <td>
-                                Quantity
+                                @(p.Quantity)
                             </td>
                             <td>
-                                IsAvailable
+                                @(p.IsAvailable)
                             </td>
                             <td>
-                                Price
+                                @(p.Price)
                             </td>
                         </tr>
                     }
@@ -68,7 +67,6 @@
         </div>}
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
 

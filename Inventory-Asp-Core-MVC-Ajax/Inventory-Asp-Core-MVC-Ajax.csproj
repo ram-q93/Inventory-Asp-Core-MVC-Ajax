@@ -34,9 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Api\Resources\s.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Update="Api\Resources\ProductPdfReport.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
