@@ -11,6 +11,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces
         Task<Result> AddImages(IList<ImageModel> imageModels);
         Task<Result<ImageModel>> GetById(int id);
         Task<Result> Delete(int id);
-        Result<ImageModel> CreateImageModel(IFormFileCollection files);
+        Result<ImageModel> CreateImageModel(IFormFile file);
     }
 }

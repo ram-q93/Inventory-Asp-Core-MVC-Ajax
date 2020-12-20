@@ -1,5 +1,6 @@
 ﻿using AspNetCore.Lib.Attributes;
 using AspNetCore.Lib.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -44,7 +45,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 
         public int StorageId { get; set; }
 
-        public int ImageId { get; set; }
+        public int? ImageId { get; set; }
 
         public int SupplierId { get; set; }
 
@@ -52,6 +53,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 
         public ImageModel ImageModel { get; set; }
 
+        [Display(Name = "Product Picture")]
+        public IFormFile ProductPicture { get; set; }
         public SupplierModel SupplierModel { get; set; }
 
         public override bool Equals(object obj)
@@ -74,7 +77,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 
         public override string ToString() =>
              $"Product: ({Name} - {Barcode} - {Type} - {Quantity} - {IsAvailable} - {Price}" +
-            $" - StorId({StorageId}) - {Description})";
+            $" - StoragId({StorageId}) - {Description})";
 
 
 

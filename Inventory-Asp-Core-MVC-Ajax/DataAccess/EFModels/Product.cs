@@ -43,7 +43,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.EFModels
 
         public int SupplierId { get; set; }
 
-        public int ImageId { get; set; }
+        public int? ImageId { get; set; }
 
         public Storage Storage { get; set; }
 

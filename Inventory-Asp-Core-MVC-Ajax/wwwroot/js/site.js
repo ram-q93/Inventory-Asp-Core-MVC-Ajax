@@ -294,3 +294,28 @@ jQueryAjaxDeleteSupplier = form => {
     return false;
 };
 
+function searchStorage(searchQuery) {
+    console.log(searchQuery);
+    $.ajax({
+        type: "GET",
+        url: "Storage/Storages?query=" + searchQuery,
+        //data: new { query = searchQuery },
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        success: function (res) {
+            if (res.success) {
+                $("#view-all-storages").html(res.html);
+            } else {
+                toastr.error(res.error)
+            }
+        },
+        error: function (err) {
+            toastr.error("Error")
+            console.log("Error");
+            console.log(err);
+        }
+
+    });
+};

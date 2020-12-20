@@ -18,11 +18,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
     {
         private readonly IRepository repository;
         private readonly IMapper mapper;
-        public ProductBiz(IRepository repository, IMapper mapper)
+        private readonly IImageBiz imageBiz;
+
+        public ProductBiz(IRepository repository, IMapper mapper, IImageBiz imageBiz)
         {
             this.repository = repository;
             this.mapper = mapper;
-
+            this.imageBiz = imageBiz;
         }
 
         #region List
@@ -87,12 +89,20 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 return Result<ProductModel>.Failed(Error.WithCode(ErrorCodes.ProductNotFoundById));
             }
             var productModel = mapper.Map<Product, ProductModel>(result.Data);
-            productModel.ImageModel = new ImageModel()
+            if (result.Data.Image != null)
             {
-                Id = result.Data.Image.Id,
-                Title = result.Data.Image.Title,
-                ConvertedData = Convert.ToBase64String(result.Data.Image.Data)
-            };
+                productModel.ImageModel = new ImageModel()
+                {
+                    Id = result.Data.Image.Id,
+                    Title = result.Data.Image.Title,
+                    Caption = result.Data.Image.Caption,
+                    ConvertedData = Convert.ToBase64String(result.Data.Image.Data)
+                };
+            }
+            else
+            {
+                productModel.ImageModel = new ImageModel();
+            }
             return Result<ProductModel>.Successful(productModel);
         });
 
@@ -103,10 +113,19 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Add(ProductModel productModel) =>
             Result.TryAsync(async () =>
             {
+                var nameIsAvailable = await CheckIfNameIsAvailable(productModel.Name);
+                if (!nameIsAvailable.Data)
+                {
+                    Result.Failed(Error.WithCode(ErrorCodes.ProductNameAlreadyExists));
+                }
+
+                productModel.ImageModel = imageBiz.CreateImageModel(productModel.ProductPicture).Data;
+
                 var product = mapper.Map<ProductModel, Product>(productModel);
-                //product.Images = productModel.ImageModels.Select(i => mapper.Map<ImageModel, Image>(i)).ToList();
+                product.Image = mapper.Map<ImageModel, Image>(productModel.ImageModel);
                 product.CreatedDate = DateTime.Now;
                 product.UpdatedDate = DateTime.Now;
+
                 repository.Add(product);
                 await repository.CommitAsync();
                 return Result.Successful();
@@ -123,7 +142,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 {
                     return Result.Failed(Error.WithCode(ErrorCodes.ProductNotFoundById));
                 }
+                productModel.ImageModel = imageBiz.CreateImageModel(productModel.ProductPicture).Data;
+
                 var product = mapper.Map<ProductModel, Product>(productModel);
+                product.Image = mapper.Map<ImageModel, Image>(productModel.ImageModel);
+
                 product.StorageId = result.Data.StorageId;
                 product.UpdatedDate = DateTime.Now;
                 repository.Update(product);
@@ -185,18 +208,35 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var productModel = mapper.Map<Product, ProductModel>(productResult.Data);
                 productModel.StorageModel = mapper.Map<Storage, StorageModel>(productResult.Data.Storage);
                 productModel.SupplierModel = mapper.Map<Supplier, SupplierModel>(productResult.Data.Supplier);
-                productModel.ImageModel = new ImageModel()
+                if (productResult.Data.Image != null)
                 {
-                    Id = productResult.Data.Image.Id,
-                    Title = productResult.Data.Image.Title,
-                    Caption = productResult.Data.Image.Caption,
-                    ConvertedData = Convert.ToBase64String(productResult.Data.Image.Data)
-                };
+                    productModel.ImageModel = new ImageModel()
+                    {
+                        Id = productResult.Data.Image.Id,
+                        Title = productResult.Data.Image.Title,
+                        Caption = productResult.Data.Image.Caption,
+                        ConvertedData = Convert.ToBase64String(productResult.Data.Image.Data)
+                    };
+                }
+                else
+                {
+                    productModel.ImageModel = new ImageModel();
+                }
                 return Result<ProductModel>.Successful(productModel);
             });
 
         #endregion
 
+        #region CheckIfNameIsAvailable
+
+        public Task<Result<bool>> CheckIfNameIsAvailable(string name) =>
+            Result<bool>.TryAsync(async () =>
+            {
+                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Product>(s => s.Name == name);
+                return Result<bool>.Successful(result.Data == null);
+            });
+
+        #endregion
 
     }
 }

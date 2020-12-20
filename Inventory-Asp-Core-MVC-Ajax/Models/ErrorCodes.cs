@@ -9,12 +9,14 @@
         public const int ProductJoinedWithStoreNotFoundByProductId = 2004;
         public const int PagedListFilteredBySearchQueryNotFound = 2005;
         public const int ProductDetailsNotFoundById = 2006;
+        public const int ProductNameAlreadyExists = 2007;
         #endregion
 
         #region Storage
         public const int StorageNotFoundById = 3001;
         public const int StoragesNotFound = 3002;
         public const int StorageProductsNotFound = 3003;
+        public const int StorageNameAlreadyExists = 3004;
         #endregion
 
         #region Image

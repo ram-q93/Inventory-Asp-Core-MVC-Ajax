@@ -1,0 +1,245 @@
+===========================================================================
+Type: Exception
+Date: 2020-12-20 18:25:54.771
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Products_Images_ImageId". The conflict occurred in database "Inventory-Asp-Core-MVC-Ajax", table "dbo.Images", column 'Id'.
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 110
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 18:29:34.942
+Message: First Level Message: Sequence contains no elements
+StackTrace:    at System.Linq.ThrowHelper.ThrowNoElementsException()
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ImageBiz.<>c__DisplayClass5_0.<CreateImageModel>b__0() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ImageBiz.cs:line 73
+   at AspNetCore.Lib.Models.Result`1.Try(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 148
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 18:29:36.269
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Products_Images_ImageId". The conflict occurred in database "Inventory-Asp-Core-MVC-Ajax", table "dbo.Images", column 'Id'.
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 111
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 19:52:41.181
+Message: First Level Message: Sequence contains no elements
+StackTrace:    at System.Linq.ThrowHelper.ThrowNoElementsException()
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ImageBiz.<>c__DisplayClass5_0.<CreateImageModel>b__0() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ImageBiz.cs:line 73
+   at AspNetCore.Lib.Models.Result`1.Try(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 148
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 19:52:42.736
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Products_Images_ImageId". The conflict occurred in database "Inventory-Asp-Core-MVC-Ajax", table "dbo.Images", column 'Id'.
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 111
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 20:04:38.451
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Products_Images_ImageId". The conflict occurred in database "Inventory-Asp-Core-MVC-Ajax", table "dbo.Images", column 'Id'.
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 111
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 22:39:01.161
+Message: First Level Message: Value cannot be null. (Parameter 'inArray')
+StackTrace:    at System.Convert.ToBase64String(Byte[] inArray)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 201
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 22:41:33.838
+Message: First Level Message: Value cannot be null. (Parameter 'inArray')
+StackTrace:    at System.Convert.ToBase64String(Byte[] inArray)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 201
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 22:45:36.297
+Message: First Level Message: Value cannot be null. (Parameter 'inArray')
+StackTrace:    at System.Convert.ToBase64String(Byte[] inArray)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 201
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 23:05:01.297
+Message: First Level Message: Object reference not set to an instance of an object.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 23:05:25.770
+Message: First Level Message: Object reference not set to an instance of an object.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 23:11:58.697
+Message: First Level Message: Value cannot be null. (Parameter 'inArray')
+StackTrace:    at System.Convert.ToBase64String(Byte[] inArray)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 209
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 23:12:53.800
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: The UPDATE statement conflicted with the FOREIGN KEY constraint "FK_Products_Suppliers_SupplierId". The conflict occurred in database "Inventory-Asp-Core-MVC-Ajax", table "dbo.Suppliers", column 'Id'.
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass8_0.<<Edit>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 149
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 23:23:48.164
+Message: First Level Message: Value cannot be null. (Parameter 'inArray')
+StackTrace:    at System.Convert.ToBase64String(Byte[] inArray)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 94
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 23:24:01.464
+Message: First Level Message: Value cannot be null. (Parameter 'inArray')
+StackTrace:    at System.Convert.ToBase64String(Byte[] inArray)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 94
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-20 23:24:03.879
+Message: First Level Message: Value cannot be null. (Parameter 'inArray')
+StackTrace:    at System.Convert.ToBase64String(Byte[] inArray)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 213
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================

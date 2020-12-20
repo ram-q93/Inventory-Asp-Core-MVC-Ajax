@@ -75,19 +75,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         public async Task<IActionResult> AddOrEdit([Bind] ProductModel model)
         {
             if (!ModelState.IsValid)
-                return Respo(false, "AddOrEditProduct", model);
-            if (model.Id == 0)
             {
-                model.ImageModel = imageBiz.CreateImageModel(Request.Form.Files).Data;
+                return Respo(false, "AddOrEditProduct", model);
+            }
+            if (model.Id == 0) //Add
+            {
                 var result = await productBiz.Add(model);
                 if (!result.Success)
                     return Respo(false, "AddOrEditProduct", model, result);
             }
-            else
+            else //Edit
             {
-                var image = imageBiz.CreateImageModel(Request.Form.Files).Data;
-                image.Id = model.ImageModel.Id;
-                model.ImageModel = image;
                 var result = await productBiz.Edit(model);
                 if (!result.Success)
                     return Respo(false, "AddOrEditProduct", model, result);

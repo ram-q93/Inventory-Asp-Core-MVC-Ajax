@@ -19,9 +19,8 @@
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label asp-for="SupplierId" class="control-label">Choose Supplier</label>
-                    <select class="supplierSelect"></select>
-                    <span asp-validation-for="SupplierId" class="text-danger"></span>
+                    <label class="control-label">Supplier</label>
+                    <select id="list" asp-for="SupplierId" class="form-control"></select>
                 </div>
             </div>
             <div class="form-row">
@@ -61,42 +60,55 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="file" accept="image/*" id="file-id" name="file"
-                           multiple="multiple" onchange="loadImageFile(event)" />
-                    <img id="output" />
+                    <label asp-for="ProductPicture" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="ProductPicture" class="custom-file-input" id="customFile"
+                               onchange="loadImageFile(event)">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="ProductPicture" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="ImageModel.Caption" class="control-label"></label>
+                    <input asp-for="ImageModel.Caption" type="text" class="form-control">
+                    <span asp-validation-for="ImageModel.Caption" class="text-danger"></span>
                 </div>
             </div>
+
             <br />
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-success text-white btn-lg btn-block" />
             </div>
         </form>
+        <img id="output-image" />
     </div>
 </div>
 
 <script>
     $(document).ready(function () {
-        $(".supplierSelect").select({
-            minimumInputLength: 2,
-            ajax: {
-                url: '/supplier/supplier-select-list',
-                data: function (params) {
-                    return {
-                        q: params.term// search term
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                        results: data.items
-                    }
-                },
+        $.ajax({
+            method: "GET",
+            url: "/supplier/supplier-select-list",
+            dataType: "json",
+            success: function (data) {
+                var s = '<option value="0">-- Please select supplier --</option>';
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+                }
+                console.log(s);
+                $("#list").html(s);
             }
-        });
-    });
+        })
+    })
 
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });  
 
     var loadImageFile = function (event) {
-        var output = document.getElementById('output');
+        var output = document.getElementById('output-image');
         output.src = URL.createObjectURL(event.target.files[0]);
         output.onload = function () {
             URL.revokeObjectURL(output.src) // free memory

@@ -6,6 +6,7 @@ using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
+using Microsoft.EntityFrameworkCore;
 using PagedList.Core;
 using System;
 using System.Linq;
@@ -153,15 +154,23 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region
 
-        public Task<Result<object>> SupplierSelectList(string name) =>
+        public Task<Result<object>> ListEnableSuppliers() =>
             Result<object>.TryAsync(async () =>
             {
-                var result = await repository.ListAsNoTrackingAsync<Supplier>(s => s.Enabled);
-                if (!result.Success)
+                var DbResult = await
+                EntityFrameworkQueryableExtensions.AsNoTracking(
+                    repository.GetCurrentContext()
+                    .Set<Supplier>()
+                    .Where(s => s.Enabled)
+                    .OrderBy(s => s.Name)
+                    .Select(s => new { s.Id, s.Name })
+                ).ToListAsync();
+
+                if (DbResult == null || DbResult.Count == 0)
                 {
                     return Result<object>.Failed(Error.WithCode(ErrorCodes.EnabaledSuppliersNotFoundForSelectList));
                 }
-                return Result<object>.Successful(result.Data.Select(s => new { s.Id, s.Name }));
+                return Result<object>.Successful(DbResult);
             });
 
         #endregion

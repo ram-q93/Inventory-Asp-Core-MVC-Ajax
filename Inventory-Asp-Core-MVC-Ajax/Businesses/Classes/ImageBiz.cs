@@ -53,24 +53,25 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region CreateImageModel
 
-        public Result<ImageModel> CreateImageModel(IFormFileCollection files) =>
+        public Result<ImageModel> CreateImageModel(IFormFile file) =>
             Result<ImageModel>.Try(() =>
            {
-               var imageModels = files.Select(file =>
-                {
-                    MemoryStream ms = new MemoryStream();
-                    file.CopyTo(ms);
-                    var imageModel = new ImageModel()
-                    {
-                        Title = file.FileName,
-                        Data = ms.ToArray()
-                    };
-                    ms.Close();
-                    ms.Dispose();
-                    return imageModel;
-                }).ToList();
+               if (file == null)
+               {
+                   return Result<ImageModel>.Successful();
+               }
 
-               return Result<ImageModel>.Successful(imageModels.Where(i => i.Data != null).First());
+               MemoryStream ms = new MemoryStream();
+               file.CopyTo(ms);
+               var imageModel = new ImageModel()
+               {
+                   Title = file.FileName,
+                   Data = ms.ToArray()
+               };
+               ms.Close();
+               ms.Dispose();
+
+               return Result<ImageModel>.Successful(imageModel);
            });
 
         #endregion

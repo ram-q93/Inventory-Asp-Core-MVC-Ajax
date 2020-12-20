@@ -90,6 +90,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Add(StorageModel model) =>
             Result.TryAsync(async () =>
             {
+                var nameIsAvailable = await CheckIfNameIsAvailable(model.Name);
+                if (!nameIsAvailable.Data)
+                {
+                    Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyExists));
+                }
                 var store = mapper.Map<StorageModel, Storage>(model);
                 store.CreatedDate = DateTime.Now;
                 store.UpdatedDate = DateTime.Now;

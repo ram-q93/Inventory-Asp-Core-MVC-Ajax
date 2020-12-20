@@ -106,9 +106,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         #region supplier-select-list
 
         [HttpGet, ActionName("supplier-select-list")]
-        public async Task<IActionResult> SupplierSelectList(string name)
+        public async Task<IActionResult> SupplierSelectList(string criteria)
         {
-            var result = await supplierBiz.SupplierSelectList(name);
+            var result = await supplierBiz.ListEnableSuppliers();
             return Json(result.Data);
         }
 
