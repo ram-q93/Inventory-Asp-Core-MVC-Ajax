@@ -1,6 +1,7 @@
 ﻿using AspNetCore.Lib.Attributes;
 using AspNetCore.Lib.Extensions;
 using AspNetCore.Lib.Models;
+using Inventory_Asp_Core_MVC_Ajax.Businesses;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using Microsoft.AspNetCore.Mvc;
@@ -78,6 +79,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             {
                 return Respo(false, "AddOrEditProduct", model);
             }
+
+            var validation = model.ProductPicture.IsValidImage();
+            if (!validation.Success)
+            {
+                return Respo(false, "AddOrEditProduct", model, validation);
+            }
+
             if (model.Id == 0) //Add
             {
                 var result = await productBiz.Add(model);

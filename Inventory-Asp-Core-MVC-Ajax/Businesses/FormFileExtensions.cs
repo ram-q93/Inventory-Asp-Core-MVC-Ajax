@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AspNetCore.Lib.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Drawing;
 using System.IO;
@@ -9,10 +10,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
     public static class FormFileExtensions
     {
         public const int ImageMinimumBytes = 512;
+        public const int ImageMaximumBytes = 5000000;
         public const int ImageMaximumWidth = 100;
         public const int ImageMaximumHight = 100;
 
-        public static bool IsImage(this IFormFile postedFile)
+        public static Result IsValidImage(this IFormFile postedFile)
         {
             //-------------------------------------------
             //  Check the image mime types
@@ -24,7 +26,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
                         postedFile.ContentType.ToLower() != "image/x-png" &&
                         postedFile.ContentType.ToLower() != "image/png")
             {
-                return false;
+                return Result.Failed(Error.WithData(4009, new[] { "Error in ContentType" }));
             }
 
             //-------------------------------------------
@@ -35,7 +37,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
                 && Path.GetExtension(postedFile.FileName).ToLower() != ".gif"
                 && Path.GetExtension(postedFile.FileName).ToLower() != ".jpeg")
             {
-                return false;
+                return Result.Failed(Error.WithData(4009, new[] { "Error in image extension  (jpg, png, jpeg...)" }));
             }
 
             //-------------------------------------------
@@ -44,7 +46,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
             using (var image = Image.FromStream(postedFile.OpenReadStream()))
             {
                 if (image.Width > ImageMaximumWidth || image.Height > ImageMaximumHight)
-                    return false;
+                    return Result.Failed(Error.WithData(4009, new[] { "Error in image aspect ratio" }));
             }
 
 
@@ -55,14 +57,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
             {
                 if (!postedFile.OpenReadStream().CanRead)
                 {
-                    return false;
+                    return Result.Failed(Error.WithData(4009, new[] { "Error in image" }));
+
                 }
                 //------------------------------------------
-                //check whether the image size exceeding the limit or not
+                //check whether the image size exceeding the limit
                 //------------------------------------------ 
-                if (postedFile.Length < ImageMinimumBytes)
+                if (postedFile.Length > ImageMaximumBytes)
                 {
-                    return false;
+                    return Result.Failed(Error.WithData(4009, new[] { "Error :  image size exceeding the limit" }));
                 }
 
                 byte[] buffer = new byte[ImageMinimumBytes];
@@ -71,12 +74,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
                 if (Regex.IsMatch(content, @"<script|<html|<head|<title|<body|<pre|<table|<a\s+href|<img|<plaintext|<cross\-domain\-policy",
                     RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Multiline))
                 {
-                    return false;
+                    return Result.Failed(Error.WithData(4009, new[] { "Error" }));
                 }
             }
             catch (Exception)
             {
-                return false;
+                return Result.Failed(Error.WithData(4009, new[] { "" })); ;
             }
 
             //-------------------------------------------
@@ -92,14 +95,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
             }
             catch (Exception)
             {
-                return false;
+
+                return Result.Failed(Error.WithData(4009, new[] { "Error " }));
             }
             finally
             {
                 postedFile.OpenReadStream().Position = 0;
             }
 
-            return true;
+            return Result.Successful();
         }
     }
 }

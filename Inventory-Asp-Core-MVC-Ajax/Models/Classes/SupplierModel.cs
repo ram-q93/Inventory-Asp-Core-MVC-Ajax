@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 {
-    public class SupplierModel
+    public class SupplierModel : AuditableEntity
     {
         public int Id { get; set; }
 

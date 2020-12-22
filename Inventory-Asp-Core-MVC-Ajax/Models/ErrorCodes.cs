@@ -29,6 +29,7 @@
         public const int SupplierNotFoundById = 5002;
         public const int SupplierDetailsNotFoundById = 5003;
         public const int EnabaledSuppliersNotFoundForSelectList = 5004;
+        public const int SupplierNameAlreadyExists = 5005;
         #endregion
 
         #region Report

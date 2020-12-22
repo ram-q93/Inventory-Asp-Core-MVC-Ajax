@@ -1,13 +1,12 @@
 ﻿using AspNetCore.Lib.Attributes;
-using AspNetCore.Lib.Models;
+using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 {
-    public class ProductModel : Updateable
+    public class ProductModel : AuditableEntity
     {
         public int Id { get; set; }
 

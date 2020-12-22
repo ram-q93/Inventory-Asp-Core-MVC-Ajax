@@ -8,11 +8,13 @@ using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
@@ -90,14 +92,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Add(StorageModel model) =>
             Result.TryAsync(async () =>
             {
-                var nameIsAvailable = await CheckIfNameIsAvailable(model.Name);
-                if (!nameIsAvailable.Data)
+                if (!(await CheckIfNameIsAvailable(model.Name)).Data)
                 {
                     Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyExists));
                 }
+
                 var store = mapper.Map<StorageModel, Storage>(model);
-                store.CreatedDate = DateTime.Now;
-                store.UpdatedDate = DateTime.Now;
                 repository.Add(store);
                 await repository.CommitAsync();
                 return Result.Successful();
@@ -110,14 +110,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Edit(StorageModel model) =>
             Result.TryAsync(async () =>
             {
+                if (!(await CheckIfNameIsAvailable(model.Name)).Data)
+                {
+                    Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyExists));
+                }
+
                 var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
                     return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
                 }
                 var store = mapper.Map<StorageModel, Storage>(model);
-                store.UpdatedDate = DateTime.Now;
-                repository.Update(store);
                 await repository.CommitAsync();
                 return Result.Successful();
             });
@@ -179,15 +182,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 if (storageRresult?.Data?.Count == 0)
                 {
                     //-----------Request for image------------//
-                    //var tasks = new ConcurrentBag<Task<Result<byte[]>>>();
-                    //for (int i = 0; i < 10; i++)
-                    //{
-                    //    tasks.Add(new InventoryHttpClient(serializer, logger).SendHttpRequestToGetImageByteArray());
-                    //    Thread.Sleep(50);
-                    //}
-                    //await Task.WhenAll(tasks);
-                    //var imageByteArrList = tasks.Where(t => t.Result.Success).Select(t => t.Result.Data).ToList();
-                    //imageByteArrList = Enumerable.Repeat(imageByteArrList, 700).SelectMany(arr => arr).ToList();
+                    var tasks = new ConcurrentBag<Task<Result<byte[]>>>();
+                    for (int i = 0; i < 10; i++)
+                    {
+                        tasks.Add(new InventoryHttpClient(serializer, logger).SendHttpRequestToGetImageByteArray());
+                        Thread.Sleep(50);
+                    }
+                    await Task.WhenAll(tasks);
+                    var imageByteArrList = tasks.Where(t => t.Result.Success).Select(t => t.Result.Data).ToList();
+                    imageByteArrList = Enumerable.Repeat(imageByteArrList, 700).SelectMany(arr => arr).ToList();
                     //---------- Request for image------------//
 
                     string supplierFile = System.IO.File.ReadAllText("Supplier.json");
@@ -197,18 +200,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     var index = 1;
                     storages.ForEach(s =>
                     {
-                        s.CreatedDate = DateTime.Now;
-                        s.UpdatedDate = DateTime.Now;
                         s.Products.ToList().ForEach(p =>
                         {
-                            p.CreatedDate = DateTime.Now;
-                            p.UpdatedDate = DateTime.Now;
-                            p.Supplier = suppliers[new Random().Next(1, 9)];
-                            //imageByteArrList?.RemoveAt(1);
+                            p.Supplier = suppliers[new Random().Next(1, 12)];
+                            imageByteArrList?.RemoveAt(1);
                             p.Image = new Image()
                             {
                                 Title = $"{p.Name}-{new Random().Next(30, 100000)}.jpg",
-                                //Data = imageByteArrList[index++],
+                                Data = imageByteArrList[index++],
                                 Caption = $"This is caption...{new Random().Next(30, 100000)}"
                             };
 

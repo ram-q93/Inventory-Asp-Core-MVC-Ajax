@@ -33,7 +33,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             {
                 PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
                 PageSize = 5,
-                Sort = "UpdatedDate",
+                Sort = "LastModified",
                 SortDirection = SortDirection.DESC
             }, searchQuery);
             if (!storageResults.Success)

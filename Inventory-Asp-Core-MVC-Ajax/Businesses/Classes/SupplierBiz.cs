@@ -40,13 +40,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 {
                     PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
                     PageSize = 5,
-                    Sort = "UpdatedDate",
+                    Sort = "LastModified",
                     SortDirection = SortDirection.DESC
                 };
                 var resultList = await repository.ListAsNoTrackingAsync<Supplier>(s => searchQuery == null ||
-                    (s.Name != null && s.Name.Contains(searchQuery)) ||
+                    (s.CompanyName != null && s.CompanyName.Contains(searchQuery)) ||
                     (s.Address != null && s.Address.Contains(searchQuery)),
-                    pagingModel, "UpdatedDate");
+                    pagingModel, "LastModified");
 
                 if (!resultList.Success)
                 {
@@ -86,9 +86,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Add(SupplierModel model) =>
             Result.TryAsync(async () =>
             {
+                if (!(await CheckIfNameIsAvailable(model.Name)).Data)
+                {
+                    Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyExists));
+                }
+
                 var store = mapper.Map<SupplierModel, Supplier>(model);
-                store.CreatedDate = DateTime.Now;
-                store.UpdatedDate = DateTime.Now;
                 repository.Add(store);
                 await repository.CommitAsync();
                 logger.Info($"Supplier Added:{model}");
@@ -101,14 +104,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Edit(SupplierModel model) =>
             Result.TryAsync(async () =>
             {
+                if (!(await CheckIfNameIsAvailable(model.Name)).Data)
+                {
+                    Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyExists));
+                }
+
                 var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
                     return Result.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById));
                 }
                 var store = mapper.Map<SupplierModel, Supplier>(model);
-                store.UpdatedDate = DateTime.Now;
-                repository.Update(store);
                 await repository.CommitAsync();
                 logger.Info($"Supplier Edited:{model}");
                 return Result.Successful();
@@ -130,7 +136,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 result.Data.Products.Clear();
                 repository.Remove(result.Data);
                 await repository.CommitAsync();
-                logger.Warn($"Supplier Deleted: Id={result.Data.Id} Name={result.Data.Name}");
+                logger.Warn($"Supplier Deleted: Id={result.Data.Id} CompanyName={result.Data.CompanyName}");
                 return Result.Successful();
             });
 
@@ -152,7 +158,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #endregion
 
-        #region
+        #region ListEnableSuppliers
 
         public Task<Result<object>> ListEnableSuppliers() =>
             Result<object>.TryAsync(async () =>
@@ -162,8 +168,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     repository.GetCurrentContext()
                     .Set<Supplier>()
                     .Where(s => s.Enabled)
-                    .OrderBy(s => s.Name)
-                    .Select(s => new { s.Id, s.Name })
+                    .OrderBy(s => s.CompanyName)
+                    .Select(s => new { s.Id, s.CompanyName })
                 ).ToListAsync();
 
                 if (DbResult == null || DbResult.Count == 0)
@@ -171,6 +177,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     return Result<object>.Failed(Error.WithCode(ErrorCodes.EnabaledSuppliersNotFoundForSelectList));
                 }
                 return Result<object>.Successful(DbResult);
+            });
+
+        #endregion
+
+        #region CheckIfNameIsAvailable
+
+        public Task<Result<bool>> CheckIfNameIsAvailable(string name) =>
+            Result<bool>.TryAsync(async () =>
+            {
+                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(s => s.CompanyName == name);
+                return Result<bool>.Successful(result.Data == null);
             });
 
         #endregion

@@ -52,7 +52,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                  {
                      PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
                      PageSize = 5,
-                     Sort = "UpdatedDate",
+                     Sort = "LastModified",
                      SortDirection = SortDirection.DESC
                  };
                  var resultList = await repository.ListAsNoTrackingAsync<Product>(p => p.StorageId == storageId &&
@@ -60,7 +60,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                      (p.Name != null && p.Name.Contains(searchQuery)) ||
                      (p.Quantity < Convert.ToInt32(searchQuery)) ||
                      (p.Price < Convert.ToDecimal(searchQuery)),
-                     pagingModel, "UpdatedDate");
+                     pagingModel, "LastModified");
 
                  if (!resultList.Success)
                  {
@@ -113,8 +113,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Add(ProductModel productModel) =>
             Result.TryAsync(async () =>
             {
-                var nameIsAvailable = await CheckIfNameIsAvailable(productModel.Name);
-                if (!nameIsAvailable.Data)
+                if (!(await CheckIfNameIsAvailable(productModel.Name)).Data)
                 {
                     Result.Failed(Error.WithCode(ErrorCodes.ProductNameAlreadyExists));
                 }
@@ -123,8 +122,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
                 var product = mapper.Map<ProductModel, Product>(productModel);
                 product.Image = mapper.Map<ImageModel, Image>(productModel.ImageModel);
-                product.CreatedDate = DateTime.Now;
-                product.UpdatedDate = DateTime.Now;
 
                 repository.Add(product);
                 await repository.CommitAsync();
@@ -137,6 +134,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Edit(ProductModel productModel) =>
             Result.TryAsync(async () =>
             {
+                if (!(await CheckIfNameIsAvailable(productModel.Name)).Data)
+                {
+                    Result.Failed(Error.WithCode(ErrorCodes.ProductNameAlreadyExists));
+                }
+
                 var result = await repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == productModel.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
@@ -148,7 +150,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 product.Image = mapper.Map<ImageModel, Image>(productModel.ImageModel);
 
                 product.StorageId = result.Data.StorageId;
-                product.UpdatedDate = DateTime.Now;
                 repository.Update(product);
                 await repository.CommitAsync();
                 return Result.Successful();

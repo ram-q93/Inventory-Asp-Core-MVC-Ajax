@@ -1,4 +1,4 @@
-﻿using AspNetCore.Lib.Models;
+﻿using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,8 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Inventory_Asp_Core_MVC_Ajax.EFModels
 {
     [Table("Storages")]
-    public class Storage : Updateable
+    public class Storage : AuditableEntity
     {
+        public Storage()
+        {
+            Products = new HashSet<Product>();
+        }
+
         public int Id { get; set; }
 
         [Required]
