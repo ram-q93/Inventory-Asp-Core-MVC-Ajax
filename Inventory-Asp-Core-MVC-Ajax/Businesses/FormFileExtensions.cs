@@ -16,6 +16,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
 
         public static Result IsValidImage(this IFormFile postedFile)
         {
+            if(postedFile == null)
+                return Result.Successful();
+
             //-------------------------------------------
             //  Check the image mime types
             //-------------------------------------------

@@ -33,25 +33,25 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
         }
 
 
-        //public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-        //{
-        //    foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
-        //    {
-        //        switch (entry.State)
-        //        {
-        //            case EntityState.Added:
-        //                entry.Entity.CreatedBy = "ram";
-        //                entry.Entity.Created = _dateTime.Now;
-        //                break;
-        //            case EntityState.Modified:
-        //                entry.Entity.LastModifiedBy = "qam";
-        //                entry.Entity.LastModified = _dateTime.Now;
-        //                break;
-        //        }
-        //    }
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.CreatedBy = "ram";
+                        entry.Entity.Created = _dateTime.Now;
+                        break;
+                    case EntityState.Modified:
+                        entry.Entity.LastModifiedBy = "qam";
+                        entry.Entity.LastModified = _dateTime.Now;
+                        break;
+                }
+            }
 
-        //    return base.SaveChangesAsync(cancellationToken);
-        //}
+            return base.SaveChangesAsync(cancellationToken);
+        }
 
         public DbSet<Storage> Storages { get; set; }
         public DbSet<Product> Products { get; set; }
