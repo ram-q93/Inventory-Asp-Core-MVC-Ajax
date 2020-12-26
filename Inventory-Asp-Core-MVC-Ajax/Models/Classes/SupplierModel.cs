@@ -9,6 +9,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
     {
         public int Id { get; set; }
 
+        [Remote(action: "IsNameInUse", controller: "Supplier")]
         [Required(ErrorMessage = "You must provide a name.")]
         [StringLength(100, ErrorMessage = "value cannot exceed 100 characters.")]
         [Display(Name = "Company Name", Prompt = "Company Name")]

@@ -82,6 +82,7 @@ jQueryAjaxDeleteStorage = form => {
                             $("#view-all-storages").html(res.html);
                         } else {
                             toastr.error(res.error)
+                            $("#view-all-storages").html(res.html);
                         }
                     },
                     error: function (err) {
@@ -180,11 +181,14 @@ jQueryAjaxDeleteProduct = form => {
                     contentType: false,
                     processData: false,
                     success: function (res) {
+                        console.log("ressssssss " + res);
+                    
                         if (res.success) {
                             toastr.success("Product Deleted successfully")
                             $("#view-all-products").html(res.html);
                         } else {
                             toastr.error(res.error)
+                            $("#view-all-products").html(res.html);
                         }
                     },
                     error: function (err) {
@@ -225,14 +229,7 @@ showSupplierInPopup = (url, title) => {
 };
 
 jQueryAjaxPostToAddOrEditSupplier = form => {
-    
-    $("#id-sup-the-form").load(this.href, function () {
-       
-
-        // Enable client side validation
-        $.validator.unobtrusive.parse(this);
-    });
-    try {
+     try {
         $.ajax({
             type: 'POST',
             url: form.action,
@@ -287,10 +284,11 @@ jQueryAjaxDeleteSupplier = form => {
                             $("#view-all-suppliers").html(res.html);
                         } else {
                             toastr.error(res.error)
+                            $("#view-all-suppliers").html(res.html);
                         }
                     },
                     error: function (err) {
-                        toastr.error("Error in deleting supplier")
+                        toastr.error("Error in deleting supplier" )
                         console.log(err);
                     }
                 })

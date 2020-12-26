@@ -2,6 +2,8 @@
 {
     public class ErrorCodes
     {
+        public const int InvalidModel = 1005;
+
         #region Product
         public const int ProductNotFoundById = 2001;
         public const int ProductsNotFound = 2002;

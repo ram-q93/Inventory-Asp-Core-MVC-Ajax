@@ -1,6 +1,7 @@
 ﻿using AspNetCore.Lib.Attributes;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,6 +11,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
     {
         public int Id { get; set; }
 
+        [Remote(action: "IsNameInUse", controller: "Product")]
         [Required(ErrorMessage = "You must provide a name.")]
         [StringLength(100, ErrorMessage = "value cannot exceed 100 characters.")]
         [Display(Name = "Name", Prompt = "Name")]

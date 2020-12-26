@@ -128,6 +128,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
+        #region IsNameInUse
+
+        [AcceptVerbs("Get", "Post")]
+        public async Task<JsonResult> IsNameInUse(string name) =>
+            (await productBiz.IsNameInUse(name)).Data ? Json(true) : Json($"Name {name} is already in use.");
+
+        #endregion
+
         private IActionResult Respo(bool success, string view, object model, Result result = null) => Json(new
         {
             success,

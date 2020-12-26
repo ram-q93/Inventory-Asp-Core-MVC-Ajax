@@ -86,7 +86,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Add(SupplierModel model) =>
             Result.TryAsync(async () =>
             {
-                if (!(await CheckIfNameIsAvailable(model.CompanyName)).Data)
+                if (!(await IsNameInUse(model.CompanyName)).Data)
                 {
                     Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyExists));
                 }
@@ -104,7 +104,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Edit(SupplierModel model) =>
             Result.TryAsync(async () =>
             {
-                if (!(await CheckIfNameIsAvailable(model.CompanyName)).Data)
+                if (!(await IsNameInUse(model.CompanyName)).Data)
                 {
                     Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyExists));
                 }
@@ -133,6 +133,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 {
                     return Result.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById));
                 }
+                throw new Exception();
                 result.Data.Products.Clear();
                 repository.Remove(result.Data);
                 await repository.CommitAsync();
@@ -181,12 +182,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #endregion
 
-        #region CheckIfNameIsAvailable
+        #region IsNameInUse
 
-        public Task<Result<bool>> CheckIfNameIsAvailable(string name) =>
+        public Task<Result<bool>> IsNameInUse(string companyName) =>
             Result<bool>.TryAsync(async () =>
             {
-                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(s => s.CompanyName == name);
+                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(s => s.CompanyName == companyName);
                 return Result<bool>.Successful(result.Data == null);
             });
 

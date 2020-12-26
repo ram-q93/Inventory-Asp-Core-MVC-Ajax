@@ -1,10 +1,11 @@
 ﻿using AspNetCore.Lib.Attributes;
 using AspNetCore.Lib.Extensions;
 using AspNetCore.Lib.Models;
+using Inventory_Asp_Core_MVC_Ajax.Businesses.common;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
+using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using Microsoft.AspNetCore.Mvc;
-using PagedList.Core;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
@@ -60,20 +61,26 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         public async Task<IActionResult> AddOrEdit([Bind] SupplierModel model)
         {
             if (!ModelState.IsValid)
-                return Respo(false, "AddOrEditSupplier", model);
+                //return Respo(false, "AddOrEditSupplier", model);
+                return Json(this.HtmlReponse("AddOrEditSupplier", model,
+                    Result.Failed(Error.WithCode(ErrorCodes.InvalidModel))));
             if (model.Id == 0)
             {
                 var result = await supplierBiz.Add(model);
                 if (!result.Success)
-                    return Respo(false, "AddOrEditSupplier", model, result);
+                    // return HtmlReponse(false, "AddOrEditSupplier", model, result);
+                    return Json(this.HtmlReponse("AddOrEditSupplier", model, result));
             }
             else
             {
                 var result = await supplierBiz.Edit(model);
                 if (!result.Success)
-                    return Respo(false, "AddOrEditSupplier", model, result);
+                    // return Respo(false, "AddOrEditSupplier", model, result);
+                    return Json(this.HtmlReponse("AddOrEditSupplier", model, result));
             }
-            return Respo(success: true, view: "_Suppliers", model: await GetSupplierFilterModel());
+            //return Respo(success: true, view: "_Suppliers", model: await GetSupplierFilterModel());
+
+            return Json(this.HtmlReponse("_Suppliers", await GetSupplierFilterModel()));
         }
 
         #endregion
@@ -82,12 +89,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [HttpPost, ActionName("DeleteSupplier")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, int storageId)
+        public async Task<IActionResult> Delete(int id)
         {
             var result = await supplierBiz.Delete(id);
             if (!result.Success)
-                return Respo(false, "_Suppliers", null, result);
-            return Respo(true, "_Suppliers", await GetSupplierFilterModel());
+            //return Respo(false, "_Suppliers", null, result);
+            return Json(this.HtmlReponse("_Suppliers", await GetSupplierFilterModel()), result);
+          
+            //return Respo(true, "_Suppliers", await GetSupplierFilterModel());
+            return Json(this.HtmlReponse("_Suppliers", await GetSupplierFilterModel()));
         }
 
         #endregion
@@ -111,6 +121,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             var result = await supplierBiz.ListEnableSuppliers();
             return Json(result.Data);
         }
+
+        #endregion
+
+        #region IsNameInUse
+
+        [AcceptVerbs("Get", "Post")]
+        public async Task<JsonResult> IsNameInUse(string companyName) =>
+            (await supplierBiz.IsNameInUse(companyName)).Data ? Json(true) : Json($"Name {companyName} is already in use.");
 
         #endregion
 

@@ -15,5 +15,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces
         Task<Result<StorageModel>> StorageJoinedToProductListByStoreId(int storeId);
         Task<ResultList<ProductModel>> GetStoragePagedListProductFilteredBySearchQuery(int storageId, int? page, string searchQuery);
         Task<Result<ProductModel>> Details(int id);
+        Task<Result<bool>> IsNameInUse(string name);
     }
 }
