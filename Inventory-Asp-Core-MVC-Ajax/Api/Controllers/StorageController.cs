@@ -124,11 +124,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-        #region CheckName
+        #region IsNameInUse
 
-        [HttpGet, ActionName("CheckName")]
-        public async Task<JsonResult> CheckIfNameIsAvailable(string name) =>
-             Json(await storageBiz.CheckIfNameIsAvailable(name));
+        [AcceptVerbs("Get", "Post")]
+        public async Task<JsonResult> IsNameInUse(string name) =>
+            (await storageBiz.IsNameInUse(name)).Data ? Json(true) : Json($"Email {name} is already in use.");
 
         #endregion
 

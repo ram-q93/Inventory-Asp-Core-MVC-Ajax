@@ -86,7 +86,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Add(SupplierModel model) =>
             Result.TryAsync(async () =>
             {
-                if (!(await CheckIfNameIsAvailable(model.Name)).Data)
+                if (!(await CheckIfNameIsAvailable(model.CompanyName)).Data)
                 {
                     Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyExists));
                 }
@@ -104,7 +104,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Edit(SupplierModel model) =>
             Result.TryAsync(async () =>
             {
-                if (!(await CheckIfNameIsAvailable(model.Name)).Data)
+                if (!(await CheckIfNameIsAvailable(model.CompanyName)).Data)
                 {
                     Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyExists));
                 }

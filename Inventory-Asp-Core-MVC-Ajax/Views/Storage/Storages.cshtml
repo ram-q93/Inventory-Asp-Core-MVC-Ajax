@@ -29,8 +29,8 @@
             </form>
         </div>
         @*<div>
-            <input type="text" id="fname" onkeyup="myFunction()">
-        </div>*@
+                <input type="text" id="fname" onkeyup="myFunction()">
+            </div>*@
     </div>
     <br />
     <div id="view-all-storages">
@@ -63,5 +63,5 @@
 </script>
 
 @section Scripts{
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/site.js"></script>
 }

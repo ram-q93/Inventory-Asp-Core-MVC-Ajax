@@ -92,7 +92,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Add(StorageModel model) =>
             Result.TryAsync(async () =>
             {
-                if (!(await CheckIfNameIsAvailable(model.Name)).Data)
+                if (!(await IsNameInUse(model.Name)).Data)
                 {
                     Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyExists));
                 }
@@ -110,7 +110,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Edit(StorageModel model) =>
             Result.TryAsync(async () =>
             {
-                if (!(await CheckIfNameIsAvailable(model.Name)).Data)
+                if (!(await IsNameInUse(model.Name)).Data)
                 {
                     Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyExists));
                 }
@@ -147,9 +147,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #endregion
 
-        #region CheckIfNameIsAvailable
+        #region IsNameInUse
 
-        public Task<Result<bool>> CheckIfNameIsAvailable(string name) =>
+        public Task<Result<bool>> IsNameInUse(string name) =>
             Result<bool>.TryAsync(async () =>
             {
                 var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(s => s.Name == name);

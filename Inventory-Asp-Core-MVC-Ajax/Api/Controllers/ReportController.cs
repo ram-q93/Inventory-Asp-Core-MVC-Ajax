@@ -17,6 +17,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             this.reportBiz = reportBiz;
         }
 
+        public IActionResult Report() => View();
+
         #region product-pdf
 
         [HttpGet, ActionName("product-pdf")]
@@ -54,7 +56,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #region product-csv
 
-        [HttpGet, ActionName("product-csv")]
+        [HttpPost, ActionName("product-csv")]
         public async Task<IActionResult> ProductCsvReport(ProductReportModel model)
         {
             var result = await reportBiz.GenerateProductCsvReport(model);

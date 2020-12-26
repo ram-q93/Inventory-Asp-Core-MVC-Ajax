@@ -1,0 +1,41 @@
+﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductReportModel
+
+@{
+    ViewData["Title"] = "Report";
+}
+<div class="row">
+    <div class="col-md-12">
+        <form asp-controller="Report" asp-action="product-csv">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="MaxQuantity" class="control-label"></label>
+                    <input asp-for="MaxQuantity" type="text" class="form-control">
+                    <span asp-validation-for="MaxQuantity" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="MinQuantity" class="control-label"></label>
+                    <input asp-for="MinQuantity" type="text" class="form-control">
+                    <span asp-validation-for="MinQuantity" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="IsAvailable" class="control-label"></label>
+                    <input asp-for="IsAvailable" type="text" class="form-control">
+                    <span asp-validation-for="IsAvailable" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="MaxPrice" class="control-label"></label>
+                    <input asp-for="MaxPrice" type="text" class="form-control">
+                    <span asp-validation-for="MaxPrice" class="text-danger"></span>
+                </div>
+            </div>
+          
+
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-success text-white btn-lg btn-block" />
+            </div>
+        </form>
+    </div>
+</div>

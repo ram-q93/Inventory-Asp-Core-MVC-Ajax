@@ -28,7 +28,7 @@ showStorageInPopup = (url, title) => {
 };
 
 jQueryAjaxPostToAddOrEditStorage = form => {
-    try{
+    try {
         $.ajax({
             type: 'POST',
             url: form.action,
@@ -225,6 +225,13 @@ showSupplierInPopup = (url, title) => {
 };
 
 jQueryAjaxPostToAddOrEditSupplier = form => {
+    
+    $("#id-sup-the-form").load(this.href, function () {
+       
+
+        // Enable client side validation
+        $.validator.unobtrusive.parse(this);
+    });
     try {
         $.ajax({
             type: 'POST',
@@ -251,6 +258,7 @@ jQueryAjaxPostToAddOrEditSupplier = form => {
             }
         })
     } catch (e) {
+        console.log("hereee");
         console.log(e);
     }
     //to prevent default form submit event

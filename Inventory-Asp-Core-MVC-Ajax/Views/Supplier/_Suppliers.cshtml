@@ -7,7 +7,7 @@
 @* For displaying products *@
 @if (Model.SupplierPagedList.First().Id == 0)
 {
-<div class="alert alert-info">No Suppliers Availale</div> }
+    <div class="alert alert-info">No Suppliers Availale</div> }
 else
 {
     var FirstSupplier = Model.SupplierPagedList.First();
@@ -20,7 +20,7 @@ else
                         #
                     </th>
                     <th>
-                        <label asp-for="@FirstSupplier.Name"></label>
+                        <label asp-for="@FirstSupplier.CompanyName"></label>
                     </th>
                     <th>
                         <label asp-for="@FirstSupplier.Phone"></label>
@@ -44,36 +44,36 @@ else
             <tbody>
                 @foreach (var p in Model.SupplierPagedList)
                 {
-                <tr>
-                    <td>
-                        @(Index++)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => p.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => p.Phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => p.EmergencyMobile)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => p.Enabled)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => p.Address)
-                    </td>
-                    <td>
-                        <a onclick="showSupplierInPopup('@Url.Action("AddOrEditSupplier", "Supplier",
+                    <tr>
+                        <td>
+                            @(Index++)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => p.CompanyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => p.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => p.EmergencyMobile)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => p.Enabled)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => p.Address)
+                        </td>
+                        <td>
+                            <a onclick="showSupplierInPopup('@Url.Action("AddOrEditSupplier", "Supplier",
                                        new { id = p.Id}, Context.Request.Scheme)', 'Update Supplier')"
-                           class="btn btn-warning text-white"><i class="fas fa-pencil-alt"></i></a>
+                               class="btn btn-warning text-white"><i class="fas fa-pencil-alt"></i></a>
 
-                        <form asp-controller="Supplier" asp-action="DeleteSupplier" asp-route-id="@p.Id"
-                              onsubmit="return jQueryAjaxDeleteSupplier(this)" class="d-inline">
-                            <input type="submit" value="Delete" class="btn btn-danger" />
-                        </form>
-                    </td>
-                </tr>
+                            <form asp-controller="Supplier" asp-action="DeleteSupplier" asp-route-id="@p.Id"
+                                  onsubmit="return jQueryAjaxDeleteSupplier(this)" class="d-inline">
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </form>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
@@ -85,5 +85,4 @@ else
            options="@SitePagedListRenderOptions.Boostrap4" asp-action="Suppliers" asp-controller="Supplier"
            asp-route-query="@Model.SearchQuery" />
 </p>
-
 

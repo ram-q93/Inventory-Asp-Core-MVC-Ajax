@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - Inventory</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
@@ -21,7 +22,7 @@
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="storage" asp-action="storages">Storages</a>
                 <a class="navbar-brand" asp-area="" asp-controller="supplier" asp-action="suppliers">Suppliers</a>
-                <a class="navbar-brand" asp-controller="report" asp-action="product-pdf">ProductPDFReport</a>
+                <a class="navbar-brand" asp-controller="report" asp-action="report">Report</a>
                 <a class="navbar-brand" asp-controller="report" asp-action="product-excel">ProductExcelReport</a>
                 <a class="navbar-brand" asp-controller="report" asp-action="product-csv">ProductCsvReport</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -67,16 +68,18 @@
         </div>
     </footer>
 
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     <script src="~/js/notify.min.js" asp-append-version="true"></script>
-   
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
    
-    
     @RenderSection("Scripts", required: false)
 </body>
 </html>

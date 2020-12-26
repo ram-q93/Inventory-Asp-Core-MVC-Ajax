@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<div class="modal fade bd-example-modal-xl" id="product-form-modal" tabindex="-1" 
+<div class="modal fade bd-example-modal-xl" id="product-form-modal" tabindex="-1"
      role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
@@ -50,4 +50,8 @@
 
 @section Scripts{
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@section Scripts{
+    <script src="~/js/site.js"></script>
 }

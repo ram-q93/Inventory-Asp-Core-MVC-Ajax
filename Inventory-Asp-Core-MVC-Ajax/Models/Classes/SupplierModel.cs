@@ -1,4 +1,5 @@
 ﻿using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,8 +11,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 
         [Required(ErrorMessage = "You must provide a name.")]
         [StringLength(100, ErrorMessage = "value cannot exceed 100 characters.")]
-        [Display(Name = "Name", Prompt = "Name")]
-        public string Name { get; set; }
+        [Display(Name = "Company Name", Prompt = "Company Name")]
+        public string CompanyName { get; set; }
 
         [StringLength(150, ErrorMessage = "The Address value cannot exceed 150 characters.")]
         [Display(Name = "Address", Prompt = "Address")]
@@ -30,7 +31,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
         public ICollection<ProductModel> ProductModels { get; set; }
 
         public override string ToString() =>
-            $" ({Name} - {Phone} - {EmergencyMobile} - {Enabled} - {Address}  )";
+            $" ({CompanyName} - {Phone} - {EmergencyMobile} - {Enabled} - {Address}  )";
 
     }
 }

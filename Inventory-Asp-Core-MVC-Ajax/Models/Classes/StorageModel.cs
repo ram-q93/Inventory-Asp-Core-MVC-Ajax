@@ -1,4 +1,5 @@
 ﻿using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
         [Required(ErrorMessage = "You must provide a name.")]
         [MaxLength(50, ErrorMessage = "The name value cannot exceed 50 characters.")]
         [Display(Name = "Name", Prompt = "Name")]
+        [Remote(action: "IsNameInUse", controller: "Storage")]
         public string Name { get; set; }
 
         //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",

@@ -1,7 +1,12 @@
-﻿namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+
+namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 {
     public class ProductReportModel
     {
+
+        [Remote(action: "IsNameInUse", controller: "Storage")]
         public int? MaxQuantity { get; set; }
         public int? MinQuantity { get; set; }
         public bool? IsAvailable { get; set; }

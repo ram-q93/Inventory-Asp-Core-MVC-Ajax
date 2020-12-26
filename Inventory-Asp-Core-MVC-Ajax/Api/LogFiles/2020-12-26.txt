@@ -1,0 +1,125 @@
+===========================================================================
+Type: Info
+Date: 2020-12-26 02:19:53.476
+Message: Product excel report generated
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-26 03:46:11.306
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert the value NULL into column 'CompanyName', table 'Inventory-Asp-Core-MVC-Ajax.dbo.Suppliers'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.SupplierBiz.<>c__DisplayClass6_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\SupplierBiz.cs:line 96
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-26 03:50:29.209
+Message: Supplier Added: (hi - 323 - 00809 - True - poipoi
+  )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-26 03:56:55.091
+Message: Supplier Added: (opop - 0909 - 909 - True - jkjl  )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-26 03:57:48.042
+Message: Supplier Added: (yiuy - uiou - iou - True - iuoi  )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-26 03:59:08.522
+Message: Supplier Added: (yiu - 798 - uyiu - True - uyiu  )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-26 04:00:08.397
+Message: Supplier Deleted: Id=60 CompanyName=yiu
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-26 04:00:12.029
+Message: Supplier Deleted: Id=59 CompanyName=yiuy
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-26 04:00:35.917
+Message: Supplier Deleted: Id=58 CompanyName=opop
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-26 04:00:41.407
+Message: Supplier Deleted: Id=57 CompanyName=uuuu
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-26 04:00:52.512
+Message: Supplier Edited: (ytyt - ii* -  - False -   )
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-26 04:03:09.677
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert the value NULL into column 'Phone', table 'Inventory-Asp-Core-MVC-Ajax.dbo.Suppliers'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.SupplierBiz.<>c__DisplayClass6_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\SupplierBiz.cs:line 96
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-26 04:04:01.706
+Message: Supplier Added: (hiuyui - 87878 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-26 04:06:32.985
+Message: Supplier Added: (yuiy - 687678 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-26 04:07:21.344
+Message: Supplier Added: (ygyhgy - 87789 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-26 04:11:40.621
+Message: Supplier Added: (yiuy - 8798 -  - False -   )
+===========================================================================
