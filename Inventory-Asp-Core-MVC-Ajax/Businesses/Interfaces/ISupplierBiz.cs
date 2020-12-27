@@ -13,6 +13,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces
         Task<Result<SupplierModel>> GetById(int id);
         Task<Result<SupplierModel>> Details(int id);
         Task<Result<object>> ListEnableSuppliers();
-        Task<Result<bool>> IsNameInUse(string name);
+        Task<Result<bool>> IsNameInUse(string name, int? id = null);
     }
 }

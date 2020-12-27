@@ -8,7 +8,6 @@ using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using Microsoft.EntityFrameworkCore;
 using PagedList.Core;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -88,7 +87,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if (!(await IsNameInUse(model.CompanyName)).Data)
                 {
-                    Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyInUse));
+                    return Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyInUse));
                 }
                 var store = mapper.Map<SupplierModel, Supplier>(model);
                 repository.Add(store);
@@ -103,16 +102,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Edit(SupplierModel model) =>
             Result.TryAsync(async () =>
             {
-                if (!(await IsNameInUse(model.CompanyName)).Data)
+                if (!(await IsNameInUse(model.CompanyName, model.Id)).Data)
                 {
-                    Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyInUse));
+                    return Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyInUse));
                 }
                 var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
                     return Result.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById));
                 }
-                var store = mapper.Map<SupplierModel, Supplier>(model);
+                var supplier = mapper.Map<SupplierModel, Supplier>(model);
+                repository.Update(supplier);
                 await repository.CommitAsync();
                 logger.Info($"Supplier Edited:{model}");
                 return Result.Successful();
@@ -181,10 +181,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region IsNameInUse
 
-        public Task<Result<bool>> IsNameInUse(string companyName) =>
+        public Task<Result<bool>> IsNameInUse(string companyName, int? id = null) =>
             Result<bool>.TryAsync(async () =>
             {
-                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(s => s.CompanyName == companyName);
+                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(s =>
+                s.CompanyName == companyName &&
+                (id != null && id != s.Id));  // for edit
                 return Result<bool>.Successful(result.Data == null);
             });
 

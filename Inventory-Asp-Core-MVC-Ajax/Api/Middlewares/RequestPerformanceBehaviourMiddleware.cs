@@ -20,8 +20,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Middlewares
         public async Task InvokeAsync(HttpContext context)
         {
             _timer.Start();
-
+            var s = new Stopwatch();
+            s.Start();
             await _next(context);
+
+            s.Stop();
 
             _timer.Stop();
 
@@ -33,7 +36,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Middlewares
 
             var controllerName = controllerActionDescriptor?.ControllerName;
             var actionName = controllerActionDescriptor?.ActionName;
-
+            _logger.Warn(s.ElapsedMilliseconds.ToString());
             if (_timer.ElapsedMilliseconds > 5000)
             {
                 _logger.Warn($"Long Running Request:   ({_timer.ElapsedMilliseconds} milliseconds)" +
