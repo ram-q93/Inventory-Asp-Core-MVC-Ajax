@@ -50,6 +50,7 @@ namespace Inventory_Asp_Core_MVC_Ajax
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+
             app.UseMiddleware<RequestPerformanceBehaviourMiddleware>();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
