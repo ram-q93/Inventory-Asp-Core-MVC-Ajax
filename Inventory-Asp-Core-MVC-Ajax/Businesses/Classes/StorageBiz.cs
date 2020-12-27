@@ -94,7 +94,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if (!(await IsNameInUse(model.Name)).Data)
                 {
-                    Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyExists));
+                    Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyInUse));
                 }
 
                 var store = mapper.Map<StorageModel, Storage>(model);
@@ -112,7 +112,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if (!(await IsNameInUse(model.Name)).Data)
                 {
-                    Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyExists));
+                    Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyInUse));
                 }
 
                 var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == model.Id);

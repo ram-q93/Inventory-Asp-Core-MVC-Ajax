@@ -115,7 +115,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if (!(await IsNameInUse(productModel.Name)).Data)
                 {
-                    Result.Failed(Error.WithCode(ErrorCodes.ProductNameAlreadyExists));
+                    Result.Failed(Error.WithCode(ErrorCodes.ProductNameAlreadyInUse));
                 }
 
                 productModel.ImageModel = imageBiz.CreateImageModel(productModel.ProductPicture).Data;
@@ -136,7 +136,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if (!(await IsNameInUse(productModel.Name)).Data)
                 {
-                    Result.Failed(Error.WithCode(ErrorCodes.ProductNameAlreadyExists));
+                    Result.Failed(Error.WithCode(ErrorCodes.ProductNameAlreadyInUse));
                 }
 
                 var result = await repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == productModel.Id);

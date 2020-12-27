@@ -1,5 +1,4 @@
 ﻿using AspNetCore.Lib.Attributes;
-using AspNetCore.Lib.Extensions;
 using AspNetCore.Lib.Models;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.common;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
@@ -61,25 +60,19 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         public async Task<IActionResult> AddOrEdit([Bind] SupplierModel model)
         {
             if (!ModelState.IsValid)
-                //return Respo(false, "AddOrEditSupplier", model);
-                return Json(this.HtmlReponse("AddOrEditSupplier", model,
-                    Result.Failed(Error.WithCode(ErrorCodes.InvalidModel))));
+                return Json(this.HtmlReponse("AddOrEditSupplier", model, Result.Failed(Error.WithCode(ErrorCodes.InvalidModel))));
             if (model.Id == 0)
             {
                 var result = await supplierBiz.Add(model);
                 if (!result.Success)
-                    // return HtmlReponse(false, "AddOrEditSupplier", model, result);
                     return Json(this.HtmlReponse("AddOrEditSupplier", model, result));
             }
             else
             {
                 var result = await supplierBiz.Edit(model);
                 if (!result.Success)
-                    // return Respo(false, "AddOrEditSupplier", model, result);
                     return Json(this.HtmlReponse("AddOrEditSupplier", model, result));
             }
-            //return Respo(success: true, view: "_Suppliers", model: await GetSupplierFilterModel());
-
             return Json(this.HtmlReponse("_Suppliers", await GetSupplierFilterModel()));
         }
 
@@ -93,10 +86,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         {
             var result = await supplierBiz.Delete(id);
             if (!result.Success)
-            //return Respo(false, "_Suppliers", null, result);
-            return Json(this.HtmlReponse("_Suppliers", await GetSupplierFilterModel()), result);
-          
-            //return Respo(true, "_Suppliers", await GetSupplierFilterModel());
+                return Json(this.HtmlReponse("_Suppliers", await GetSupplierFilterModel(), result));
             return Json(this.HtmlReponse("_Suppliers", await GetSupplierFilterModel()));
         }
 
@@ -132,11 +122,5 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-        private IActionResult Respo(bool success, string view, object model, Result result = null) => Json(new
-        {
-            success,
-            error = success ? "" : $"Error {result?.Error?.Code}",
-            html = this.RenderRazorViewToString(view, model)
-        });
     }
 }

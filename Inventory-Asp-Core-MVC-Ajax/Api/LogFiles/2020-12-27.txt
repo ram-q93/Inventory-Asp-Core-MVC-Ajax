@@ -1,0 +1,284 @@
+===========================================================================
+Type: Exception
+Date: 2020-12-27 05:58:03.413
+Message: First Level Message: Exception of type 'System.Exception' was thrown.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.SupplierBiz.<>c__DisplayClass8_0.<<Delete>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\SupplierBiz.cs:line 136
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-27 05:58:15.837
+Message: First Level Message: Exception of type 'System.Exception' was thrown.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.SupplierBiz.<>c__DisplayClass8_0.<<Delete>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\SupplierBiz.cs:line 136
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-27 05:59:49.602
+Message: First Level Message: Exception of type 'System.Exception' was thrown.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.SupplierBiz.<>c__DisplayClass8_0.<<Delete>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\SupplierBiz.cs:line 136
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-27 06:01:09.485
+Message: First Level Message: Exception of type 'System.Exception' was thrown.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.SupplierBiz.<>c__DisplayClass8_0.<<Delete>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\SupplierBiz.cs:line 136
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-27 06:03:51.525
+Message: First Level Message: Exception of type 'System.Exception' was thrown.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.SupplierBiz.<>c__DisplayClass8_0.<<Delete>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\SupplierBiz.cs:line 136
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2020-12-27 06:04:49.044
+Message: First Level Message: Exception of type 'System.Exception' was thrown.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.SupplierBiz.<>c__DisplayClass8_0.<<Delete>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\SupplierBiz.cs:line 136
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:16:17.097
+Message: Supplier Added: (Zayat - 23323 -  - True -   )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 06:17:19.957
+Message: Supplier Deleted: Id=75 CompanyName=Zayat
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 06:17:46.590
+Message: Supplier Deleted: Id=71 CompanyName=ytuyt
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 06:22:34.667
+Message: Supplier Deleted: Id=63 CompanyName=yuiy
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 06:23:03.521
+Message: Supplier Deleted: Id=62 CompanyName=hiuyui
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 06:34:56.407
+Message: Supplier Deleted: Id=56 CompanyName=ytyt
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 06:35:21.645
+Message: Supplier Deleted: Id=55 CompanyName=hi
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:36:23.984
+Message: Supplier Added: (adwd - 768798 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:38:04.536
+Message: Supplier Added: (uoiuoi - 7988 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:38:33.875
+Message: Supplier Added: (iouiu - uoiuio -  - False -   )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 06:38:46.125
+Message: Supplier Deleted: Id=78 CompanyName=iouiu
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:43:18.092
+Message: Supplier Added: (yuiyuiy - y7898789 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:43:34.927
+Message: Supplier Added: (yoiuoiu - 7809809 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 06:43:45.637
+Message: Supplier Deleted: Id=80 CompanyName=yoiuoiu
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 06:47:50.124
+Message: Supplier Deleted: Id=79 CompanyName=yuiyuiy
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:48:39.813
+Message: Supplier Added: (uyi - 09809 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:48:54.018
+Message: Supplier Added: (jpiopj - 80980 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:48:59.642
+Message: Supplier Added: (ujijpio - 0-90-9 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:49:06.384
+Message: Supplier Added: (pjpoipo - -090- -  - False -   )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 06:49:19.666
+Message: Supplier Deleted: Id=84 CompanyName=pjpoipo
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:50:01.213
+Message: Supplier Edited: (ujijpio - 0-90-9uooioi -  - False -   )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2020-12-27 06:51:30.330
+Message: Supplier Edited: (Voipa - (967) 493-2955 - (844) 536-2498 - True - Ovington Court  )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:29:00.746
+Message: Long Running Request:   (5645 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:29:01.052
+Message: Long Running Request:   (5658 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:29:01.650
+Message: Long Running Request:   (5785 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:29:01.954
+Message: Long Running Request:   (5785 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:29:19.641
+Message: Long Running Request:   (6285 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:29:26.415
+Message: Long Running Request:   (6590 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:29:26.685
+Message: Long Running Request:   (6748 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:30:16.219
+Message: Long Running Request:   (6910 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:30:20.191
+Message: Long Running Request:   (7067 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:30:21.947
+Message: Long Running Request:   (7191 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:30:23.505
+Message: Long Running Request:   (7317 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:30:26.009
+Message: Long Running Request:   (7474 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:30:38.667
+Message: Long Running Request:   (7540 milliseconds) 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:42:45.836
+Message: Long Running Request:   (4781 milliseconds) Controller : Storage Action : Storages 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:43:42.109
+Message: Long Running Request:   (3910 milliseconds) Controller : Storage Action : Storages 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:45:21.354
+Message: Long Running Request:   (4841 milliseconds) Controller:Storage Action:Storages 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:45:21.703
+Message: Long Running Request:   (4856 milliseconds) Controller: Action: 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:45:23.157
+Message: Long Running Request:   (5081 milliseconds) Controller: Action: 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:45:40.981
+Message: Long Running Request:   (5517 milliseconds) Controller:Product Action:Products 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:45:58.287
+Message: Long Running Request:   (5772 milliseconds) Controller:Product Action:AddOrEditProduct 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:45:58.599
+Message: Long Running Request:   (5944 milliseconds) Controller:Supplier Action:supplier-select-list 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:46:56.680
+Message: Long Running Request:   (6005 milliseconds) Controller:Product Action:AddOrEditProduct 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:46:56.903
+Message: Long Running Request:   (6071 milliseconds) Controller:Supplier Action:supplier-select-list 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-27 07:50:49.594
+Message: Long Running Request:   (5360 milliseconds) Controller:(Product) Action:(Products) ()
+===========================================================================

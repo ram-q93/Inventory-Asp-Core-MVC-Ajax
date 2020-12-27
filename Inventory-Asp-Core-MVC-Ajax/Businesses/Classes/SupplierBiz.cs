@@ -88,9 +88,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if (!(await IsNameInUse(model.CompanyName)).Data)
                 {
-                    Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyExists));
+                    Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyInUse));
                 }
-
                 var store = mapper.Map<SupplierModel, Supplier>(model);
                 repository.Add(store);
                 await repository.CommitAsync();
@@ -106,9 +105,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if (!(await IsNameInUse(model.CompanyName)).Data)
                 {
-                    Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyExists));
+                    Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyInUse));
                 }
-
                 var result = await repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
@@ -133,7 +131,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 {
                     return Result.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById));
                 }
-                throw new Exception();
                 result.Data.Products.Clear();
                 repository.Remove(result.Data);
                 await repository.CommitAsync();

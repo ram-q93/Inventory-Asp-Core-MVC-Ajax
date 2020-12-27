@@ -8,7 +8,11 @@
 @* For displaying products *@
 @if (Model.ProductPagedList.First().Id == 0)
 {
-    <div class="alert alert-info">No Products Availale</div> }
+    <div class="alert alert-info">No Products Availale
+        <a onclick="showProductInPopup('@Url.Action("AddOrEditProduct", "Product",
+                                               new { id = 0, storageId=storageId}, Context.Request.Scheme)', 'New Product')"
+           class="btn btn-success text-white"><i class="fas fa-random"></i>New Product</a>
+        </div> }
 else
 {
     var FirstProduct = Model.ProductPagedList.First();

@@ -7,7 +7,13 @@
 @* For displaying products *@
 @if (Model.SupplierPagedList.First().Id == 0)
 {
-    <div class="alert alert-info">No Suppliers Availale</div> }
+    <div class="alert alert-info">
+        No Suppliers Availale
+        <a onclick="showSupplierInPopup('@Url.Action("AddOrEditSupplier", "Supplier",
+                                               new { id = 0}, Context.Request.Scheme)', 'New Supplier')"
+           class="btn btn-success text-white"><i class="fas fa-random"></i>New Supplier</a>
+    </div>
+}
 else
 {
     var FirstSupplier = Model.SupplierPagedList.First();

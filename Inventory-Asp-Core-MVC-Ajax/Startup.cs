@@ -1,6 +1,7 @@
 using AspNetCore.Lib.Services;
 using AutoMapper;
 using Inventory_Asp_Core_MVC_Ajax.Api;
+using Inventory_Asp_Core_MVC_Ajax.Api.Middlewares;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess;
 using Inventory_Asp_Core_MVC_Ajax.Models.Profiles;
 using InventoryProject.Model.Profiles;
@@ -49,6 +50,7 @@ namespace Inventory_Asp_Core_MVC_Ajax
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+            app.UseMiddleware<RequestPerformanceBehaviourMiddleware>();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
