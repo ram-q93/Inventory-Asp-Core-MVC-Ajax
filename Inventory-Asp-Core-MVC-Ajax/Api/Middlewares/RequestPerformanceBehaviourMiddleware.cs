@@ -1,6 +1,5 @@
 ﻿using AspNetCore.Lib.Services;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Controllers;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -22,16 +21,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Middlewares
 
             var _logger = (ILogger)context.RequestServices.GetService(typeof(ILogger));
 
-            var controllerActionDescriptor = context.GetEndpoint()?.Metadata.GetMetadata<ControllerActionDescriptor>();
-            var controllerName = controllerActionDescriptor?.ControllerName;
-            var actionName = controllerActionDescriptor?.ActionName;
-
             if (_timer.ElapsedMilliseconds > 500)
             {
                 _logger.Warn($"Long Running Request:   " +
                     $" ({_timer.ElapsedMilliseconds} milliseconds)" +
-                    $" Controller:({controllerName})" +
-                    $" Action:({actionName})");
+                    $"  Request Path: {context.Request.Path}");
             }
         }
     }
