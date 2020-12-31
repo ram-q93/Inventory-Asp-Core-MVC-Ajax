@@ -298,3 +298,28 @@ Type: Warn
 Date: 2020-12-31 08:17:36.696
 Message: Long Running Request:    (4761 milliseconds)  Request Path: /
 ===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-31 09:43:45.573
+Message: Long Running Request:    (5760 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-31 09:43:46.722
+Message: Long Running Request:    (642 milliseconds)  Request Path: /lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-31 09:43:46.821
+Message: Long Running Request:    (783 milliseconds)  Request Path: /lib/jquery-validation/dist/jquery.validate.min.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-31 09:43:46.615
+Message: Long Running Request:    (800 milliseconds)  Request Path: /lib/jquery/dist/jquery.min.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2020-12-31 09:50:04.631
+Message: Long Running Request:    (6554 milliseconds)  Request Path: /
+===========================================================================

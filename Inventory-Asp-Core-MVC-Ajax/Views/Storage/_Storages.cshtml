@@ -5,82 +5,84 @@
 
 
 @*For displaying storage info*@
-@if (Model.StorageModels.Count() == 0)
-{
-    <div class="alert alert-info">
-        No Storages Availale
-        <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
-                                               new { id = 0}, Context.Request.Scheme)', 'New Storage')"
-           class="btn btn-success text-white"><i class="fas fa-random"></i>New Storage</a>
-    </div>
-}
-else
-{
-    var FirstStorage = Model.StorageModels.FirstOrDefault();
 
-    <div class="container-fluid">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        #
-                    </th>
-                    <th>
-                        <label asp-for="@FirstStorage.Name"></label>
-                    </th>
-                    <th>
-                        <label asp-for="@FirstStorage.Phone"></label>
-                    </th>
-                    <th>
-                        <label asp-for="@FirstStorage.Address"></label>
-                    </th>
-                    <th>
-                        <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
+<div class="container">
+    @if (Model.StorageModels.Count() == 0)
+    {
+        <div class="alert alert-info">
+            No Storages Availale
+            <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
                                                new { id = 0}, Context.Request.Scheme)', 'New Storage')"
-                           class="btn btn-success text-white"><i class="fas fa-random"></i>New Storage</a>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var s in Model.StorageModels)
-                {
+               class="btn btn-success text-white"><i class="fas fa-random"></i>New Storage</a>
+        </div>
+    }
+    else
+    {
+        var FirstStorage = Model.StorageModels.FirstOrDefault();
+
+        <div class="container-fluid">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>
-                            @(Index++)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => s.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => s.Phone)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => s.Address)
-                        </td>
-                        <td>
-                            <a asp-controller="Product" asp-action="Products" asp-route-storageId="@s.Id" class="btn btn-info">View Products</a>
-                        </td>
-                        <td>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            <label asp-for="@FirstStorage.Name"></label>
+                        </th>
+                        <th>
+                            <label asp-for="@FirstStorage.Phone"></label>
+                        </th>
+                        <th>
+                            <label asp-for="@FirstStorage.Address"></label>
+                        </th>
+                        <th>
                             <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
-                                       new { id = s.Id}, Context.Request.Scheme)', 'Update Storage')"
-                               class="btn btn-warning text-white"><i class="fas fa-pencil-alt"></i></a>
-
-                            <form asp-controller="Storage" asp-action="DeleteStorage" asp-route-id="@s.Id"
-                                  onsubmit="return jQueryAjaxDeleteStorage(this)" class="d-inline">
-                                <input type="submit" value="Delete" class="btn btn-danger" />
-                            </form>
-                        </td>
+                                               new { id = 0}, Context.Request.Scheme)', 'New Storage')"
+                               class="btn btn-success text-white"><i class="fas fa-random"></i>New Storage</a>
+                        </th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>}
+                </thead>
+                <tbody>
+                    @foreach (var s in Model.StorageModels)
+                    {
+                        <tr>
+                            <td>
+                                @(Index++)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => s.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => s.Phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => s.Address)
+                            </td>
+                            <td>
+                                <a asp-controller="Product" asp-action="Products" asp-route-storageId="@s.Id" class="btn btn-info">View Products</a>
+                            </td>
+                            <td>
+                                <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
+                                       new { id = s.Id}, Context.Request.Scheme)', 'Update Storage')"
+                                   class="btn btn-warning text-white"><i class="fas fa-pencil-alt"></i></a>
 
-<br />
-<p class="align-items-center">
-    <pager class="pager-container" list="@Model.StorageModels"
-           options="@SitePagedListRenderOptions.Boostrap4" asp-action="Storages" asp-controller="Storage"
-           asp-route-query="@Model.SearchQuery" />
-</p>
+                                <form asp-controller="Storage" asp-action="DeleteStorage" asp-route-id="@s.Id"
+                                      onsubmit="return jQueryAjaxDeleteStorage(this)" class="d-inline">
+                                    <input type="submit" value="Delete" class="btn btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>}
 
+    <br />
+    <p class="align-items-center">
+        <pager class="pager-container" list="@Model.StorageModels"
+               options="@SitePagedListRenderOptions.Boostrap4" asp-action="Storages" asp-controller="Storage"
+               asp-route-query="@Model.SearchQuery" />
+    </p>
+</div>
 
