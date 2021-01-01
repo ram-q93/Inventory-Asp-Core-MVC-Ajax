@@ -1,7 +1,8 @@
 ﻿using AspNetCore.Lib.Attributes;
 using AspNetCore.Lib.Enums;
-using AspNetCore.Lib.Extensions;
 using AspNetCore.Lib.Models;
+using Inventory_Asp_Core_MVC_Ajax.Businesses.common;
+using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -91,21 +92,20 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         public async Task<IActionResult> AddOrEdit(int id, [Bind] StorageModel model)
         {
             if (!ModelState.IsValid)
-                return response(false, "AddOrEditStorage", model);
+                return Json(this.HtmlReponse(view: "AddOrEditStorage", model, Result.Failed(Error.WithCode(ErrorCodes.InvalidModel))));
             if (id == 0)
             {
                 var result = await storageBiz.Add(model);
                 if (!result.Success)
-                    return response(false, "AddOrEditStorage", model, result);
+                    return Json(this.HtmlReponse(view: "AddOrEditStorage", model, result));
             }
             else
             {
                 var result = await storageBiz.Edit(model);
                 if (!result.Success)
-                    return response(false, "AddOrEditStorage", model, result);
+                    return Json(this.HtmlReponse(view: "AddOrEditStorage", model, result));
             }
-
-            return response(success: true, view: "_Storages", model: await GetSearchStorage());
+            return Json(this.HtmlReponse(view: "_Storages", model: await GetSearchStorage()));
         }
 
         #endregion
@@ -118,8 +118,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         {
             var result = await storageBiz.Delete(id);
             if (!result.Success)
-                return response(false, "_Storages", null, result);
-            return response(true, "_Storages", await GetSearchStorage());
+                return Json(this.HtmlReponse("_Storages", null, result));
+            return Json(this.HtmlReponse("_Storages", await GetSearchStorage()));
         }
 
         #endregion
@@ -128,15 +128,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [AcceptVerbs("Get", "Post")]
         public async Task<JsonResult> IsNameInUse(string name) =>
-            (await storageBiz.IsNameInUse(name)).Data ? Json(true) : Json($"Name {name} is already in use.");
+            (await storageBiz.IsNameInUse(name)).Data ? Json($"Name {name} is already in use.") : Json(true);
 
         #endregion
 
-        private IActionResult response(bool success, string view, object model, Result result = null) => Json(new
-        {
-            success,
-            error = success ? "" : $"Error {result?.Error?.Code}",
-            html = this.RenderRazorViewToString(view, model)
-        });
     }
 }

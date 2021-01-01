@@ -34,12 +34,15 @@
                             <label asp-for="@FirstStorage.Phone"></label>
                         </th>
                         <th>
+                            <label>Status</label>
+                        </th>
+                        <th>
                             <label asp-for="@FirstStorage.Address"></label>
                         </th>
                         <th>
                             <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
                                                new { id = 0}, Context.Request.Scheme)', 'New Storage')"
-                               class="btn btn-success btn-icon-split">
+                               class="btn btn-success btn-icon-split" style="color: floralwhite;">
                                 <span class="icon text-white">
                                     <i class="fas fa-arrow-right"></i>
                                 </span>
@@ -59,13 +62,28 @@
                                 @(Index++)
                             </td>
                             <td>
-                                @Html.DisplayFor(m => s.Name)
+                                @s.Name
                             </td>
                             <td>
-                                @Html.DisplayFor(m => s.Phone)
+                                @s.Phone
                             </td>
                             <td>
-                                @Html.DisplayFor(m => s.Address)
+                                @if (s.Enabled)
+                                {
+                                    <button class="btn btn-success btn-icon-split disabled">
+                                        <span class="text" style="color: black;">Active</span>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-outline-secondary btn-icon-split disabled">
+                                        <span class="text" style="color: black;">Active</span>
+                                    </button>
+                                }
+
+                            </td>
+                            <td>
+                                @s.Address
                             </td>
                             <td>
                                 <a class="btn btn-outline-secondary btn-icon-split" asp-controller="Product"

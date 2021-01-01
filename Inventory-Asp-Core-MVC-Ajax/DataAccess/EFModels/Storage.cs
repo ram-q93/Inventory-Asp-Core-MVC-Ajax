@@ -30,6 +30,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.EFModels
         [Column(TypeName = "varchar(150)")]
         public string Address { get; set; }
 
+        public bool Enabled { get; set; }
+
         public ICollection<Product> Products { get; set; }
     }
 }

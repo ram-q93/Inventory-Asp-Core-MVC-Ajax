@@ -21,10 +21,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 {
     public class StorageBiz : IStorageBiz
     {
-        private readonly IRepository repository;
-        private readonly IMapper mapper;
-        private readonly ISerializer serializer;
-        private readonly ILogger logger;
+        private readonly IRepository _repository;
+        private readonly IMapper _mapper;
+        private readonly ISerializer _serializer;
+        private readonly ILogger _logger;
 
 
         public StorageBiz(
@@ -34,10 +34,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             ILogger logger)
 
         {
-            this.repository = repository;
-            this.mapper = mapper;
-            this.serializer = serializer;
-            this.logger = logger;
+            _repository = repository;
+            _mapper = mapper;
+            _serializer = serializer;
+            _logger = logger;
         }
 
 
@@ -47,7 +47,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             ResultList<StorageModel>.TryAsync(async () =>
             {
                 await LoadSampleData();
-                var resultList = await repository.ListAsNoTrackingAsync<Storage>(s => searchQuery == null ||
+                var resultList = await _repository.ListAsNoTrackingAsync<Storage>(s => searchQuery == null ||
                     (s.Name != null && s.Name.Contains(searchQuery)) ||
                     (s.Phone != null && s.Phone.Contains(searchQuery)) ||
                     (s.Address != null && s.Address.Contains(searchQuery)),
@@ -63,7 +63,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 return new ResultList<StorageModel>()
                 {
                     Success = true,
-                    Items = resultList.Items.Select(store => mapper.Map<Storage, StorageModel>(store)).ToList(),
+                    Items = resultList.Items.Select(store => _mapper.Map<Storage, StorageModel>(store)).ToList(),
                     PageNumber = resultList.PageNumber,
                     PageSize = resultList.PageSize,
                     TotalCount = resultList.TotalCount
@@ -77,12 +77,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result<StorageModel>> GetById(int id) =>
             Result<StorageModel>.TryAsync(async () =>
             {
-                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id);
+                var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id);
                 if (result?.Success != true || result?.Data == null)
                 {
                     return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
                 }
-                return Result<StorageModel>.Successful(mapper.Map<Storage, StorageModel>(result.Data));
+                return Result<StorageModel>.Successful(_mapper.Map<Storage, StorageModel>(result.Data));
             });
 
         #endregion
@@ -92,14 +92,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Add(StorageModel model) =>
             Result.TryAsync(async () =>
             {
-                if (!(await IsNameInUse(model.Name)).Data)
+                if ((await IsNameInUse(model.Name)).Data)
                 {
-                    Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyInUse));
+                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyInUse));
                 }
-
-                var store = mapper.Map<StorageModel, Storage>(model);
-                repository.Add(store);
-                await repository.CommitAsync();
+                var store = _mapper.Map<StorageModel, Storage>(model);
+                _repository.Add(store);
+                await _repository.CommitAsync();
                 return Result.Successful();
             });
 
@@ -110,19 +109,18 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Edit(StorageModel model) =>
             Result.TryAsync(async () =>
             {
-                if (!(await IsNameInUse(model.Name)).Data)
+                if ((await IsNameInUse(model.Name, model.Id)).Data)
                 {
-                    Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyInUse));
+                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyInUse));
                 }
-
-                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == model.Id);
+                var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
                     return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
                 }
-                var storage = mapper.Map<StorageModel, Storage>(model);
-                repository.Update<Storage>(storage);
-                await repository.CommitAsync();
+                var storage = _mapper.Map<StorageModel, Storage>(model);
+                _repository.Update(storage);
+                await _repository.CommitAsync();
                 return Result.Successful();
             });
 
@@ -133,16 +131,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Delete(int id) =>
             Result.TryAsync(async () =>
             {
-                var storeResult = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id,
+                var storeResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id,
                     includes: p => p.Products.Select(p => p.Image));
                 if (!storeResult.Success || storeResult?.Data == null)
                 {
                     return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
                 }
-                //storeResult.Data.Products.ToList().ForEach(p => p.Images.Clear());
                 storeResult.Data.Products.Clear();
-                repository.Remove(storeResult.Data);
-                await repository.CommitAsync();
+                _repository.Remove(storeResult.Data);
+                await _repository.CommitAsync();
                 return Result.Successful();
             });
 
@@ -150,27 +147,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region IsNameInUse
 
-        public Task<Result<bool>> IsNameInUse(string name) =>
+        public Task<Result<bool>> IsNameInUse(string name, int? id = null) =>
             Result<bool>.TryAsync(async () =>
             {
-                var result = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(s => s.Name == name);
-                return Result<bool>.Successful(result.Data == null);
-            });
-
-        #endregion
-
-        #region ListStorageAndProductsByStoreId
-
-        public Task<Result<StorageModel>> ListStorageAndProductsByStoreId(int storeId) =>
-            Result<StorageModel>.TryAsync(async () =>
-            {
-                var productResults = await repository.FirstOrDefaultAsNoTrackingAsync<Storage>(s => s.Id == storeId,
-                    includes: s => s.Products);
-                if (!productResults.Success)
-                {
-                    return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StorageProductsNotFound));
-                }
-                return Result<StorageModel>.Successful(mapper.Map<Storage, StorageModel>(productResults.Data));
+                var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Storage>(s => s.Name == name &&
+                (id == null || s.Id != id));// check id for edit: 
+                return Result<bool>.Successful(result.Data != null);
             });
 
         #endregion
@@ -179,14 +161,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         private Task<Result> LoadSampleData() =>
             Result.TryAsync(async () =>
             {
-                var storageRresult = await repository.ListAsNoTrackingAsync<Storage>();
+                var storageRresult = await _repository.ListAsNoTrackingAsync<Storage>();
                 if (storageRresult?.Data?.Count == 0)
                 {
                     //-----------Request for image------------//
                     var tasks = new ConcurrentBag<Task<Result<byte[]>>>();
                     for (int i = 0; i < 10; i++)
                     {
-                        tasks.Add(new InventoryHttpClient(serializer, logger).SendHttpRequestToGetImageByteArray());
+                        tasks.Add(new InventoryHttpClient(_serializer, _logger).SendHttpRequestToGetImageByteArray());
                         Thread.Sleep(50);
                     }
                     await Task.WhenAll(tasks);
@@ -195,9 +177,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     //---------- Request for image------------//
 
                     string supplierFile = System.IO.File.ReadAllText("Supplier.json");
-                    var suppliers = serializer.DeserializeFromJson<IList<Supplier>>(supplierFile).ToList();
+                    var suppliers = _serializer.DeserializeFromJson<IList<Supplier>>(supplierFile).ToList();
                     string file = System.IO.File.ReadAllText("generated.json");
-                    var storages = serializer.DeserializeFromJson<IList<Storage>>(file).ToList();
+                    var storages = _serializer.DeserializeFromJson<IList<Storage>>(file).ToList();
                     var index = 1;
                     storages.ForEach(s =>
                     {
@@ -214,12 +196,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
                         });
                     });
-                    storages.ForEach(s => repository.Add(s));
+                    storages.ForEach(s => _repository.Add(s));
                     var watch = Stopwatch.StartNew();
                     watch.Start();
-                    await repository.CommitAsync();
+                    await _repository.CommitAsync();
                     watch.Stop();
-                    logger.Info($"db persist duration : {watch.ElapsedMilliseconds}");
+                    _logger.Info($"db persist duration : {watch.ElapsedMilliseconds}");
                 }
                 return Result.Successful();
             });

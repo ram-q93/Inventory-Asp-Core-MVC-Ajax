@@ -11,9 +11,7 @@ namespace InventoryProject.Business.Interfaces
         Task<Result> Edit(StorageModel model);
         Task<Result<StorageModel>> GetById(int id);
         Task<ResultList<StorageModel>> List(PagingModel pagingModel, string searchQuery);
-        Task<Result<StorageModel>> ListStorageAndProductsByStoreId(int storeId);
-        Task<Result<bool>> IsNameInUse(string name);
-        //Task<ResultList<StorageModel>> Search(StorageFilterModel filterModel);
+        Task<Result<bool>> IsNameInUse(string name,int? id = null);
 
     }
 }

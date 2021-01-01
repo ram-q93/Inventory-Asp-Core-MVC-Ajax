@@ -2,7 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-/*
+
 $(function () {
     $("#loaderbody").addClass('hide');
 
@@ -12,7 +12,43 @@ $(function () {
         $("#loaderbody").addClass('hide');
     });
 });
-*/
+
+function DeletePopUp() {
+    return Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    });
+}
+
+function SweetAlertSubmitedSuccessfully() {
+    Swal.mixin({
+        toast: true,
+        background: 'MediumSeaGreen',
+        position: 'bottom-right',
+        showConfirmButton: false,
+        timer: 3000
+    }).fire({
+        type: 'success',
+        title: '<span style="color:floralwhite">Submited Successfuly </span>'
+    })
+};
+
+function SweetAlertSubmitFailed(ErrorMessage) {  // confirmButtonText: 'Cool'
+    Swal.mixin({
+        toast: true,
+        position: 'bottom-right',
+        showConfirmButton: false,
+        timer: 5000
+    }).fire({
+        type: 'error',
+        title: '<span style="color:Tomato" >' + ErrorMessage + '</span>'
+    })
+};
 
 showStorageInPopup = (url, title) => {
     // from this function we have to make jquery ajax get request 
@@ -29,7 +65,6 @@ showStorageInPopup = (url, title) => {
 };
 
 jQueryAjaxPostToAddOrEditStorage = form => {
- 
     try {
         $.ajax({
             type: 'POST',
@@ -43,16 +78,15 @@ jQueryAjaxPostToAddOrEditStorage = form => {
                     $("#form-modal .modal-title").html('');
                     $("#form-modal .modal-body").html('');
                     $("#form-modal").modal('hide'); 
-                    SweetAlertSubmitedSuccessfully("Storage");
-                   
+                    SweetAlertSubmitedSuccessfully("heteteuiya uidyuwidy uwyduiwwdy wuidyui wdytete");
                 }
                 else {
-                    toastr.error(res.error)
+                    SweetAlertSubmitFailed(res.error)
                     $("#form-modal .modal-body").html(res.html);
                 }
             },
             error: function (err) {
-                //toastr.error("Error in Submitting storage")
+                SweetAlertSubmitFailed("Error in Submitting storage")
                 console.log(err);
             }
         })
@@ -64,14 +98,8 @@ jQueryAjaxPostToAddOrEditStorage = form => {
 };
 
 jQueryAjaxDeleteStorage = form => {
-    swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover",
-        icon: "warning",
-        buttons:true,
-        dangerMode: true
-    }).then((willDelete) => {
-        if (willDelete)
+    DeletePopUp().then((result) => {
+        if (result.value)
             try {
                 $.ajax({
                     type: 'POST',
@@ -81,7 +109,7 @@ jQueryAjaxDeleteStorage = form => {
                     processData: false,
                     success: function (res) {
                         if (res.success) {
-                            toastr.success("Storage Deleted successfully")
+                            SweetAlertSubmitedSuccessfully();
                             $("#view-all-storages").html(res.html);
                         } else {
                             toastr.error(res.error)
@@ -96,29 +124,12 @@ jQueryAjaxDeleteStorage = form => {
             } catch (e) {
                 console.log(e);
             }
-    });
+        });
     //to prevent default form submit event
     return false;
 };
 
-function SweetAlertSubmitedSuccessfully(title) {
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 4000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
 
-    Toast.fire({
-        icon: 'success',
-        title: title + 'Submited successfully'
-    })
-};
 
 function SubmitedSuccessfully(title) {
     toastr.options = {

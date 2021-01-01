@@ -1166,3 +1166,877 @@ Type: Warn
 Date: 2021-01-01 13:44:38.168
 Message: Long Running Request:    (670 milliseconds)  Request Path: /Storage/Storages
 ===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:46:37.361
+Message: Long Running Request:    (3111 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:46:38.433
+Message: Long Running Request:    (800 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:46:38.433
+Message: Long Running Request:    (642 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:46:38.433
+Message: Long Running Request:    (729 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:46:38.433
+Message: Long Running Request:    (825 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:46:46.284
+Message: Long Running Request:    (995 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-01 13:46:59.421
+Message: Supplier Added: (ouioiuiou - i098098 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:47:05.167
+Message: Supplier Deleted: Id=88 CompanyName=ouioiuiou
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:48:03.663
+Message: Long Running Request:    (6904 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-01 13:48:13.389
+Message: Supplier Added: (yiunyu - 98098 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:48:20.009
+Message: Supplier Deleted: Id=89 CompanyName=yiunyu
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-01 13:50:41.064
+Message: Supplier Added: (uiyuiy - 877809 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:50:48.502
+Message: Supplier Deleted: Id=90 CompanyName=uiyuiy
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:52:15.551
+Message: Long Running Request:    (732 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-01 13:52:46.055
+Message: Supplier Added: (yuyuyidd - 78987 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:52:53.330
+Message: Supplier Deleted: Id=91 CompanyName=yuyuyidd
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:54:24.837
+Message: Long Running Request:    (835 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-01 13:54:41.880
+Message: Supplier Added: (iyuuiv - 7987 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:54:48.605
+Message: Supplier Deleted: Id=92 CompanyName=iyuuiv
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:55:49.649
+Message: Long Running Request:    (658 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-01 13:56:20.786
+Message: Supplier Added: (yuiy__ - cry97 -  - False -   )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 13:56:25.950
+Message: Supplier Deleted: Id=93 CompanyName=yuiy__
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:08:07.843
+Message: Long Running Request:    (3935 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:08:08.622
+Message: Long Running Request:    (555 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:08:08.622
+Message: Long Running Request:    (542 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:08:18.710
+Message: Long Running Request:    (823 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:08:22.949
+Message: Long Running Request:    (505 milliseconds)  Request Path: /Storage/DeleteStorage/236
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:09:35.592
+Message: Long Running Request:    (7359 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:09:35.592
+Message: Long Running Request:    (3743 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:11:42.169
+Message: Long Running Request:    (766 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:14:10.768
+Message: Long Running Request:    (3283 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:14:54.989
+Message: Long Running Request:    (921 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:15:04.699
+Message: Long Running Request:    (775 milliseconds)  Request Path: /Storage/DeleteStorage/229
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:15:44.347
+Message: Long Running Request:    (3479 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:15:45.506
+Message: Long Running Request:    (990 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:15:45.507
+Message: Long Running Request:    (1013 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:15:45.506
+Message: Long Running Request:    (947 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:15:45.507
+Message: Long Running Request:    (947 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:15:55.366
+Message: Long Running Request:    (918 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:45:07.726
+Message: Long Running Request:    (3330 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:45:08.788
+Message: Long Running Request:    (725 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:45:08.788
+Message: Long Running Request:    (729 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 14:45:12.237
+Message: Long Running Request:    (921 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:04:29.693
+Message: Long Running Request:    (7094 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:04:30.435
+Message: Long Running Request:    (649 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:04:30.567
+Message: Long Running Request:    (775 milliseconds)  Request Path: /lib/jquery/dist/jquery.min.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:04:30.573
+Message: Long Running Request:    (788 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:04:30.573
+Message: Long Running Request:    (778 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:06:35.570
+Message: Long Running Request:    (757 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:06:35.791
+Message: Long Running Request:    (871 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:06:35.860
+Message: Long Running Request:    (971 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 15:20:32.499
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (sdjspodas).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:20:32.545
+Message: Long Running Request:    (821 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 15:21:11.395
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (sdasdaiosd).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:21:11.424
+Message: Long Running Request:    (748 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 15:37:01.187
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (adawd).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:37:01.212
+Message: Long Running Request:    (603 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 15:44:13.451
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (asdsiduoi).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:44:13.475
+Message: Long Running Request:    (541 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 15:55:39.773
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (SDajhdoih).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:55:39.799
+Message: Long Running Request:    (676 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 15:55:59.569
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (adawudyawoi).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 15:55:59.593
+Message: Long Running Request:    (653 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 16:00:53.735
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (lk;okpoido).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:00:53.847
+Message: Long Running Request:    (722 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:03:31.995
+Message: Long Running Request:    (1551 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:04:05.490
+Message: Long Running Request:    (839 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 16:07:06.187
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (asdjhasldj).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:07:06.208
+Message: Long Running Request:    (807 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 16:09:31.962
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (asdusydus).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:09:31.992
+Message: Long Running Request:    (713 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 16:10:14.442
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (Multron).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:10:14.492
+Message: Long Running Request:    (552 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 16:10:30.745
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (Multron).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:10:30.767
+Message: Long Running Request:    (563 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 16:10:52.755
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (Multron).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:10:52.773
+Message: Long Running Request:    (545 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:17:41.805
+Message: Long Running Request:    (3830 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:17:42.721
+Message: Long Running Request:    (716 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:17:42.721
+Message: Long Running Request:    (517 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:17:42.721
+Message: Long Running Request:    (715 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:17:42.724
+Message: Long Running Request:    (662 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:17:45.124
+Message: Long Running Request:    (837 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 16:18:02.436
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (Multron).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 101
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:18:02.507
+Message: Long Running Request:    (1097 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:23:10.798
+Message: Long Running Request:    (3298 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:23:12.275
+Message: Long Running Request:    (1182 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:23:12.275
+Message: Long Running Request:    (1103 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:23:12.276
+Message: Long Running Request:    (902 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:23:12.275
+Message: Long Running Request:    (1103 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:23:20.871
+Message: Long Running Request:    (814 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:32:13.564
+Message: Long Running Request:    (7109 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:41:20.550
+Message: Long Running Request:    (688 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:44:24.938
+Message: Long Running Request:    (650 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:50:41.043
+Message: Long Running Request:    (699 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:51:00.543
+Message: Long Running Request:    (1049 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:51:43.441
+Message: Long Running Request:    (521 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 16:56:18.051
+Message: Long Running Request:    (523 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:02:17.750
+Message: Long Running Request:    (3902 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:02:18.463
+Message: Long Running Request:    (571 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:02:18.509
+Message: Long Running Request:    (613 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:02:18.527
+Message: Long Running Request:    (631 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:12:11.596
+Message: Long Running Request:    (3266 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:12:12.613
+Message: Long Running Request:    (825 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:12:12.613
+Message: Long Running Request:    (850 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:12:12.672
+Message: Long Running Request:    (544 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:12:15.818
+Message: Long Running Request:    (948 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:14:14.827
+Message: Long Running Request:    (3399 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:14:15.748
+Message: Long Running Request:    (662 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:14:15.748
+Message: Long Running Request:    (687 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:14:18.404
+Message: Long Running Request:    (1166 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:16:22.052
+Message: Long Running Request:    (3028 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:16:23.078
+Message: Long Running Request:    (818 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:16:23.109
+Message: Long Running Request:    (843 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:16:23.109
+Message: Long Running Request:    (877 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:16:23.078
+Message: Long Running Request:    (818 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:16:23.141
+Message: Long Running Request:    (909 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:16:26.989
+Message: Long Running Request:    (1106 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:22:15.134
+Message: Long Running Request:    (2931 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:22:15.886
+Message: Long Running Request:    (547 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:22:15.886
+Message: Long Running Request:    (547 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:22:21.801
+Message: Long Running Request:    (815 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:24:14.224
+Message: Long Running Request:    (21736 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:24:51.900
+Message: Long Running Request:    (4704 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:25:06.194
+Message: Long Running Request:    (7784 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 17:25:38.823
+Message: Long Running Request:    (19795 milliseconds)  Request Path: /storage/storages
+===========================================================================

@@ -50,13 +50,11 @@ namespace Inventory_Asp_Core_MVC_Ajax
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
-
-            app.UseMiddleware<RequestPerformanceBehaviourMiddleware>();
+           // app.UseMiddleware<RequestPerformanceBehaviourMiddleware>();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.Use(async (ctx, next) =>
-            {
+            {//Func middleware
                 await next();
                 if (ctx.Response.StatusCode == 404 && !ctx.Response.HasStarted)
                 {
@@ -65,11 +63,8 @@ namespace Inventory_Asp_Core_MVC_Ajax
                     await next();
                 }
             });
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

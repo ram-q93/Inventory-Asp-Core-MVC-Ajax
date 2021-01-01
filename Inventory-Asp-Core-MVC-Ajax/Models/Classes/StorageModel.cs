@@ -26,6 +26,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
         [Display(Name = "Address", Prompt = "Address")]
         public string Address { get; set; }
 
+        [Display(Name = "Enabled", Prompt = "Enabled")]
+        public bool Enabled { get; set; }
+
         [Display(Name = "Products")]
         public ICollection<ProductModel> ProductModels { get; set; }
 
