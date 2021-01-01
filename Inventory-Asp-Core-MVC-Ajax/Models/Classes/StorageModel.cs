@@ -22,6 +22,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
         [Display(Name = "Phone", Prompt = "Phone (example: 0000-000-0000)")]
         public string Phone { get; set; }
 
+        [StringLength(100, ErrorMessage = "The City value cannot exceed 100 characters.")]
+        [Display(Name = "City", Prompt = "City")]
+        public string City { get; set; }
+
         [StringLength(150, ErrorMessage = "The Address value cannot exceed 150 characters.")]
         [Display(Name = "Address", Prompt = "Address")]
         public string Address { get; set; }

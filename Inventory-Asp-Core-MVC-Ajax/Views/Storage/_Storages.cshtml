@@ -37,80 +37,77 @@
                             <label>Status</label>
                         </th>
                         <th>
+                            <label asp-for="@FirstStorage.City"></label>
+                        </th>
+                        <th>
                             <label asp-for="@FirstStorage.Address"></label>
                         </th>
                         <th>
-                            <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
-                                               new { id = 0}, Context.Request.Scheme)', 'New Storage')"
-                               class="btn btn-success btn-icon-split" style="color: floralwhite;">
-                                <span class="icon text-white">
-                                    <i class="fas fa-arrow-right"></i>
-                                </span>
-                                <span class="text text-white">&nbsp;&nbsp;New Storage</span>
-                            </a>
+                            <label>Update</label>
                         </th>
                         <th>
-                            <label> Edit or Delete</label>
+                            <label>Delete</label>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var s in Model.StorageModels)
                     {
-                        <tr>
-                            <td>
-                                @(Index++)
-                            </td>
-                            <td>
-                                @s.Name
-                            </td>
-                            <td>
-                                @s.Phone
-                            </td>
-                            <td>
-                                @if (s.Enabled)
-                                {
-                                    <button class="btn btn-success btn-icon-split disabled">
-                                        <span class="text" style="color: black;">Active</span>
-                                    </button>
-                                }
-                                else
-                                {
-                                    <button class="btn btn-outline-secondary btn-icon-split disabled">
-                                        <span class="text" style="color: black;">Active</span>
-                                    </button>
-                                }
-
-                            </td>
-                            <td>
-                                @s.Address
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-secondary btn-icon-split" asp-controller="Product"
-                                   asp-action="Products" asp-route-storageId="@s.Id">
-                                    <span class="icon text-white-50">
-                                        <i style="color: slategray;" class="fas fa-info-circle"></i>
-                                    </span>
-                                    <span class="text" style="color: black;">View Products</span>
-
-                                </a>
-
-                            </td>
-                            <td>
-                                <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
+                    <tr>
+                        <td>
+                            @(Index++)
+                        </td>
+                        <td>
+                            @s.Name
+                        </td>
+                        <td>
+                            @s.Phone
+                        </td>
+                        <td>
+                            @if (s.Enabled)
+                            {
+                                <button class="btn btn-success btn-circle" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-light btn-circle" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            }
+                        </td>
+                        <td>
+                            @s.City
+                        </td>
+                        <td>
+                            @s.Address
+                        </td>
+                        @*<td>
+                            <a class="btn btn-outline-secondary btn-icon-split" asp-controller="Product"
+                               asp-action="Products" asp-route-storageId="@s.Id">
+                                <span class="icon text-white-50">
+                                    <i style="color: slategray;" class="fas fa-info-circle"></i>
+                                </span>
+                                <span class="text" style="color: black;">View Products</span>
+                            </a>
+                        </td>*@
+                        <td>
+                            <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
                                        new { id = s.Id}, Context.Request.Scheme)', 'Update Storage')"
-                                   class="btn btn-warning btn-circle">
-                                    <i class="fas fa-exclamation-triangle text-white"></i>
-                                </a>
-
-                                <form asp-controller="Storage" asp-action="DeleteStorage" asp-route-id="@s.Id"
-                                      onsubmit="return jQueryAjaxDeleteStorage(this)" class="d-inline">
-                                    <button type="submit" class="btn btn-danger btn-circle">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                               class="btn btn-warning btn-circle">
+                                <i class="fas fa-exclamation-triangle text-white"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <form asp-controller="Storage" asp-action="DeleteStorage" asp-route-id="@s.Id"
+                                  onsubmit="return jQueryAjaxDeleteStorage(this)" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-circle">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

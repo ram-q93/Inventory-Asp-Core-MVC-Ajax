@@ -9,9 +9,25 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">@ViewData["Title"]</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
-        </a>
+
+        
+
+        <div class="topbar-divider d-none d-sm-block">
+            <a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
+               onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
+               new { id = 0}, Context.Request.Scheme)', 'New Storage')">
+                <span class="icon text-white">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text text-white">&nbsp;&nbsp;New Storage</span>
+            </a>
+
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-download fa-sm text-white"></i> Generate Report
+            </a>
+        </div>
+
+     
     </div>
     <br />
     <div id="view-all-storages">

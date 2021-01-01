@@ -26,6 +26,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.EFModels
         [Column(TypeName = "varchar(14)")]
         public string Phone { get; set; }
 
+        [Column(TypeName = "varchar(100)")]
+        public string City { get; set; }
+
         [MaxLength(150)]
         [Column(TypeName = "varchar(150)")]
         public string Address { get; set; }
