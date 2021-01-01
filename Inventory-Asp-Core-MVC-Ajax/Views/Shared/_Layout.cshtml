@@ -24,103 +24,6 @@
 
 </head>
 
-@*<body>*@
-
-    @*<div class="d-flex" id="wrapper">
-         Sidebar 
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Inventory </div>
-            <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action bg-light"
-                   asp-controller="storage" asp-action="storages">Storages <span class="sr-only">(current)</span></a>
-                <a class="list-group-item list-group-item-action bg-light"
-                   asp-controller="supplier" asp-action="suppliers">Suppliers</a>
-                <a class="list-group-item list-group-item-action bg-light"
-                   asp-controller="report" asp-action="report">Report</a>
-            </div>
-        </div>
-         /#sidebar-wrapper 
-         Page Content 
-        <div id="page-content-wrapper">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item order-2 order-md-1">
-                                <a class="nav-link" title="settings" asp-controller="Auth" asp-action="LogOut">
-                                    Hi @User.Identity.Name, logout<i class="fa fa-cog fa-fw fa-lg"></i>
-                                </a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="dropdown order-1">
-                                <button type="button" id="dropdownMenu1" data-toggle="dropdown"
-                                        class="btn btn-light dropdown-toggle">
-                                    Login<span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-right mt-2">
-                                    <li class="px-3 py-2">
-                                        <form class="form" role="form">
-                                            <div class="form-group">
-                                                <input id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required="">
-                                            </div>
-                                            <div class="form-group">
-                                                <input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required="">
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                            </div>
-                                            <div class="form-group text-center">
-                                                <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
-                                            </div>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        }
-
-                    </ul>
-
-                </div>
-            </nav>
-            <div class="container-fluid">
-                <br />
-                @RenderBody()
-            </div>
-        </div>
-         /#page-content-wrapper 
-    </div>
-     /#wrapper 
-
-
-    <div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Forgot password</h3>
-                    <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    <p>Reset your password..</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                    <button class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>*@
 
 <body id="page-top">
 
@@ -131,7 +34,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+               asp-controller="dashboard" asp-action="statistics">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -143,53 +47,10 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" asp-controller="dashboard" asp-action="statistics">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                   aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                   aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
             </li>
 
             <!-- Divider -->
@@ -237,14 +98,6 @@
                 </a>
             </li>
 
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
-                </a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
