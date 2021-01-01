@@ -86,9 +86,11 @@ else
     </div>}
 
 <br />
-<p class="align-items-center">
-    <pager class="pager-container" list="@Model.SupplierPagedList"
-           options="@SitePagedListRenderOptions.Boostrap4" asp-action="Suppliers" asp-controller="Supplier"
-           asp-route-query="@Model.SearchQuery" />
-</p>
 
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <p>
+        <pager class="pager-container" list="@Model.SupplierPagedList"
+               options="@SitePagedListRenderOptions.Boostrap4" asp-action="Suppliers" asp-controller="Supplier"
+               asp-route-query="@Model.SearchQuery" />
+    </p>
+</div>

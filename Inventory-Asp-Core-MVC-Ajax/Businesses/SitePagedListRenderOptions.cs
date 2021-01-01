@@ -12,7 +12,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
             {
                 var option = PagedListRenderOptions.Bootstrap4Full;
 
-                option.MaximumPageNumbersToDisplay = 5;
+                option.MaximumPageNumbersToDisplay = 8;
 
                 return option;
             }

@@ -32,7 +32,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             var storageResults = await storageBiz.List(new PagingModel()
             {
                 PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
-                PageSize = 5,
+                PageSize = 8,
                 Sort = "LastModified",
                 SortDirection = SortDirection.DESC
             }, searchQuery);

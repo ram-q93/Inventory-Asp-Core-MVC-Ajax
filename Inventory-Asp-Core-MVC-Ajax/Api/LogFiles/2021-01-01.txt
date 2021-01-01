@@ -1,0 +1,501 @@
+===========================================================================
+Type: Warn
+Date: 2021-01-01 03:53:27.616
+Message: Long Running Request:    (5466 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 03:58:41.545
+Message: Long Running Request:    (2639 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:00:05.907
+Message: Long Running Request:    (906 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:00:47.994
+Message: Long Running Request:    (1075 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:03:43.882
+Message: Long Running Request:    (16546 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:10:25.177
+Message: Long Running Request:    (830 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:12:51.972
+Message: Long Running Request:    (1539 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:15:41.364
+Message: Long Running Request:    (928 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:16:52.112
+Message: Long Running Request:    (772 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:17:31.492
+Message: Long Running Request:    (688 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:17:56.483
+Message: Long Running Request:    (594 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:19:08.903
+Message: Long Running Request:    (644 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:19:27.876
+Message: Long Running Request:    (564 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:20:01.639
+Message: Long Running Request:    (4694 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:21:00.348
+Message: Long Running Request:    (11541 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:22:25.379
+Message: Long Running Request:    (1027 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:22:52.081
+Message: Long Running Request:    (1009 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:26:21.347
+Message: Long Running Request:    (1159 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-01 04:27:10.322
+Message: Supplier Edited: (Voipa* - (967) 493-2980 - (844) 536-2498 - True - Ovington Court  )
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-01 04:27:10.322
+Message: Supplier Edited: (Voipa* - (967) 493-2980 - (844) 536-2498 - True - Ovington Court  )
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:27:10.390
+Message: Long Running Request:    (650 milliseconds)  Request Path: /Supplier/AddOrEditSupplier/47
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:29:01.387
+Message: Long Running Request:    (882 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:30:37.084
+Message: Long Running Request:    (1241 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:33:10.590
+Message: Long Running Request:    (796 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:34:40.542
+Message: Long Running Request:    (547 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:34:58.520
+Message: Long Running Request:    (690 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:40:12.504
+Message: Long Running Request:    (558 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:46:23.737
+Message: Long Running Request:    (5820 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:49:47.805
+Message: Long Running Request:    (8462 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:50:13.408
+Message: Long Running Request:    (800 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:53:42.542
+Message: Long Running Request:    (760 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 04:54:50.977
+Message: Long Running Request:    (819 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:11:39.537
+Message: Long Running Request:    (5398 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:11:41.025
+Message: Long Running Request:    (1234 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:11:41.324
+Message: Long Running Request:    (1526 milliseconds)  Request Path: /img/undraw_profile.svg
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:11:41.935
+Message: Long Running Request:    (610 milliseconds)  Request Path: /favicon.ico
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:11:41.935
+Message: Long Running Request:    (2126 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:15:33.619
+Message: Long Running Request:    (8491 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:16:07.142
+Message: Long Running Request:    (901 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:17:52.988
+Message: Long Running Request:    (995 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:18:31.581
+Message: Long Running Request:    (901 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:19:00.995
+Message: Long Running Request:    (1210 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:19:26.840
+Message: Long Running Request:    (972 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:21:31.010
+Message: Long Running Request:    (661 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:21:35.745
+Message: Long Running Request:    (566 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:21:40.626
+Message: Long Running Request:    (858 milliseconds)  Request Path: /Product/Products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:25:26.775
+Message: Long Running Request:    (546 milliseconds)  Request Path: /Product/Products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:26:42.772
+Message: Long Running Request:    (715 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-01 05:27:16.030
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: Cannot insert duplicate key row in object 'dbo.Storages' with unique index 'IX_Storages_Name'. The duplicate key value is (Assitia).
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 49
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass7_0.<<Add>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 102
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:27:16.135
+Message: Long Running Request:    (1102 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:30:38.038
+Message: Long Running Request:    (7119 milliseconds)  Request Path: /Storage/DeleteStorage/227
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:44:52.393
+Message: Long Running Request:    (514 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:55:08.906
+Message: Long Running Request:    (536 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 05:58:47.419
+Message: Long Running Request:    (658 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:03:01.390
+Message: Long Running Request:    (670 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:09:46.557
+Message: Long Running Request:    (614 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:11:38.095
+Message: Long Running Request:    (6665 milliseconds)  Request Path: /Storage/DeleteStorage/228
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:11:42.204
+Message: Long Running Request:    (1411 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:37:35.433
+Message: Long Running Request:    (593 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:41:18.977
+Message: Long Running Request:    (4253 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:41:19.974
+Message: Long Running Request:    (760 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:41:20.000
+Message: Long Running Request:    (788 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:41:19.975
+Message: Long Running Request:    (763 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:42:39.029
+Message: Long Running Request:    (4464 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:45:28.371
+Message: Long Running Request:    (9624 milliseconds)  Request Path: /Storage/AddOrEditStorage/204
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:48:55.123
+Message: Long Running Request:    (4109 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:48:56.038
+Message: Long Running Request:    (529 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:48:56.038
+Message: Long Running Request:    (691 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:49:39.665
+Message: Long Running Request:    (524 milliseconds)  Request Path: /Storage/AddOrEditStorage/204
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:55:59.117
+Message: Long Running Request:    (4194 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:56:06.466
+Message: Long Running Request:    (529 milliseconds)  Request Path: /Storage/AddOrEditStorage/204
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 06:59:06.501
+Message: Long Running Request:    (7881 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:00:56.985
+Message: Long Running Request:    (1087 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:02:23.684
+Message: Long Running Request:    (828 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:04:59.798
+Message: Long Running Request:    (1121 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:07:07.426
+Message: Long Running Request:    (613 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:10:46.893
+Message: Long Running Request:    (522 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:15:22.819
+Message: Long Running Request:    (580 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:23:37.005
+Message: Long Running Request:    (611 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:27:19.753
+Message: Long Running Request:    (580 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:37:08.964
+Message: Long Running Request:    (541 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:38:30.148
+Message: Long Running Request:    (507 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:40:07.941
+Message: Long Running Request:    (524 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:41:54.548
+Message: Long Running Request:    (531 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:45:54.224
+Message: Long Running Request:    (581 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:46:16.168
+Message: Long Running Request:    (701 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:46:31.674
+Message: Long Running Request:    (547 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 07:50:40.637
+Message: Long Running Request:    (632 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 08:02:11.254
+Message: Long Running Request:    (4148 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 08:12:23.833
+Message: Long Running Request:    (4819 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 08:12:24.890
+Message: Long Running Request:    (864 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 08:14:53.979
+Message: Long Running Request:    (8208 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 08:20:08.427
+Message: Long Running Request:    (5322 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 08:20:09.643
+Message: Long Running Request:    (994 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 08:20:09.832
+Message: Long Running Request:    (1063 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-01 08:20:09.856
+Message: Long Running Request:    (565 milliseconds)  Request Path: /favicon.ico
+===========================================================================

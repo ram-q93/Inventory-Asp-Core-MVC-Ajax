@@ -120,7 +120,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 {
                     return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
                 }
-                var store = mapper.Map<StorageModel, Storage>(model);
+                var storage = mapper.Map<StorageModel, Storage>(model);
+                repository.Update<Storage>(storage);
                 await repository.CommitAsync();
                 return Result.Successful();
             });

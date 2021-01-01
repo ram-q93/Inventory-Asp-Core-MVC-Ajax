@@ -5,8 +5,8 @@
 
 
 @*For displaying storage info*@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-<div class="container">
     @if (Model.StorageModels.Count() == 0)
     {
         <div class="alert alert-info">
@@ -20,8 +20,8 @@
     {
         var FirstStorage = Model.StorageModels.FirstOrDefault();
 
-        <div class="container-fluid">
-            <table class="table">
+        <div class=" table-responsive">
+            <table class="table table-sm table-striped" style="color: black;">
                 <thead>
                     <tr>
                         <th>
@@ -39,7 +39,15 @@
                         <th>
                             <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
                                                new { id = 0}, Context.Request.Scheme)', 'New Storage')"
-                               class="btn btn-success text-white"><i class="fas fa-random"></i>New Storage</a>
+                               class="btn btn-success btn-icon-split">
+                                <span class="icon text-white">
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                                <span class="text text-white">&nbsp;&nbsp;New Storage</span>
+                            </a>
+                        </th>
+                        <th>
+                            <label> Edit or Delete</label>
                         </th>
                     </tr>
                 </thead>
@@ -60,16 +68,28 @@
                                 @Html.DisplayFor(m => s.Address)
                             </td>
                             <td>
-                                <a asp-controller="Product" asp-action="Products" asp-route-storageId="@s.Id" class="btn btn-info">View Products</a>
+                                <a class="btn btn-outline-secondary btn-icon-split" asp-controller="Product"
+                                   asp-action="Products" asp-route-storageId="@s.Id">
+                                    <span class="icon text-white-50">
+                                        <i style="color: slategray;" class="fas fa-info-circle"></i>
+                                    </span>
+                                    <span class="text" style="color: black;">View Products</span>
+
+                                </a>
+
                             </td>
                             <td>
                                 <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
                                        new { id = s.Id}, Context.Request.Scheme)', 'Update Storage')"
-                                   class="btn btn-warning text-white"><i class="fas fa-pencil-alt"></i></a>
+                                   class="btn btn-warning btn-circle">
+                                    <i class="fas fa-exclamation-triangle text-white"></i>
+                                </a>
 
                                 <form asp-controller="Storage" asp-action="DeleteStorage" asp-route-id="@s.Id"
                                       onsubmit="return jQueryAjaxDeleteStorage(this)" class="d-inline">
-                                    <input type="submit" value="Delete" class="btn btn-danger" />
+                                    <button type="submit" class="btn btn-danger btn-circle">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -79,10 +99,11 @@
         </div>}
 
     <br />
+</div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
     <p class="align-items-center">
         <pager class="pager-container" list="@Model.StorageModels"
                options="@SitePagedListRenderOptions.Boostrap4" asp-action="Storages" asp-controller="Storage"
                asp-route-query="@Model.SearchQuery" />
     </p>
 </div>
-

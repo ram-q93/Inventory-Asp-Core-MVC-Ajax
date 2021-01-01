@@ -83,10 +83,13 @@ else
     </div>}
 
 <br />
-<p class="align-items-center">
-    <pager class="pager-container" list="@Model.ProductPagedList"
-           options="@SitePagedListRenderOptions.Boostrap4" asp-action="Products" asp-controller="Product"
-           asp-route-storageId=@storageId asp-route-query="@Model.SearchQuery" />
-</p>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <p class="align-items-center">
+        <pager class="pager-container" list="@Model.ProductPagedList"
+               options="@SitePagedListRenderOptions.Boostrap4" asp-action="Products" asp-controller="Product"
+               asp-route-storageId=@storageId asp-route-query="@Model.SearchQuery" />
+    </p>
+</div>
+
 
 
