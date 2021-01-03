@@ -43,31 +43,77 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region List
 
-        public Task<ResultList<StorageModel>> List(PagingModel pagingModel, string searchQuery) =>
-            ResultList<StorageModel>.TryAsync(async () =>
+        public Task<Result<object>> List(DtParameters dtParameters) =>
+            Result<object>.TryAsync(async () =>
             {
-              //  await LoadSampleData();
-                var resultList = await _repository.ListAsNoTrackingAsync<Storage>(s => searchQuery == null ||
-                    (s.Name != null && s.Name.Contains(searchQuery)) ||
-                    (s.Phone != null && s.Phone.Contains(searchQuery)) ||
-                    (s.Address != null && s.Address.Contains(searchQuery)),
-                    pagingModel, pagingModel.Sort);
-
-                //var r = await repository.ListAsNoTrackingAsync<Storage>(
-                //    new PagingModel<Storage>(pagingModel, s => s.UpdatedDate));
-
-                if (!resultList.Success)
+                var searchBy = dtParameters.Search?.Value;
+                var orderCriteria = string.Empty;
+                var orderAscendingDirection = true;
+                if (dtParameters.Order != null)
                 {
-                    return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
+                    orderCriteria = dtParameters.Columns[dtParameters.Order[0].Column].Data;
+                    orderAscendingDirection = dtParameters.Order[0].Dir.ToString().ToLower() == "asc";
                 }
-                return new ResultList<StorageModel>()
+                else
                 {
-                    Success = true,
-                    Items = resultList.Items.Select(store => _mapper.Map<Storage, StorageModel>(store)).ToList(),
-                    PageNumber = resultList.PageNumber,
-                    PageSize = resultList.PageSize,
-                    TotalCount = resultList.TotalCount
-                };
+                    orderCriteria = "Id";
+                    orderAscendingDirection = true;
+                }
+                var result = (await _repository.ListAsNoTrackingAsync<Storage>()).Data;
+                if (!string.IsNullOrEmpty(searchBy))
+                {
+                    result = result.Where(r => (r.Name != null && r.Name.ToUpper().Contains(searchBy.ToUpper())) ||
+                                               r.Address != null && r.Address.ToUpper().Contains(searchBy.ToUpper()) ||
+                                               r.City != null && r.City.ToUpper().Contains(searchBy.ToUpper()) ||
+                                               r.Phone != null && r.Phone.ToUpper().Contains(searchBy.ToUpper())).ToList();
+                }
+                result = orderAscendingDirection ?
+                    result.AsQueryable().OrderByDynamic(orderCriteria, DtOrderDir.Asc).ToList() :
+                    result.AsQueryable().OrderByDynamic(orderCriteria, DtOrderDir.Desc).ToList();
+
+                var filteredResultsCount = result.Count();
+                var totalResultsCount = _repository.GetCurrentContext().Set<Storage>().Count();
+                return Result<object>.Successful(new
+                {
+                    draw = dtParameters.Draw,
+                    recordsTotal = totalResultsCount,
+                    recordsFiltered = filteredResultsCount,
+                    data = result
+                        .Skip(dtParameters.Start)
+                        .Take(dtParameters.Length)
+                        .ToList()
+                });
+
+
+
+
+
+
+
+
+
+                //  await LoadSampleData();
+                //var resultList = await _repository.ListAsNoTrackingAsync<Storage>(s => searchQuery == null ||
+                //    (s.Name != null && s.Name.Contains(searchQuery)) ||
+                //    (s.Phone != null && s.Phone.Contains(searchQuery)) ||
+                //    (s.Address != null && s.Address.Contains(searchQuery)),
+                //    pagingModel, pagingModel.Sort);
+
+                ////var r = await repository.ListAsNoTrackingAsync<Storage>(
+                ////    new PagingModel<Storage>(pagingModel, s => s.UpdatedDate));
+
+                //if (!resultList.Success)
+                //{
+                //    return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
+                //}
+                //return new ResultList<StorageModel>()
+                //{
+                //    Success = true,
+                //    Items = resultList.Items.Select(store => _mapper.Map<Storage, StorageModel>(store)).ToList(),
+                //    PageNumber = resultList.PageNumber,
+                //    PageSize = resultList.PageSize,
+                //    TotalCount = resultList.TotalCount
+                //};
             });
 
         #endregion
@@ -231,6 +277,18 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             });
 
         #endregion
+    }
+    public static class LinqExtensions
+    {
+        public static IQueryable<T> OrderByDynamic<T>(this IQueryable<T> query, string orderByMember, DtOrderDir ascendingDirection)
+        {
+            var param = Expression.Parameter(typeof(T), "c");
+            var body = orderByMember.Split('.').Aggregate<string, Expression>(param, Expression.PropertyOrField);
+            var queryable = ascendingDirection == DtOrderDir.Asc ?
+                (IOrderedQueryable<T>)Queryable.OrderBy(query.AsQueryable(), (dynamic)Expression.Lambda(body, param)) :
+                (IOrderedQueryable<T>)Queryable.OrderByDescending(query.AsQueryable(), (dynamic)Expression.Lambda(body, param));
+            return queryable;
+        }
     }
 
     public static class QueryableExtensions
