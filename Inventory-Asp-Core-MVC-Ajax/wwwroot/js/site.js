@@ -256,13 +256,20 @@ jQueryAjaxDeleteSupplier = form => {
 
 https://www.thecodehubs.com/server-side-pagination-using-datatable-in-net-core/
 $(document).ready(function () {
-    $("#table-storage").DataTable({
+    var table =$("#table-storage").DataTable({
         autoWidth: true,
         processing: true,
         serverSide: true,
         paging: true,
         searching: { regex: true },
         responsive: true,
+        lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+        columnDefs: [{
+            "targets": [5, 6],
+            "orderable": false,
+            "searchable": false
+        }],
+       // sDom: "ltipr", to delete search button
         ajax: {
             url: "/Storage/Storages",
             type: "POST",
@@ -279,14 +286,14 @@ $(document).ready(function () {
                 data: "enabled",
                 render: function (data, type, row) {
                     if (data == true) {
-                        return `<button class="btn btn-primary btn-circle" disabled>
-                                    <i class="fas fa-check"></i>
-                                </button>`;
+                        return `<div style="text-align:center">
+                                    <button class="btn btn-primary btn-sm btn-circle"  disabled>
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>`;
                     }
                     else
-                        return `<button class="btn btn-light btn-circle" disabled>
-                                    <i class="fas fa-check"></i>
-                                </button>`;
+                        return ``;
                 }
             },
             { data: "city" },
@@ -294,21 +301,44 @@ $(document).ready(function () {
             {
                 data: "id",
                 render: function (data, type, row) {
-                    return `<a  class="btn btn-warning btn-circle" onclick="showStorageInPopup(${data},'UpdateStorage')">
-                                <i class="fas fa-exclamation-triangle text-white"></i>
-                            </a>`;
+                    return `<div style="text-align:center">
+                                <a class="btn btn-warning btn-sm btn-circle" onclick="showStorageInPopup(${data},'UpdateStorage')">
+                                     <i class="fas fa-exclamation-triangle text-white"></i>
+                                </a>
+                            </div>`;
                 }
             },
             {
                 data: "id",
                 render: function (data, type, row) {
-                    return `<a  class="btn btn-danger btn-circle" onclick="jQueryAjaxDeleteStorage(${data})">
-                                 <i class="fas fa-trash text-white"></i>
-                           </a>`;
+                    return `<div style="text-align:center">
+                                <a class="btn btn-danger btn-sm btn-circle" onclick="jQueryAjaxDeleteStorage(${data})">
+                                    <i class="fas fa-trash text-white"></i>
+                                </a>
+                            </div>`;
                 }
             }
         ]
     });
+    //$('#search-btn-id').on('keyup click', function () {
+    //    table.search($('#search-input-id').val()).draw();
+    //});
+
+
+    //table.on('order.dt search.dt', function () {
+    //    table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+    //        cell.innerHTML = i + 1;
+    //    });
+    //}).draw();
+
+    //Perform these operations on datatables
+    //'l' - Length changing
+    //'f' - Filtering input
+    //'t' - The table!
+    //'i' - Information
+    //'p' - Pagination
+    //'r' - pRocessing
+    //For removing default search box just remove the f character from sDom.
 });
 
 showStorageInPopup = (id, title) => {
@@ -375,7 +405,8 @@ jQueryAjaxDeleteStorage = (id) => {
                     success: function (res) {
                         if (res.success) {
                            
-                            window.location.href = 'Storages';
+                           window.location.href = 'Storages';
+                          //  table.ajax.reload();
                             SweetAlertSubmitedSuccessfully();
                         } else {
                             SweetAlertSubmitFailed(res.error)

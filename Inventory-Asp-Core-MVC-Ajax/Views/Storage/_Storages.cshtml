@@ -8,33 +8,83 @@
     }
 }
 
-<table id="table-storage" class="table table-sm table-striped" style="color: black; width:100%">
 
-    <thead>
-        <tr>
-            <label type="hidden" id="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
-            <label asp-for="@Model.First().Id" hidden></label>
-            <th>
-                <label asp-for="@Model.First().Name"></label>
-            </th>
-            <th>
-                <label asp-for="@Model.First().Phone"></label>
-            </th>
-            <th>
-                <label>Status</label>
-            </th>
-            <th>
-                <label asp-for="@Model.First().City"></label>
-            </th>
-            <th>
-                <label asp-for="@Model.First().Address"></label>
-            </th>
-            <th>
-                <label>Update</label>
-            </th>
-            <th>
-                <label>Delete</label>
-            </th>
-        </tr>
-    </thead>
-</table>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Storage Table</h6>
+    </div>
+    <div class="card-body">
+        <!-- Topbar Search -->
+        <!--<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+              asp-controller="storage" asp-action="storages" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 " placeholder="........"
+                       aria-label="Search" aria-describedby="basic-addon2" id="search-input-id">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit" id="search-btn-id">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>-->
+
+        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+        <!--<li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>-->
+            <!-- Dropdown - Messages -->
+            <!--<div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                 aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small"
+                               placeholder="Search for..." aria-label="Search"
+                               aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>-->
+
+        <table id="table-storage" class="table table-sm table-striped table-bordered table-hover table-condensed"
+               style="color: black;">
+            <thead>
+                <tr>
+                    <label type="hidden" id="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
+                        <label asp-for="@Model.First().Id" hidden></label>
+                        @*<th style="width: 10%">
+                            <label>#</label>
+                        </th>*@
+                        <th style="width: 10%">
+                            <label asp-for="@Model.First().Name"></label>
+                        </th>
+                        <th style="width: 10%">
+                            <label asp-for="@Model.First().Phone"></label>
+                        </th>
+                        <th style="width: 4%">
+                            <label>Status</label>
+                        </th>
+                        <th style="width: 10%">
+                            <label asp-for="@Model.First().City"></label>
+                        </th>
+                        <th>
+                            <label asp-for="@Model.First().Address"></label>
+                        </th>
+                        <th style="width: 4%">
+                            <label>Update</label>
+                        </th>
+                        <th style="width: 4%">
+                            <label>Delete</label>
+                        </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

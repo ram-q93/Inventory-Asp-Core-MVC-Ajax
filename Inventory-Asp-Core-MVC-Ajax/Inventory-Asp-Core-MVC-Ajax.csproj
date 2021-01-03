@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Inventory_Asp_Core_MVC_Ajax</RootNamespace>
+    <UserSecretsId>5563f06b-bf28-4b17-b4e1-b181a5140935</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

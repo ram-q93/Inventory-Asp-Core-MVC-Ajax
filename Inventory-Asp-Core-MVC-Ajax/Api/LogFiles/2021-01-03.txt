@@ -222,3 +222,193 @@ StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommand
    at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
 
 ===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:14:10.701
+Message: Long Running Request:    (4098 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:14:12.611
+Message: Long Running Request:    (1397 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:14:12.611
+Message: Long Running Request:    (1339 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:14:12.653
+Message: Long Running Request:    (1097 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:14:12.700
+Message: Long Running Request:    (1333 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:14:12.983
+Message: Long Running Request:    (530 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:14:13.548
+Message: Long Running Request:    (675 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:14:13.644
+Message: Long Running Request:    (660 milliseconds)  Request Path: /favicon.ico
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:14:17.855
+Message: Long Running Request:    (578 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:14:19.372
+Message: Long Running Request:    (1217 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:26:07.630
+Message: Long Running Request:    (12140 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:26:59.416
+Message: Long Running Request:    (850 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:38:12.492
+Message: Long Running Request:    (532 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:38:13.691
+Message: Long Running Request:    (586 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:41:38.680
+Message: Long Running Request:    (537 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 14:48:07.346
+Message: Long Running Request:    (905 milliseconds)  Request Path: /Storage/Delete
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 15:02:07.937
+Message: Long Running Request:    (583 milliseconds)  Request Path: /lib/bootstrap/dist/js/bootstrap.bundle.min.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 15:02:08.105
+Message: Long Running Request:    (790 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 15:02:08.105
+Message: Long Running Request:    (785 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 15:02:08.118
+Message: Long Running Request:    (659 milliseconds)  Request Path: /js/dataTables.min.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 15:02:08.128
+Message: Long Running Request:    (744 milliseconds)  Request Path: /js/sweetalert2.all.min.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 15:02:08.130
+Message: Long Running Request:    (810 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 15:02:08.127
+Message: Long Running Request:    (807 milliseconds)  Request Path: /lib/jquery/dist/jquery.min.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 15:02:08.127
+Message: Long Running Request:    (848 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 15:08:35.199
+Message: Long Running Request:    (1447 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 15:53:09.785
+Message: Long Running Request:    (574 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 16:27:28.222
+Message: Long Running Request:    (504 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 16:34:34.487
+Message: Long Running Request:    (501 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 17:01:31.671
+Message: Long Running Request:    (3575 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 17:01:32.689
+Message: Long Running Request:    (656 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 17:01:32.689
+Message: Long Running Request:    (842 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 17:02:10.368
+Message: Long Running Request:    (532 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 17:04:50.479
+Message: Long Running Request:    (576 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 17:11:09.980
+Message: Long Running Request:    (7981 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 17:15:13.875
+Message: Long Running Request:    (537 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 17:15:52.232
+Message: Long Running Request:    (711 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 17:25:54.455
+Message: Long Running Request:    (822 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-03 17:37:06.516
+Message: Long Running Request:    (596 milliseconds)  Request Path: /storage/storages
+===========================================================================
