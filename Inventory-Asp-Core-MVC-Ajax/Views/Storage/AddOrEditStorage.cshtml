@@ -28,12 +28,12 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-6">
                     <label asp-for="City" class="control-label"></label>
                     <input asp-for="City" class="form-control" />
                     <span asp-validation-for="City" class="text-danger"></span>
                 </div>
-                <div class="form-group col-md-4 form-check justify-content-end">
+                <div class="form-group col-md-6 form-check">
                     <input asp-for="Enabled" type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Enabled</label>
                 </div>
@@ -45,7 +45,7 @@
             </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-success text-white btn-lg btn-block" />
+                <input type="submit" value="Submit" class="btn btn-primary text-white btn-lg btn-block" />
             </div>
             <script src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.min.js")" type="text/javascript"></script>
             <script src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>

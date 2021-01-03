@@ -1,124 +1,40 @@
-﻿@using Inventory_Asp_Core_MVC_Ajax.Businesses
-@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.StorageFilterModel
-
-@{ var Index = (Model.StorageModels.PageNumber * Model.StorageModels.PageSize) - (Model.StorageModels.PageSize - 1); }
-
-
+﻿@model IEnumerable<Inventory_Asp_Core_MVC_Ajax.Models.Classes.StorageModel>
 @*For displaying storage info*@
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-
-    @if (Model.StorageModels.Count() == 0)
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+    public string GetAntiXsrfRequestToken()
     {
-        <div class="alert alert-info">
-            No Storages Availale
-            <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
-                                               new { id = 0}, Context.Request.Scheme)', 'New Storage')"
-               class="btn btn-success text-white"><i class="fas fa-random"></i>New Storage</a>
-        </div>
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
     }
-    else
-    {
-        var FirstStorage = Model.StorageModels.FirstOrDefault();
+}
 
-        <div class=" table-responsive">
-            <table class="table table-sm table-striped" style="color: black;">
-                <thead>
-                    <tr>
-                        <th>
-                            <label>#</label>
-                        </th>
-                        <th>
-                            <label asp-for="@FirstStorage.Name"></label>
-                        </th>
-                        <th>
-                            <label asp-for="@FirstStorage.Phone"></label>
-                        </th>
-                        <th>
-                            <label>Status</label>
-                        </th>
-                        <th>
-                            <label asp-for="@FirstStorage.City"></label>
-                        </th>
-                        <th>
-                            <label asp-for="@FirstStorage.Address"></label>
-                        </th>
-                        <th>
-                            <label>Update</label>
-                        </th>
-                        <th>
-                            <label>Delete</label>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var s in Model.StorageModels)
-                    {
-                    <tr>
-                        <td>
-                            @(Index++)
-                        </td>
-                        <td>
-                            @s.Name
-                        </td>
-                        <td>
-                            @s.Phone
-                        </td>
-                        <td>
-                            @if (s.Enabled)
-                            {
-                                <button class="btn btn-success btn-circle" disabled>
-                                    <i class="fas fa-check"></i>
-                                </button>
-                            }
-                            else
-                            {
-                                <button class="btn btn-light btn-circle" disabled>
-                                    <i class="fas fa-check"></i>
-                                </button>
-                            }
-                        </td>
-                        <td>
-                            @s.City
-                        </td>
-                        <td>
-                            @s.Address
-                        </td>
-                        @*<td>
-                            <a class="btn btn-outline-secondary btn-icon-split" asp-controller="Product"
-                               asp-action="Products" asp-route-storageId="@s.Id">
-                                <span class="icon text-white-50">
-                                    <i style="color: slategray;" class="fas fa-info-circle"></i>
-                                </span>
-                                <span class="text" style="color: black;">View Products</span>
-                            </a>
-                        </td>*@
-                        <td>
-                            <a onclick="showStorageInPopup('@Url.Action("AddOrEditStorage", "Storage",
-                                       new { id = s.Id}, Context.Request.Scheme)', 'Update Storage')"
-                               class="btn btn-warning btn-circle">
-                                <i class="fas fa-exclamation-triangle text-white"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <form asp-controller="Storage" asp-action="DeleteStorage" asp-route-id="@s.Id"
-                                  onsubmit="return jQueryAjaxDeleteStorage(this)" class="d-inline">
-                                <button type="submit" class="btn btn-danger btn-circle">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-        </div>}
+<table id="table-storage" class="table table-sm table-striped" style="color: black; width:100%">
 
-    <br />
-</div>
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <p class="align-items-center">
-        <pager class="pager-container" list="@Model.StorageModels"
-               options="@SitePagedListRenderOptions.Boostrap4" asp-action="Storages" asp-controller="Storage"
-               asp-route-query="@Model.SearchQuery" />
-    </p>
-</div>
+    <thead>
+        <tr>
+            <label type="hidden" id="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
+            <label asp-for="@Model.First().Id" hidden></label>
+            <th>
+                <label asp-for="@Model.First().Name"></label>
+            </th>
+            <th>
+                <label asp-for="@Model.First().Phone"></label>
+            </th>
+            <th>
+                <label>Status</label>
+            </th>
+            <th>
+                <label asp-for="@Model.First().City"></label>
+            </th>
+            <th>
+                <label asp-for="@Model.First().Address"></label>
+            </th>
+            <th>
+                <label>Update</label>
+            </th>
+            <th>
+                <label>Delete</label>
+            </th>
+        </tr>
+    </thead>
+</table>

@@ -7,8 +7,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.common
 {
     public static class HtmlReponseExtension
     {
-        public static object HtmlReponse(this Controller controller, string view,
-            object model, Result result = null)
+        public static object HtmlReponse(this Controller controller, string view = null,
+            object model = null, Result result = null)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.common
                 {
                     success,
                     error = result == null ? "" : $"Error {result?.Error?.Code}",
-                    html = controller.RenderRazorViewToString(view, model)
+                    html = view == null ? "" : controller.RenderRazorViewToString(view, model)
                 };
             }
             catch (Exception e)

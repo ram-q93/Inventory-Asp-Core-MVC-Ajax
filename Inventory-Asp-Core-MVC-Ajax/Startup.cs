@@ -30,7 +30,8 @@ namespace Inventory_Asp_Core_MVC_Ajax
         {
             AddServicesToContainer(services);
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0); ;
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +39,8 @@ namespace Inventory_Asp_Core_MVC_Ajax
         {
             if (env.IsDevelopment())
             {
+                app.UseExceptionHandler("/error/500");
+
                 app.UseDeveloperExceptionPage();
             }
             else

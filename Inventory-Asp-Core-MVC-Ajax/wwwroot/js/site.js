@@ -50,85 +50,6 @@ function SweetAlertSubmitFailed(ErrorMessage) {  // confirmButtonText: 'Cool'
     })
 };
 
-showStorageInPopup = (url, title) => {
-    // from this function we have to make jquery ajax get request 
-    //to AddOrEditStorage method with int param in Storage controller
-    $.ajax({
-        type: "Get",
-        url: url,
-        success: function (res) {
-            $("#form-modal .modal-title").html(title);
-            $("#form-modal .modal-body").html(res);
-            $("#form-modal").modal('show'); 
-        }
-    })
-};
-
-jQueryAjaxPostToAddOrEditStorage = form => {
-    try {
-        $.ajax({
-            type: 'POST',
-            url: form.action,
-            data: new FormData(form),
-            contentType: false,
-            processData: false,
-            success: function (res) {
-                if (res.success) {
-                    $("#view-all-storages").html(res.html);
-                    $("#form-modal .modal-title").html('');
-                    $("#form-modal .modal-body").html('');
-                    $("#form-modal").modal('hide'); 
-                    SweetAlertSubmitedSuccessfully("heteteuiya uidyuwidy uwyduiwwdy wuidyui wdytete");
-                }
-                else {
-                    SweetAlertSubmitFailed(res.error)
-                    $("#form-modal .modal-body").html(res.html);
-                }
-            },
-            error: function (err) {
-                SweetAlertSubmitFailed("Error in Submitting storage")
-                console.log(err);
-            }
-        })
-    }catch(e) {
-        console.log(e);
-    }
-   // to prevent default form submit event
-    return false;
-};
-
-jQueryAjaxDeleteStorage = form => {
-    DeletePopUp().then((result) => {
-        if (result.value)
-            try {
-                $.ajax({
-                    type: 'POST',
-                    url: form.action,
-                    data: new FormData(form),
-                    contentType: false,
-                    processData: false,
-                    success: function (res) {
-                        if (res.success) {
-                            SweetAlertSubmitedSuccessfully();
-                            $("#view-all-storages").html(res.html);
-                        } else {
-                            toastr.error(res.error)
-                            $("#view-all-storages").html(res.html);
-                        }
-                    },
-                    error: function (err) {
-                        toastr.error("Error in Deleting storage")
-                        console.log(err);
-                    }
-                })
-            } catch (e) {
-                console.log(e);
-            }
-        });
-    //to prevent default form submit event
-    return false;
-};
-
 
 
 function SubmitedSuccessfully(title) {
@@ -204,8 +125,7 @@ jQueryAjaxDeleteProduct = form => {
         icon: "warning",
         buttons: true,
         dangerMode: true
-    }).then((willDelete) =>
-    {
+    }).then((willDelete) => {
         if (willDelete)
             try {
                 $.ajax({
@@ -216,7 +136,7 @@ jQueryAjaxDeleteProduct = form => {
                     processData: false,
                     success: function (res) {
                         console.log("ressssssss " + res);
-                    
+
                         if (res.success) {
                             toastr.success("Product Deleted successfully")
                             $("#view-all-products").html(res.html);
@@ -263,7 +183,7 @@ showSupplierInPopup = (url, title) => {
 };
 
 jQueryAjaxPostToAddOrEditSupplier = form => {
-     try {
+    try {
         $.ajax({
             type: 'POST',
             url: form.action,
@@ -322,7 +242,7 @@ jQueryAjaxDeleteSupplier = form => {
                         }
                     },
                     error: function (err) {
-                        toastr.error("Error in deleting supplier" )
+                        toastr.error("Error in deleting supplier")
                         console.log(err);
                     }
                 })
@@ -334,28 +254,142 @@ jQueryAjaxDeleteSupplier = form => {
     return false;
 };
 
-function searchStorage(searchQuery) {
-    console.log(searchQuery);
-    $.ajax({
-        type: "GET",
-        url: "Storage/Storages?query=" + searchQuery,
-        //data: new { query = searchQuery },
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        success: function (res) {
-            if (res.success) {
-                $("#view-all-storages").html(res.html);
-            } else {
-                toastr.error(res.error)
+https://www.thecodehubs.com/server-side-pagination-using-datatable-in-net-core/
+$(document).ready(function () {
+    $("#table-storage").DataTable({
+        autoWidth: true,
+        processing: true,
+        serverSide: true,
+        paging: true,
+        searching: { regex: true },
+        responsive: true,
+        ajax: {
+            url: "/Storage/Storages",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: function (data) {
+                return JSON.stringify(data);
             }
         },
-        error: function (err) {
-            toastr.error("Error")
-            console.log("Error");
-            console.log(err);
-        }
-
+        columns: [
+            { data: "name" },
+            { data: "phone" },
+            {
+                data: "enabled",
+                render: function (data, type, row) {
+                    if (data == true) {
+                        return `<button class="btn btn-primary btn-circle" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>`;
+                    }
+                    else
+                        return `<button class="btn btn-light btn-circle" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>`;
+                }
+            },
+            { data: "city" },
+            {data: "address"},
+            {
+                data: "id",
+                render: function (data, type, row) {
+                    return `<a  class="btn btn-warning btn-circle" onclick="showStorageInPopup(${data},'UpdateStorage')">
+                                <i class="fas fa-exclamation-triangle text-white"></i>
+                            </a>`;
+                }
+            },
+            {
+                data: "id",
+                render: function (data, type, row) {
+                    return `<a  class="btn btn-danger btn-circle" onclick="jQueryAjaxDeleteStorage(${data})">
+                                 <i class="fas fa-trash text-white"></i>
+                           </a>`;
+                }
+            }
+        ]
     });
+});
+
+showStorageInPopup = (id, title) => {
+    // from this function we have to make jquery ajax get request 
+    //to AddOrEditStorage method with int param in Storage controller
+    $.ajax({
+        type: "Get",
+        url: "/Storage/AddOrEditStorage?id=" + id,
+        success: function (res) {
+            $("#form-modal .modal-title").html(title);
+            $("#form-modal .modal-body").html(res);
+            $("#form-modal").modal('show');
+        }
+    })
+};
+
+jQueryAjaxPostToAddOrEditStorage = form => {
+    try {
+        $.ajax({
+            type: 'POST',
+            url: form.action,
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                if (res.success) {
+                    $("#form-modal .modal-title").html('');
+                    $("#form-modal .modal-body").html('');
+                    $("#form-modal").modal('hide');
+                    SweetAlertSubmitedSuccessfully();
+                    window.location.href = 'Storages';
+                }
+                else {
+                    SweetAlertSubmitFailed(res.error)
+                    $("#form-modal .modal-body").html(res.html);
+                }
+            },
+            error: function (err) {
+                SweetAlertSubmitFailed("Error in Submitting storage")
+                console.log(err);
+            }
+        })
+    } catch (e) {
+        console.log(e);
+    }
+    // to prevent default form submit event
+    return false;
+};
+
+jQueryAjaxDeleteStorage = (id) => {
+    DeletePopUp().then((result) => {
+        console.log(id+" hhhhh  "+ $('#RequestVerificationToken').val())
+        if (result.value)
+            try {
+                $.ajax({
+                    type: 'Get',
+                    url: "/Storage/Delete?id="+id,
+                    //data: JSON.stringify({
+                    //    // __RequestVerificationToken: $('#RequestVerificationToken').val(),
+                    //    id: "78"
+                    //}),
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.success) {
+                           
+                            window.location.href = 'Storages';
+                            SweetAlertSubmitedSuccessfully();
+                        } else {
+                            SweetAlertSubmitFailed(res.error)
+                            window.location.href = 'Storages';
+                        }
+                    },
+                    error: function (err) {
+                        SweetAlertSubmitFailed("Error in Deleting storage");
+                    }
+                })
+            } catch (e) {
+                console.log(e);
+            }
+    });
+    //to prevent default form submit event
+    return false;
 };

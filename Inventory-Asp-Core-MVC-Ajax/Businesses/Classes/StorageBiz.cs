@@ -46,7 +46,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<ResultList<StorageModel>> List(PagingModel pagingModel, string searchQuery) =>
             ResultList<StorageModel>.TryAsync(async () =>
             {
-                await LoadSampleData();
+              //  await LoadSampleData();
                 var resultList = await _repository.ListAsNoTrackingAsync<Storage>(s => searchQuery == null ||
                     (s.Name != null && s.Name.Contains(searchQuery)) ||
                     (s.Phone != null && s.Phone.Contains(searchQuery)) ||
@@ -161,12 +161,36 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         private Task<Result> LoadSampleData() =>
             Result.TryAsync(async () =>
             {
+
+
+
+
                 var storageRresult = await _repository.ListAsNoTrackingAsync<Storage>();
+                //for (int i = 0; i < 38; i++)
+                //{
+                //    for (int j = 0; j < 100; j++)
+                //    {
+                //        _repository.Add(new Storage()
+                //        {
+                //            Address = storageRresult.Data[i].Address,
+                //            City = "Tehran" + j,
+                //            Enabled = true,
+                //            CreatedBy = "ramin",
+                //            LastModified = DateTime.Now,
+                //            LastModifiedBy = "amir",
+                //            Name = storageRresult.Data[i].Name + j,
+                //            Phone = storageRresult.Data[i].Phone
+                //        });
+                //    }
+                //    await _repository.CommitAsync();
+                //    Console.WriteLine("added");
+                //}
+                
                 if (storageRresult?.Data?.Count == 0)
                 {
                     //-----------Request for image------------//
                     var tasks = new ConcurrentBag<Task<Result<byte[]>>>();
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 40; i++)
                     {
                         tasks.Add(new InventoryHttpClient(_serializer, _logger).SendHttpRequestToGetImageByteArray());
                         Thread.Sleep(50);
