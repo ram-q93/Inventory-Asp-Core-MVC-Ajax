@@ -28,7 +28,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Middlewares
                 ((ILogger)context.RequestServices.GetService(typeof(ILogger)))
                     .Warn($"Long Running Request:   " +
                         $" ({_timer.ElapsedMilliseconds} milliseconds)" +
-                        $"  Request Path: {context.Request.Path}" + Environment.NewLine);
+                        $"  Request Path: {context.Request.Path}");
 
             }
         }

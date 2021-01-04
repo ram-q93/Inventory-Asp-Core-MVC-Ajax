@@ -26,10 +26,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             var result = await _storageBiz.List(dtParameters);
             return Json(result.Data);
         }
-            //=> Json();
 
         #endregion
 
+        //  ModelState.Remove("Id");
         #region AddOrEditStorage
 
         [HttpGet, ActionName("AddOrEditStorage")]

@@ -263,6 +263,7 @@ $(document).ready(function () {
         paging: true,
         searching: { regex: true },
         responsive: true,
+        "scrollX": true,
         lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
         columnDefs: [{
             "targets": [5, 6],
