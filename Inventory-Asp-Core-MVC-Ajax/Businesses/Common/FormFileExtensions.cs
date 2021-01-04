@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace Inventory_Asp_Core_MVC_Ajax.Businesses
+namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
 {
     public static class FormFileExtensions
     {

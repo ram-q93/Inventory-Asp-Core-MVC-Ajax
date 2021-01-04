@@ -5,7 +5,7 @@ using AspNetCore.Lib.Services;
 using System;
 using System.Threading.Tasks;
 
-namespace Inventory_Asp_Core_MVC_Ajax.Businesses
+namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
 {
     public class InventoryHttpClient : BaseHttpClient
     {

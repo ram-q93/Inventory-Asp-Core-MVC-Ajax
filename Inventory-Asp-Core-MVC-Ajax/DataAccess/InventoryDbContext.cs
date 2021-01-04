@@ -1,5 +1,5 @@
 ﻿
-using Inventory_Asp_Core_MVC_Ajax.Businesses.common;
+using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.EFModels;
