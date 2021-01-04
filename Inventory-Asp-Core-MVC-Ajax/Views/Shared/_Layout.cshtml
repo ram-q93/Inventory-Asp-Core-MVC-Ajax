@@ -4,31 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Inventory</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    @*<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" />*@
-    <link href="~/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-
+   
     <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-
+        <link href="~/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
         <link href="~/css/sweetalert2.min.css" rel="stylesheet" />
-
         <!-- Custom styles for this template-->
         <link href="~/css/sb-admin-2.css" rel="stylesheet" />
-
         <!-- Custom fonts for this template-->
         <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <!---------My custom CSS------------->
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     </environment>
     <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css" />
-
+        <!-- Custom styles for this template-->
+        <link href="~/css/sb-admin-2.css" rel="stylesheet" />
+        <!-- Custom fonts for this template-->
+        <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <!---------My custom CSS------------->
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     </environment>
 </head>
 <body id="page-top">
@@ -224,37 +229,46 @@
         <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js"></script>
-
-        <!-- alert -->
-        @*<script src="~/js/notify.min.js" asp-append-version="true"></script>*@
-        @* <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>*@
-
-        <!-- alert -->
+        <!-------- sweetalert2 -------->
         <script src="~/js/sweetalert2.all.min.js"></script>
-
         <!-- Core plugin JavaScript-->
         <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
-
         <!-- Custom scripts for all pages-->
         <script src="~/js/sb-admin-2.min.js"></script>
 
         <!-- Page level plugins -->
         @*<script src="~/vendor/chart.js/Chart.min.js"></script>*@
-
         <!-- Page level custom scripts -->
         @*<script src="~/js/demo/chart-area-demo.js"></script>
         <script src="~/js/demo/chart-pie-demo.js"></script>*@
 
-
-       @* <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>*@
-        <script src="~/js/dataTables.min.js"></script>
-        @*<script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>*@
+        <!-------- dataTables -------->
+        <script src="~/js/jquery.dataTables.min.js"></script>
         <script src="~/js/dataTables.bootstrap4.min.js"></script>
-
     </environment>
     <environment exclude="Development">
-         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js"></script>
+        <!-------- sweetalert2 -------->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="~/js/sb-admin-2.min.js"></script>
 
+        <!-- Page level plugins -->
+        @*<script src="~/vendor/chart.js/Chart.min.js"></script>*@
+        <!-- Page level custom scripts -->
+        @*<script src="~/js/demo/chart-area-demo.js"></script>
+        <script src="~/js/demo/chart-pie-demo.js"></script>*@
+
+        <!-------- dataTables -------->
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)

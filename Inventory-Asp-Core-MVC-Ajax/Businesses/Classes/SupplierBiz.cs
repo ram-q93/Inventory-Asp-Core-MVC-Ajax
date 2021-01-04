@@ -35,32 +35,31 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result<SupplierFilterModel>> GetSupplierPagedListFilteredBySearchQuery(int? page, string searchQuery) =>
             Result<SupplierFilterModel>.TryAsync(async () =>
             {
-                //var pagingModel = new PagingModel()
-                //{
-                //    PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
-                //    PageSize = 5,
-                //    Sort = "LastModified",
-                //    SortDirection = SortDirection.DESC
-                //};
-                //var resultList = await repository.ListAsNoTrackingAsync<Supplier>(s => searchQuery == null ||
-                //    (s.CompanyName != null && s.CompanyName.Contains(searchQuery)) ||
-                //    (s.Address != null && s.Address.Contains(searchQuery)),
-                //    pagingModel, "LastModified");
+                var pagingModel = new PagingModel()
+                {
+                    PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
+                    PageSize = 5,
+                    Sort = "LastModified",
+                    SortDirection = SortDirection.DESC
+                };
+                var resultList = await repository.ListAsNoTrackingAsync<Supplier>(s => searchQuery == null ||
+                    (s.CompanyName != null && s.CompanyName.Contains(searchQuery)) ||
+                    (s.Address != null && s.Address.Contains(searchQuery)),
+                    pagingModel);
 
-                //if (!resultList.Success)
-                //{
-                //    return Result<SupplierFilterModel>.Failed(Error.WithCode(ErrorCodes.SuppliersNotFound));
-                //}
-                //return Result<SupplierFilterModel>.Successful(new SupplierFilterModel()
-                //{
-                //    SupplierPagedList = new StaticPagedList<SupplierModel>(
-                //       resultList.Items.Select(s => mapper.Map<Supplier, SupplierModel>(s)),
-                //       resultList.PageNumber + 1,
-                //       resultList.PageSize,
-                //       (int)resultList.TotalCount),
-                //    SearchQuery = searchQuery
-                //});
-                return Result<SupplierFilterModel>.Successful();
+                if (!resultList.Success)
+                {
+                    return Result<SupplierFilterModel>.Failed(Error.WithCode(ErrorCodes.SuppliersNotFound));
+                }
+                return Result<SupplierFilterModel>.Successful(new SupplierFilterModel()
+                {
+                    SupplierPagedList = new StaticPagedList<SupplierModel>(
+                       resultList.Items.Select(s => mapper.Map<Supplier, SupplierModel>(s)),
+                       resultList.PageNumber + 1,
+                       resultList.PageSize,
+                       (int)resultList.TotalCount),
+                    SearchQuery = searchQuery
+                });
             });
 
 

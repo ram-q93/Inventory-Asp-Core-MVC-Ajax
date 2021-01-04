@@ -80,20 +80,8 @@ a.btn:hover {
     cursor: pointer !important;
 }
 
-/*---------------------------------------------------*/
 
-.table-striped > tbody > tr:nth-child(odd) > td,
-.table-striped > tbody > tr:nth-child(odd) > th {
-    background-color: aliceblue;
-    // Choose your own color here
-}
-.table {
-    table-layout: fixed;
-    word-wrap: break-word;
-}
-
-/*loader
- -------------------------------------------------- */
+/*---------------- loader ------------------------------ */
 
 *.loaderbody {
     width: 100%;
@@ -129,4 +117,21 @@ a.btn:hover {
 
 .hide {
     display: none;
+}
+
+/*------------------------ My Custom style---------------------------------*/
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: aliceblue; /*Choose your own color here*/
+}
+.table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.my-swal2-styling {
+    height: 10vh;
+    width: 35vh;
+    font-size: 1.4rem !important;
 }

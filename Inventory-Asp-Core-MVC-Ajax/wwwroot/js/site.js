@@ -28,13 +28,14 @@ function DeletePopUp() {
 function SweetAlertSubmitedSuccessfully() {
     Swal.mixin({
         toast: true,
-        background: 'MediumSeaGreen',
-        position: 'bottom-right',
+        background: 'Green',
+        position: 'bottom-left',
         showConfirmButton: false,
-        timer: 3000
+        timer: 5000,
+        customClass: 'my-swal2-styling'
     }).fire({
         type: 'success',
-        title: '<span style="color:floralwhite">Submited Successfuly </span>'
+        title: '<span style="color:floralwhite">Submited Successfuly</span>'
     })
 };
 
@@ -43,14 +44,15 @@ function SweetAlertSubmitFailed(ErrorMessage) {  // confirmButtonText: 'Cool'
         toast: true,
         position: 'bottom-right',
         showConfirmButton: false,
-        timer: 5000
+        timer: 5000,
+        customClass: 'my-swal2-styling'
     }).fire({
         type: 'error',
         title: '<span style="color:Tomato" >' + ErrorMessage + '</span>'
     })
 };
 
-
+//-----------------------------------------------------------------------------------//
 
 function SubmitedSuccessfully(title) {
     toastr.options = {
@@ -253,75 +255,79 @@ jQueryAjaxDeleteSupplier = form => {
     //to prevent default form submit event
     return false;
 };
+//------------------------------------ Storage ------------------------------------//
+//------------------------------------ Storage ------------------------------------//
+//------------------------------------ Storage ------------------------------------//
 
 https://www.thecodehubs.com/server-side-pagination-using-datatable-in-net-core/
+
+var storageDataTable;
 $(document).ready(function () {
-    var table =$("#table-storage").DataTable({
-        autoWidth: true,
-        processing: true,
-        serverSide: true,
-        paging: true,
-        searching: { regex: true },
-        responsive: true,
-        "scrollX": true,
-        lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
-        columnDefs: [{
-            "targets": [5, 6],
-            "orderable": false,
-            "searchable": false
-        }],
-       // sDom: "ltipr", to delete search button
-        ajax: {
-            url: "/Storage/Storages",
-            type: "POST",
-            contentType: "application/json",
-            dataType: "json",
-            data: function (data) {
-                console.log(data);
-                return JSON.stringify(data);
-            }
-        },
-        columns: [
-            { data: "name" },
-            { data: "phone" },
-            {
-                data: "enabled",
-                render: function (data, type, row) {
-                    if (data == true) {
-                        return `<div style="text-align:center">
+    storageDataTable = $("#table-storage").DataTable({
+            autoWidth: true,
+            processing: true,
+            serverSide: true,
+            paging: true,
+            searching: { regex: true },
+            responsive: true,
+            "scrollX": true,
+            lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
+            columnDefs: [{
+                "targets": [5, 6],
+                "orderable": false,
+                "searchable": false
+            }],
+            // sDom: "ltipr", to delete search button
+            ajax: {
+                url: "/Storage/Storages",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: function (data) {
+                    return JSON.stringify(data);
+                }
+            },
+            columns: [
+                { data: "name" },
+                { data: "phone" },
+                {
+                    data: "enabled",
+                    render: function (data, type, row) {
+                        if (data == true) {
+                            return `<div style="text-align:center">
                                     <button class="btn btn-primary btn-sm btn-circle"  disabled>
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>`;
+                        }
+                        else
+                            return ``;
                     }
-                    else
-                        return ``;
-                }
-            },
-            { data: "city" },
-            {data: "address"},
-            {
-                data: "id",
-                render: function (data, type, row) {
-                    return `<div style="text-align:center">
+                },
+                { data: "city" },
+                { data: "address" },
+                {
+                    data: "id",
+                    render: function (data, type, row) {
+                        return `<div style="text-align:center">
                                 <a class="btn btn-warning btn-sm btn-circle" onclick="showStorageInPopup(${data},'UpdateStorage')">
                                      <i class="fas fa-exclamation-triangle text-white"></i>
                                 </a>
                             </div>`;
-                }
-            },
-            {
-                data: "id",
-                render: function (data, type, row) {
-                    return `<div style="text-align:center">
+                    }
+                },
+                {
+                    data: "id",
+                    render: function (data, type, row) {
+                        return `<div style="text-align:center">
                                 <a class="btn btn-danger btn-sm btn-circle" onclick="jQueryAjaxDeleteStorage(${data})">
                                     <i class="fas fa-trash text-white"></i>
                                 </a>
                             </div>`;
+                    }
                 }
-            }
-        ]
-    });
+            ]
+        });
     //$('#search-btn-id').on('keyup click', function () {
     //    table.search($('#search-input-id').val()).draw();
     //});
@@ -341,11 +347,12 @@ $(document).ready(function () {
     //'p' - Pagination
     //'r' - pRocessing
     //For removing default search box just remove the f character from sDom.
+
+
+
 });
 
 showStorageInPopup = (id, title) => {
-    // from this function we have to make jquery ajax get request 
-    //to AddOrEditStorage method with int param in Storage controller
     $.ajax({
         type: "Get",
         url: "/Storage/AddOrEditStorage?id=" + id,
@@ -370,8 +377,8 @@ jQueryAjaxPostToAddOrEditStorage = form => {
                     $("#form-modal .modal-title").html('');
                     $("#form-modal .modal-body").html('');
                     $("#form-modal").modal('hide');
+                    storageDataTable.draw();
                     SweetAlertSubmitedSuccessfully();
-                    window.location.href = 'Storages';
                 }
                 else {
                     SweetAlertSubmitFailed(res.error)
@@ -392,12 +399,11 @@ jQueryAjaxPostToAddOrEditStorage = form => {
 
 jQueryAjaxDeleteStorage = (id) => {
     DeletePopUp().then((result) => {
-        console.log(id+" hhhhh  "+ $('#RequestVerificationToken').val())
         if (result.value)
             try {
                 $.ajax({
                     type: 'Get',
-                    url: "/Storage/Delete?id="+id,
+                    url: "/Storage/Delete?id=" + id,
                     //data: JSON.stringify({
                     //    // __RequestVerificationToken: $('#RequestVerificationToken').val(),
                     //    id: "78"
@@ -406,13 +412,11 @@ jQueryAjaxDeleteStorage = (id) => {
                     processData: false,
                     success: function (res) {
                         if (res.success) {
-                           
-                           window.location.href = 'Storages';
-                          //  table.ajax.reload();
+                            storageDataTable.draw();
                             SweetAlertSubmitedSuccessfully();
                         } else {
+                            storageDataTable.draw();
                             SweetAlertSubmitFailed(res.error)
-                            window.location.href = 'Storages';
                         }
                     },
                     error: function (err) {
