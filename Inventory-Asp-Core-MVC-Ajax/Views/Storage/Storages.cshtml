@@ -11,23 +11,55 @@
         </h1>
 
         <ul class="navbar-nav ml-auto">
-
-
             <div class="topbar-divider d-none d-sm-block">
-            
-                <a class="d-none d-sm-inline-block btn  btn-success shadow-sm"
+                <!-- Topbar Search -->
+                <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border- " placeholder="Search by..."
+                               aria-label="Search" aria-describedby="basic-addon2" id="search-storage-input-id">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" onclick="SearchStorage()">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                <!--<li class="nav-item dropdown no-arrow d-sm-none">
+                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                    </a>-->
+                    <!-- Dropdown - Messages -->
+                    <!--<div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                        <form class="form-inline mr-auto w-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small"
+                                       placeholder="Search for..." aria-label="Search"
+                                       aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>-->
+
+                <a class="d-none d-sm-inline-block btn  my-btn-success shadow-sm "
                    onclick="showStorageInPopup('0', 'New Storage')">
                     <span class="icon text-white">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text text-white">&nbsp;&nbsp;New Storage</span>
+                    <span class="text text-white font-weight-bold">&nbsp;&nbsp;New Storage</span>
                 </a>
 
                 <a href="#" class="d-none d-sm-inline-block btn  btn-primary shadow-sm">
                     <i class="fas fa-download fa-sm text-white"></i> Generate Report
                 </a>
             </div>
-
         </ul>
     </div>
     <br />

@@ -2,7 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-
+//========================================= Global ==========================================//
 $(function () {
     $("#loaderbody").addClass('hide');
 
@@ -51,30 +51,10 @@ function SweetAlertSubmitFailed(ErrorMessage) {  // confirmButtonText: 'Cool'
         title: '<span style="color:Tomato" >' + ErrorMessage + '</span>'
     })
 };
+//========================================= Global ==========================================//
 
-//-----------------------------------------------------------------------------------//
 
-function SubmitedSuccessfully(title) {
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": true,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    }
-    Command: toastr["success"](title + " Submited successfully")
-};
-
+//========================================================================== Product ========//
 showProductInPopup = (url, title) => {
     $.ajax({
         type: "Get",
@@ -171,7 +151,10 @@ showProductDetailsInPopup = (url, title) => {
         }
     })
 };
+//========================================================================== Product ========//
 
+
+//============================================================== Supplier ===================//
 showSupplierInPopup = (url, title) => {
     $.ajax({
         type: "GET",
@@ -255,90 +238,97 @@ jQueryAjaxDeleteSupplier = form => {
     //to prevent default form submit event
     return false;
 };
-//------------------------------------ Storage ------------------------------------//
-//------------------------------------ Storage ------------------------------------//
-//------------------------------------ Storage ------------------------------------//
+//============================================================== Supplier ===================//
 
+
+//=========================================================================== Storage =======//
 https://www.thecodehubs.com/server-side-pagination-using-datatable-in-net-core/
 
 var storageDataTable;
 $(document).ready(function () {
     storageDataTable = $("#table-storage").DataTable({
-            autoWidth: true,
-            processing: true,
-            serverSide: true,
-            paging: true,
-            searching: { regex: true },
-            responsive: true,
-            "scrollX": true,
-            lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
-            columnDefs: [{
+        autoWidth: true,
+        processing: true,
+        serverSide: true,
+        paging: true,
+        searching: { regex: true },
+        //  responsive: true,
+        scrollX: true,
+        lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
+        columnDefs: [
+            //{
+            //    "searchable": false,
+            //    "orderable": false,
+            //    "targets": 0
+
+            //},
+            {
                 "targets": [5, 6],
                 "orderable": false,
                 "searchable": false
             }],
-            // sDom: "ltipr", to delete search button
-            ajax: {
-                url: "/Storage/Storages",
-                type: "POST",
-                contentType: "application/json",
-                dataType: "json",
-                data: function (data) {
-                    return JSON.stringify(data);
-                }
-            },
-            columns: [
-                { data: "name" },
-                { data: "phone" },
-                {
-                    data: "enabled",
-                    render: function (data, type, row) {
-                        if (data == true) {
-                            return `<div style="text-align:center">
+        sDom: "ltipr", //to delete search button
+        ajax: {
+            url: "/Storage/Storages",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: function (data) {
+                return JSON.stringify(data);
+            }
+        },
+        columns: [
+            //{ 'data': 'ids', defaultContent: '' },
+            { data: "name" },
+            { data: "phone" },
+            {
+                data: "enabled",
+                render: function (data, type, row) {
+                    if (data == true) {
+                        return `<div style="text-align:center">
                                     <button class="btn btn-primary btn-sm btn-circle"  disabled>
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>`;
-                        }
-                        else
-                            return ``;
                     }
-                },
-                { data: "city" },
-                { data: "address" },
-                {
-                    data: "id",
-                    render: function (data, type, row) {
-                        return `<div style="text-align:center">
+                    else
+                        return ``;
+                }
+            },
+            { data: "city" },
+            { data: "address" },
+            {
+                data: "id",
+                render: function (data, type, row) {
+                    return `<div style="text-align:center">
                                 <a class="btn btn-warning btn-sm btn-circle" onclick="showStorageInPopup(${data},'UpdateStorage')">
                                      <i class="fas fa-exclamation-triangle text-white"></i>
                                 </a>
                             </div>`;
-                    }
-                },
-                {
-                    data: "id",
-                    render: function (data, type, row) {
-                        return `<div style="text-align:center">
+                }
+            },
+            {
+                data: "id",
+                render: function (data, type, row) {
+                    return `<div style="text-align:center">
                                 <a class="btn btn-danger btn-sm btn-circle" onclick="jQueryAjaxDeleteStorage(${data})">
                                     <i class="fas fa-trash text-white"></i>
                                 </a>
                             </div>`;
-                    }
                 }
-            ]
-        });
-    //$('#search-btn-id').on('keyup click', function () {
-    //    table.search($('#search-input-id').val()).draw();
-    //});
+            }
+        ]
+    });
+    //var i = 1;
+    //if (storageDataTable.data().length != 0) {
 
-
-    //table.on('order.dt search.dt', function () {
-    //    table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
-    //        cell.innerHTML = i + 1;
-    //    });
-    //}).draw();
-
+    //    storageDataTable.on('order.dt search.dt', function () {
+    //        storageDataTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+    //            cell.innerHTML = i + 1;
+    //            storageDataTable.cell(cell).invalidate('dom');
+    //        });
+    //    }).draw();
+    //}
     //Perform these operations on datatables
     //'l' - Length changing
     //'f' - Filtering input
@@ -347,9 +337,6 @@ $(document).ready(function () {
     //'p' - Pagination
     //'r' - pRocessing
     //For removing default search box just remove the f character from sDom.
-
-
-
 });
 
 showStorageInPopup = (id, title) => {
@@ -430,3 +417,8 @@ jQueryAjaxDeleteStorage = (id) => {
     //to prevent default form submit event
     return false;
 };
+
+SearchStorage = () => {
+    storageDataTable.search($("#search-storage-input-id").val()).draw();
+}
+//=========================================================================== Storage =======//

@@ -37,6 +37,7 @@
     </environment>
 </head>
 <body id="page-top">
+
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
@@ -132,11 +133,11 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                   
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                      
+
 
 
                         <!-- Nav Item - User Information -->
@@ -213,6 +214,7 @@
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
+
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -221,7 +223,8 @@
     <div class="loaderbody" id="loaderbody">
         <div class="loader"></div>
     </div>
-   
+
+
     <environment include="Development">
         <!-- Bootstrap core JavaScript-->
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -240,7 +243,7 @@
         @*<script src="~/vendor/chart.js/Chart.min.js"></script>*@
         <!-- Page level custom scripts -->
         @*<script src="~/js/demo/chart-area-demo.js"></script>
-        <script src="~/js/demo/chart-pie-demo.js"></script>*@
+            <script src="~/js/demo/chart-pie-demo.js"></script>*@
 
         <!-------- dataTables -------->
         <script src="~/js/jquery.dataTables.min.js"></script>
@@ -264,15 +267,14 @@
         @*<script src="~/vendor/chart.js/Chart.min.js"></script>*@
         <!-- Page level custom scripts -->
         @*<script src="~/js/demo/chart-area-demo.js"></script>
-        <script src="~/js/demo/chart-pie-demo.js"></script>*@
+            <script src="~/js/demo/chart-pie-demo.js"></script>*@
 
         <!-------- dataTables -------->
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     </environment>
-
+    
     @RenderSection("Scripts", required: false)
 </body>
-
 </html>
 

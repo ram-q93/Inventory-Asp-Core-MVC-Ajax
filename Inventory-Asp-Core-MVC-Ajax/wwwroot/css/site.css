@@ -135,3 +135,9 @@ a.btn:hover {
     width: 35vh;
     font-size: 1.4rem !important;
 }
+
+.my-btn-success {
+    color: Green;
+    background-color: #1cc88a;
+    border-color: #1cc88a;
+}
