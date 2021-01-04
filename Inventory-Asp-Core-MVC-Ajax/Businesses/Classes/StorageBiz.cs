@@ -59,61 +59,32 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     orderCriteria = "Id";
                     orderAscendingDirection = true;
                 }
-                var result = (await _repository.ListAsNoTrackingAsync<Storage>()).Data;
-                if (!string.IsNullOrEmpty(searchBy))
-                {
-                    result = result.Where(r => (r.Name != null && r.Name.ToUpper().Contains(searchBy.ToUpper())) ||
-                                               r.Address != null && r.Address.ToUpper().Contains(searchBy.ToUpper()) ||
-                                               r.City != null && r.City.ToUpper().Contains(searchBy.ToUpper()) ||
-                                               r.Phone != null && r.Phone.ToUpper().Contains(searchBy.ToUpper())).ToList();
-                }
-                result = orderAscendingDirection ?
-                    result.AsQueryable().OrderByDynamic(orderCriteria, DtOrderDir.Asc).ToList() :
-                    result.AsQueryable().OrderByDynamic(orderCriteria, DtOrderDir.Desc).ToList();
 
-                var filteredResultsCount = result.Count();
-                var totalResultsCount = _repository.GetCurrentContext().Set<Storage>().Count();
+                var pagingModel = new PagingModel()
+                {
+                    PageNumber = dtParameters.Start == 0 ? 0 : dtParameters.Start / dtParameters.Length,
+                    PageSize = dtParameters.Length,
+                    Sort = orderCriteria,
+                    SortDirection = orderAscendingDirection ? SortDirection.ASC : SortDirection.DESC
+                };
+
+                var resultList = await _repository.SortedPageListAsNoTrackingAsync<Storage>(s =>
+                                        searchBy == null ||
+                                        (s.Name != null && s.Name.ToUpper().Contains(searchBy.ToUpper())) ||
+                                        (s.Address != null && s.Address.ToUpper().Contains(searchBy.ToUpper())) ||
+                                        (s.City != null && s.City.ToUpper().Contains(searchBy.ToUpper())) ||
+                                        (s.Phone != null && s.Phone.ToUpper().Contains(searchBy.ToUpper())),
+                                        pagingModel);
+                
+                var totalFilteredCount = resultList.TotalCount;
+                var totalCount = (await _repository.CountAllAsync<Storage>()).Data;
                 return Result<object>.Successful(new
                 {
                     draw = dtParameters.Draw,
-                    recordsTotal = totalResultsCount,
-                    recordsFiltered = filteredResultsCount,
-                    data = result
-                        .Skip(dtParameters.Start)
-                        .Take(dtParameters.Length)
-                        .ToList()
+                    recordsTotal = totalCount,
+                    recordsFiltered = totalFilteredCount,
+                    data = resultList.Items
                 });
-
-
-
-
-
-
-
-
-
-                //  await LoadSampleData();
-                //var resultList = await _repository.ListAsNoTrackingAsync<Storage>(s => searchQuery == null ||
-                //    (s.Name != null && s.Name.Contains(searchQuery)) ||
-                //    (s.Phone != null && s.Phone.Contains(searchQuery)) ||
-                //    (s.Address != null && s.Address.Contains(searchQuery)),
-                //    pagingModel, pagingModel.Sort);
-
-                ////var r = await repository.ListAsNoTrackingAsync<Storage>(
-                ////    new PagingModel<Storage>(pagingModel, s => s.UpdatedDate));
-
-                //if (!resultList.Success)
-                //{
-                //    return ResultList<StorageModel>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound));
-                //}
-                //return new ResultList<StorageModel>()
-                //{
-                //    Success = true,
-                //    Items = resultList.Items.Select(store => _mapper.Map<Storage, StorageModel>(store)).ToList(),
-                //    PageNumber = resultList.PageNumber,
-                //    PageSize = resultList.PageSize,
-                //    TotalCount = resultList.TotalCount
-                //};
             });
 
         #endregion
@@ -196,9 +167,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result<bool>> IsNameInUse(string name, int? id = null) =>
             Result<bool>.TryAsync(async () =>
             {
-                var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Storage>(s => s.Name == name &&
+                var result = await _repository.ExistsAsync<Storage>(s => s.Name == name &&
                 (id == null || s.Id != id));// check id for edit: 
-                return Result<bool>.Successful(result.Data != null);
+                return Result<bool>.Successful(result.Data);
             });
 
         #endregion
@@ -231,7 +202,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 //    await _repository.CommitAsync();
                 //    Console.WriteLine("added");
                 //}
-                
+
                 if (storageRresult?.Data?.Count == 0)
                 {
                     //-----------Request for image------------//
@@ -277,98 +248,5 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             });
 
         #endregion
-    }
-    public static class LinqExtensions
-    {
-        public static IQueryable<T> OrderByDynamic<T>(this IQueryable<T> query, string orderByMember, DtOrderDir ascendingDirection)
-        {
-            var param = Expression.Parameter(typeof(T), "c");
-            var body = orderByMember.Split('.').Aggregate<string, Expression>(param, Expression.PropertyOrField);
-            var queryable = ascendingDirection == DtOrderDir.Asc ?
-                (IOrderedQueryable<T>)Queryable.OrderBy(query.AsQueryable(), (dynamic)Expression.Lambda(body, param)) :
-                (IOrderedQueryable<T>)Queryable.OrderByDescending(query.AsQueryable(), (dynamic)Expression.Lambda(body, param));
-            return queryable;
-        }
-    }
-
-    public static class QueryableExtensions
-    {
-        public static IQueryable<TEntity> Sort<TEntity>(
-          this IQueryable<TEntity> query,
-          Expression<Func<TEntity, object>> sortBy,
-          SortDirection direction)
-        {
-            if (sortBy == null)
-                return query;
-            switch (direction)
-            {
-                case SortDirection.ASC:
-                    return (IQueryable<TEntity>)query.OrderBy<TEntity, object>(sortBy);
-                case SortDirection.DESC:
-                    return (IQueryable<TEntity>)query.OrderByDescending<TEntity, object>(sortBy);
-                default:
-                    return (IQueryable<TEntity>)query.OrderBy<TEntity, object>(sortBy);
-            }
-        }
-
-        public static IQueryable<TEntity> Sort<TEntity>(
-          this IQueryable<TEntity> query,
-          params SortModel<TEntity>[] sorts)
-        {
-            ((IEnumerable<SortModel<TEntity>>)sorts).ToList<SortModel<TEntity>>().ForEach((Action<SortModel<TEntity>>)(sort => query.Sort<TEntity>(sort.SortBy, sort.SortDirection)));
-            return query;
-        }
-
-        public static IQueryable<TEntity> Sort<TEntity>(this IQueryable<TEntity> query, PagingModel model, string propertyName)
-        {
-            if (propertyName == null)
-                return query;
-            // LAMBDA: x => x.[PropertyName]
-            var parameter = Expression.Parameter(typeof(TEntity), "x");
-            Expression property = Expression.Property(parameter, propertyName);
-            var lambda = Expression.Lambda(property, parameter);
-
-            // REFLECTION: source.OrderBy(x => x.Property)
-            MethodInfo orderByMethod = null;
-            switch (model.SortDirection)
-            {
-                case SortDirection.ASC:
-                    orderByMethod = typeof(Queryable).GetMethods().First(x => x.Name == "OrderBy" && x.GetParameters().Length == 2);
-                    break;
-                case SortDirection.DESC:
-                    orderByMethod = typeof(Queryable).GetMethods().First(x => x.Name == "OrderByDescending" && x.GetParameters().Length == 2);
-                    break;
-                default:
-                    orderByMethod = typeof(Queryable).GetMethods().First(x => x.Name == "OrderBy" && x.GetParameters().Length == 2);
-                    break;
-            }
-            var orderByGeneric = orderByMethod.MakeGenericMethod(typeof(TEntity), property.Type);
-            var result = orderByGeneric.Invoke(null, new object[] { query, lambda });
-            return (IQueryable<TEntity>)result;
-        }
-
-        // public async Task<ResultList<TEntity>> ListAsNoTrackingAsync<TEntity>(DbContext context,
-        //PagingModel model, string Sort)
-        //where TEntity : class
-        // {
-        //     List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions.ToListAsync<TEntity>(((IQueryable<TEntity>)EntityFrameworkQueryableExtensions.AsNoTracking<TEntity>(((DbContext)(object)context).Set<TEntity>())).Sort<TEntity>(model, Sort).Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
-        //     IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
-        //     int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((DbContext)(object)context).Set<TEntity>(), new CancellationToken());
-        //     return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
-        // }
-
-
-        // public async Task<ResultList<TEntity>> Listttttt<TEntity>(DbContext db, PagingModel<TEntity> model)
-        //  where TEntity : class
-        // {
-        //     List<TEntity> result = await (Task<List<TEntity>>)EntityFrameworkQueryableExtensions
-        //         .ToListAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db)
-        //         .Set<TEntity>()).Sort<TEntity>(model.SortBy, model.SortDirection)
-        //         .Skip<TEntity>(model.PageNumber * model.PageSize).Take<TEntity>(model.PageSize), new CancellationToken());
-        //     IEnumerable<TEntity> items = (IEnumerable<TEntity>)result;
-        //     int num = await EntityFrameworkQueryableExtensions.CountAsync<TEntity>(((IQueryable<TEntity>)((DbContext)(object)db).Set<TEntity>()), new CancellationToken());
-        //     return ResultList<TEntity>.Successful(items, (long)num, model.PageNumber, model.PageSize);
-        // }
-
     }
 }

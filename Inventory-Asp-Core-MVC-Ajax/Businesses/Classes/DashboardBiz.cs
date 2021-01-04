@@ -4,7 +4,7 @@ using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 {
@@ -17,13 +17,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             _repository = repository;
         }
 
-        public Result<DashboardModel> Statistics() => Result<DashboardModel>.Try(() =>
-             Result<DashboardModel>.Successful(new DashboardModel()
-             {
-                 TotalStorages = _repository.GetCurrentContext().Set<Storage>().Count(),
-                 TotalSuppliers = _repository.GetCurrentContext().Set<Supplier>().Count(s => s.Enabled),
-                 TotalProducts = _repository.GetCurrentContext().Set<Product>().Count(p => p.IsAvailable),
-             }));
+        public Task<Result<DashboardModel>> Statistics() => Result<DashboardModel>.TryAsync(async () =>
+             Result<DashboardModel>.Successful(
+                 new DashboardModel()
+                 {
+                     TotalStorages = (await _repository.CountAllAsync<Storage>(s => s.Enabled)).Data,
+                     TotalSuppliers = (await _repository.CountAllAsync<Supplier>(s => s.Enabled)).Data,
+                     TotalProducts = (await _repository.CountAllAsync<Product>(s => s.IsAvailable)).Data
+                 }));
 
 
     }

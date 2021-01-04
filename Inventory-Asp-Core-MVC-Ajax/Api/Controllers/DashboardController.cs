@@ -1,5 +1,6 @@
 ﻿using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 {
@@ -12,7 +13,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             _dashboardBiz = dashboardBiz;
         }
 
-        public IActionResult Statistics() => View(_dashboardBiz.Statistics().Data);
+        public async Task<IActionResult> Statistics()
+            => View((await _dashboardBiz.Statistics()).Data);
 
     }
 }

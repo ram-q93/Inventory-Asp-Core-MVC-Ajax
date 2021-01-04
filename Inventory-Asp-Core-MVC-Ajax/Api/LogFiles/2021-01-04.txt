@@ -1,0 +1,962 @@
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:01:52.466
+Message: Long Running Request:    (5317 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:01:54.002
+Message: Long Running Request:    (1305 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:01:54.148
+Message: Long Running Request:    (740 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:01:57.424
+Message: Long Running Request:    (524 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:01:58.696
+Message: Long Running Request:    (962 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:04:42.797
+Message: Long Running Request:    (3760 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:04:44.143
+Message: Long Running Request:    (1140 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:04:44.185
+Message: Long Running Request:    (1202 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:04:44.144
+Message: Long Running Request:    (1099 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 08:04:50.204
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 52
+   at AspNetCore.Lib.Services.Repository`1.PagingListAsNoTrackingAsync[TEntity](Expression`1 predicate, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 857
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass5_0.<<List>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 76
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:04:50.458
+Message: Long Running Request:    (1189 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:14:59.674
+Message: Long Running Request:    (4543 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:15:00.663
+Message: Long Running Request:    (728 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:15:03.807
+Message: Long Running Request:    (662 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 08:15:05.573
+Message: First Level Message: Cannot resolve scoped service 'AspNetCore.Lib.Services.ILogger' from root provider.
+StackTrace:    at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteValidator.ValidateResolution(Type serviceType, IServiceScope scope, IServiceScope rootScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.Microsoft.Extensions.DependencyInjection.ServiceLookup.IServiceProviderEngineCallback.OnResolve(Type serviceType, IServiceScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 80
+   at AspNetCore.Lib.Services.Repository`1.PagingListAsNoTrackingAsync[TEntity](Expression`1 predicate, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 857
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass5_0.<<List>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 76
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:15:05.833
+Message: Long Running Request:    (1657 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:28:31.097
+Message: Long Running Request:    (4586 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:28:32.627
+Message: Long Running Request:    (1278 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:28:32.681
+Message: Long Running Request:    (1336 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:28:32.948
+Message: Long Running Request:    (1577 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:28:34.959
+Message: Long Running Request:    (2263 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:28:35.631
+Message: Long Running Request:    (827 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 08:28:37.486
+Message: First Level Message: Cannot resolve scoped service 'AspNetCore.Lib.Services.ILogger' from root provider.
+StackTrace:    at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteValidator.ValidateResolution(Type serviceType, IServiceScope scope, IServiceScope rootScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.Microsoft.Extensions.DependencyInjection.ServiceLookup.IServiceProviderEngineCallback.OnResolve(Type serviceType, IServiceScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 80
+   at AspNetCore.Lib.Services.Repository`1.PagingListAsNoTrackingAsync[TEntity](Expression`1 predicate, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 857
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass5_0.<<List>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 76
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:28:37.834
+Message: Long Running Request:    (1884 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 08:28:45.274
+Message: First Level Message: Cannot resolve scoped service 'AspNetCore.Lib.Services.ILogger' from root provider.
+StackTrace:    at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteValidator.ValidateResolution(Type serviceType, IServiceScope scope, IServiceScope rootScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.Microsoft.Extensions.DependencyInjection.ServiceLookup.IServiceProviderEngineCallback.OnResolve(Type serviceType, IServiceScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 80
+   at AspNetCore.Lib.Services.Repository`1.PagingListAsNoTrackingAsync[TEntity](Expression`1 predicate, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 857
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass5_0.<<List>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 76
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:28:45.340
+Message: Long Running Request:    (884 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 08:29:14.975
+Message: First Level Message: Cannot resolve scoped service 'AspNetCore.Lib.Services.ILogger' from root provider.
+StackTrace:    at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteValidator.ValidateResolution(Type serviceType, IServiceScope scope, IServiceScope rootScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 80
+   at AspNetCore.Lib.Services.Repository`1.PagingListAsNoTrackingAsync[TEntity](Expression`1 predicate, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 857
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass5_0.<<List>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 76
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:29:57.775
+Message: Long Running Request:    (43895 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:30:56.390
+Message: Long Running Request:    (637 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 08:31:54.568
+Message: First Level Message: Object reference not set to an instance of an object.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass5_0.<<List>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 49
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:32:02.768
+Message: Long Running Request:    (61811 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:39:02.627
+Message: Long Running Request:    (3642 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:39:03.900
+Message: Long Running Request:    (1031 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:39:03.900
+Message: Long Running Request:    (1035 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:39:08.457
+Message: Long Running Request:    (525 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 08:39:26.925
+Message: First Level Message: Object reference not set to an instance of an object.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass5_0.<<List>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 49
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:39:48.821
+Message: Long Running Request:    (39660 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:43:06.361
+Message: Long Running Request:    (4119 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:43:07.664
+Message: Long Running Request:    (1014 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:43:07.664
+Message: Long Running Request:    (1003 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:43:07.664
+Message: Long Running Request:    (1018 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:43:08.247
+Message: Long Running Request:    (1004 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:43:17.445
+Message: Long Running Request:    (523 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:45:00.740
+Message: Long Running Request:    (4209 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:45:02.517
+Message: Long Running Request:    (1592 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:45:02.519
+Message: Long Running Request:    (1565 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:45:02.550
+Message: Long Running Request:    (730 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:45:16.334
+Message: Long Running Request:    (6321 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:47:22.640
+Message: Long Running Request:    (601 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:47:39.499
+Message: Long Running Request:    (514 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:48:59.704
+Message: Long Running Request:    (4701 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:49:01.099
+Message: Long Running Request:    (1113 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:49:01.132
+Message: Long Running Request:    (1157 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:49:01.099
+Message: Long Running Request:    (1095 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:49:01.945
+Message: Long Running Request:    (804 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:49:01.946
+Message: Long Running Request:    (577 milliseconds)  Request Path: /favicon.ico
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:49:06.649
+Message: Long Running Request:    (515 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:51:11.850
+Message: Long Running Request:    (18121 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 08:58:07.521
+Message: First Level Message: Cannot resolve scoped service 'AspNetCore.Lib.Services.ILogger' from root provider.
+StackTrace:    at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteValidator.ValidateResolution(Type serviceType, IServiceScope scope, IServiceScope rootScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 80
+   at AspNetCore.Lib.Services.Repository`1.PagingListAsNoTrackingAsync[TEntity](Expression`1 predicate, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 857
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass5_0.<<List>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 76
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:58:09.656
+Message: Long Running Request:    (45381 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 08:58:18.855
+Message: First Level Message: Cannot resolve scoped service 'AspNetCore.Lib.Services.ILogger' from root provider.
+StackTrace:    at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteValidator.ValidateResolution(Type serviceType, IServiceScope scope, IServiceScope rootScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 80
+   at AspNetCore.Lib.Services.Repository`1.PagingListAsNoTrackingAsync[TEntity](Expression`1 predicate, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 857
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass5_0.<<List>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 76
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 08:58:19.787
+Message: Long Running Request:    (7049 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:02:57.418
+Message: Long Running Request:    (4786 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:02:58.961
+Message: Long Running Request:    (1192 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:02:58.996
+Message: Long Running Request:    (1266 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:02:58.996
+Message: Long Running Request:    (1253 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:02:59.311
+Message: Long Running Request:    (613 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:03:14.475
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:03:14.988
+Message: Long Running Request:    (1145 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:04:02.565
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:04:11.486
+Message: Long Running Request:    (9111 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:04:21.228
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:04:23.964
+Message: Long Running Request:    (2906 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:04:45.973
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:06:00.735
+Message: Long Running Request:    (3704 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:06:02.158
+Message: Long Running Request:    (1031 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:06:02.158
+Message: Long Running Request:    (1006 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:06:02.189
+Message: Long Running Request:    (815 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:06:02.158
+Message: Long Running Request:    (664 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:06:03.912
+Message: Long Running Request:    (580 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:06:04.951
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:06:36.268
+Message: Long Running Request:    (32073 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:08:28.478
+Message: Long Running Request:    (3711 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:08:29.534
+Message: Long Running Request:    (850 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:08:29.535
+Message: Long Running Request:    (817 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:08:29.644
+Message: Long Running Request:    (680 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:08:29.644
+Message: Long Running Request:    (993 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:08:32.312
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:08:38.571
+Message: Long Running Request:    (6943 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:08:42.458
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:08:45.363
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:08:46.606
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:08:48.418
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:08:49.371
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:08:56.990
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:08:57.906
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:09:05.068
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:09:05.940
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:09:06.777
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:09:07.510
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:09:08.332
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:09:09.052
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 54
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:14:19.190
+Message: Long Running Request:    (4220 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:14:20.331
+Message: Long Running Request:    (819 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:14:20.739
+Message: Long Running Request:    (805 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:14:20.862
+Message: Long Running Request:    (763 milliseconds)  Request Path: /favicon.ico
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:14:20.895
+Message: Long Running Request:    (1389 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-04 09:14:26.600
+Message: First Level Message: Instance property 'STH' is not defined for type 'Inventory_Asp_Core_MVC_Ajax.EFModels.Storage' (Parameter 'propertyName')
+StackTrace:    at System.Linq.Expressions.Expression.Property(Expression expression, String propertyName)
+   at AspNetCore.Lib.Extensions.QueryableExtensions.SortByStringField[TEntity](IQueryable`1 query, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Extensions\QueryableExtensions.cs:line 47
+   at AspNetCore.Lib.Services.Repository`1.PagingListAsNoTrackingAsync[TEntity](Expression`1 predicate, PagingModel model) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 857
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass5_0.<<List>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 76
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:14:26.783
+Message: Long Running Request:    (1226 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:00.808
+Message: Long Running Request:    (4452 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:02.355
+Message: Long Running Request:    (1151 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:02.431
+Message: Long Running Request:    (1208 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:02.431
+Message: Long Running Request:    (1209 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:02.534
+Message: Long Running Request:    (1316 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:03.285
+Message: Long Running Request:    (738 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:03.286
+Message: Long Running Request:    (673 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:03.333
+Message: Long Running Request:    (509 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:04.123
+Message: Long Running Request:    (790 milliseconds)  Request Path: /favicon.ico
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:04.125
+Message: Long Running Request:    (833 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:11.900
+Message: Long Running Request:    (613 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:19:23.398
+Message: Long Running Request:    (11174 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:21:01.721
+Message: Long Running Request:    (9653 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:21:31.718
+Message: Long Running Request:    (8891 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:21:51.740
+Message: Long Running Request:    (11154 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:25:32.759
+Message: Long Running Request:    (3573 milliseconds)  Request Path: /
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:25:34.328
+Message: Long Running Request:    (1215 milliseconds)  Request Path: /css/sweetalert2.min.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:25:34.328
+Message: Long Running Request:    (1120 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:25:34.328
+Message: Long Running Request:    (1119 milliseconds)  Request Path: /css/site.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:25:34.328
+Message: Long Running Request:    (1120 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:32:10.129
+Message: Long Running Request:    (2618 milliseconds)  Request Path: /
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:37:42.232
+Message: Long Running Request:    (3402 milliseconds)  Request Path: /
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:37:43.642
+Message: Long Running Request:    (1088 milliseconds)  Request Path: /css/site.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:37:43.642
+Message: Long Running Request:    (1086 milliseconds)  Request Path: /css/sweetalert2.min.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:37:43.642
+Message: Long Running Request:    (1095 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:37:43.642
+Message: Long Running Request:    (1033 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:37:43.642
+Message: Long Running Request:    (1083 milliseconds)  Request Path: /css/sb-admin-2.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:37:44.442
+Message: Long Running Request:    (501 milliseconds)  Request Path: /favicon.ico
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:37:44.442
+Message: Long Running Request:    (506 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:37:44.444
+Message: Long Running Request:    (569 milliseconds)  Request Path: /js/site.js
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:44:52.885
+Message: Long Running Request:    (1039 milliseconds)  Request Path: /storage/storages
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:53:29.727
+Message: Long Running Request:    (3434 milliseconds)  Request Path: /
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:53:31.115
+Message: Long Running Request:    (579 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:53:31.116
+Message: Long Running Request:    (578 milliseconds)  Request Path: /css/sweetalert2.min.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:53:31.116
+Message: Long Running Request:    (579 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:55:30.944
+Message: Long Running Request:    (3384 milliseconds)  Request Path: /
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:55:32.190
+Message: Long Running Request:    (621 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:56:46.175
+Message: Long Running Request:    (4088 milliseconds)  Request Path: /
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:57:09.286
+Message: Long Running Request:    (6970 milliseconds)  Request Path: /Storage/Storages
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:58:47.583
+Message: Long Running Request:    (3639 milliseconds)  Request Path: /Storage/Storages
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 09:59:45.614
+Message: Long Running Request:    (783 milliseconds)  Request Path: /Storage/Delete
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 10:02:18.542
+Message: Long Running Request:    (3394 milliseconds)  Request Path: /
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 10:02:19.989
+Message: Long Running Request:    (1098 milliseconds)  Request Path: /js/site.js
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 10:02:19.989
+Message: Long Running Request:    (1235 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 10:02:19.989
+Message: Long Running Request:    (1143 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 10:02:19.989
+Message: Long Running Request:    (1235 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 10:02:19.989
+Message: Long Running Request:    (1235 milliseconds)  Request Path: /css/site.css
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 10:02:23.976
+Message: Long Running Request:    (841 milliseconds)  Request Path: /Storage/Storages
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-04 10:02:37.693
+Message: Long Running Request:    (519 milliseconds)  Request Path: /Storage/AddOrEditStorage/0
+
+===========================================================================

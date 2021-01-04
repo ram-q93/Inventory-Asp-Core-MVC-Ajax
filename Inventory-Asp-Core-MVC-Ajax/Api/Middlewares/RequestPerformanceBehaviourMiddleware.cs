@@ -1,6 +1,10 @@
 ﻿using AspNetCore.Lib.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api.Middlewares
@@ -19,13 +23,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Middlewares
 
             _timer.Stop();
 
-            var _logger = (ILogger)context.RequestServices.GetService(typeof(ILogger));
-
             if (_timer.ElapsedMilliseconds > 500)
             {
-                _logger.Warn($"Long Running Request:   " +
-                    $" ({_timer.ElapsedMilliseconds} milliseconds)" +
-                    $"  Request Path: {context.Request.Path}");
+                ((ILogger)context.RequestServices.GetService(typeof(ILogger)))
+                    .Warn($"Long Running Request:   " +
+                        $" ({_timer.ElapsedMilliseconds} milliseconds)" +
+                        $"  Request Path: {context.Request.Path}" + Environment.NewLine);
+
             }
         }
     }

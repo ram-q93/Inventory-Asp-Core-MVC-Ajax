@@ -22,7 +22,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Storages([FromBody] DtParameters dtParameters)
-            => Json((await _storageBiz.List(dtParameters)).Data);
+        {
+            var result = await _storageBiz.List(dtParameters);
+            return Json(result.Data);
+        }
+            //=> Json();
 
         #endregion
 

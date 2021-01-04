@@ -276,6 +276,7 @@ $(document).ready(function () {
             contentType: "application/json",
             dataType: "json",
             data: function (data) {
+                console.log(data);
                 return JSON.stringify(data);
             }
         },
