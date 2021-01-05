@@ -1,7 +1,6 @@
 ﻿using AspNetCore.Lib.Attributes;
 using AspNetCore.Lib.Models;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
-using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
@@ -23,14 +22,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Storages([FromBody] DtParameters dtParameters)
-        {
-            var result = await _storageBiz.List(dtParameters);
-            return Json(result.Data);
-        }
+            => Json((await _storageBiz.List(dtParameters)).Data);
 
         #endregion
 
-        //  ModelState.Remove("Id");
         #region AddOrEditStorage
 
         [HttpGet, ActionName("AddOrEditStorage")]
@@ -50,16 +45,16 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             }
         }
 
-
         [HttpPost, ActionName("AddOrEditStorage")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(int id, [Bind] StorageModel model)
+        public async Task<IActionResult> AddOrEdit([Bind] StorageModel model)
         {
-            ModelState.Remove("Id");
             if (!ModelState.IsValid)
+            {
                 return Json(this.HtmlReponse(view: "AddOrEditStorage", model,
-                    Result.Failed(Error.WithCode(ErrorCodes.InvalidModel))));
-            if (id == 0)
+                        Result.Failed(Error.WithCode(ErrorCodes.InvalidModel))));
+            }
+            if (model.Id == 0)
             {
                 var result = await _storageBiz.Add(model);
                 if (!result.Success)
@@ -76,11 +71,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-        //  [ValidateAntiForgeryToken]
         #region Delete
 
-        [HttpGet, ActionName("Delete")]
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _storageBiz.Delete(id);
@@ -89,7 +83,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             return Json(this.HtmlReponse());
         }
 
-        #endregion   //validate antiforgery token
+        #endregion   
 
         #region IsNameInUse
 

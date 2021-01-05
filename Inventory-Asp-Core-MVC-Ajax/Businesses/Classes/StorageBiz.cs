@@ -2,20 +2,11 @@
 using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services;
 using AutoMapper;
-using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
-using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
@@ -24,23 +15,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
     {
         private readonly IRepository _repository;
         private readonly IMapper _mapper;
-        private readonly ISerializer _serializer;
-        private readonly ILogger _logger;
 
-
-        public StorageBiz(
-            IRepository repository,
-            IMapper mapper,
-            ISerializer serializer,
-            ILogger logger)
-
+        public StorageBiz(IRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
-            _serializer = serializer;
-            _logger = logger;
         }
-
 
         #region List
 
@@ -76,7 +56,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                                         (s.City != null && s.City.ToUpper().Contains(searchBy.ToUpper())) ||
                                         (s.Phone != null && s.Phone.ToUpper().Contains(searchBy.ToUpper())),
                                         pagingModel);
-                
+
+                if (!resultList.Success)
+                {
+                    return Result<object>.Failed(
+                        Error.WithData(ErrorCodes.StoragesNotFound, new[] { "Some thing went wrong!" }));
+                }
+
                 var totalFilteredCount = resultList.TotalCount;
                 var totalCount = (await _repository.CountAllAsync<Storage>()).Data;
                 return Result<object>.Successful(new
@@ -98,7 +84,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
+                    return Result<StorageModel>.Failed(
+                        Error.WithData(ErrorCodes.StorageNotFoundById, new[] { "Storage not found!" }));
                 }
                 return Result<StorageModel>.Successful(_mapper.Map<Storage, StorageModel>(result.Data));
             });
@@ -112,7 +99,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.Name)).Data)
                 {
-                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyInUse));
+                    return Result.Failed(
+                       Error.WithData(ErrorCodes.StorageNameAlreadyInUse, new[] { "Storage name already in use!" }));
                 }
                 var store = _mapper.Map<StorageModel, Storage>(model);
                 _repository.Add(store);
@@ -129,12 +117,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.Name, model.Id)).Data)
                 {
-                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyInUse));
+                    return Result.Failed(
+                      Error.WithData(ErrorCodes.StorageNameAlreadyInUse, new[] { "Storage name already in use!" }));
                 }
                 var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
+                    return Result.Failed(Error.WithData(ErrorCodes.StorageNotFoundById, new[] { "Storage not found!" }));
                 }
                 var storage = _mapper.Map<StorageModel, Storage>(model);
                 _repository.Update(storage);
@@ -153,7 +142,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     includes: p => p.Products.Select(p => p.Image));
                 if (!storeResult.Success || storeResult?.Data == null)
                 {
-                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById));
+                    return Result.Failed(Error.WithData(ErrorCodes.StorageNotFoundById, new[] { "Storage not found!" }));
                 }
                 storeResult.Data.Products.Clear();
                 _repository.Remove(storeResult.Data);

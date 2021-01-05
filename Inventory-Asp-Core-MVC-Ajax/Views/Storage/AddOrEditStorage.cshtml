@@ -1,12 +1,13 @@
 ﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.StorageModel
 @{
-    // to remove header and footer from modal
+    // to remove header and footer from modal         asp-route-id="@Model.Id"
     Layout = null;
 }
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-controller="Storage" asp-action="AddOrEditStorage" asp-route-id="@Model.Id"
+        <form asp-controller="Storage" asp-action="AddOrEditStorage" 
+             
               onsubmit="return jQueryAjaxPostToAddOrEditStorage(this);" autocomplete="off" id="formRegister">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />

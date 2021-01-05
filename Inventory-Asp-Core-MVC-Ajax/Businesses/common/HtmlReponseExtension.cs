@@ -20,10 +20,20 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
                 else
                     success = false;
 
+
+                string error;
+                if (result == null)
+                    error = "";
+                else if (result?.Error.Data != null && result?.Error.Data.Length > 0)
+                    error = $"Error ({result?.Error?.Code}) {result?.Error?.Data[0]}";
+                else
+                    error = $"Error ({result?.Error?.Code})";
+
+
                 return new
                 {
                     success,
-                    error = result == null ? "" : $"Error {result?.Error?.Code}",
+                    error,
                     html = view == null ? "" : controller.RenderRazorViewToString(view, model)
                 };
             }

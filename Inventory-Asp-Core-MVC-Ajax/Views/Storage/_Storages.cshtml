@@ -1,15 +1,7 @@
 ﻿@model IEnumerable<Inventory_Asp_Core_MVC_Ajax.Models.Classes.StorageModel>
+
+
 @*For displaying storage info*@
-@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
-@functions{
-    public string GetAntiXsrfRequestToken()
-    {
-        return Xsrf.GetAndStoreTokens(Context).RequestToken;
-    }
-}
-
-
-
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Storage Table</h6>
@@ -17,34 +9,30 @@
     <div class="card-body">
         <table id="table-storage" class="table table-sm table-striped table-bordered table-hover table-condensed"
                style="color: black;">
+            @Html.AntiForgeryToken()
             <thead>
                 <tr>
-                        @*<label type="hidden" id="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">*@
-                        @*<label asp-for="@Model.First().Id" hidden></label>*@
-                        @*<th style="width: 8%">
-                                <label>#</label>
-                            </th>*@
-                        <th style="width: 10%">
-                            <label asp-for="@Model.First().Name"></label>
-                        </th>
-                        <th style="width: 10%">
-                            <label asp-for="@Model.First().Phone"></label>
-                        </th>
-                        <th style="width: 4%">
-                            <label>Status</label>
-                        </th>
-                        <th style="width: 10%">
-                            <label asp-for="@Model.First().City"></label>
-                        </th>
-                        <th>
-                            <label asp-for="@Model.First().Address"></label>
-                        </th>
-                        <th style="width: 4%">
-                            <label>Update</label>
-                        </th>
-                        <th style="width: 4%">
-                            <label>Delete</label>
-                        </th>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().Name"></label>
+                    </th>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().Phone"></label>
+                    </th>
+                    <th style="width: 4%">
+                        <label>Status</label>
+                    </th>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().City"></label>
+                    </th>
+                    <th>
+                        <label asp-for="@Model.First().Address"></label>
+                    </th>
+                    <th style="width: 4%">
+                        <label>Update</label>
+                    </th>
+                    <th style="width: 4%">
+                        <label>Delete</label>
+                    </th>
                 </tr>
             </thead>
         </table>

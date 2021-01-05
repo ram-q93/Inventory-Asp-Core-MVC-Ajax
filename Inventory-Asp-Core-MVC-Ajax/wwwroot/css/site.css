@@ -130,6 +130,11 @@ a.btn:hover {
     word-wrap: break-word;
 }
 
+.my-swal2-success-styling {
+    height: 10vh;
+    width: 35vh;
+    font-size: 1.4rem !important;
+}
 .my-swal2-styling {
     height: 10vh;
     width: 35vh;

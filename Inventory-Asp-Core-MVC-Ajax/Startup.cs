@@ -25,7 +25,6 @@ namespace Inventory_Asp_Core_MVC_Ajax
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             AddServicesToContainer(services);
@@ -34,13 +33,10 @@ namespace Inventory_Asp_Core_MVC_Ajax
             services.AddControllers().AddNewtonsoftJson();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseExceptionHandler("/error/500");
-
                 app.UseDeveloperExceptionPage();
             }
             else

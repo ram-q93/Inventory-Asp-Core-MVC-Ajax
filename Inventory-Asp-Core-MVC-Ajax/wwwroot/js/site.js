@@ -31,7 +31,7 @@ function SweetAlertSubmitedSuccessfully() {
         background: 'Green',
         position: 'bottom-left',
         showConfirmButton: false,
-        timer: 5000,
+        timer: 5000, 
         customClass: 'my-swal2-styling'
     }).fire({
         type: 'success',
@@ -42,13 +42,14 @@ function SweetAlertSubmitedSuccessfully() {
 function SweetAlertSubmitFailed(ErrorMessage) {  // confirmButtonText: 'Cool'
     Swal.mixin({
         toast: true,
-        position: 'bottom-right',
+        background: 'red',
+        position: 'bottom-left',
         showConfirmButton: false,
         timer: 5000,
         customClass: 'my-swal2-styling'
     }).fire({
         type: 'error',
-        title: '<span style="color:Tomato" >' + ErrorMessage + '</span>'
+        title: '<span style="color:White" >' + ErrorMessage + '</span>'
     })
 };
 //========================================= Global ==========================================//
@@ -260,7 +261,6 @@ $(document).ready(function () {
             //    "searchable": false,
             //    "orderable": false,
             //    "targets": 0
-
             //},
             {
                 "targets": [5, 6],
@@ -278,7 +278,6 @@ $(document).ready(function () {
             }
         },
         columns: [
-            //{ 'data': 'ids', defaultContent: '' },
             { data: "name" },
             { data: "phone" },
             {
@@ -339,6 +338,10 @@ $(document).ready(function () {
     //For removing default search box just remove the f character from sDom.
 });
 
+SearchStorage = () => {
+    storageDataTable.search($("#search-storage-input-id").val()).draw();
+}
+
 showStorageInPopup = (id, title) => {
     $.ajax({
         type: "Get",
@@ -389,14 +392,13 @@ jQueryAjaxDeleteStorage = (id) => {
         if (result.value)
             try {
                 $.ajax({
-                    type: 'Get',
-                    url: "/Storage/Delete?id=" + id,
-                    //data: JSON.stringify({
-                    //    // __RequestVerificationToken: $('#RequestVerificationToken').val(),
-                    //    id: "78"
-                    //}),
-                    contentType: false,
-                    processData: false,
+                    type: "Post",
+                    url: "/Storage/Delete",
+                    contentType: "application/x-www-form-urlencoded",
+                    data: {
+                        __RequestVerificationToken: $('#table-storage input[name="__RequestVerificationToken"]').val(),
+                        id: id
+                    },
                     success: function (res) {
                         if (res.success) {
                             storageDataTable.draw();
@@ -417,8 +419,4 @@ jQueryAjaxDeleteStorage = (id) => {
     //to prevent default form submit event
     return false;
 };
-
-SearchStorage = () => {
-    storageDataTable.search($("#search-storage-input-id").val()).draw();
-}
 //=========================================================================== Storage =======//
