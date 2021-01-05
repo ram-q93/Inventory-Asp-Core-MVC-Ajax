@@ -1,10 +1,6 @@
 ﻿using AspNetCore.Lib.Services;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Filters;
-using System;
 using System.Diagnostics;
-using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api.Middlewares

@@ -1,25 +1,20 @@
 ﻿using AspNetCore.Lib.Configurations;
 using AspNetCore.Lib.Enums;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api
 {
-    public class ConfigureServices
+    public static class DependencyInjection
     {
-        private IEnumerable<TypeRegister> GetServices()
+        public static IServiceCollection AddApiLayer(this IServiceCollection services)
         {
-            var result = TypeRegister.ScanAssemblyTypes(Assembly.GetExecutingAssembly())
-                .Concat(new LayerServicesTypes().GetServices(null)).ToList()
-                ;
-            return result;
-        }
+            var resultServices = TypeRegister.ScanAssemblyTypes(Assembly.GetExecutingAssembly())
+                                     .Concat(new AspNetCore.Lib.Configurations.LayerServicesTypes()
+                                     .GetServices(null)).ToList();
 
-        public void AddServices(IServiceCollection services)
-        {
-            GetServices().GroupBy(s => s.Lifetime).ToList().ForEach(g =>
+            resultServices.GroupBy(s => s.Lifetime).ToList().ForEach(g =>
             {
                 if (g.Key == TypeLifetime.Transient)
                     g.ToList().ForEach(s =>
@@ -54,6 +49,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api
                             services.AddSingleton(s.BaseType, s.ImplementationType);
                     });
             });
+
+            return services;
         }
     }
 }
