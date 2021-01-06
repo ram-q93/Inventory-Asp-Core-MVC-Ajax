@@ -40,7 +40,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
         #region
         [Display(Name = "Enabled", Prompt = "Enabled")]
         #endregion
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = true;
 
         #region
         [Display(Name = "Products")]

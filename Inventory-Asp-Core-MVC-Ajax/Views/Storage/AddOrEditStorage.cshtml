@@ -1,13 +1,11 @@
 ﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.StorageModel
 @{
-    // to remove header and footer from modal         asp-route-id="@Model.Id"
-    Layout = null;
+    Layout = null;   // to remove header and footer from modal
 }
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-controller="Storage" asp-action="AddOrEditStorage" 
-             
+        <form asp-controller="Storage" asp-action="AddOrEditStorage"
               onsubmit="return jQueryAjaxPostToAddOrEditStorage(this);" autocomplete="off" id="formRegister">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
@@ -34,9 +32,18 @@
                     <input asp-for="City" class="form-control" />
                     <span asp-validation-for="City" class="text-danger"></span>
                 </div>
-                <div class="form-group col-md-6 form-check">
-                    <input asp-for="Enabled" type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Enabled</label>
+                <div class="form-group col-md-6">
+                    <label asp-for="Enabled" class="control-label">Status</label>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="radio" asp-for="Enabled" id="active" value="true">
+                            <label for="active">Active</label>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="radio" asp-for="Enabled" id="deactive" value="false">
+                            <label for="deactive">Deactive</label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">

@@ -146,3 +146,7 @@ a.btn:hover {
     background-color: #1cc88a;
     border-color: #1cc88a;
 }
+
+.my-mousechange:hover {
+    cursor: pointer;
+}

@@ -248,13 +248,14 @@ https://www.thecodehubs.com/server-side-pagination-using-datatable-in-net-core/
 var storageDataTable;
 $(document).ready(function () {
     storageDataTable = $("#table-storage").DataTable({
-        autoWidth: true,
-        processing: true,
+       autoWidth: true,
+       // processing: true,
         serverSide: true,
         paging: true,
-        searching: { regex: true },
-        //  responsive: true,
+      //  searching: { regex: true },
+        responsive: true,
         scrollX: true,
+        sDom: "ltip", 
         lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
         columnDefs: [
             //{
@@ -267,7 +268,6 @@ $(document).ready(function () {
                 "orderable": false,
                 "searchable": false
             }],
-        sDom: "ltipr", //to delete search button
         ajax: {
             url: "/Storage/Storages",
             type: "POST",
@@ -278,57 +278,45 @@ $(document).ready(function () {
             }
         },
         columns: [
-            { data: "name" },
-            { data: "phone" },
+            { data: "name", "autoWidth": true },
+            { data: "phone", "autoWidth": true  },
             {
                 data: "enabled",
                 render: function (data, type, row) {
                     if (data == true) {
                         return `<div style="text-align:center">
-                                    <button class="btn btn-primary btn-sm btn-circle"  disabled>
-                                        <i class="fas fa-check"></i>
-                                    </button>
+                                        <i class="fas fa-check" style="color:blue"></i>
                                 </div>`;
                     }
                     else
                         return ``;
-                }
+                }, "autoWidth": true 
             },
-            { data: "city" },
-            { data: "address" },
+            { data: "city", "autoWidth": true },
+            { data: "address", "autoWidth": true  },
             {
                 data: "id",
                 render: function (data, type, row) {
                     return `<div style="text-align:center">
-                                <a class="btn btn-warning btn-sm btn-circle" onclick="showStorageInPopup(${data},'UpdateStorage')">
-                                     <i class="fas fa-exclamation-triangle text-white"></i>
+                                <a class="my-mousechange"  onclick="showStorageInPopup(${data},'UpdateStorage')">
+                                     <i class="fas fa-edit fa-2x" style="color:green"></i>
                                 </a>
                             </div>`;
-                }
+                }, "autoWidth": true 
             },
             {
                 data: "id",
                 render: function (data, type, row) {
                     return `<div style="text-align:center">
-                                <a class="btn btn-danger btn-sm btn-circle" onclick="jQueryAjaxDeleteStorage(${data})">
-                                    <i class="fas fa-trash text-white"></i>
+                                <a class="my-mousechange" onclick="jQueryAjaxDeleteStorage(${data})">
+                                    <i class="fas fa-trash fa-2x" style="color:red"></i>
                                 </a>
                             </div>`;
-                }
+                }, "autoWidth": true 
             }
         ]
     });
-    //var i = 1;
-    //if (storageDataTable.data().length != 0) {
-
-    //    storageDataTable.on('order.dt search.dt', function () {
-    //        storageDataTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
-    //            cell.innerHTML = i + 1;
-    //            storageDataTable.cell(cell).invalidate('dom');
-    //        });
-    //    }).draw();
-    //}
-    //Perform these operations on datatables
+    //sDom : Perform these operations on datatables
     //'l' - Length changing
     //'f' - Filtering input
     //'t' - The table!

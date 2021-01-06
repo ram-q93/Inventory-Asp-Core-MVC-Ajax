@@ -194,6 +194,9 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <div class="loaderbody" id="loaderbody">
+                            <div class="loader"></div>
+                        </div>
                         @RenderBody()
                     </div>
                 </div>
@@ -209,7 +212,6 @@
             </footer>
             <!-- End of Footer -->
 
-
         </div>
         <!-- End of Content Wrapper -->
     </div>
@@ -220,10 +222,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <div class="loaderbody" id="loaderbody">
-        <div class="loader"></div>
-    </div>
-
+    @RenderSection("Scripts", required: false)
 
     <environment include="Development">
         <!-- Bootstrap core JavaScript-->
@@ -273,8 +272,6 @@
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     </environment>
-    
-    @RenderSection("Scripts", required: false)
 </body>
 </html>
 
