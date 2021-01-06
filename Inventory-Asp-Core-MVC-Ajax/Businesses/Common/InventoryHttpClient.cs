@@ -1,4 +1,5 @@
-﻿using AspNetCore.Lib.Enums;
+﻿using AspNetCore.Lib.Attributes;
+using AspNetCore.Lib.Enums;
 using AspNetCore.Lib.HttpClients;
 using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
 {
+    [TypeLifeTime(TypeLifetime.Singleton)]
     public class InventoryHttpClient : BaseHttpClient
     {
         protected override string Host => "https://picsum.photos";

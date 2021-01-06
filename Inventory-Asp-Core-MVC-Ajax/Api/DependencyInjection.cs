@@ -10,9 +10,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api
     {
         public static IServiceCollection AddApiLayer(this IServiceCollection services)
         {
-            var resultServices = TypeRegister.ScanAssemblyTypes(Assembly.GetExecutingAssembly())
-                                     .Concat(new AspNetCore.Lib.Configurations.LayerServicesTypes()
-                                     .GetServices(null)).ToList();
+            var resultServices = TypeRegister
+                .ScanAssemblyTypes(Assembly.GetExecutingAssembly())
+                .Concat(new AspNetCore.Lib.Configurations.LayerServicesTypes().GetServices(null))
+                .ToList();
 
             resultServices.GroupBy(s => s.Lifetime).ToList().ForEach(g =>
             {

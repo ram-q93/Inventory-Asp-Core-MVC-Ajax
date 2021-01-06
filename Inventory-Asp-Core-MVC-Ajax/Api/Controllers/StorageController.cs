@@ -21,6 +21,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         public IActionResult Storages() => View();
 
         [HttpPost]
+      //  [ValidateAntiForgeryToken]
         public async Task<IActionResult> Storages([FromBody] DtParameters dtParameters)
             => Json((await _storageBiz.List(dtParameters)).Data);
 

@@ -270,11 +270,11 @@ $(document).ready(function () {
             }],
         ajax: {
             url: "/Storage/Storages",
-            type: "POST",
+            type: "Post",
             contentType: "application/json",
             dataType: "json",
-            data: function (data) {
-                return JSON.stringify(data);
+            data: function (response) {
+                return JSON.stringify(response);
             }
         },
         columns: [
@@ -308,7 +308,7 @@ $(document).ready(function () {
                 data: "id",
                 render: function (data, type, row) {
                     return `<div style="text-align:center">
-                                <a class="my-mousechange" onclick="jQueryAjaxDeleteStorage(${data})">
+                                <a class="my-mousechange" onclick="jQueryAjaxPostToDeleteStorage(${data})">
                                     <i class="fas fa-trash fa-2x" style="color:red"></i>
                                 </a>
                             </div>`;
@@ -333,10 +333,11 @@ SearchStorage = () => {
 showStorageInPopup = (id, title) => {
     $.ajax({
         type: "Get",
-        url: "/Storage/AddOrEditStorage?id=" + id,
-        success: function (res) {
+        url: "/Storage/AddOrEditStorage",
+        data: { "id": id },
+        success: function (response) {
             $("#form-modal .modal-title").html(title);
-            $("#form-modal .modal-body").html(res);
+            $("#form-modal .modal-body").html(response);
             $("#form-modal").modal('show');
         }
     })
@@ -345,13 +346,13 @@ showStorageInPopup = (id, title) => {
 jQueryAjaxPostToAddOrEditStorage = form => {
     try {
         $.ajax({
-            type: 'POST',
+            type: 'Post',
             url: form.action,
             data: new FormData(form),
             contentType: false,
             processData: false,
-            success: function (res) {
-                if (res.success) {
+            success: function (response) {
+                if (response.success) {
                     $("#form-modal .modal-title").html('');
                     $("#form-modal .modal-body").html('');
                     $("#form-modal").modal('hide');
@@ -359,13 +360,13 @@ jQueryAjaxPostToAddOrEditStorage = form => {
                     SweetAlertSubmitedSuccessfully();
                 }
                 else {
-                    SweetAlertSubmitFailed(res.error)
-                    $("#form-modal .modal-body").html(res.html);
+                    SweetAlertSubmitFailed(response.error)
+                    $("#form-modal .modal-body").html(response.html);
                 }
             },
-            error: function (err) {
+            error: function (e) {
                 SweetAlertSubmitFailed("Error in Submitting storage")
-                console.log(err);
+                console.log(e);
             }
         })
     } catch (e) {
@@ -375,7 +376,7 @@ jQueryAjaxPostToAddOrEditStorage = form => {
     return false;
 };
 
-jQueryAjaxDeleteStorage = (id) => {
+jQueryAjaxPostToDeleteStorage = (id) => {
     DeletePopUp().then((result) => {
         if (result.value)
             try {
@@ -384,20 +385,22 @@ jQueryAjaxDeleteStorage = (id) => {
                     url: "/Storage/Delete",
                     contentType: "application/x-www-form-urlencoded",
                     data: {
-                        __RequestVerificationToken: $('#table-storage input[name="__RequestVerificationToken"]').val(),
-                        id: id
+                        "__RequestVerificationToken":
+                            $('#table-storage input[name="__RequestVerificationToken"]').val(),
+                        "id": id
                     },
-                    success: function (res) {
-                        if (res.success) {
+                    success: function (response) {
+                        if (response.success) {
                             storageDataTable.draw();
                             SweetAlertSubmitedSuccessfully();
                         } else {
                             storageDataTable.draw();
-                            SweetAlertSubmitFailed(res.error)
+                            SweetAlertSubmitFailed(response.error)
                         }
                     },
-                    error: function (err) {
+                    error: function (e) {
                         SweetAlertSubmitFailed("Error in Deleting storage");
+                        console.log(e);
                     }
                 })
             } catch (e) {
@@ -408,3 +411,4 @@ jQueryAjaxDeleteStorage = (id) => {
     return false;
 };
 //=========================================================================== Storage =======//
+
