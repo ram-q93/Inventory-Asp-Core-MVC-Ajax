@@ -194,9 +194,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <div class="loaderbody" id="loaderbody">
-                            <div class="loader"></div>
-                        </div>
+
                         @RenderBody()
                     </div>
                 </div>
@@ -216,13 +214,22 @@
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    @*<a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
-    </a>
+    </a>*@
 
-    @RenderSection("Scripts", required: false)
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Pamir - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <div class="loaderbody" id="loaderbody">
+        <div class="loader"></div>
+    </div>
+
+
 
     <environment include="Development">
         <!-- Bootstrap core JavaScript-->
@@ -272,6 +279,7 @@
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     </environment>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
 

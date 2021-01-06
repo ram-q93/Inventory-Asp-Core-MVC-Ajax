@@ -247,41 +247,33 @@ https://www.thecodehubs.com/server-side-pagination-using-datatable-in-net-core/
 
 var storageDataTable;
 $(document).ready(function () {
-    storageDataTable = $("#table-storage").DataTable({
-       autoWidth: true,
-       // processing: true,
+    storageDataTable = $('#table-storage').DataTable({
         serverSide: true,
-        paging: true,
-      //  searching: { regex: true },
         responsive: true,
+        autoWidth: true,
         scrollX: true,
-        sDom: "ltip", 
+        sDom: 'ltip', 
         lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
         columnDefs: [
-            //{
-            //    "searchable": false,
-            //    "orderable": false,
-            //    "targets": 0
-            //},
             {
-                "targets": [5, 6],
-                "orderable": false,
-                "searchable": false
+                'targets': [5, 6],
+                'orderable': false,
+                'searchable': false
             }],
         ajax: {
-            url: "/Storage/Storages",
-            type: "Post",
-            contentType: "application/json",
-            dataType: "json",
+            url: '/Storage/Storages',
+            type: 'Post',
+            contentType: 'application/json',
+            dataType: 'json',
             data: function (response) {
                 return JSON.stringify(response);
             }
         },
         columns: [
-            { data: "name", "autoWidth": true },
-            { data: "phone", "autoWidth": true  },
+            { data: 'name', autoWidth: true },
+            { data: 'phone', autoWidth: true  },
             {
-                data: "enabled",
+                data: 'enabled',
                 render: function (data, type, row) {
                     if (data == true) {
                         return `<div style="text-align:center">
@@ -290,29 +282,31 @@ $(document).ready(function () {
                     }
                     else
                         return ``;
-                }, "autoWidth": true 
+                }, autoWidth: true 
             },
-            { data: "city", "autoWidth": true },
-            { data: "address", "autoWidth": true  },
+            { data: 'city', autoWidth: true },
+            { data: 'address', autoWidth: true  },
             {
-                data: "id",
+                data: 'id',
                 render: function (data, type, row) {
                     return `<div style="text-align:center">
                                 <a class="my-mousechange"  onclick="showStorageInPopup(${data},'UpdateStorage')">
-                                     <i class="fas fa-edit fa-2x" style="color:green"></i>
+                                     <i class="fas fa-edit fa-1x" style="color:green"></i>
                                 </a>
                             </div>`;
-                }, "autoWidth": true 
+                },
+                autoWidth: true
             },
             {
-                data: "id",
+                data: 'id',
                 render: function (data, type, row) {
                     return `<div style="text-align:center">
                                 <a class="my-mousechange" onclick="jQueryAjaxPostToDeleteStorage(${data})">
-                                    <i class="fas fa-trash fa-2x" style="color:red"></i>
+                                    <i class="fas fa-trash fa-1x" style="color:red"></i>
                                 </a>
                             </div>`;
-                }, "autoWidth": true 
+                },
+                autoWidth: true 
             }
         ]
     });
