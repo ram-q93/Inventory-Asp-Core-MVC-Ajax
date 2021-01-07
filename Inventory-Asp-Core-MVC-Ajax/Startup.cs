@@ -37,7 +37,7 @@ namespace Inventory_Asp_Core_MVC_Ajax
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
             }
             else
             {

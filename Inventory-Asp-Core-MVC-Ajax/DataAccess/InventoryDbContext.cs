@@ -33,8 +33,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
         }
 
 
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
-            CancellationToken cancellationToken = new CancellationToken())
+        public override int SaveChanges()
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
             {
@@ -51,7 +50,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
                 }
             }
 
-            return base.SaveChangesAsync(cancellationToken);
+            return base.SaveChanges();
         }
 
         public DbSet<Storage> Storages { get; set; }
