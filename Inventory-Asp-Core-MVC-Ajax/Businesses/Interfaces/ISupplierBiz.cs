@@ -9,10 +9,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces
         Task<Result> Add(SupplierModel model);
         Task<Result> Delete(int id);
         Task<Result> Edit(SupplierModel model);
-        Task<Result<SupplierFilterModel>> GetSupplierPagedListFilteredBySearchQuery(int? page, string searchQuery);
         Task<Result<SupplierModel>> GetById(int id);
-        Task<Result<SupplierModel>> Details(int id);
-        Task<Result<object>> ListEnableSuppliers();
+        Task<Result<object>> List(DtParameters dtParameters);
         Task<Result<bool>> IsNameInUse(string name, int? id = null);
     }
 }

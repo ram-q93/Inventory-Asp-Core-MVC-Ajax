@@ -11,26 +11,19 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 {
     public class SupplierController : Controller
     {
-        public readonly ISupplierBiz supplierBiz;
+        public readonly ISupplierBiz _supplierBiz;
 
-        public SupplierController(ISupplierBiz supplierBiz)
-        {
-            this.supplierBiz = supplierBiz;
-        }
-
+        public SupplierController(ISupplierBiz supplierBiz) => _supplierBiz = supplierBiz;
 
 
         #region Suppliers
 
-        [HttpGet, ActionName("Suppliers")]
-        public async Task<IActionResult> Suppliers(string query, int? page = null)
-            => View(await GetSupplierFilterModel(query, page));
+        [HttpGet]
+        public IActionResult Suppliers() => View();
 
-        private async Task<SupplierFilterModel> GetSupplierFilterModel(string query = null, int? page = null)
-        {
-            var result = await supplierBiz.GetSupplierPagedListFilteredBySearchQuery(page, query);
-            return result.Data;
-        }
+        [HttpPost]
+        public async Task<IActionResult> Suppliers([FromBody] DtParameters dtParameters)
+            => Json((await _supplierBiz.List(dtParameters)).Data);
 
         #endregion
 
@@ -38,7 +31,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [HttpGet, ActionName("AddOrEditSupplier")]
         [NoDirectAccess]
-        public async Task<IActionResult> AddOrEdit(int id)
+        public async Task<IActionResult> AddOrEdit(int id = 0)
         {
             if (id == 0)
             {
@@ -46,81 +39,73 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             }
             else
             {
-                var result = await supplierBiz.GetById(id);
-                if (!result.Success)
+                var supplierResult = await _supplierBiz.GetById(id);
+                if (!supplierResult.Success)
                     return NotFound();
-                return View(result.Data);
+                return View(supplierResult.Data);
             }
         }
 
-
         [HttpPost, ActionName("AddOrEditSupplier")]
         [ValidateAntiForgeryToken]
-        [NoDirectAccess]
         public async Task<IActionResult> AddOrEdit([Bind] SupplierModel model)
         {
             if (!ModelState.IsValid)
-                return Json(this.HtmlReponse("AddOrEditSupplier", model, Result.Failed(Error.WithCode(ErrorCodes.InvalidModel))));
+            {
+                return Json(this.HtmlReponse(view: "AddOrEditSupplier", model,
+                        Result.Failed(Error.WithCode(ErrorCodes.InvalidModel))));
+            }
             if (model.Id == 0)
             {
-                var result = await supplierBiz.Add(model);
+                var result = await _supplierBiz.Add(model);
                 if (!result.Success)
-                    return Json(this.HtmlReponse("AddOrEditSupplier", model, result));
+                    return Json(this.HtmlReponse(view: "AddOrEditSupplier", model, result));
             }
             else
             {
-                var result = await supplierBiz.Edit(model);
+                var result = await _supplierBiz.Edit(model);
                 if (!result.Success)
-                    return Json(this.HtmlReponse("AddOrEditSupplier", model, result));
+                    return Json(this.HtmlReponse(view: "AddOrEditSupplier", model, result));
             }
-            return Json(this.HtmlReponse("_Suppliers", await GetSupplierFilterModel()));
+            return Json(this.HtmlReponse());
         }
 
         #endregion
 
         #region Delete
 
-        [HttpPost, ActionName("DeleteSupplier")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await supplierBiz.Delete(id);
+            var result = await _supplierBiz.Delete(id);
             if (!result.Success)
-                return Json(this.HtmlReponse("_Suppliers", await GetSupplierFilterModel(), result));
-            return Json(this.HtmlReponse("_Suppliers", await GetSupplierFilterModel()));
+                return Json(this.HtmlReponse(result: result));
+            return Json(this.HtmlReponse());
         }
 
-        #endregion
-
-        #region SupplierDetails
-
-        [HttpGet, ActionName("SupplierDetails")]
-        public async Task<IActionResult> Details(int id)
-        {
-            var result = await supplierBiz.Details(id);
-            return View(result.Data);
-        }
-
-        #endregion
-
-        #region supplier-select-list
-
-        [HttpGet, ActionName("supplier-select-list")]
-        public async Task<IActionResult> SupplierSelectList(string criteria)
-        {
-            var result = await supplierBiz.ListEnableSuppliers();
-            return Json(result.Data);
-        }
-
-        #endregion
+        #endregion   
 
         #region IsNameInUse
 
         [AcceptVerbs("Get", "Post")]
-        public async Task<JsonResult> IsNameInUse(string companyName) =>
-            (await supplierBiz.IsNameInUse(companyName)).Data ? Json(true) : Json($"Name {companyName} is already in use.");
+        public async Task<JsonResult> IsNameAvailable(string name) =>
+            (await _supplierBiz.IsNameInUse(name)).Data ? Json($"Name {name} is already in use.") : Json(true);
 
         #endregion
+
+        //#region supplier-select-list
+
+        //[HttpGet, ActionName("supplier-select-list")]
+        //public async Task<IActionResult> SupplierSelectList(string criteria)
+        //{
+        //    var result = await _supplierBiz.ListEnableSuppliers();
+        //    return Json(result.Data);
+        //}
+
+        //#endregion
+
+
 
     }
 }

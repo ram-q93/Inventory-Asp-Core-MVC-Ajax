@@ -1,96 +1,65 @@
-﻿@using Inventory_Asp_Core_MVC_Ajax.Businesses.Common
-@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.SupplierFilterModel
-@{
-    var Index = (Model.SupplierPagedList.PageNumber * Model.SupplierPagedList.PageSize) - (Model.SupplierPagedList.PageSize - 1);
-}
+﻿@model IEnumerable<Inventory_Asp_Core_MVC_Ajax.Models.Classes.SupplierModel>
 
-@* For displaying products *@
-@if (Model.SupplierPagedList.First().Id == 0)
-{
-    <div class="alert alert-info">
-        No Suppliers Availale
-        <a onclick="showSupplierInPopup('@Url.Action("AddOrEditSupplier", "Supplier",
-                                               new { id = 0}, Context.Request.Scheme)', 'New Supplier')"
-           class="btn btn-success text-white"><i class="fas fa-random"></i>New Supplier</a>
+@*For displaying supplier info*@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Supplier Table</h6>
     </div>
-}
-else
-{
-    var FirstSupplier = Model.SupplierPagedList.First();
+    <div class="card-body">
+        <table class="table table-bordered table-sm table-hover table-condensed"
+               id="table-supplier" width="100%" cellspacing="0" style="color: black;">
+            @Html.AntiForgeryToken()
 
-    <div class="container-fluid">
-        <table class="table">
             <thead>
                 <tr>
-                    <th>
-                        #
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().CompanyName"></label>
                     </th>
-                    <th>
-                        <label asp-for="@FirstSupplier.CompanyName"></label>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().ContactName"></label>
                     </th>
-                    <th>
-                        <label asp-for="@FirstSupplier.Phone"></label>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().EmergencyMobile"></label>
                     </th>
-                    <th>
-                        <label asp-for="@FirstSupplier.EmergencyMobile"></label>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().Phone"></label>
                     </th>
-                    <th>
-                        <label asp-for="@FirstSupplier.Enabled"></label>
+                    <th style="width: 4%">
+                        <label>Status</label>
                     </th>
-                    <th>
-                        <label asp-for="@FirstSupplier.Address"></label>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().City"></label>
                     </th>
-                    <th>
-                        <a onclick="showSupplierInPopup('@Url.Action("AddOrEditSupplier", "Supplier",
-                                               new { id = 0}, Context.Request.Scheme)', 'New Supplier')"
-                           class="btn btn-success text-white"><i class="fas fa-random"></i>New Supplier</a>
+                    <th style="width: 20%">
+                        <label asp-for="@Model.First().Address"></label>
+                    </th>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().PostalCode"></label>
+                    </th>
+                    <th style="width: 20%">
+                        <label asp-for="@Model.First().HomePage"></label>
+                    </th>
+                    <th style="width: 4%">
+                        <label>Edit</label>
+                    </th>
+                    <th style="width: 4%">
+                        <label>Delete</label>
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var p in Model.SupplierPagedList)
-                {
-                    <tr>
-                        <td>
-                            @(Index++)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => p.CompanyName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => p.Phone)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => p.EmergencyMobile)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => p.Enabled)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => p.Address)
-                        </td>
-                        <td>
-                            <a onclick="showSupplierInPopup('@Url.Action("AddOrEditSupplier", "Supplier",
-                                       new { id = p.Id}, Context.Request.Scheme)', 'Update Supplier')"
-                               class="btn btn-warning text-white"><i class="fas fa-pencil-alt"></i></a>
-
-                            <form asp-controller="Supplier" asp-action="DeleteSupplier" asp-route-id="@p.Id"
-                                  onsubmit="return jQueryAjaxDeleteSupplier(this)" class="d-inline">
-                                <input type="submit" value="Delete" class="btn btn-danger" />
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
         </table>
-    </div>}
-
-<br />
-
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <p>
-        <pager class="pager-container" list="@Model.SupplierPagedList"
-               options="@SitePagedListRenderOptions.Boostrap4" asp-action="Suppliers" asp-controller="Supplier"
-               asp-route-query="@Model.SearchQuery" />
-    </p>
+    </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,6 +7,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 {
     public class StorageModel : AuditableModel
     {
+        public StorageModel()
+        {
+            ProductModels = new HashSet<ProductModel>();
+        }
         public int Id { get; set; }
 
         #region
@@ -47,7 +51,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
         #endregion
         public ICollection<ProductModel> ProductModels { get; set; }
 
-        public override string ToString() => $"Store: ({Name} - {Phone} - {Address} - {ProductModels} )";
+        public override string ToString() => $" ({Name} - {Phone} - {City} - {Address} -{Enabled})";
 
     }
 }

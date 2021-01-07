@@ -16,9 +16,9 @@
                     <span asp-validation-for="CompanyName" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label asp-for="Phone" class="control-label"></label>
-                    <input asp-for="Phone" type="text" class="form-control">
-                    <span asp-validation-for="Phone" class="text-danger"></span>
+                    <label asp-for="ContactName" class="control-label"></label>
+                    <input asp-for="ContactName" type="text" class="form-control">
+                    <span asp-validation-for="ContactName" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row">
@@ -28,9 +28,34 @@
                     <span asp-validation-for="EmergencyMobile" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label asp-for="Enabled" class="control-label"></label>
-                    <input asp-for="Enabled" type="checkbox" class="form-control">
-                    <span asp-validation-for="Enabled" class="text-danger"></span>
+                    <label asp-for="Phone" class="control-label"></label>
+                    <input asp-for="Phone" type="text" class="form-control">
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label asp-for="Enabled" class="control-label">Status</label>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="radio" asp-for="Enabled" id="active" value="true">
+                            <label for="active">Active</label>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="radio" asp-for="Enabled" id="deactive" value="false">
+                            <label for="deactive">Deactive</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="City" class="control-label"></label>
+                    <input asp-for="City" type="text" class="form-control">
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="PostalCode" class="control-label"></label>
+                    <input asp-for="PostalCode" type="text" class="form-control">
+                    <span asp-validation-for="PostalCode" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row">
@@ -40,12 +65,19 @@
                     <span asp-validation-for="Address" class="text-danger"></span>
                 </div>
             </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label asp-for="HomePage" class="control-label"></label>
+                    <input asp-for="HomePage" type="text" class="form-control">
+                    <span asp-validation-for="HomePage" class="text-danger"></span>
+                </div>
+            </div>
             <br />
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-primary text-white btn-lg btn-block" />
             </div>
-            <script src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.min.js")"type="text/javascript"></script>
-            <script src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js")"type="text/javascript"></script>
+            <script src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.min.js")" type="text/javascript"></script>
+            <script src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
         </form>
     </div>
 </div>

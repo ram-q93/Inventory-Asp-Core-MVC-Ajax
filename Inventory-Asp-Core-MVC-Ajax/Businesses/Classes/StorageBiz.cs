@@ -15,11 +15,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
     {
         private readonly IRepository _repository;
         private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
-        public StorageBiz(IRepository repository, IMapper mapper)
+        public StorageBiz(IRepository repository, IMapper mapper, ILogger logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         #region List
@@ -102,9 +104,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     return Result.Failed(
                        Error.WithData(ErrorCodes.StorageNameAlreadyInUse, new[] { "Storage name already in use!" }));
                 }
-                var store = _mapper.Map<StorageModel, Storage>(model);
-                _repository.Add(store);
+                var storage = _mapper.Map<StorageModel, Storage>(model);
+                _repository.Add(storage);
                 await _repository.CommitAsync();
+                _logger.Info($"Storage Added:{model}");
                 return Result.Successful();
             });
 
@@ -128,6 +131,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var storage = _mapper.Map<StorageModel, Storage>(model);
                 _repository.Update(storage);
                 await _repository.CommitAsync();
+                _logger.Info($"Storage Edited:{model}");
                 return Result.Successful();
             });
 
@@ -138,15 +142,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Delete(int id) =>
             Result.TryAsync(async () =>
             {
-                var storeResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id,
-                    includes: p => p.Products.Select(p => p.Image));
-                if (!storeResult.Success || storeResult?.Data == null)
+                var storageResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id);
+                if (!storageResult.Success || storageResult?.Data == null)
                 {
                     return Result.Failed(Error.WithData(ErrorCodes.StorageNotFoundById, new[] { "Storage not found!" }));
                 }
-                storeResult.Data.Products.Clear();
-                _repository.Remove(storeResult.Data);
+                _repository.Remove(storageResult.Data);
                 await _repository.CommitAsync();
+                _logger.Warn($"Storage Deleted:{storageResult.Data.Name}");
                 return Result.Successful();
             });
 
