@@ -86,7 +86,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion   
 
-        #region IsNameInUse
+        #region IsNameAvailable
 
         [AcceptVerbs("Get", "Post")]
         public async Task<JsonResult> IsNameAvailable(string name) =>

@@ -56,6 +56,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
 
         public DbSet<Storage> Storages { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Image> Images { get; set; }
     }
 }
