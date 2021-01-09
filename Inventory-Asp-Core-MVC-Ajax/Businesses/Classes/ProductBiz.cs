@@ -7,7 +7,6 @@ using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -56,10 +55,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                            searchBy == null ||
                            (s.Name != null && s.Name.Contains(searchBy)) ||
                            (s.Code != null && s.Code.Contains(searchBy)) ||
-                           (s.Description != null && s.Description.Contains(searchBy)||
-                           (s.Quantity < Convert.ToDecimal(searchBy)) ||
-                           (s.UnitePrice < Convert.ToDecimal(searchBy))),
-                           pagingModel);
+                           (s.Description != null && s.Description.Contains(searchBy))
+                            //||
+                            //(int.TryParse(searchBy, out q)  s.Quantity < q ) ||
+                            //(s.UnitePrice < Convert.ToDecimal(searchBy)))
+                            , pagingModel);
+
+                var storages = await _repository.ListAsNoTrackingAsync<Storage>();
 
                 if (!resultList.Success)
                 {
@@ -194,33 +196,33 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<ResultList<ProductModel>> GetStoragePagedListProductFilteredBySearchQuery(int storageId,
             int? page, string searchQuery) => ResultList<ProductModel>.TryAsync(async () =>
              {
-                 //var pagingModel = new PagingModel()
-                 //{
-                 //    PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
-                 //    PageSize = 5,
-                 //    Sort = "LastModified",
-                 //    SortDirection = SortDirection.DESC
-                 //};
-                 //var resultList = await repository.ListAsNoTrackingAsync<Product>(p => p.StorageId == storageId &&
-                 //    searchQuery == null ||
-                 //    (p.Name != null && p.Name.Contains(searchQuery)) ||
-                 //    (p.Quantity < Convert.ToInt32(searchQuery)) ||
-                 //    (p.Price < Convert.ToDecimal(searchQuery)),
-                 //    pagingModel, "LastModified");
+         //var pagingModel = new PagingModel()
+         //{
+         //    PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
+         //    PageSize = 5,
+         //    Sort = "LastModified",
+         //    SortDirection = SortDirection.DESC
+         //};
+         //var resultList = await repository.ListAsNoTrackingAsync<Product>(p => p.StorageId == storageId &&
+         //    searchQuery == null ||
+         //    (p.Name != null && p.Name.Contains(searchQuery)) ||
+         //    (p.Quantity < Convert.ToInt32(searchQuery)) ||
+         //    (p.Price < Convert.ToDecimal(searchQuery)),
+         //    pagingModel, "LastModified");
 
-                 //if (!resultList.Success)
-                 //{
-                 //    return ResultList<ProductModel>.Failed(Error.WithCode(ErrorCodes.PagedListFilteredBySearchQueryNotFound));
-                 //}
-                 //return new ResultList<ProductModel>()
-                 //{
-                 //    Success = true,
-                 //    Items = resultList.Items.Select(p => mapper.Map<Product, ProductModel>(p)).ToList(),
-                 //    PageNumber = resultList.PageNumber,
-                 //    PageSize = resultList.PageSize,
-                 //    TotalCount = resultList.TotalCount
-                 //};
-                 return new ResultList<ProductModel>();
+         //if (!resultList.Success)
+         //{
+         //    return ResultList<ProductModel>.Failed(Error.WithCode(ErrorCodes.PagedListFilteredBySearchQueryNotFound));
+         //}
+         //return new ResultList<ProductModel>()
+         //{
+         //    Success = true,
+         //    Items = resultList.Items.Select(p => mapper.Map<Product, ProductModel>(p)).ToList(),
+         //    PageNumber = resultList.PageNumber,
+         //    PageSize = resultList.PageSize,
+         //    TotalCount = resultList.TotalCount
+         //};
+         return new ResultList<ProductModel>();
              });
 
         #endregion
@@ -357,21 +359,21 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var productModel = _mapper.Map<Product, ProductModel>(productResult.Data);
                 productModel.StorageModel = _mapper.Map<Storage, StorageModel>(productResult.Data.Storage);
                 productModel.SupplierModel = _mapper.Map<Supplier, SupplierModel>(productResult.Data.Supplier);
-                //if (productResult.Data.Image != null)
-                //{
-                //    productModel.ImageModel = new ImageModel()
-                //    {
-                //        Id = productResult.Data.Image.Id,
-                //        Title = productResult.Data.Image.Title,
-                //        Caption = productResult.Data.Image.Caption,
-                //        ConvertedData = Convert.ToBase64String(productResult.Data.Image.Data)
-                //    };
-                //}
-                //else
-                //{
-                //    productModel.ImageModel = new ImageModel();
-                //}
-                return Result<ProductModel>.Successful(productModel);
+        //if (productResult.Data.Image != null)
+        //{
+        //    productModel.ImageModel = new ImageModel()
+        //    {
+        //        Id = productResult.Data.Image.Id,
+        //        Title = productResult.Data.Image.Title,
+        //        Caption = productResult.Data.Image.Caption,
+        //        ConvertedData = Convert.ToBase64String(productResult.Data.Image.Data)
+        //    };
+        //}
+        //else
+        //{
+        //    productModel.ImageModel = new ImageModel();
+        //}
+        return Result<ProductModel>.Successful(productModel);
             });
 
         #endregion

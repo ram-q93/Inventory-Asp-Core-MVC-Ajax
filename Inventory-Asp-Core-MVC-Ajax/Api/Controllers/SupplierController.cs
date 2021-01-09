@@ -13,8 +13,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
     {
         public readonly ISupplierBiz _supplierBiz;
 
-        public SupplierController(ISupplierBiz supplierBiz) => _supplierBiz = supplierBiz;
-
+        public SupplierController(ISupplierBiz supplierBiz)
+        {
+            _supplierBiz = supplierBiz;
+        }
 
         #region Suppliers
 

@@ -3,6 +3,7 @@ using AspNetCore.Lib.Enums;
 using AspNetCore.Lib.HttpClients;
 using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services;
+using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using System;
 using System.Threading.Tasks;
 
@@ -26,21 +27,25 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
             this.logger = logger;
         }
 
-        public async Task<Result<byte[]>> SendHttpRequestToGetImageByteArray()
+        public async Task<Result<Image>> SendHttpRequestToGetImageByteArray()
         {
             try
             {
                 var Uri = "/500";
                 logger.Info($"Request URl : {Host + Uri}");
                 var response = await GetAsync(Uri, null, Host);
-                logger.Info("Response : " + serializer.SerializeToJson(response));
                 var byteArrayResult = response.Content.ReadAsByteArrayAsync().Result;
-                return Result<byte[]>.Successful(byteArrayResult);
+                logger.Info("Response : ------------->  Arrived");
+
+                return Result<Image>.Successful(new Image()
+                {
+                    Data = byteArrayResult
+                });
             }
             catch (Exception e)
             {
                 logger.Exception(e);
-                return Result<byte[]>.Failed(Error.None());
+                return Result<Image>.Failed(Error.None());
             }
         }
     }

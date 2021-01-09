@@ -14,8 +14,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         private readonly IStorageBiz _storageBiz;
 
         public StorageController(IStorageBiz storageBiz)
-            => _storageBiz = storageBiz;
-
+        {
+            _storageBiz = storageBiz;
+        }
         #region Storages
 
         [HttpGet]

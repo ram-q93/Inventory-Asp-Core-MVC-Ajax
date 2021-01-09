@@ -34,10 +34,10 @@
                             <label asp-for="@(FirstProduct.Quantity)"></label>
                         </th>
                         <th>
-                            <label asp-for="@(FirstProduct.IsAvailable)"></label>
+                            <label asp-for="@(FirstProduct.Enabled)"></label>
                         </th>
                         <th>
-                            <label asp-for="@(FirstProduct.Price)"></label>
+                            <label asp-for="@(FirstProduct.UnitePrice)"></label>
                         </th>
                     </tr>
                 </thead>
@@ -55,10 +55,10 @@
                                 @(p.Quantity)
                             </td>
                             <td>
-                                @(p.IsAvailable)
+                                @(p.Enabled)
                             </td>
                             <td>
-                                @(p.Price)
+                                @(p.UnitePrice)
                             </td>
                         </tr>
                     }

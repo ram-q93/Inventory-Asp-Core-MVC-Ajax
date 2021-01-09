@@ -15,27 +15,27 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
         [Remote(action: "IsNameInUse", controller: "Product")]
         [Required(ErrorMessage = "You must provide a name.")]
         [StringLength(100, ErrorMessage = "value cannot exceed 100 characters.")]
-        [Display(Name = "Name", Prompt = "Name")]
+        [Display(Name = "Name", Prompt = "Name *")]
         #endregion
         public string Name { get; set; }
 
         #region
         [Required(ErrorMessage = "You must provide a Code.")]
         [StringLength(20, ErrorMessage = "value cannot exceed 20 characters.")]
-        [Display(Name = "Code", Prompt = "Code")]
-        #endregion
+        [Display(Name = "Code", Prompt = "Code *")]
+        #endregion 
         public string Code { get; set; }
 
         #region
         [Required(ErrorMessage = "You must provide Quantity.")]
-        [Display(Name = "Quantity", Prompt = "Quantity")]
+        [Display(Name = "Quantity", Prompt = "Quantity *")]
         #endregion
         public int Quantity { get; set; }
 
         #region
         [Required(ErrorMessage = "You must provide a price.")]
         [PrecisionAndScale(8, 2, ErrorMessage = "Price must not exceed $999999.99")]
-        [Display(Name = "Price($)", Prompt = "Price($)")]
+        [Display(Name = "Price($)", Prompt = "Price($) *")]
         #endregion
         public decimal UnitePrice { get; set; }
 
@@ -48,7 +48,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
         #region
         [Display(Name = "Enabled", Prompt = "Enabled")]
         #endregion
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = true;
 
         public int? StorageId { get; set; }
 

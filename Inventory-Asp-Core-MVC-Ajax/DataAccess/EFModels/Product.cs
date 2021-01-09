@@ -32,7 +32,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.EFModels
         public string Description { get; set; }
 
         [Required]
-        public bool Enable { get; set; }
+        public bool Enabled { get; set; }
 
         public int? StorageId { get; set; }
 

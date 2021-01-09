@@ -14,7 +14,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         private readonly IProductBiz _productBiz;
 
         public ProductController(IProductBiz productBiz)
-            => _productBiz = productBiz;
+        {
+            _productBiz = productBiz;
+        }
 
         #region Products
 
@@ -23,7 +25,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Storages([FromBody] DataTableParameters dtParameters)
+        public async Task<IActionResult> Products([FromBody] DataTableParameters dtParameters)
             => Json((await _productBiz.List(dtParameters)).Data);
 
         #endregion
@@ -79,7 +81,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await _.Delete(id);
+            var result = await _productBiz.Delete(id);
             if (!result.Success)
                 return Json(this.HtmlReponse(result: result));
             return Json(this.HtmlReponse());
