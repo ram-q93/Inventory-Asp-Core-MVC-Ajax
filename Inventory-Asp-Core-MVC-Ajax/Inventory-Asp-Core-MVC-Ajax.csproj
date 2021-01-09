@@ -44,8 +44,4 @@
     <Folder Include="Views\Home\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PagedList.Core.Mvc\PagedList.Core.Mvc.csproj" />
-  </ItemGroup>
-
 </Project>

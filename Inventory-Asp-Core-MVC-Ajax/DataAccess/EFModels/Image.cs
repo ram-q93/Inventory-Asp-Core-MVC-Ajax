@@ -1,22 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Inventory_Asp_Core_MVC_Ajax.EFModels
+namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels
 {
-    [Table("Images")]
     public class Image
     {
         public int Id { get; set; }
-
-        [MaxLength(50)]
-        [Column(TypeName = "varchar(50)")]
-        public string Title { get; set; }
-
-        [MaxLength(150)]
-        [Column(TypeName = "varchar(150)")]
-        public string Caption { get; set; }
-
         public byte[] Data { get; set; }
-
     }
 }

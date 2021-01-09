@@ -11,7 +11,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
         {
             services.AddAutoMapper(typeof(StorageProfile),
                  typeof(ProductProfile),
-                 typeof(ImageProfile),
+               //  typeof(ImageProfile),
                  typeof(SupplierProfile));
 
             return services;

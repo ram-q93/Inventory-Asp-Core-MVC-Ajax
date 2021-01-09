@@ -84,12 +84,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
                         {
                             p.Supplier = suppliers[new Random().Next(1, 12)];
                             imageByteArrList?.RemoveAt(1);
-                            p.Image = new Image()
-                            {
-                                Title = $"{p.Name}-{new Random().Next(30, 100000)}.jpg",
-                                Data = imageByteArrList[index++],
-                                Caption = $"This is caption...{new Random().Next(30, 100000)}"
-                            };
+                            //p.Image = new Image()
+                            //{
+                            //    Title = $"{p.Name}-{new Random().Next(30, 100000)}.jpg",
+                            //    Data = imageByteArrList[index++],
+                            //    Caption = $"This is caption...{new Random().Next(30, 100000)}"
+                            //};
 
                         });
                     });

@@ -18,18 +18,16 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
     {
         private readonly IRepository _repository;
         private readonly IMapper _mapper;
-        private readonly IImageBiz _imageBiz;
 
-        public ProductBiz(IRepository repository, IMapper mapper, IImageBiz imageBiz)
+        public ProductBiz(IRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
-            _imageBiz = imageBiz;
         }
 
         #region List
 
-        public Task<Result<object>> List(DtParameters dtParameters) =>
+        public Task<Result<object>> List(DataTableParameters dtParameters) =>
             Result<object>.TryAsync(async () =>
             {
                 var searchBy = dtParameters.Search?.Value;
@@ -55,12 +53,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 };
 
                 var resultList = await _repository.SortedPageListAsNoTrackingAsync<Product>(s =>
-                                        searchBy == null ||
-                                        (s.Name != null && s.Name.ToUpper().Contains(searchBy.ToUpper())) ||
-                                        (s.Barcode != null && s.Barcode.ToUpper().Contains(searchBy.ToUpper())) ||
-                                        (s.Type != null && s.Type.Contains(searchBy.ToUpper())) ||
-                                        (s.Description != null && s.Description.ToUpper().Contains(searchBy.ToUpper())),
-                                        pagingModel);
+                           searchBy == null ||
+                           (s.Name != null && s.Name.Contains(searchBy)) ||
+                           (s.Code != null && s.Code.Contains(searchBy)) ||
+                           (s.Description != null && s.Description.Contains(searchBy)||
+                           (s.Quantity < Convert.ToDecimal(searchBy)) ||
+                           (s.UnitePrice < Convert.ToDecimal(searchBy))),
+                           pagingModel);
 
                 if (!resultList.Success)
                 {
@@ -349,7 +348,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             Result<ProductModel>.TryAsync(async () =>
             {
                 var productResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id,
-                    p => p.Image, p => p.Storage, p => p.Supplier);
+                    //p => p.Image,
+                    p => p.Storage, p => p.Supplier);
                 if (!productResult.Success)
                 {
                     return Result<ProductModel>.Failed(Error.WithCode(ErrorCodes.ProductDetailsNotFoundById));
@@ -357,32 +357,21 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var productModel = _mapper.Map<Product, ProductModel>(productResult.Data);
                 productModel.StorageModel = _mapper.Map<Storage, StorageModel>(productResult.Data.Storage);
                 productModel.SupplierModel = _mapper.Map<Supplier, SupplierModel>(productResult.Data.Supplier);
-                if (productResult.Data.Image != null)
-                {
-                    productModel.ImageModel = new ImageModel()
-                    {
-                        Id = productResult.Data.Image.Id,
-                        Title = productResult.Data.Image.Title,
-                        Caption = productResult.Data.Image.Caption,
-                        ConvertedData = Convert.ToBase64String(productResult.Data.Image.Data)
-                    };
-                }
-                else
-                {
-                    productModel.ImageModel = new ImageModel();
-                }
+                //if (productResult.Data.Image != null)
+                //{
+                //    productModel.ImageModel = new ImageModel()
+                //    {
+                //        Id = productResult.Data.Image.Id,
+                //        Title = productResult.Data.Image.Title,
+                //        Caption = productResult.Data.Image.Caption,
+                //        ConvertedData = Convert.ToBase64String(productResult.Data.Image.Data)
+                //    };
+                //}
+                //else
+                //{
+                //    productModel.ImageModel = new ImageModel();
+                //}
                 return Result<ProductModel>.Successful(productModel);
-            });
-
-        #endregion
-
-        #region IsNameInUse
-
-        public Task<Result<bool>> IsNameInUse(string name) =>
-            Result<bool>.TryAsync(async () =>
-            {
-                var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Product>(s => s.Name == name);
-                return Result<bool>.Successful(result.Data == null);
             });
 
         #endregion

@@ -1,95 +1,43 @@
-﻿@using Inventory_Asp_Core_MVC_Ajax.Businesses.Common
-@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductFilterModel
-@{
-    var Index = (Model.ProductPagedList.PageNumber * Model.ProductPagedList.PageSize) - (Model.ProductPagedList.PageSize - 1);
-    var storageId = Model.ProductPagedList.Count == 0 ? 0 : Model.ProductPagedList?.First()?.StorageId;
-}
+﻿@model IEnumerable<Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductModel>
 
-@* For displaying products *@
-@if (Model.ProductPagedList.First().Id == 0)
-{
-    <div class="alert alert-info">No Products Availale
-        <a onclick="showProductInPopup('@Url.Action("AddOrEditProduct", "Product",
-                                               new { id = 0, storageId=storageId}, Context.Request.Scheme)', 'New Product')"
-           class="btn btn-success text-white"><i class="fas fa-random"></i>New Product</a>
-        </div> }
-else
-{
-    var FirstProduct = Model.ProductPagedList.First();
+@*For displaying product info*@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Product Table</h6>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-sm table-hover table-condensed"
+               id="table-product" width="100%" cellspacing="0" style="color: black;">
+            @Html.AntiForgeryToken()
 
-    <div class="container-fluid">
-        <table class="table">
             <thead>
                 <tr>
-                    <th>
-                        #
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().Name"></label>
                     </th>
-                    <th>
-                        <label asp-for="@FirstProduct.Name"></label>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().Code"></label>
                     </th>
-                    <th>
-                        <label asp-for="@FirstProduct.Quantity"></label>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().Quantity"></label>
                     </th>
-                    <th>
-                        <label asp-for="@FirstProduct.IsAvailable"></label>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().UnitePrice"></label>
                     </th>
-                    <th>
-                        <label asp-for="@FirstProduct.Price"></label>
+                    <th style="width: 4%">
+                        <label>Status</label>
                     </th>
-                    <th>
-                        <a onclick="showProductInPopup('@Url.Action("AddOrEditProduct", "Product",
-                                               new { id = 0, storageId=storageId}, Context.Request.Scheme)', 'New Product')"
-                           class="btn btn-success text-white"><i class="fas fa-random"></i>New Product</a>
+                    <th style="width: 10%">
+                        <label asp-for="@Model.First().Description"></label>
+                    </th>
+                    <th style="width: 4%">
+                        <label>Edit</label>
+                    </th>
+                    <th style="width: 4%">
+                        <label>Delete</label>
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var p in Model.ProductPagedList)
-                {
-                    <tr>
-                        <td>
-                            @(Index++)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => p.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => p.Quantity)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => p.IsAvailable)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => p.Price)
-                        </td>
-                        <td>
-                            <a onclick="showProductDetailsInPopup('@Url.Action("ProductDetails", "Product",
-                                       new { id = p.Id}, Context.Request.Scheme)', 'Product Details')"
-                               class="btn btn-info text-white">Details</a>
-
-                            <a onclick="showProductInPopup('@Url.Action("AddOrEditProduct", "Product",
-                                       new { id = p.Id}, Context.Request.Scheme)', 'Update Product')"
-                               class="btn btn-warning text-white"><i class="fas fa-pencil-alt"></i></a>
-
-                            <form asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@p.Id" asp-route-storageId="@p.StorageId"
-                                  onsubmit="return jQueryAjaxDeleteProduct(this)" class="d-inline">
-                                <input type="submit" value="Delete" class="btn btn-danger" />
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
         </table>
-    </div>}
-
-<br />
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <p class="align-items-center">
-        <pager class="pager-container" list="@Model.ProductPagedList"
-               options="@SitePagedListRenderOptions.Boostrap4" asp-action="Products" asp-controller="Product"
-               asp-route-storageId=@storageId asp-route-query="@Model.SearchQuery" />
-    </p>
+    </div>
 </div>
-
-
-

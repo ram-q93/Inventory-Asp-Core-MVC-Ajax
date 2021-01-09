@@ -22,7 +22,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         public IActionResult Suppliers() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Suppliers([FromBody] DtParameters dtParameters)
+        public async Task<IActionResult> Suppliers([FromBody] DataTableParameters dtParameters)
             => Json((await _supplierBiz.List(dtParameters)).Data);
 
         #endregion

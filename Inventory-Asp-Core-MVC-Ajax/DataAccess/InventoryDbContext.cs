@@ -30,6 +30,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
             modelBuilder.Entity<Storage>().HasIndex(s => s.Name).IsUnique();
             modelBuilder.Entity<Product>().HasIndex(s => s.Name).IsUnique();
             modelBuilder.Entity<Supplier>().HasIndex(s => s.CompanyName).IsUnique();
+            modelBuilder.Entity<Category>().HasIndex(s => s.Name).IsUnique();
         }
 
 
@@ -56,6 +57,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
         public DbSet<Storage> Storages { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Image> Images { get; set; }
     }
 }

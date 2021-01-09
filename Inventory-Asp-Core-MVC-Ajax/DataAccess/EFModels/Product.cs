@@ -18,29 +18,27 @@ namespace Inventory_Asp_Core_MVC_Ajax.EFModels
         [Required]
         [MaxLength(20)]
         [Column(TypeName = "varchar(20)")]
-        public string Barcode { get; set; }
-
-        [MaxLength(50)]
-        [Column(TypeName = "varchar(50)")]
-        public string Type { get; set; }
+        public string Code { get; set; }
 
         [Required]
         public int Quantity { get; set; }
+
+        [Required]
+        [Column(TypeName = "decimal(8, 2)")]
+        public decimal UnitePrice { get; set; }
 
         [MaxLength(1000)]
         [Column(TypeName = "varchar(1000)")]
         public string Description { get; set; }
 
         [Required]
-        public bool IsAvailable { get; set; }
+        public bool Enable { get; set; }
 
-        [Required]
-        [Column(TypeName = "decimal(8, 2)")]
-        public decimal Price { get; set; }
+        public int? StorageId { get; set; }
 
-        public int StorageId { get; set; }
+        public int? SupplierId { get; set; }
 
-        public int SupplierId { get; set; }
+        public int? CategoryId { get; set; }
 
         public int? ImageId { get; set; }
 
@@ -48,10 +46,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.EFModels
 
         public Supplier Supplier { get; set; }
 
+        public Category Category { get; set; }
+
         public Image Image { get; set; }
-
-
-
-
     }
 }

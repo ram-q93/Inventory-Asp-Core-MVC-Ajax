@@ -10,8 +10,8 @@ namespace InventoryProject.Business.Interfaces
         Task<Result> Delete(int id);
         Task<Result> Edit(StorageModel model);
         Task<Result<StorageModel>> GetById(int id);
-        Task<Result<object>> List(DtParameters dtParameters);
-        Task<Result<bool>> IsNameInUse(string name,int? id = null);
+        Task<Result<object>> List(DataTableParameters dtParameters);
+        Task<Result<bool>> IsNameInUse(string name, int? id = null);
 
     }
 }

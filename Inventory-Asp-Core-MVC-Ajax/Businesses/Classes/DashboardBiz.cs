@@ -23,7 +23,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                  {
                      TotalStorages = (await _repository.CountAllAsync<Storage>()).Data,
                      TotalSuppliers = (await _repository.CountAllAsync<Supplier>(s => s.Enabled)).Data,
-                     TotalProducts = (await _repository.CountAllAsync<Product>(s => s.IsAvailable)).Data
+                     TotalProducts = (await _repository.CountAllAsync<Product>()).Data
                  }));
 
 

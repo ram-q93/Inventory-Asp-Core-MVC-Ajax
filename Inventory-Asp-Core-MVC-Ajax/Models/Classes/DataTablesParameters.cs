@@ -5,10 +5,7 @@ using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 {
-    public class DataTablesModel
-    {
-    }
-    public class DtParameters
+    public class DataTableParameters
     {
         public int Draw { get; set; }
         public DtColumn[] Columns { get; set; }

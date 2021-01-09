@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Inventory_Asp_Core_MVC_Ajax.Migrations
+namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20201222004525_modifiyEfModelProperties")]
-    partial class modifiyEfModelProperties
+    [Migration("20210109163039_AddImage")]
+    partial class AddImage
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,57 @@ namespace Inventory_Asp_Core_MVC_Ajax.Migrations
                 .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("varchar(1000)")
+                        .HasMaxLength(1000);
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<byte[]>("Data")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
+                });
 
             modelBuilder.Entity("Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Supplier", b =>
                 {
@@ -89,29 +140,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Migrations
                     b.ToTable("Suppliers");
                 });
 
-            modelBuilder.Entity("Inventory_Asp_Core_MVC_Ajax.EFModels.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Caption")
-                        .HasColumnType("varchar(150)")
-                        .HasMaxLength(150);
-
-                    b.Property<byte[]>("Data")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Images");
-                });
-
             modelBuilder.Entity("Inventory_Asp_Core_MVC_Ajax.EFModels.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -119,7 +147,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Barcode")
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Code")
                         .IsRequired()
                         .HasColumnType("varchar(20)")
                         .HasMaxLength(20);
@@ -134,11 +165,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Migrations
                         .HasColumnType("varchar(1000)")
                         .HasMaxLength(1000);
 
+                    b.Property<bool>("Enable")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("ImageId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
@@ -151,23 +182,21 @@ namespace Inventory_Asp_Core_MVC_Ajax.Migrations
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(8, 2)");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("StorageId")
+                    b.Property<int?>("StorageId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SupplierId")
+                    b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Type")
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50);
+                    b.Property<decimal>("UnitePrice")
+                        .HasColumnType("decimal(8, 2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("ImageId");
 
@@ -192,11 +221,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Migrations
                         .HasColumnType("varchar(150)")
                         .HasMaxLength(150);
 
+                    b.Property<string>("City")
+                        .HasColumnType("varchar(100)");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Enabled")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
@@ -223,21 +258,21 @@ namespace Inventory_Asp_Core_MVC_Ajax.Migrations
 
             modelBuilder.Entity("Inventory_Asp_Core_MVC_Ajax.EFModels.Product", b =>
                 {
-                    b.HasOne("Inventory_Asp_Core_MVC_Ajax.EFModels.Image", "Image")
+                    b.HasOne("Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Image", "Image")
                         .WithMany()
                         .HasForeignKey("ImageId");
 
                     b.HasOne("Inventory_Asp_Core_MVC_Ajax.EFModels.Storage", "Storage")
                         .WithMany("Products")
-                        .HasForeignKey("StorageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StorageId");
 
                     b.HasOne("Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Supplier", "Supplier")
                         .WithMany("Products")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SupplierId");
                 });
 #pragma warning restore 612, 618
         }

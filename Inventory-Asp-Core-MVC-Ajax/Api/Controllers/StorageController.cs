@@ -5,7 +5,6 @@ using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
@@ -14,7 +13,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
     {
         private readonly IStorageBiz _storageBiz;
 
-        public StorageController(IStorageBiz storageBiz) => _storageBiz = storageBiz;
+        public StorageController(IStorageBiz storageBiz)
+            => _storageBiz = storageBiz;
 
         #region Storages
 
@@ -22,8 +22,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         public IActionResult Storages() => View();
 
         [HttpPost]
-      //  [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Storages([FromBody] DtParameters dtParameters)
+        //  [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Storages([FromBody] DataTableParameters dtParameters)
             => Json((await _storageBiz.List(dtParameters)).Data);
 
         #endregion

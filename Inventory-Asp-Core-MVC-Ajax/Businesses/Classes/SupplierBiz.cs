@@ -26,7 +26,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region List
 
-        public Task<Result<object>> List(DtParameters dtParameters) =>
+        public Task<Result<object>> List(DataTableParameters dtParameters) =>
             Result<object>.TryAsync(async () =>
             {
                 var searchBy = dtParameters.Search?.Value;

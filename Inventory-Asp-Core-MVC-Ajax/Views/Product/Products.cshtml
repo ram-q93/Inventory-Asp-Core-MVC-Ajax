@@ -1,31 +1,76 @@
-﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductFilterModel
+﻿@model IEnumerable<Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductModel>
+
 @{
     ViewData["Title"] = "Products";
-    var searchPlaceHolder = Model.SearchQuery == null ? "Search..." : @Model.SearchQuery;
-    var storageId = @Model.ProductPagedList.First().StorageId;
 }
-
-
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-4">
-            <form class="form-inline my-2 my-lg-0" method="get" asp-controller="Product" asp-action="Products">
-                <input type="hidden" asp-for="@storageId" />
-                <input class="form-control mr-sm-2 form-control-sm" type="search" placeholder=@searchPlaceHolder
-                       aria-label="Search" name="query">
-                <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">Search</button>
-            </form>
-        </div>
-        <div class="col-1">
-            <a asp-controller="Product" asp-action="Products" asp-route-storageId="@Model.ProductPagedList.First().StorageId"
-               class="btn btn-outline-secondary my-2 my-sm-0 btn-sm">Clear</a>
-        </div>
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <a asp-controller="product" asp-action="products">
+                @ViewData["Title"]
+                <i class="fas fa-redo fa-xs" style="color:#224abe"></i>
+            </a>
+        </h1>
+
+        <ul class="navbar-nav ml-auto">
+            <div class="topbar-divider d-none d-sm-block">
+                <!-- Topbar Search -->
+                <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border- " placeholder="Search by..."
+                               aria-label="Search" aria-describedby="basic-addon2" id="search-product-input-id">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" onclick="SearchProduct()">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                <!--<li class="nav-item dropdown no-arrow d-sm-none">
+                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                    </a>-->
+                <!-- Dropdown - Messages -->
+                <!--<div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                        <form class="form-inline mr-auto w-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small"
+                                       placeholder="Search for..." aria-label="Search"
+                                       aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>-->
+
+                <a class="d-none d-sm-inline-block btn  my-btn-success shadow-sm "
+                   onclick="showProductInPopup('0', 'New Product')">
+                    <span class="icon text-white">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text text-white font-weight-bold">&nbsp;&nbsp;New Product</span>
+                </a>
+
+                <a href="#" class="d-none d-sm-inline-block btn  btn-primary shadow-sm">
+                    <i class="fas fa-download fa-sm text-white"></i> Generate Report
+                </a>
+            </div>
+        </ul>
     </div>
     <br />
-    <div id="view-all-products">
+    <div id="view-all-storages">
         @await Html.PartialAsync("_Products", Model)
     </div>
 </div>
+
 
 <div class="modal fade bd-example-modal-xl" id="product-form-modal" tabindex="-1"
      role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -43,4 +88,3 @@
         </div>
     </div>
 </div>
-

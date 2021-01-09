@@ -1,53 +1,30 @@
 ﻿using AspNetCore.Lib.Attributes;
-using AspNetCore.Lib.Extensions;
 using AspNetCore.Lib.Models;
-using Inventory_Asp_Core_MVC_Ajax.Businesses;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
+using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using Microsoft.AspNetCore.Mvc;
-using PagedList.Core;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IProductBiz productBiz;
-        private readonly IImageBiz imageBiz;
+        private readonly IProductBiz _productBiz;
 
-        public ProductController(
-            IProductBiz productBiz,
-            IImageBiz imageBiz)
-        {
-            this.productBiz = productBiz;
-            this.imageBiz = imageBiz;
-        }
-
+        public ProductController(IProductBiz productBiz)
+            => _productBiz = productBiz;
 
         #region Products
 
-        [HttpGet, ActionName("Products")]
-        public async Task<IActionResult> Products(int storageId, string query, int? page = null)
-            => View(await GetProductFilterModel(storageId, query, page));
+        [HttpGet]
+        public IActionResult Products() => View();
 
-        private async Task<ProductFilterModel> GetProductFilterModel(int storageId, string query = null, int? page = null)
-        {
-            var result = await productBiz.GetStoragePagedListProductFilteredBySearchQuery(storageId, page, query);
-            if (result.TotalCount == 0)
-                return new ProductFilterModel()
-                {
-                    ProductPagedList = new StaticPagedList<ProductModel>(new[] { new ProductModel() { StorageId = storageId } },
-                    result.PageNumber + 1, result.PageSize, (int)result.TotalCount),
-                    SearchQuery = query
-                };
-            return new ProductFilterModel()
-            {
-                ProductPagedList = new StaticPagedList<ProductModel>(result.Items,
-                result.PageNumber + 1, result.PageSize, (int)result.TotalCount),
-                SearchQuery = query
-            };
-        }
+
+        [HttpPost]
+        public async Task<IActionResult> Storages([FromBody] DataTableParameters dtParameters)
+            => Json((await _productBiz.List(dtParameters)).Data);
 
         #endregion
 
@@ -55,94 +32,68 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [HttpGet, ActionName("AddOrEditProduct")]
         [NoDirectAccess]
-        public async Task<IActionResult> AddOrEdit(int id, int storageId)
+        public async Task<IActionResult> AddOrEdit(int id = 0)
         {
             if (id == 0)
             {
-                return View(new ProductModel() { StorageId = storageId });
+                return View(new ProductModel());
             }
             else
             {
-                var productResult = await productBiz.GetById(id);
+                var productResult = await _productBiz.GetById(id);
                 if (!productResult.Success)
                     return NotFound();
                 return View(productResult.Data);
             }
         }
 
-
         [HttpPost, ActionName("AddOrEditProduct")]
         [ValidateAntiForgeryToken]
-        [NoDirectAccess]
         public async Task<IActionResult> AddOrEdit([Bind] ProductModel model)
         {
             if (!ModelState.IsValid)
             {
-                return Respo(false, "AddOrEditProduct", model);
+                return Json(this.HtmlReponse(view: "AddOrEditProduct", model,
+                        Result.Failed(Error.WithCode(ErrorCodes.InvalidModel))));
             }
-
-            var validation = model.ProductPicture.IsValidImage();
-            if (!validation.Success)
+            if (model.Id == 0)
             {
-                return Respo(false, "AddOrEditProduct", model, validation);
-            }
-
-            if (model.Id == 0) //Add
-            {
-                var result = await productBiz.Add(model);
+                var result = await _productBiz.Add(model);
                 if (!result.Success)
-                    return Respo(false, "AddOrEditProduct", model, result);
+                    return Json(this.HtmlReponse(view: "AddOrEditProduct", model, result));
             }
-            else //Edit
+            else
             {
-                var result = await productBiz.Edit(model);
+                var result = await _productBiz.Edit(model);
                 if (!result.Success)
-                    return Respo(false, "AddOrEditProduct", model, result);
+                    return Json(this.HtmlReponse(view: "AddOrEditProduct", model, result));
             }
-            return Respo(success: true, view: "_Products", model: await GetProductFilterModel(model.StorageId));
+            return Json(this.HtmlReponse());
         }
 
         #endregion
 
         #region Delete
 
-        [HttpPost, ActionName("DeleteProduct")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, int storageId)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = await productBiz.Delete(id);
+            var result = await _.Delete(id);
             if (!result.Success)
-                return Respo(false, "_Products", null, result);
-            return Respo(true, "_Products", await GetProductFilterModel(storageId));
+                return Json(this.HtmlReponse(result: result));
+            return Json(this.HtmlReponse());
         }
 
-        #endregion
+        #endregion   
 
-        #region ProductDetails
-
-        [HttpGet, ActionName("ProductDetails")]
-        public async Task<IActionResult> Details(int id)
-        {
-            var productResult = await productBiz.Details(id);
-            return View(productResult.Data);
-        }
-
-        #endregion
-
-        #region IsNameInUse
+        #region IsNameAvailable
 
         [AcceptVerbs("Get", "Post")]
-        public async Task<JsonResult> IsNameInUse(string name) =>
-            (await productBiz.IsNameInUse(name)).Data ? Json(true) : Json($"Name {name} is already in use.");
+        public async Task<JsonResult> IsNameAvailable(string name) =>
+            (await _productBiz.IsNameInUse(name)).Data ? Json($"Name {name} is already in use.") : Json(true);
 
         #endregion
-
-        private IActionResult Respo(bool success, string view, object model, Result result = null) => Json(new
-        {
-            success,
-            error = success ? "" : $"Error {result?.Error?.Code}",
-            html = this.RenderRazorViewToString(view, model)
-        });
     }
 }
 
