@@ -7,6 +7,7 @@ using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,12 +17,16 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
     public class ProductBiz : IProductBiz
     {
         private readonly IRepository _repository;
+        private readonly IImageBiz _imageBiz;
         private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
-        public ProductBiz(IRepository repository, IMapper mapper)
+        public ProductBiz(IRepository repository, IImageBiz imageBiz, IMapper mapper, ILogger logger)
         {
             _repository = repository;
+            _imageBiz = imageBiz;
             _mapper = mapper;
+            _logger = logger;
         }
 
         #region List
@@ -51,17 +56,19 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     SortDirection = orderAscendingDirection ? SortDirection.ASC : SortDirection.DESC
                 };
 
-                var resultList = await _repository.SortedPageListAsNoTrackingAsync<Product>(s =>
+                var resultList = await _repository.SortedPageListAsNoTrackingAsync<Product>(p =>
                            searchBy == null ||
-                           (s.Name != null && s.Name.Contains(searchBy)) ||
-                           (s.Code != null && s.Code.Contains(searchBy)) ||
-                           (s.Description != null && s.Description.Contains(searchBy))
-                            //||
+                           (p.Name != null && p.Name.Contains(searchBy)) ||
+                           (p.Code != null && p.Code.Contains(searchBy)) ||
+                           (p.Description != null && p.Description.Contains(searchBy)),
                             //(int.TryParse(searchBy, out q)  s.Quantity < q ) ||
                             //(s.UnitePrice < Convert.ToDecimal(searchBy)))
-                            , pagingModel);
+                            pagingModel,
+                            p => p.Storage,
+                            p => p.Supplier,
+                            p => p.Category);
 
-                var storages = await _repository.ListAsNoTrackingAsync<Storage>();
+
 
                 if (!resultList.Success)
                 {
@@ -69,14 +76,23 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                         Error.WithData(ErrorCodes.ProductsNotFound, new[] { "Some thing went wrong!" }));
                 }
 
-                var totalFilteredCount = resultList.TotalCount;
                 var totalCount = (await _repository.CountAllAsync<Product>()).Data;
+                var totalFilteredCount = resultList.TotalCount;
+                var productModels = resultList.Items.Select(p =>
+                {
+                    var productModel = _mapper.Map<Product, ProductModel>(p);
+                    productModel.StorageName = p.Storage?.Name;
+                    productModel.SupplierCompanyName = p.Supplier?.CompanyName;
+                    productModel.CategoryName = p.Category?.Name;
+                    return productModel;
+                }).ToList();
+
                 return Result<object>.Successful(new
                 {
                     draw = dtParameters.Draw,
                     recordsTotal = totalCount,
                     recordsFiltered = totalFilteredCount,
-                    data = resultList.Items
+                    data = productModels
                 });
             });
 
@@ -87,13 +103,23 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result<ProductModel>> GetById(int id) =>
             Result<ProductModel>.TryAsync(async () =>
             {
-                var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id);
+                var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id,
+                   p => p.Category,
+                   p => p.Storage,
+                   p => p.Supplier,
+                   p => p.Image);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result<ProductModel>.Failed(
-                        Error.WithData(ErrorCodes.ProductNotFoundById, new[] { "Product not found!" }));
+                    return Result<ProductModel>.Failed(Error.WithData(ErrorCodes.ProductNotFoundById,
+                        new[] { "Product not found!" }));
                 }
-                return Result<ProductModel>.Successful(_mapper.Map<Product, ProductModel>(result.Data));
+                var product = _mapper.Map<Product, ProductModel>(result.Data);
+                product.ImageModel = new ImageModel()
+                {
+                    Id = (int)(result.Data.Image?.Id),
+                    Base64String = Convert.ToBase64String(result.Data.Image?.Data)
+                };
+                return Result<ProductModel>.Successful(product);
             });
 
         #endregion
@@ -105,11 +131,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.Name)).Data)
                 {
-                    return Result.Failed(
-                       Error.WithData(ErrorCodes.ProductNameAlreadyInUse, new[] { "Product name already in use!" }));
+                    return Result.Failed(Error.WithData(ErrorCodes.ProductNameAlreadyInUse,
+                       new[] { "Product name already in use!" }));
                 }
-                var product = _mapper.Map<ProductModel, Product>(model);
-                _repository.Add(product);
+
+                var newProduct = _mapper.Map<ProductModel, Product>(model);
+                newProduct.Image = _imageBiz.CreateImage(model.ProductPicture).Data;
+
+                _repository.Add(newProduct);
                 await _repository.CommitAsync();
                 return Result.Successful();
             });
@@ -123,15 +152,27 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.Name, model.Id)).Data)
                 {
-                    return Result.Failed(
-                      Error.WithData(ErrorCodes.ProductNameAlreadyInUse, new[] { "Product name already in use!" }));
+                    return Result.Failed(Error.WithData(ErrorCodes.ProductNameAlreadyInUse,
+                      new[] { "Product name already in use!" }));
                 }
                 var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.ProductNotFoundById, new[] { "Product not found!" }));
+                    return Result.Failed(Error.WithData(ErrorCodes.ProductNotFoundById,
+                        new[] { "Product not found!" }));
                 }
-                var product = _mapper.Map<ProductModel, Product>(model);
+
+                var product = result.Data;
+                product.Name = model.Name;
+                product.Code = model.Code;
+                product.UnitePrice = model.UnitePrice;
+                product.Quantity = model.Quantity;
+                product.Enabled = model.Enabled;
+                product.Description = model.Description;
+                product.CategoryId = model.CategoryId;
+                product.StorageId = model.StorageId;
+                product.SupplierId = model.SupplierId;
+
                 _repository.Update(product);
                 await _repository.CommitAsync();
                 return Result.Successful();
@@ -144,14 +185,24 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result> Delete(int id) =>
             Result.TryAsync(async () =>
             {
-                var storeResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id,
-                    includes: p => p.Image);
-                if (!storeResult.Success || storeResult?.Data == null)
+                var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id);
+                if (!result.Success || result?.Data == null)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.ProductNotFoundById, new[] { "Product not found!" }));
+                    return Result.Failed(Error.WithData(ErrorCodes.ProductNotFoundById,
+                        new[] { "Product not found!" }));
                 }
-                _repository.Remove(storeResult.Data);
+
+                var product = result.Data;
+                if (result.Data.ImageId != null)
+                {
+                    var imageResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Image>(i =>
+                     i.Id == product.ImageId);
+                    _repository.Remove(imageResult?.Data);
+                }
+
+                _repository.Remove(product);
                 await _repository.CommitAsync();
+                _logger.Warn($"Product Deleted  id:{product.Id} name:{product.Name}");
                 return Result.Successful();
             });
 
@@ -196,33 +247,33 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<ResultList<ProductModel>> GetStoragePagedListProductFilteredBySearchQuery(int storageId,
             int? page, string searchQuery) => ResultList<ProductModel>.TryAsync(async () =>
              {
-         //var pagingModel = new PagingModel()
-         //{
-         //    PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
-         //    PageSize = 5,
-         //    Sort = "LastModified",
-         //    SortDirection = SortDirection.DESC
-         //};
-         //var resultList = await repository.ListAsNoTrackingAsync<Product>(p => p.StorageId == storageId &&
-         //    searchQuery == null ||
-         //    (p.Name != null && p.Name.Contains(searchQuery)) ||
-         //    (p.Quantity < Convert.ToInt32(searchQuery)) ||
-         //    (p.Price < Convert.ToDecimal(searchQuery)),
-         //    pagingModel, "LastModified");
+                 //var pagingModel = new PagingModel()
+                 //{
+                 //    PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
+                 //    PageSize = 5,
+                 //    Sort = "LastModified",
+                 //    SortDirection = SortDirection.DESC
+                 //};
+                 //var resultList = await repository.ListAsNoTrackingAsync<Product>(p => p.StorageId == storageId &&
+                 //    searchQuery == null ||
+                 //    (p.Name != null && p.Name.Contains(searchQuery)) ||
+                 //    (p.Quantity < Convert.ToInt32(searchQuery)) ||
+                 //    (p.Price < Convert.ToDecimal(searchQuery)),
+                 //    pagingModel, "LastModified");
 
-         //if (!resultList.Success)
-         //{
-         //    return ResultList<ProductModel>.Failed(Error.WithCode(ErrorCodes.PagedListFilteredBySearchQueryNotFound));
-         //}
-         //return new ResultList<ProductModel>()
-         //{
-         //    Success = true,
-         //    Items = resultList.Items.Select(p => mapper.Map<Product, ProductModel>(p)).ToList(),
-         //    PageNumber = resultList.PageNumber,
-         //    PageSize = resultList.PageSize,
-         //    TotalCount = resultList.TotalCount
-         //};
-         return new ResultList<ProductModel>();
+                 //if (!resultList.Success)
+                 //{
+                 //    return ResultList<ProductModel>.Failed(Error.WithCode(ErrorCodes.PagedListFilteredBySearchQueryNotFound));
+                 //}
+                 //return new ResultList<ProductModel>()
+                 //{
+                 //    Success = true,
+                 //    Items = resultList.Items.Select(p => mapper.Map<Product, ProductModel>(p)).ToList(),
+                 //    PageNumber = resultList.PageNumber,
+                 //    PageSize = resultList.PageSize,
+                 //    TotalCount = resultList.TotalCount
+                 //};
+                 return new ResultList<ProductModel>();
              });
 
         #endregion
@@ -346,19 +397,19 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region Details
 
-        public Task<Result<ProductModel>> Details(int id) =>
-            Result<ProductModel>.TryAsync(async () =>
-            {
-                var productResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id,
-                    //p => p.Image,
-                    p => p.Storage, p => p.Supplier);
-                if (!productResult.Success)
-                {
-                    return Result<ProductModel>.Failed(Error.WithCode(ErrorCodes.ProductDetailsNotFoundById));
-                }
-                var productModel = _mapper.Map<Product, ProductModel>(productResult.Data);
-                productModel.StorageModel = _mapper.Map<Storage, StorageModel>(productResult.Data.Storage);
-                productModel.SupplierModel = _mapper.Map<Supplier, SupplierModel>(productResult.Data.Supplier);
+        //public Task<Result<ProductModel>> Details(int id) =>
+        //    Result<ProductModel>.TryAsync(async () =>
+        //    {
+        //        var productResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id,
+        //            //p => p.Image,
+        //            p => p.Storage, p => p.Supplier);
+        //        if (!productResult.Success)
+        //        {
+        //            return Result<ProductModel>.Failed(Error.WithCode(ErrorCodes.ProductDetailsNotFoundById));
+        //        }
+        //        var productModel = _mapper.Map<Product, ProductModel>(productResult.Data);
+        //        productModel.StorageModel = _mapper.Map<Storage, StorageModel>(productResult.Data.Storage);
+        //        productModel.SupplierModel = _mapper.Map<Supplier, SupplierModel>(productResult.Data.Supplier);
         //if (productResult.Data.Image != null)
         //{
         //    productModel.ImageModel = new ImageModel()
@@ -373,8 +424,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         //{
         //    productModel.ImageModel = new ImageModel();
         //}
-        return Result<ProductModel>.Successful(productModel);
-            });
+        //return Result<ProductModel>.Successful(productModel);
+        //    });
 
         #endregion
 

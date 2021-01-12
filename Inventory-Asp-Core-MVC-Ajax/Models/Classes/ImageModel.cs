@@ -4,13 +4,8 @@
     {
         public int Id { get; set; }
 
-        public string Title { get; set; }
-
         public byte[] Data { get; set; }
 
-        public string ConvertedData { get; set; }
-
-        public string Caption { get; set; }
-
+        public string Base64String { get; set; }
     }
 }

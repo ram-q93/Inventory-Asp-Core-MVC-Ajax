@@ -232,7 +232,7 @@ $(document).ready(function () {
         lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
         columnDefs: [
             {
-                'targets': [5, 6],
+                'targets': [8, 9],
                 'orderable': false,
                 'searchable': false
             }],
@@ -262,11 +262,14 @@ $(document).ready(function () {
                         return ``;
                 }, autoWidth: true
             },
+            { data: 'categoryName', autoWidth: true },
+            { data: 'storageName', autoWidth: true },
+            { data: 'supplierCompanyName', autoWidth: true },
             {
                 data: 'id',
                 render: function (data, type, row) {
                     return `<div style="text-align:center">
-                                <a class="my-mousechange"  onclick="showStorageInPopup(${data},'Edit Storage')">
+                                <a class="my-mousechange"  onclick="showProductInPopup(${data},'Edit Storage')">
                                      <i class="fas fa-edit fa-1x" style="color:green"></i>
                                 </a>
                             </div>`;
@@ -277,7 +280,7 @@ $(document).ready(function () {
                 data: 'id',
                 render: function (data, type, row) {
                     return `<div style="text-align:center">
-                                <a class="my-mousechange" onclick="jQueryAjaxPostToDeleteStorage(${data})">
+                                <a class="my-mousechange" onclick="jQueryAjaxPostToDeleteProduct(${data})">
                                     <i class="fas fa-trash fa-1x" style="color:red"></i>
                                 </a>
                             </div>`;
@@ -318,7 +321,7 @@ jQueryAjaxPostToAddOrEditProduct = form => {
                     $('#product-form-modal .modal-title').html('');
                     $('#product-form-modal .modal-body').html('');
                     $('#product-form-modal').modal('hide');
-                    storageDataTable.draw();
+                    productDataTable.draw();
                     SweetAlertSubmitedSuccessfully();
                 }
                 else {
@@ -353,10 +356,10 @@ jQueryAjaxPostToDeleteProduct = (id) => {
                     },
                     success: function (response) {
                         if (response.success) {
-                            storageDataTable.draw();
+                            productDataTable.draw();
                             SweetAlertSubmitedSuccessfully();
                         } else {
-                            storageDataTable.draw();
+                            productDataTable.draw();
                             SweetAlertSubmitFailed(response.error)
                         }
                     },

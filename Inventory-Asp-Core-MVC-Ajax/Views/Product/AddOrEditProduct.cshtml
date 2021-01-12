@@ -10,8 +10,6 @@
               onsubmit="return jQueryAjaxPostToAddOrEditProduct(this);" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            @*<input type="hidden" asp-for="StorageId" />
-        <input type="hidden" asp-for="@Model.ImageModel" />*@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label asp-for="Name" class="control-label"></label>
@@ -58,15 +56,24 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label class="control-label">Category</label>
-                    <select id="list" asp-for="CategoryId" class="form-control"></select>
+                    <select id="CategorySelectList" asp-for="CategoryId" class="form-control">
+                        @if (@Model.CategoryName == null)
+                        {
+                            <option value="0"> --- Select Category ---</option>
+                        }
+                        else
+                        {
+                            <option value="@Model.CategoryId"> @Model.CategoryName</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label class="control-label">Supplier</label>
-                    <select id="list" asp-for="SupplierId" class="form-control"></select>
+                    <select id="select-supplier" asp-for="SupplierId" class="form-control"></select>
                 </div>
                 <div class="form-group col-md-4">
                     <label class="control-label">Storage</label>
-                    <select id="list" asp-for="StorageId" class="form-control"></select>
+                    <select id="select-storage" asp-for="StorageId" class="form-control"></select>
                 </div>
             </div>
             <div class="form-row">
@@ -89,28 +96,10 @@
 
         <script src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.min.js")" type="text/javascript"></script>
         <script src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-
     </div>
 </div>
 
 <script>
-    $(document).ready(function () {
-        $.ajax({
-            method: "GET",
-            url: "/supplier/supplier-select-list",
-            dataType: "json",
-            success: function (data) {
-                var s = '<option value="0">-- Please select supplier --</option>';
-                console.log(data);
-                for (var i = 0; i < data.length; i++) {
-                    s += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
-                }
-                console.log(s);
-                $("#list").html(s);
-            }
-        })
-    })
-
     var loadImageFile = function (event) {
         var output = document.getElementById('output-image');
         output.src = URL.createObjectURL(event.target.files[0]);
@@ -118,5 +107,25 @@
             URL.revokeObjectURL(output.src) // free memory
         }
     };
+
+
+    $(document).ready(function () {
+        var category = $('#CategorySelectList');
+
+        //category.click(function () {
+            $.ajax({
+                type: 'Get',
+                url: '/category/list-name',
+                contentType: 'application/json',
+                success: function (response) {
+                   // category.empty();
+                    $(response).each(function (index, item) {
+                            category.append($('<option/>', { value: item.id, text: item.name }));
+                        });
+                }
+            })
+
+        //})
+    });
 </script>
 

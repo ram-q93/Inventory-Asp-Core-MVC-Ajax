@@ -58,20 +58,33 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 
         public int? CategoryId { get; set; }
 
-        public StorageModel StorageModel { get; set; }
+        #region
+        [Display(Name = "Storage", Prompt = "Storage")]
+        #endregion
+        public string StorageName { get; set; }
+
+        #region
+        [Display(Name = "Supplier", Prompt = "Supplier")]
+        #endregion
+        public string SupplierCompanyName { get; set; }
+
+        #region
+        [Display(Name = "Category", Prompt = "Category")]
+        #endregion
+        public string CategoryName { get; set; }
 
         public ImageModel ImageModel { get; set; }
 
-        public SupplierModel SupplierModel { get; set; }
+        //public StorageModel StorageModel { get; set; }
 
-        public Category Category { get; set; }
+        //public ImageModel ImageModel { get; set; }
+
+        //public SupplierModel SupplierModel { get; set; }
+
+        //public Category Category { get; set; }
 
         [Display(Name = "Product Picture")]
         public IFormFile ProductPicture { get; set; }
-
-        public override string ToString() =>
-             $"Product: ({Name} - {Code}  - {Quantity} - {Enabled} - {UnitePrice}" +
-             $" - StoragId({StorageId}))";
 
     }
 }
