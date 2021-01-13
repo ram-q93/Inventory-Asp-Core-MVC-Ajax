@@ -8,7 +8,15 @@ namespace InventoryProject.Model.Profiles
     {
         public ProductProfile()
         {
-            CreateMap<Product, ProductModel>();
+            CreateMap<Product, ProductModel>()
+                //.ForMember(pm=>pm.CategoryName ,p=>p.);
+                .ForMember(d => d.SupplierCompanyName, opt =>
+                    opt.MapFrom(s => s.Supplier != null ? s.Supplier.CompanyName : null))
+                .ForMember(d => d.StorageName, opt =>
+                    opt.MapFrom(s => s.Storage != null ? s.Storage.Name : null))
+                .ForMember(d => d.CategoryName, opt =>
+                    opt.MapFrom(s => s.Category != null ? s.Category.Name : null));
+
             CreateMap<ProductModel, Product>();
         }
     }

@@ -68,8 +68,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                             p => p.Supplier,
                             p => p.Category);
 
-
-
                 if (!resultList.Success)
                 {
                     return Result<object>.Failed(
@@ -78,14 +76,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
                 var totalCount = (await _repository.CountAllAsync<Product>()).Data;
                 var totalFilteredCount = resultList.TotalCount;
-                var productModels = resultList.Items.Select(p =>
-                {
-                    var productModel = _mapper.Map<Product, ProductModel>(p);
-                    productModel.StorageName = p.Storage?.Name;
-                    productModel.SupplierCompanyName = p.Supplier?.CompanyName;
-                    productModel.CategoryName = p.Category?.Name;
-                    return productModel;
-                }).ToList();
+                var productModels = _mapper.Map<IEnumerable<ProductModel>>(resultList.Items);
 
                 return Result<object>.Successful(new
                 {
@@ -175,8 +166,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 product.SupplierId = model.SupplierId;
                 if (model.ProductPicture != null)
                 {
-                    product.Image = _imageBiz.CreateImage(model.ProductPicture).Data;
                     product.Image.Id = Convert.ToInt32(model.ImageId);
+                    product.Image = _imageBiz.CreateImage(model.ProductPicture).Data;
                 }
 
                 _repository.Update(product);
@@ -208,7 +199,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
                 _repository.Remove(product);
                 await _repository.CommitAsync();
-                _logger.Warn($"Product Deleted  id:{product.Id}  name:{product.Name}");
+                _logger.Warn($"Product Deleted  {product.Name}");
                 return Result.Successful();
             });
 

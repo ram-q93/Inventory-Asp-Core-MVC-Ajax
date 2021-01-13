@@ -1264,3 +1264,210 @@ Type: Warn
 Date: 2021-01-13 17:45:41.503
 Message: Long Running Request:    (673 milliseconds)  Request Path: /Product/AddOrEditProduct
 ===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:06:31.249
+Message: Long Running Request:    (3808 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:06:32.497
+Message: Long Running Request:    (965 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:06:32.546
+Message: Long Running Request:    (1080 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:06:32.690
+Message: Long Running Request:    (1086 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:06:32.696
+Message: Long Running Request:    (1230 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:06:32.774
+Message: Long Running Request:    (964 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:06:38.642
+Message: Long Running Request:    (501 milliseconds)  Request Path: /storage/storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:06:40.092
+Message: Long Running Request:    (1088 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 18:06:44.089
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: The DELETE statement conflicted with the REFERENCE constraint "FK_Products_Storages_StorageId". The conflict occurred in database "Inventory-Asp-Core-MVC-Ajax", table "dbo.Products", column 'StorageId'.
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Inventory_Asp_Core_MVC_Ajax.DataAccess.InventoryDbContext.SaveChanges() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\DataAccess\InventoryDbContext.cs:line 54
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 51
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass9_0.<<Delete>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 160
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:06:44.156
+Message: Long Running Request:    (1148 milliseconds)  Request Path: /Storage/Delete
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 18:06:56.793
+Message: First Level Message: An error occurred while updating the entries. See the inner exception for details.
+Second Level Message: The DELETE statement conflicted with the REFERENCE constraint "FK_Products_Storages_StorageId". The conflict occurred in database "Inventory-Asp-Core-MVC-Ajax", table "dbo.Products", column 'StorageId'.
+The statement has been terminated.
+StackTrace:    at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at Inventory_Asp_Core_MVC_Ajax.DataAccess.InventoryDbContext.SaveChanges() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\DataAccess\InventoryDbContext.cs:line 54
+   at AspNetCore.Lib.Services.Repository`1.<CommitAsync>b__8_0() in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Repository.cs:line 51
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.StorageBiz.<>c__DisplayClass9_0.<<Delete>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\StorageBiz.cs:line 160
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:06:56.840
+Message: Long Running Request:    (815 milliseconds)  Request Path: /Storage/Delete
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:08:20.286
+Message: Long Running Request:    (3314 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:08:21.642
+Message: Long Running Request:    (1082 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:08:21.642
+Message: Long Running Request:    (1121 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:08:21.663
+Message: Long Running Request:    (767 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:08:21.642
+Message: Long Running Request:    (1083 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:08:21.642
+Message: Long Running Request:    (1083 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:08:29.254
+Message: Long Running Request:    (800 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:11:18.981
+Message: Long Running Request:    (3346 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:11:20.082
+Message: Long Running Request:    (864 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:11:20.082
+Message: Long Running Request:    (867 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:11:20.082
+Message: Long Running Request:    (654 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:11:20.082
+Message: Long Running Request:    (864 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:11:24.071
+Message: Long Running Request:    (945 milliseconds)  Request Path: /Storage/Storages
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:28:07.777
+Message: Long Running Request:    (3687 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:28:08.728
+Message: Long Running Request:    (687 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:28:08.822
+Message: Long Running Request:    (793 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:28:08.826
+Message: Long Running Request:    (726 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:28:12.156
+Message: Long Running Request:    (503 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:28:13.834
+Message: Long Running Request:    (1359 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 18:28:22.988
+Message: Long Running Request:    (718 milliseconds)  Request Path: /Product/AddOrEditProduct
+===========================================================================

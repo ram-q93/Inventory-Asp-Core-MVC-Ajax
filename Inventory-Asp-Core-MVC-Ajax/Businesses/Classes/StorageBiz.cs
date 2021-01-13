@@ -7,6 +7,7 @@ using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -57,10 +58,10 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
                 var resultList = await _repository.SortedPageListAsNoTrackingAsync<Storage>(s =>
                                         searchBy == null ||
-                                        (s.Name != null && s.Name.ToUpper().Contains(searchBy.ToUpper())) ||
-                                        (s.Address != null && s.Address.ToUpper().Contains(searchBy.ToUpper())) ||
-                                        (s.City != null && s.City.ToUpper().Contains(searchBy.ToUpper())) ||
-                                        (s.Phone != null && s.Phone.ToUpper().Contains(searchBy.ToUpper())),
+                                        (s.Name != null && s.Name.Contains(searchBy)) ||
+                                        (s.Address != null && s.Address.Contains(searchBy)) ||
+                                        (s.City != null && s.City.Contains(searchBy)) ||
+                                        (s.Phone != null && s.Phone.Contains(searchBy)),
                                         pagingModel);
 
                 if (!resultList.Success)
@@ -69,6 +70,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                         Error.WithData(ErrorCodes.StoragesNotFound, new[] { "Some thing went wrong!" }));
                 }
 
+                var storageModels = _mapper.Map<IEnumerable<Storage>, IEnumerable<StorageModel>>(resultList.Items);
                 var totalFilteredCount = resultList.TotalCount;
                 var totalCount = (await _repository.CountAllAsync<Storage>()).Data;
                 return Result<object>.Successful(new
@@ -76,7 +78,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     draw = dtParameters.Draw,
                     recordsTotal = totalCount,
                     recordsFiltered = totalFilteredCount,
-                    data = resultList.Items
+                    data = storageModels
                 });
             });
 
@@ -111,7 +113,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var storage = _mapper.Map<StorageModel, Storage>(model);
                 _repository.Add(storage);
                 await _repository.CommitAsync();
-                _logger.Info($"Storage Added:{model}");
                 return Result.Successful();
             });
 
@@ -133,13 +134,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     return Result.Failed(Error.WithData(ErrorCodes.StorageNotFoundById,
                         new[] { "Storage not found!" }));
                 }
+
                 result.Data.Name = model.Name;
                 result.Data.Phone = model.Phone;
                 result.Data.Enabled = model.Enabled;
                 result.Data.City = model.City;
                 result.Data.Address = model.Address;
+
                 await _repository.CommitAsync();
-                _logger.Info($"Storage Edited:{model}");
                 return Result.Successful();
             });
 
@@ -156,9 +158,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     return Result.Failed(Error.WithData(ErrorCodes.StorageNotFoundById,
                         new[] { "Storage not found!" }));
                 }
+
                 _repository.Remove(storageResult.Data);
                 await _repository.CommitAsync();
-                _logger.Warn($"Storage Deleted:{storageResult.Data.Name}");
+
+                _logger.Warn($"Storage Deleted: {storageResult.Data.Name}");
                 return Result.Successful();
             });
 
@@ -176,6 +180,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #endregion
 
+        #region ListName
+
         public Result<object> ListName() =>
          Result<object>.Try(() =>
          {
@@ -184,6 +190,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 .OrderBy(c => c.Name).ToList();
              return Result<object>.Successful(result);
          });
-
+        #endregion
     }
 }

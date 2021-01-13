@@ -20,6 +20,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             _mapper = mapper;
         }
 
+
+
+        #region ListName
         public Result<object> ListName() =>
             Result<object>.Try(() =>
            {
@@ -27,7 +30,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     .OrderBy(c => c.Name).ToList();
                return Result<object>.Successful(result);
            });
-
+        #endregion
 
 
     }

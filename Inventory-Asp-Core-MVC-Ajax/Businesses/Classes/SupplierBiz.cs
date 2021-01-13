@@ -7,6 +7,7 @@ using Inventory_Asp_Core_MVC_Ajax.DataAccess;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -56,14 +57,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     SortDirection = orderAscendingDirection ? SortDirection.ASC : SortDirection.DESC
                 };
 
-                var resultList = await _repository.SortedPageListAsNoTrackingAsync<Supplier>(s => searchBy == null ||
-                    (s.CompanyName != null && s.CompanyName.ToUpper().Contains(searchBy.ToUpper())) ||
-                    (s.ContactName != null && s.ContactName.ToUpper().Contains(searchBy.ToUpper())) ||
-                    (s.EmergencyMobile != null && s.EmergencyMobile.ToUpper().Contains(searchBy.ToUpper())) ||
-                    (s.Phone != null && s.Phone.ToUpper().Contains(searchBy.ToUpper()) ||
-                    (s.Address != null && s.Address.ToUpper().Contains(searchBy.ToUpper())) ||
-                    (s.City != null && s.City.ToUpper().Contains(searchBy.ToUpper())) ||
-                    (s.PostalCode != null && s.PostalCode.ToUpper().Contains(searchBy.ToUpper()))),
+                var resultList = await _repository.SortedPageListAsNoTrackingAsync<Supplier>(s =>
+                    searchBy == null ||
+                    (s.CompanyName != null && s.CompanyName.Contains(searchBy)) ||
+                    (s.ContactName != null && s.ContactName.Contains(searchBy)) ||
+                    (s.EmergencyMobile != null && s.EmergencyMobile.Contains(searchBy)) ||
+                    (s.Phone != null && s.Phone.Contains(searchBy)) ||
+                    (s.Address != null && s.Address.Contains(searchBy)) ||
+                    (s.City != null && s.City.Contains(searchBy)) ||
+                    (s.PostalCode != null && s.PostalCode.Contains(searchBy)),
                     pagingModel);
 
                 if (!resultList.Success)
@@ -74,12 +76,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
                 var totalFilteredCount = resultList.TotalCount;
                 var totalCount = (await _repository.CountAllAsync<Supplier>()).Data;
+                var supplierModels = _mapper.Map<IEnumerable<SupplierModel>>(resultList.Items);
+
                 return Result<object>.Successful(new
                 {
                     draw = dtParameters.Draw,
                     recordsTotal = totalCount,
                     recordsFiltered = totalFilteredCount,
-                    data = resultList.Items
+                    data = supplierModels
                 });
             });
 
@@ -109,12 +113,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 if ((await IsNameInUse(model.CompanyName)).Data)
                 {
                     return Result.Failed(
-                       Error.WithData(ErrorCodes.SupplierNameAlreadyInUse, new[] { "Supplier name already in use!" }));
+                       Error.WithData(ErrorCodes.SupplierNameAlreadyInUse,
+                       new[] { "Supplier name already in use!" }));
                 }
+
                 var supplier = _mapper.Map<SupplierModel, Supplier>(model);
                 _repository.Add(supplier);
                 await _repository.CommitAsync();
-                _logger.Info($"Supplier Added:{model}");
+
                 return Result.Successful();
             });
 
@@ -127,18 +133,20 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.CompanyName, model.Id)).Data)
                 {
-                    return Result.Failed(
-                      Error.WithData(ErrorCodes.SupplierNameAlreadyInUse, new[] { "Supplier name already in use!" }));
+                    return Result.Failed(Error.WithData(ErrorCodes.SupplierNameAlreadyInUse,
+                      new[] { "Supplier name already in use!" }));
                 }
                 var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.SupplierNotFoundById, new[] { "Supplier not found!" }));
+                    return Result.Failed(Error.WithData(ErrorCodes.SupplierNotFoundById,
+                        new[] { "Supplier not found!" }));
                 }
+
                 var supplier = _mapper.Map<SupplierModel, Supplier>(model);
                 _repository.Update(supplier);
                 await _repository.CommitAsync();
-                _logger.Info($"Supplier Edited:{model}");
+
                 return Result.Successful();
             });
 
@@ -152,11 +160,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var supplierResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == id);
                 if (!supplierResult.Success || supplierResult?.Data == null)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.SupplierNotFoundById, new[] { "Supplier not found!" }));
+                    return Result.Failed(Error.WithData(ErrorCodes.SupplierNotFoundById,
+                        new[] { "Supplier not found!" }));
                 }
                 _repository.Remove(supplierResult.Data);
                 await _repository.CommitAsync();
-                _logger.Warn($"Supplier Deleted:{supplierResult.Data.CompanyName}");
+                _logger.Warn($"Supplier Deleted: {supplierResult.Data.CompanyName}");
                 return Result.Successful();
             });
 
@@ -174,6 +183,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #endregion
 
+        #region ListName
         public Result<object> ListName() =>
             Result<object>.Try(() =>
             {
@@ -182,5 +192,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                    .OrderBy(s => s.CompanyName).ToList();
                 return Result<object>.Successful(result);
             });
+        #endregion
     }
 }
