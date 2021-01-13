@@ -21,7 +21,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 
         #region
         [MaxLength(1000, ErrorMessage = "Value cannot exceed 1000 characters.")]
-        [Display(Name = "Name", Prompt = "Name")]
+        [Display(Name = "Description", Prompt = "Description")]
         #endregion
         public string Description { get; set; }
 

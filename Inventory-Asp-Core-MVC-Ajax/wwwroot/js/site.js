@@ -560,4 +560,158 @@ jQueryAjaxPostToDeleteSupplier = (id) => {
 //================================================ Supplier =================================//
 
 
+//========================================================================= Category ========//
+var categoryDataTable;
+$(document).ready(function () {
+    categoryDataTable = $('#table-category').DataTable({
+        serverSide: true,
+        responsive: true,
+        autoWidth: true,
+        scrollX: true,
+        scrollY: 300,  //fixed width
+        sDom: 'ltip',
+        lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
+        columnDefs: [
+            {
+                'targets': [1, 2, 3],
+                'orderable': false,
+                'searchable': false
+            }],
+        ajax: {
+            url: '/category/categories',
+            type: 'Post',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: function (response) {
+                return JSON.stringify(response);
+            }
+        },
+        columns: [
+            { data: 'name', autoWidth: true },  
+            //{
+            //    data: 'description',
+            //    render: function (data, type, row) {
+            //        return `<div style="text-align:center">
+            //                    <a class="my-mousechange"  onclick="showCategoryDetailsInPopup(${data},'Description')">
+            //                         <i class="fas fa-info fa-1x" style="color:green"> Description </i>
+            //                    </a>
+            //                </div>`;
+            //    },
+            //    autoWidth: true
+            //},
+            {
+                data: 'id',
+                render: function (data, type, row) {
+                    return `<div style="text-align:center">
+                                <a class="my-mousechange"  onclick="showCategoryInPopup(${data},'Edit Category')">
+                                     <i class="fas fa-edit fa-1x" style="color:green"></i>
+                                </a>
+                            </div>`;
+                },
+                autoWidth: true
+            },
+            {
+                data: 'id',
+                render: function (data, type, row) {
+                    return `<div style="text-align:center">
+                                <a class="my-mousechange" onclick="jQueryAjaxPostToDeleteCategory(${data})">
+                                    <i class="fas fa-trash fa-1x" style="color:red"></i>
+                                </a>
+                            </div>`;
+                },
+                autoWidth: true
+            }
+        ]
+    });
+});
 
+SearchCategory = () => {
+    categoryDataTable.search($('#search-category-input-id').val()).draw();
+}
+
+showCategoryDetailsInPopup = (description, title) => {
+
+    SweetAlertSubmitFailed(description);
+};
+
+showCategoryInPopup = (id, title) => {
+    $.ajax({
+        type: 'Get',
+        url: '/category/AddOrEditCategory',
+        data: { 'id': id },
+        success: function (response) {
+            $('#category-form-modal .modal-title').html(title);
+            $('#category-form-modal .modal-body').html(response);
+            $('#category-form-modal').modal('show'); 
+        }
+    })
+};
+
+jQueryAjaxPostToAddOrEditCategory = form => {
+    try {
+        $.ajax({
+            type: 'Post',
+            url: form.action,
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.success) {
+                    $('#category-form-modal .modal-title').html('');
+                    $('#category-form-modal .modal-body').html('');
+                    $('#category-form-modal').modal('hide');
+                    categoryDataTable.draw();
+                    SweetAlertSubmitedSuccessfully();
+                }
+                else {
+                    SweetAlertSubmitFailed(response.error)
+                    $('#category-form-modal .modal-body').html(response.html);
+                }
+            },
+            error: function (e) {
+                SweetAlertSubmitFailed('Error in Submitting category')
+                console.log(e);
+            }
+        })
+    } catch (e) {
+        console.log(e);
+    }
+    // to prevent default form submit event
+    return false;
+};
+
+jQueryAjaxPostToDeleteCategory = (id) => {
+    DeletePopUp().then((result) => {
+        if (result.value)
+            try {
+                $.ajax({
+                    type: 'Post',
+                    url: '/category/Delete',
+                    contentType: 'application/x-www-form-urlencoded',
+                    data: {
+                        '__RequestVerificationToken':
+                            $('#table-category input[name="__RequestVerificationToken"]').val(),
+                        'id': id
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            categoryDataTable.draw();
+                            SweetAlertSubmitedSuccessfully();
+                        } else {
+                            categoryDataTable.draw();
+                            SweetAlertSubmitFailed(response.error)
+                        }
+                    },
+                    error: function (e) {
+                        SweetAlertSubmitFailed('Error in Deleting category');
+                        console.log(e);
+                    }
+                })
+            } catch (e) {
+                console.log(e);
+            }
+    });
+    //to prevent default form submit event
+    return false;
+};
+//========================================================================= Category ========//

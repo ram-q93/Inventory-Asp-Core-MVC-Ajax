@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <a asp-controller="category" asp-action="categories">
+                @ViewData["Title"]
+                <i class="fas fa-redo fa-xs" style="color:#224abe"></i>
+            </a>
+        </h1>
+
+        <ul class="navbar-nav ml-auto">
+            <div class="topbar-divider d-none d-sm-block">
+                <!-- Topbar Search -->
+                <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border- " placeholder="Search by..."
+                               aria-label="Search" aria-describedby="basic-addon2" id="search-category-input-id">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" onclick="SearchCategory()">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+             
+                <a class="d-none d-sm-inline-block btn  my-btn-success shadow-sm "
+                   onclick="showCategoryInPopup('0', 'New Category')">
+                    <span class="icon text-white">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text text-white font-weight-bold">&nbsp;&nbsp;New Category</span>
+                </a>
+
+            </div>
+        </ul>
+    </div>
+    <br />
+    <div id="view-all-storages">
+        @await Html.PartialAsync("_Categories", Model)
+    </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-xl" id="category-form-modal" tabindex="-1"
+     role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>

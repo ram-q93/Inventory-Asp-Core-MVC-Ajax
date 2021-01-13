@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel>
+
+@*For displaying category info*@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Category Table</h6>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-sm table-hover table-condensed"
+               id="table-category" width="100%" cellspacing="0" style="color: black;">
+            @Html.AntiForgeryToken()
+
+            <thead>
+                <tr>
+                    <th >
+                        <label asp-for="@Model.First().Name"></label>
+                    </th>
+                    <th >
+                        <label>Description</label>
+                    </th>
+                    <th style="width: 5%">
+                        <label>Edit</label>
+                    </th>
+                    <th style="width: 5%">
+                        <label>Delete</label>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
