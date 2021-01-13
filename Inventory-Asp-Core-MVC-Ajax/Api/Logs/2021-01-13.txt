@@ -1471,3 +1471,33 @@ Type: Warn
 Date: 2021-01-13 18:28:22.988
 Message: Long Running Request:    (718 milliseconds)  Request Path: /Product/AddOrEditProduct
 ===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 19:50:06.286
+Message: Long Running Request:    (4442 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 19:50:07.635
+Message: Long Running Request:    (1021 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 19:50:07.635
+Message: Long Running Request:    (1038 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 19:50:07.635
+Message: Long Running Request:    (1015 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 19:50:30.825
+Message: Long Running Request:    (683 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 19:50:32.627
+Message: Long Running Request:    (1418 milliseconds)  Request Path: /product/products
+===========================================================================

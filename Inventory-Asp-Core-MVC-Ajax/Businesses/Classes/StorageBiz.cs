@@ -3,7 +3,7 @@ using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services;
 using AutoMapper;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess;
-using Inventory_Asp_Core_MVC_Ajax.EFModels;
+using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using InventoryProject.Business.Interfaces;
@@ -16,11 +16,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
     public class StorageBiz : IStorageBiz
     {
         private readonly IRepository _repository;
-        private readonly InventoryDbContext _dbContext;
+        private readonly IInventoryDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
 
-        public StorageBiz(IRepository repository, InventoryDbContext dbContext,
+        public StorageBiz(IRepository repository, IInventoryDbContext dbContext,
             IMapper mapper, ILogger logger)
         {
             _repository = repository;

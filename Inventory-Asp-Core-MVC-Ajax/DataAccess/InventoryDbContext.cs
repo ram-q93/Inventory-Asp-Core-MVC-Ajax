@@ -2,14 +2,11 @@
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
-using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
 {
-    public class InventoryDbContext : DbContext
+    public class InventoryDbContext : DbContext, IInventoryDbContext
     {
         private readonly IMachineDateTime _dateTime;
 
@@ -33,6 +30,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
             modelBuilder.Entity<Category>().HasIndex(s => s.Name).IsUnique();
         }
 
+        public DbSet<Storage> Storages { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         public override int SaveChanges()
         {
@@ -54,10 +56,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
             return base.SaveChanges();
         }
 
-        public DbSet<Storage> Storages { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Supplier> Suppliers { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Image> Images { get; set; }
+
     }
 }

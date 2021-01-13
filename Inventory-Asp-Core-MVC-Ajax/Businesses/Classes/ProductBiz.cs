@@ -4,7 +4,6 @@ using AspNetCore.Lib.Services;
 using AutoMapper;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
-using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using System;
@@ -268,41 +267,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #endregion
 
-        #region GetStoragePagedListProductFilteredBySearchQuery
-
-        public Task<ResultList<ProductModel>> GetStoragePagedListProductFilteredBySearchQuery(int storageId,
-            int? page, string searchQuery) => ResultList<ProductModel>.TryAsync(async () =>
-             {
-                 //var pagingModel = new PagingModel()
-                 //{
-                 //    PageNumber = (page == null || page <= 0 ? 1 : page.Value) - 1,
-                 //    PageSize = 5,
-                 //    Sort = "LastModified",
-                 //    SortDirection = SortDirection.DESC
-                 //};
-                 //var resultList = await repository.ListAsNoTrackingAsync<Product>(p => p.StorageId == storageId &&
-                 //    searchQuery == null ||
-                 //    (p.Name != null && p.Name.Contains(searchQuery)) ||
-                 //    (p.Quantity < Convert.ToInt32(searchQuery)) ||
-                 //    (p.Price < Convert.ToDecimal(searchQuery)),
-                 //    pagingModel, "LastModified");
-
-                 //if (!resultList.Success)
-                 //{
-                 //    return ResultList<ProductModel>.Failed(Error.WithCode(ErrorCodes.PagedListFilteredBySearchQueryNotFound));
-                 //}
-                 //return new ResultList<ProductModel>()
-                 //{
-                 //    Success = true,
-                 //    Items = resultList.Items.Select(p => mapper.Map<Product, ProductModel>(p)).ToList(),
-                 //    PageNumber = resultList.PageNumber,
-                 //    PageSize = resultList.PageSize,
-                 //    TotalCount = resultList.TotalCount
-                 //};
-                 return new ResultList<ProductModel>();
-             });
-
-        #endregion
 
         //#region GetById
 

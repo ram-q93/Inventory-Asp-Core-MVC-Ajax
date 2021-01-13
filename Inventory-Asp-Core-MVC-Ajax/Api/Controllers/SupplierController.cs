@@ -96,12 +96,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-
+        #region ListByNameAndId
         [HttpGet, ActionName("list-name")]
         public JsonResult ListByNameAndId()
         {
             var result = _supplierBiz.ListName();
             return Json(result.Data);
         }
+        #endregion
     }
 }

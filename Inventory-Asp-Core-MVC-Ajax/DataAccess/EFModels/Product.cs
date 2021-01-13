@@ -3,7 +3,7 @@ using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Inventory_Asp_Core_MVC_Ajax.EFModels
+namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels
 {
     [Table("Products")]
     public class Product : AuditableEntity

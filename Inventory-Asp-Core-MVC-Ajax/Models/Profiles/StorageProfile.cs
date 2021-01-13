@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Inventory_Asp_Core_MVC_Ajax.EFModels;
+using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 
 

@@ -4,43 +4,48 @@
     {
         public const int InvalidModel = 1005;
 
-        #region Product
-        public const int ProductNotFoundById = 2001;
-        public const int ProductsNotFound = 2002;
-        public const int ProductsNotFoundByStoreId = 2003;
-        public const int ProductJoinedWithStoreNotFoundByProductId = 2004;
-        public const int PagedListFilteredBySearchQueryNotFound = 2005;
-        public const int ProductDetailsNotFoundById = 2006;
-        public const int ProductNameAlreadyInUse = 2007;
+        #region Product (Prefix = 201)
+        public const int ProductNotFoundById = 2011;
+        public const int ProductsNotFound = 2012;
+        public const int ProductsNotFoundByStoreId = 2013;
+        public const int ProductJoinedWithStoreNotFoundByProductId = 2014;
+        public const int PagedListFilteredBySearchQueryNotFound = 2015;
+        public const int ProductDetailsNotFoundById = 2016;
+        public const int ProductNameAlreadyInUse = 2017;
         #endregion
 
-        #region Storage
-        public const int StorageNotFoundById = 3001;
-        public const int StoragesNotFound = 3002;
-        public const int StorageProductsNotFound = 3003;
-        public const int StorageNameAlreadyInUse = 3004;
+        #region Storage (Prefix = 202)
+        public const int StorageNotFoundById = 2021;
+        public const int StoragesNotFound = 2022;
+        public const int StorageProductsNotFound = 2023;
+        public const int StorageNameAlreadyInUse = 2024;
         #endregion
 
-        #region Image
-        public const int ImagesNotFoundByProductId = 4001;
-        public const int ImageNotFoundById = 4002;
+        #region Category (Prefix = 203)
+        public const int CategoriesNotFound = 2031; 
+        public const int CategoryNotFoundById = 2032;
+        public const int CategoryNameAlreadyInUse = 2033;
+
+
         #endregion
 
-        #region Supplier
-        public const int SuppliersNotFound = 5001;
-        public const int SupplierNotFoundById = 5002;
-        public const int SupplierDetailsNotFoundById = 5003;
-        public const int EnabaledSuppliersNotFoundForSelectList = 5004;
-        public const int SupplierNameAlreadyInUse = 5005;
+        #region Supplier (Prefix = 204)
+        public const int SuppliersNotFound = 2041;
+        public const int SupplierNotFoundById = 2042;
+        public const int SupplierDetailsNotFoundById = 2043;
+        public const int EnabaledSuppliersNotFoundForSelectList = 2044;
+        public const int SupplierNameAlreadyInUse = 2045;
         #endregion
 
-        #region Report
-        public const int ErrorInProductReport = 6001;
+        #region Report (Prefix = 205)
+        public const int ErrorInProductReport = 2051;
         #endregion
 
-        #region Dashboard
-        public const int ErrorInDashboardStatistics = 7000;
+        #region Dashboard (Prefix = 206)
+        public const int ErrorInDashboardStatistics = 2061;
         #endregion
+
+     
 
         #region Auth
         public const int UserNameAlreadyExists = 4040;

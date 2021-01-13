@@ -1,5 +1,4 @@
 ﻿using AspNetCore.Lib.Models;
-using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

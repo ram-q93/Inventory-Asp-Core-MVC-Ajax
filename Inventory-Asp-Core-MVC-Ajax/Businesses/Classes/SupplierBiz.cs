@@ -16,11 +16,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
     public class SupplierBiz : ISupplierBiz
     {
         private readonly IRepository _repository;
-        private readonly InventoryDbContext _dbContext;
+        private readonly IInventoryDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
 
-        public SupplierBiz(IRepository repository, InventoryDbContext dbContext,
+        public SupplierBiz(IRepository repository, IInventoryDbContext dbContext,
             IMapper mapper, ILogger logger)
         {
             _repository = repository;

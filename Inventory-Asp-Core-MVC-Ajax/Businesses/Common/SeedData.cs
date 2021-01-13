@@ -2,7 +2,6 @@
 using AspNetCore.Lib.Services;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
-using Inventory_Asp_Core_MVC_Ajax.EFModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
