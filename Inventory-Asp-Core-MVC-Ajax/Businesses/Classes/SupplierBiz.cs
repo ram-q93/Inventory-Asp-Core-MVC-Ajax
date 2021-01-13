@@ -3,9 +3,11 @@ using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services;
 using AutoMapper;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
+using Inventory_Asp_Core_MVC_Ajax.DataAccess;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
@@ -13,12 +15,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
     public class SupplierBiz : ISupplierBiz
     {
         private readonly IRepository _repository;
+        private readonly InventoryDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
 
-        public SupplierBiz(IRepository repository, IMapper mapper, ILogger logger)
+        public SupplierBiz(IRepository repository, InventoryDbContext dbContext,
+            IMapper mapper, ILogger logger)
         {
             _repository = repository;
+            _dbContext = dbContext;
             _mapper = mapper;
             _logger = logger;
         }
@@ -168,5 +173,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             });
 
         #endregion
+
+        public Result<object> ListName() =>
+            Result<object>.Try(() =>
+            {
+                var result = _dbContext.Suppliers.Where(s => s.Enabled)
+                   .Select(s => new { s.Id, s.CompanyName })
+                   .OrderBy(s => s.CompanyName).ToList();
+                return Result<object>.Successful(result);
+            });
     }
 }

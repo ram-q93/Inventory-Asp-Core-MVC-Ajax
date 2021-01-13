@@ -96,6 +96,23 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             (await _productBiz.IsNameInUse(name)).Data ? Json($"Name {name} is already in use.") : Json(true);
 
         #endregion
+
+        #region Details
+
+        [HttpGet, ActionName("Details")]
+        [NoDirectAccess]
+        public async Task<IActionResult> Details(int id)
+        {
+
+            var result = await _productBiz.Details(id);
+            if (!result.Success)
+                return NotFound();
+            return View(result.Data);
+
+        }
+
+        #endregion
+
     }
 }
 

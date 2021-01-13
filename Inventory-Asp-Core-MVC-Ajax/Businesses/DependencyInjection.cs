@@ -9,10 +9,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
     {
         public static IServiceCollection AddBussinessLayer(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(StorageProfile),
-                 typeof(ProductProfile),
-               //  typeof(ImageProfile),
-                 typeof(SupplierProfile));
+            services.AddAutoMapper(
+                typeof(StorageProfile),
+                typeof(ProductProfile),
+                typeof(ImageProfile),
+                typeof(SupplierProfile),
+                typeof(ProductDetailsProfile),
+                typeof(CategoryProfile));
 
             return services;
         }

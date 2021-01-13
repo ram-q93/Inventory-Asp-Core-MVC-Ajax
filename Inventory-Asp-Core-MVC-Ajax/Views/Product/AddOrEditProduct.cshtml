@@ -10,6 +10,7 @@
               onsubmit="return jQueryAjaxPostToAddOrEditProduct(this);" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImageId" />
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label asp-for="Name" class="control-label"></label>
@@ -59,7 +60,7 @@
                     <select id="CategorySelectList" asp-for="CategoryId" class="form-control">
                         @if (@Model.CategoryName == null)
                         {
-                            <option value="0"> --- Select Category ---</option>
+                            <option value="@Model.CategoryId"> --- Select Category ---</option>
                         }
                         else
                         {
@@ -68,12 +69,30 @@
                     </select>
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="control-label">Supplier</label>
-                    <select id="select-supplier" asp-for="SupplierId" class="form-control"></select>
+                    <label class="control-label">Storage</label>
+                    <select id="StorageSelectList" asp-for="StorageId" class="form-control">
+                        @if (@Model.StorageName == null)
+                        {
+                            <option value="@Model.StorageId"> --- Select Storage ---</option>
+                        }
+                        else
+                        {
+                            <option value="@Model.StorageId"> @Model.StorageName</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="control-label">Storage</label>
-                    <select id="select-storage" asp-for="StorageId" class="form-control"></select>
+                    <label class="control-label">Supplier</label>
+                    <select id="SupplierSelectList" asp-for="SupplierId" class="form-control">
+                        @if (@Model.SupplierCompanyName == null)
+                        {
+                        <option value="@Model.SupplierId"> --- Select Supplier ---</option>
+                        }
+                        else
+                        {
+                            <option value="@Model.SupplierId"> @Model.SupplierCompanyName</option>
+                        }
+                    </select>
                 </div>
             </div>
             <div class="form-row">
@@ -92,7 +111,11 @@
                 <input type="submit" value="Submit" class="btn btn-success text-white btn-lg btn-block" />
             </div>
         </form>
-        <img id="output-image" />
+       @* <img id="output-image" />*@
+        <figure class="figure">
+            <img id="output-image" src="data:image/jpeg;base64,@(Model.ImageModel?.Base64StringData)"
+                 class="rounded mx-auto d-block img-fluid" alt="No image">
+        </figure>
 
         <script src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.min.js")" type="text/javascript"></script>
         <script src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
@@ -110,20 +133,41 @@
 
 
     $(document).ready(function () {
-        var category = $('#CategorySelectList');
-
+      
         //category.click(function () {
-            $.ajax({
-                type: 'Get',
-                url: '/category/list-name',
-                contentType: 'application/json',
-                success: function (response) {
-                   // category.empty();
-                    $(response).each(function (index, item) {
-                            category.append($('<option/>', { value: item.id, text: item.name }));
-                        });
-                }
-            })
+        $.ajax({
+            type: 'Get',
+            url: '/category/list-name',
+            contentType: 'application/json',
+            success: function (response) {
+                // category.empty();
+                $(response).each(function (index, item) {
+                    $('#CategorySelectList').append($('<option/>', { value: item.id, text: item.name }));
+                });
+            }
+        })
+
+        $.ajax({
+            type: 'Get',
+            url: '/storage/list-name',
+            contentType: 'application/json',
+            success: function (response) {
+                $(response).each(function (index, item) {
+                    $('#StorageSelectList').append($('<option/>', { value: item.id, text: item.name }));
+                });
+            }
+        })
+
+        $.ajax({
+            type: 'Get',
+            url: '/supplier/list-name',
+            contentType: 'application/json',
+            success: function (response) {
+                $(response).each(function (index, item) {
+                    $('#SupplierSelectList').append($('<option/>', { value: item.id, text: item.companyName }));
+                });
+            }
+        })
 
         //})
     });

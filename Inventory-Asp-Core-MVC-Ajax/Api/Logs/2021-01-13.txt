@@ -1,0 +1,1266 @@
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:28.998
+Message: Long Running Request:    (3968 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:30.227
+Message: Long Running Request:    (763 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:30.227
+Message: Long Running Request:    (936 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:30.339
+Message: Long Running Request:    (1060 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:30.338
+Message: Long Running Request:    (1052 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:31.423
+Message: Long Running Request:    (622 milliseconds)  Request Path: /favicon.ico
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:31.458
+Message: Long Running Request:    (949 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:33.362
+Message: Long Running Request:    (823 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:34.803
+Message: Long Running Request:    (1121 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 14:40:41.357
+Message: First Level Message: Nullable object must have a value.
+StackTrace:    at System.Nullable`1.get_Value()
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 117
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 14:40:42.187
+Message: First Level Message: Nullable object must have a value.
+StackTrace:    at System.Nullable`1.get_Value()
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 117
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:42.207
+Message: Long Running Request:    (1412 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 14:40:47.132
+Message: First Level Message: Nullable object must have a value.
+StackTrace:    at System.Nullable`1.get_Value()
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 117
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 14:40:47.694
+Message: First Level Message: Nullable object must have a value.
+StackTrace:    at System.Nullable`1.get_Value()
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 117
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:47.749
+Message: Long Running Request:    (924 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 14:40:52.909
+Message: First Level Message: Nullable object must have a value.
+StackTrace:    at System.Nullable`1.get_Value()
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 117
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 14:40:53.441
+Message: First Level Message: Nullable object must have a value.
+StackTrace:    at System.Nullable`1.get_Value()
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 117
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:40:53.463
+Message: Long Running Request:    (971 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 14:43:39.205
+Message: First Level Message: Nullable object must have a value.
+StackTrace:    at System.Nullable`1.get_Value()
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 117
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 14:43:43.112
+Message: First Level Message: Nullable object must have a value.
+StackTrace:    at System.Nullable`1.get_Value()
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 117
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:43:43.473
+Message: Long Running Request:    (91751 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:45:28.052
+Message: Long Running Request:    (3523 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:45:29.394
+Message: Long Running Request:    (1082 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:45:29.394
+Message: Long Running Request:    (1089 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:45:29.425
+Message: Long Running Request:    (1114 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:45:29.427
+Message: Long Running Request:    (1116 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:45:42.351
+Message: Long Running Request:    (1087 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 14:45:44.699
+Message: First Level Message: Value cannot be null. (Parameter 'inArray')
+StackTrace:    at System.Convert.ToBase64String(Byte[] inArray)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 117
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 14:45:45.361
+Message: First Level Message: Value cannot be null. (Parameter 'inArray')
+StackTrace:    at System.Convert.ToBase64String(Byte[] inArray)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 117
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:45:45.389
+Message: Long Running Request:    (1211 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:49:15.313
+Message: Long Running Request:    (3462 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:49:16.647
+Message: Long Running Request:    (1043 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:49:16.714
+Message: Long Running Request:    (1110 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:49:16.797
+Message: Long Running Request:    (1197 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:49:16.770
+Message: Long Running Request:    (1167 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:49:17.325
+Message: Long Running Request:    (509 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:49:18.245
+Message: Long Running Request:    (576 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:49:19.686
+Message: Long Running Request:    (1216 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:49:25.758
+Message: Long Running Request:    (4834 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:50:20.661
+Message: Product Deleted  id:4010 name:0000
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:50:20.709
+Message: Long Running Request:    (621 milliseconds)  Request Path: /product/Delete
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:50:22.942
+Message: Product Deleted  id:4014 name:a0101
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:50:25.742
+Message: Product Deleted  id:4013 name:a12
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:50:28.658
+Message: Product Deleted  id:4012 name:aa
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:50:31.847
+Message: Product Deleted  id:4009 name:aa11
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:52:22.261
+Message: Product Deleted  id:4018 name:a
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:55:05.725
+Message: Long Running Request:    (4067 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:55:06.862
+Message: Long Running Request:    (893 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:55:06.862
+Message: Long Running Request:    (895 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:55:06.862
+Message: Long Running Request:    (893 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:55:09.404
+Message: Long Running Request:    (535 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:55:11.638
+Message: Long Running Request:    (1870 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:57:10.658
+Message: Long Running Request:    (9360 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 14:57:31.488
+Message: Long Running Request:    (14169 milliseconds)  Request Path: /Product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:00:39.792
+Message: Long Running Request:    (162257 milliseconds)  Request Path: /Product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:01:45.713
+Message: Long Running Request:    (1028 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:01:59.822
+Message: Long Running Request:    (8857 milliseconds)  Request Path: /Product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:02:00.495
+Message: Long Running Request:    (531 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:06:23.304
+Message: Long Running Request:    (3310 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:06:24.509
+Message: Long Running Request:    (1043 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:06:24.510
+Message: Long Running Request:    (1058 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:06:24.509
+Message: Long Running Request:    (1039 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:06:24.510
+Message: Long Running Request:    (1012 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:06:27.109
+Message: Long Running Request:    (947 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:08:21.346
+Message: Long Running Request:    (111289 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:10:58.173
+Message: Long Running Request:    (7177 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:11:04.665
+Message: Long Running Request:    (3659 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:11:58.598
+Message: Long Running Request:    (14378 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:12:16.591
+Message: Long Running Request:    (2531 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:12:24.230
+Message: Long Running Request:    (596 milliseconds)  Request Path: /Product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:13:18.330
+Message: Long Running Request:    (3008 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:13:34.839
+Message: Long Running Request:    (1881 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:16:22.330
+Message: Long Running Request:    (5622 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:16:28.119
+Message: Product Deleted  id:4019  name:a
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:21:09.301
+Message: Long Running Request:    (3909 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:21:10.386
+Message: Long Running Request:    (869 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:21:10.642
+Message: Long Running Request:    (1100 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:21:10.892
+Message: Long Running Request:    (813 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:21:10.927
+Message: Long Running Request:    (1387 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:21:11.333
+Message: Long Running Request:    (715 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:21:11.568
+Message: Long Running Request:    (597 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:21:16.682
+Message: Long Running Request:    (1211 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:21:25.978
+Message: Long Running Request:    (1084 milliseconds)  Request Path: /Product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:23:59.731
+Message: Long Running Request:    (3763 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:24:00.955
+Message: Long Running Request:    (1012 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:24:01.041
+Message: Long Running Request:    (1094 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:24:01.041
+Message: Long Running Request:    (1094 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:24:02.785
+Message: Long Running Request:    (578 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:24:04.451
+Message: Long Running Request:    (1348 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:24:34.839
+Message: Long Running Request:    (957 milliseconds)  Request Path: /Product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:53:23.181
+Message: Long Running Request:    (4424 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:53:24.532
+Message: Long Running Request:    (1050 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:53:24.532
+Message: Long Running Request:    (1026 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:53:24.532
+Message: Long Running Request:    (1031 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:53:24.532
+Message: Long Running Request:    (1065 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:53:25.166
+Message: Long Running Request:    (586 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:53:26.259
+Message: Long Running Request:    (616 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:53:27.898
+Message: Long Running Request:    (1364 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:54:50.648
+Message: Long Running Request:    (13814 milliseconds)  Request Path: /supplier/list-name
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:56:00.681
+Message: Long Running Request:    (9405 milliseconds)  Request Path: /product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:56:05.486
+Message: Long Running Request:    (4706 milliseconds)  Request Path: /supplier/list-name
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:56:05.501
+Message: Long Running Request:    (4718 milliseconds)  Request Path: /category/list-name
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:56:21.576
+Message: Long Running Request:    (994 milliseconds)  Request Path: /Product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:58:24.028
+Message: Long Running Request:    (3630 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:58:25.260
+Message: Long Running Request:    (1048 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:58:25.260
+Message: Long Running Request:    (1043 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:58:25.358
+Message: Long Running Request:    (1176 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:58:25.684
+Message: Long Running Request:    (1493 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:58:32.045
+Message: Long Running Request:    (1006 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 15:58:49.119
+Message: Long Running Request:    (840 milliseconds)  Request Path: /Product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 16:02:09.757
+Message: Long Running Request:    (580 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 16:04:49.943
+Message: Long Running Request:    (7674 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 16:10:53.891
+Message: Long Running Request:    (1279 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:27.159
+Message: Long Running Request:    (3465 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:28.816
+Message: Long Running Request:    (1344 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:28.845
+Message: Long Running Request:    (1375 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:28.890
+Message: Long Running Request:    (975 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:28.890
+Message: Long Running Request:    (1420 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:29.550
+Message: Long Running Request:    (634 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:29.642
+Message: Long Running Request:    (678 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:29.874
+Message: Long Running Request:    (803 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:30.108
+Message: Long Running Request:    (554 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:31.361
+Message: Long Running Request:    (645 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:32.934
+Message: Long Running Request:    (1262 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:01:35.572
+Message: First Level Message: Error mapping types.
+
+Mapping types:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Type Map configuration:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Destination Member:
+CategoryModel
+
+Second Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Category -> CategoryModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel
+StackTrace:    at lambda_method(Closure , Product , ProductDetailsModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 249
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:01:36.616
+Message: First Level Message: Error mapping types.
+
+Mapping types:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Type Map configuration:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Destination Member:
+CategoryModel
+
+Second Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Category -> CategoryModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel
+StackTrace:    at lambda_method(Closure , Product , ProductDetailsModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 249
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:36.650
+Message: Long Running Request:    (2355 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:01:41.900
+Message: First Level Message: Error mapping types.
+
+Mapping types:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Type Map configuration:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Destination Member:
+CategoryModel
+
+Second Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Category -> CategoryModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel
+StackTrace:    at lambda_method(Closure , Product , ProductDetailsModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 249
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:01:42.600
+Message: First Level Message: Error mapping types.
+
+Mapping types:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Type Map configuration:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Destination Member:
+CategoryModel
+
+Second Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Category -> CategoryModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel
+StackTrace:    at lambda_method(Closure , Product , ProductDetailsModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 249
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:01:42.619
+Message: Long Running Request:    (1208 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:03:03.117
+Message: First Level Message: Error mapping types.
+
+Mapping types:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Type Map configuration:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Destination Member:
+CategoryModel
+
+Second Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Category -> CategoryModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel
+StackTrace:    at lambda_method(Closure , Product , ProductDetailsModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 249
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:03:10.801
+Message: First Level Message: Error mapping types.
+
+Mapping types:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Type Map configuration:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Destination Member:
+CategoryModel
+
+Second Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Category -> CategoryModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel
+StackTrace:    at lambda_method(Closure , Product , ProductDetailsModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 249
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:03:10.821
+Message: Long Running Request:    (13580 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:03:37.025
+Message: First Level Message: Error mapping types.
+
+Mapping types:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Type Map configuration:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Destination Member:
+CategoryModel
+
+Second Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Category -> CategoryModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel
+StackTrace:    at lambda_method(Closure , Product , ProductDetailsModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 249
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:04:18.769
+Message: First Level Message: Error mapping types.
+
+Mapping types:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Type Map configuration:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Destination Member:
+CategoryModel
+
+Second Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Category -> CategoryModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel
+StackTrace:    at lambda_method(Closure , Product , ProductDetailsModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 249
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:04:18.800
+Message: Long Running Request:    (42284 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:08:11.657
+Message: Long Running Request:    (3747 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:08:13.124
+Message: Long Running Request:    (1179 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:08:13.126
+Message: Long Running Request:    (1182 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:08:13.239
+Message: Long Running Request:    (1309 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:08:13.314
+Message: Long Running Request:    (1371 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:08:13.982
+Message: Long Running Request:    (567 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:08:13.983
+Message: Long Running Request:    (540 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:08:16.932
+Message: Long Running Request:    (576 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:08:18.732
+Message: Long Running Request:    (1526 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:08:23.646
+Message: First Level Message: Error mapping types.
+
+Mapping types:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Type Map configuration:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Destination Member:
+CategoryModel
+
+Second Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Category -> CategoryModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel
+StackTrace:    at lambda_method(Closure , Product , ProductDetailsModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 249
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:08:28.012
+Message: First Level Message: Error mapping types.
+
+Mapping types:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Type Map configuration:
+Product -> ProductDetailsModel
+Inventory_Asp_Core_MVC_Ajax.EFModels.Product -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductDetailsModel
+
+Destination Member:
+CategoryModel
+
+Second Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Category -> CategoryModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Category -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.CategoryModel
+StackTrace:    at lambda_method(Closure , Product , ProductDetailsModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 249
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:08:28.350
+Message: Long Running Request:    (8087 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:24:07.763
+Message: Long Running Request:    (3375 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:24:08.697
+Message: Long Running Request:    (754 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:24:08.697
+Message: Long Running Request:    (735 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:24:08.698
+Message: Long Running Request:    (754 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:24:08.697
+Message: Long Running Request:    (747 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:24:12.902
+Message: Long Running Request:    (931 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:24:20.765
+Message: First Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Image -> ImageModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Image -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ImageModel
+StackTrace:    at lambda_method(Closure , Image , ImageModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 255
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:24:21.433
+Message: First Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Image -> ImageModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Image -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ImageModel
+StackTrace:    at lambda_method(Closure , Image , ImageModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass11_0.<<Details>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 255
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:24:21.451
+Message: Long Running Request:    (1038 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:25:48.442
+Message: Long Running Request:    (3268 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:25:49.682
+Message: Long Running Request:    (1032 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:25:49.682
+Message: Long Running Request:    (1032 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:25:49.697
+Message: Long Running Request:    (1073 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:25:49.682
+Message: Long Running Request:    (1009 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:25:49.682
+Message: Long Running Request:    (1014 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:25:52.505
+Message: Long Running Request:    (952 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:26:16.758
+Message: First Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Image -> ImageModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Image -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ImageModel
+StackTrace:    at lambda_method(Closure , Image , ImageModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 120
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-13 17:26:17.142
+Message: First Level Message: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Image -> ImageModel
+Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels.Image -> Inventory_Asp_Core_MVC_Ajax.Models.Classes.ImageModel
+StackTrace:    at lambda_method(Closure , Image , ImageModel , ResolutionContext )
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ProductBiz.<>c__DisplayClass6_0.<<GetById>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ProductBiz.cs:line 120
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:26:17.157
+Message: Long Running Request:    (634 milliseconds)  Request Path: /error/404
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:29:08.269
+Message: Long Running Request:    (3206 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:29:09.530
+Message: Long Running Request:    (711 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:29:09.530
+Message: Long Running Request:    (974 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:29:09.573
+Message: Long Running Request:    (984 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:29:09.651
+Message: Long Running Request:    (1073 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:29:09.652
+Message: Long Running Request:    (884 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:29:11.261
+Message: Long Running Request:    (501 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:29:12.546
+Message: Long Running Request:    (985 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:29:38.562
+Message: Long Running Request:    (698 milliseconds)  Request Path: /Product/AddOrEditProduct
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:38:26.952
+Message: Long Running Request:    (3268 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:38:27.978
+Message: Long Running Request:    (802 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:38:27.978
+Message: Long Running Request:    (772 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:38:27.978
+Message: Long Running Request:    (784 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:39:20.831
+Message: Long Running Request:    (517 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:39:22.074
+Message: Long Running Request:    (936 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:39:26.042
+Message: Long Running Request:    (1205 milliseconds)  Request Path: /product/details
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:40:26.352
+Message: Product Deleted  id:4021  name:a1
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:40:26.379
+Message: Long Running Request:    (537 milliseconds)  Request Path: /product/Delete
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:45:24.709
+Message: Long Running Request:    (3352 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:45:25.935
+Message: Long Running Request:    (725 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:45:25.935
+Message: Long Running Request:    (746 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:45:26.037
+Message: Long Running Request:    (944 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:45:26.037
+Message: Long Running Request:    (1146 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:45:31.099
+Message: Long Running Request:    (999 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-13 17:45:41.503
+Message: Long Running Request:    (673 milliseconds)  Request Path: /Product/AddOrEditProduct
+===========================================================================

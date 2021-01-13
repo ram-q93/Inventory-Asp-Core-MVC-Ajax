@@ -23,8 +23,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Result<object> ListName() =>
             Result<object>.Try(() =>
            {
-               var result = _dbContext.Categories.Select(c => new { c.Id, c.Name }).
-                    OrderBy(c => c.Name).ToList();
+               var result = _dbContext.Categories.Select(c => new { c.Id, c.Name })
+                    .OrderBy(c => c.Name).ToList();
                return Result<object>.Successful(result);
            });
 

@@ -13,5 +13,7 @@ namespace InventoryProject.Business.Interfaces
         Task<Result<object>> List(DataTableParameters dtParameters);
         Task<Result<bool>> IsNameInUse(string name, int? id = null);
 
+        Result<object> ListName();
+
     }
 }

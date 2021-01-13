@@ -96,18 +96,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
-        //#region supplier-select-list
 
-        //[HttpGet, ActionName("supplier-select-list")]
-        //public async Task<IActionResult> SupplierSelectList(string criteria)
-        //{
-        //    var result = await _supplierBiz.ListEnableSuppliers();
-        //    return Json(result.Data);
-        //}
-
-        //#endregion
-
-
-
+        [HttpGet, ActionName("list-name")]
+        public JsonResult ListByNameAndId()
+        {
+            var result = _supplierBiz.ListName();
+            return Json(result.Data);
+        }
     }
 }

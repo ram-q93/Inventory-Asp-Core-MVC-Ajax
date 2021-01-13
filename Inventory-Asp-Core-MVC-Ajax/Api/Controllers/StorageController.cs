@@ -17,6 +17,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         {
             _storageBiz = storageBiz;
         }
+
         #region Storages
 
         [HttpGet]
@@ -95,6 +96,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             (await _storageBiz.IsNameInUse(name)).Data ? Json($"Name {name} is already in use.") : Json(true);
 
         #endregion
+
+
+        [HttpGet, ActionName("list-name")]
+        public JsonResult ListByNameAndId()
+        {
+            var result = _storageBiz.ListName();
+            return Json(result.Data);
+        }
 
     }
 

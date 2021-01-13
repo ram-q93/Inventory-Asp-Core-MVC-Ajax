@@ -15,16 +15,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
     public class StorageBiz : IStorageBiz
     {
         private readonly IRepository _repository;
+        private readonly InventoryDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
-        private readonly InventoryDbContext db;
 
-        public StorageBiz(IRepository repository, IMapper mapper, ILogger logger, InventoryDbContext db)
+        public StorageBiz(IRepository repository, InventoryDbContext dbContext,
+            IMapper mapper, ILogger logger)
         {
             _repository = repository;
+            _dbContext = dbContext;
             _mapper = mapper;
             _logger = logger;
-            this.db = db;
         }
 
         #region List
@@ -61,7 +62,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                                         (s.City != null && s.City.ToUpper().Contains(searchBy.ToUpper())) ||
                                         (s.Phone != null && s.Phone.ToUpper().Contains(searchBy.ToUpper())),
                                         pagingModel);
-                
+
                 if (!resultList.Success)
                 {
                     return Result<object>.Failed(
@@ -104,7 +105,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.Name)).Data)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.StorageNameAlreadyInUse, 
+                    return Result.Failed(Error.WithData(ErrorCodes.StorageNameAlreadyInUse,
                         new[] { "Storage name already in use!" }));
                 }
                 var storage = _mapper.Map<StorageModel, Storage>(model);
@@ -123,13 +124,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.Name, model.Id)).Data)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.StorageNameAlreadyInUse, 
+                    return Result.Failed(Error.WithData(ErrorCodes.StorageNameAlreadyInUse,
                         new[] { "Storage name already in use!" }));
                 }
                 var result = await _repository.FirstOrDefaultAsync<Storage>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.StorageNotFoundById, 
+                    return Result.Failed(Error.WithData(ErrorCodes.StorageNotFoundById,
                         new[] { "Storage not found!" }));
                 }
                 result.Data.Name = model.Name;
@@ -174,6 +175,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             });
 
         #endregion
+
+        public Result<object> ListName() =>
+         Result<object>.Try(() =>
+         {
+             var result = _dbContext.Storages.Where(s => s.Enabled)
+                .Select(s => new { s.Id, s.Name })
+                .OrderBy(c => c.Name).ToList();
+             return Result<object>.Successful(result);
+         });
 
     }
 }

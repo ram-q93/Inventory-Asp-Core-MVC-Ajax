@@ -113,13 +113,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     return Result<ProductModel>.Failed(Error.WithData(ErrorCodes.ProductNotFoundById,
                         new[] { "Product not found!" }));
                 }
-                var product = _mapper.Map<Product, ProductModel>(result.Data);
-                product.ImageModel = new ImageModel()
+
+                var productModel = _mapper.Map<Product, ProductModel>(result.Data);
+                if (result.Data.Image != null)
                 {
-                    Id = (int)(result.Data.Image?.Id),
-                    Base64String = Convert.ToBase64String(result.Data.Image?.Data)
-                };
-                return Result<ProductModel>.Successful(product);
+                    productModel.ImageModel = _mapper.Map<Image, ImageModel>(result.Data.Image);
+                }
+                return Result<ProductModel>.Successful(productModel);
             });
 
         #endregion
@@ -155,6 +155,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     return Result.Failed(Error.WithData(ErrorCodes.ProductNameAlreadyInUse,
                       new[] { "Product name already in use!" }));
                 }
+
                 var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
@@ -172,6 +173,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 product.CategoryId = model.CategoryId;
                 product.StorageId = model.StorageId;
                 product.SupplierId = model.SupplierId;
+                if (model.ProductPicture != null)
+                {
+                    product.Image = _imageBiz.CreateImage(model.ProductPicture).Data;
+                    product.Image.Id = Convert.ToInt32(model.ImageId);
+                }
 
                 _repository.Update(product);
                 await _repository.CommitAsync();
@@ -193,7 +199,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 }
 
                 var product = result.Data;
-                if (result.Data.ImageId != null)
+                if (product.ImageId != null)
                 {
                     var imageResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Image>(i =>
                      i.Id == product.ImageId);
@@ -202,7 +208,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
                 _repository.Remove(product);
                 await _repository.CommitAsync();
-                _logger.Warn($"Product Deleted  id:{product.Id} name:{product.Name}");
+                _logger.Warn($"Product Deleted  id:{product.Id}  name:{product.Name}");
                 return Result.Successful();
             });
 
@@ -220,7 +226,36 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #endregion
 
+        #region Details
 
+        public Task<Result<ProductDetailsModel>> Details(int id) =>
+            Result<ProductDetailsModel>.TryAsync(async () =>
+            {
+                var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Product>(p => p.Id == id,
+                   p => p.Category,
+                   p => p.Storage,
+                   p => p.Supplier,
+                   p => p.Image);
+                if (result?.Success != true || result?.Data == null)
+                {
+                    return Result<ProductDetailsModel>.Failed(Error.WithData(ErrorCodes.ProductNotFoundById,
+                        new[] { "Product not found!" }));
+                }
+
+                var productDetailsModel = _mapper.Map<Product, ProductDetailsModel>(result.Data);
+                if (result.Data.Category != null)
+                    productDetailsModel.CategoryModel = _mapper.Map<Category, CategoryModel>(result.Data.Category);
+                if (result.Data.Storage != null)
+                    productDetailsModel.StorageModel = _mapper.Map<Storage, StorageModel>(result.Data.Storage);
+                if (result.Data.Supplier != null)
+                    productDetailsModel.SupplierModel = _mapper.Map<Supplier, SupplierModel>(result.Data.Supplier);
+                if (result.Data.Image != null)
+                    productDetailsModel.ImageModel = _mapper.Map<Image, ImageModel>(result.Data.Image);
+
+                return Result<ProductDetailsModel>.Successful(productDetailsModel);
+            });
+
+        #endregion
 
 
 

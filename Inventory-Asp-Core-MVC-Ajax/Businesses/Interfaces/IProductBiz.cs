@@ -12,5 +12,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces
         Task<Result<ProductModel>> GetById(int id);
         Task<Result<object>> List(DataTableParameters dtParameters);
         Task<Result<bool>> IsNameInUse(string name, int? id = null);
+        Task<Result<ProductDetailsModel>> Details(int id);
     }
 }

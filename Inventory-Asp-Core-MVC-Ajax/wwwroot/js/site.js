@@ -1,7 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿
 //========================================= Global ==========================================//
 $(function () {
     $("#loaderbody").addClass('hide');
@@ -232,7 +229,7 @@ $(document).ready(function () {
         lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
         columnDefs: [
             {
-                'targets': [8, 9],
+                'targets': [8, 9, 10],
                 'orderable': false,
                 'searchable': false
             }],
@@ -269,7 +266,18 @@ $(document).ready(function () {
                 data: 'id',
                 render: function (data, type, row) {
                     return `<div style="text-align:center">
-                                <a class="my-mousechange"  onclick="showProductInPopup(${data},'Edit Storage')">
+                                <a class="my-mousechange"  onclick="showProductDetailsInPopup(${data},'Product Details')">
+                                     <i class="fas fa-info fa-1x" style="color:green"></i>
+                                </a>
+                            </div>`;
+                },
+                autoWidth: true
+            },
+            {
+                data: 'id',
+                render: function (data, type, row) {
+                    return `<div style="text-align:center">
+                                <a class="my-mousechange"  onclick="showProductInPopup(${data},'Edit Product')">
                                      <i class="fas fa-edit fa-1x" style="color:green"></i>
                                 </a>
                             </div>`;
@@ -291,7 +299,7 @@ $(document).ready(function () {
     });
 });
 
-SearchStorage = () => {
+SearchProduct = () => {
     productDataTable.search($('#search-product-input-id').val()).draw();
 }
 
@@ -299,6 +307,19 @@ showProductInPopup = (id, title) => {
     $.ajax({
         type: 'Get',
         url: '/product/AddOrEditProduct',
+        data: { 'id': id },
+        success: function (response) {
+            $('#product-form-modal .modal-title').html(title);
+            $('#product-form-modal .modal-body').html(response);
+            $('#product-form-modal').modal('show');
+        }
+    })
+};
+
+showProductDetailsInPopup = (id, title) => {
+    $.ajax({
+        type: 'Get',
+        url: '/product/details',
         data: { 'id': id },
         success: function (response) {
             $('#product-form-modal .modal-title').html(title);

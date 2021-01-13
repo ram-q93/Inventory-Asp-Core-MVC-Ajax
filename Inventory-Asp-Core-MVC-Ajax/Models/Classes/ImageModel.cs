@@ -1,4 +1,6 @@
-﻿namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
+﻿using System;
+
+namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
 {
     public class ImageModel
     {
@@ -6,6 +8,14 @@
 
         public byte[] Data { get; set; }
 
-        public string Base64String { get; set; }
+        public string Base64StringData
+        {
+            get { 
+                var result = Convert.ToBase64String(Data);
+                Data = null;
+                return result;
+            }
+            private set { }
+        }
     }
 }
