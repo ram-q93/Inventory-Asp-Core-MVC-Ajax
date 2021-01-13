@@ -1,4 +1,5 @@
 ﻿using AspNetCore.Lib.Models;
+using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                if (file == null)
                {
                    return Result<Image>.Successful();
+               }
+
+               var result = file.IsValidImage();
+               if (!result.Success)
+               {
+                   return Result<Image>.Failed(result.Error);
                }
 
                MemoryStream ms = new MemoryStream();

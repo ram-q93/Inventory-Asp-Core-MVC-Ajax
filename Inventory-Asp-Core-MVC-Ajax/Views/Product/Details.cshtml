@@ -126,12 +126,14 @@
 }
 
 
-
-<tr>
-    <td>
-        <figure class="figure">
-            <img src="data:image/jpeg;base64,@(Model.ImageModel.Base64StringData)"
-                 class="rounded mx-auto d-block img-fluid" alt="No image">
-        </figure>
-    </td>
-</tr>
+@if (@Model.ImageModel != null)
+{
+    <tr>
+        <td>
+            <figure class="figure">
+                <img src="data:image/jpeg;base64,@(Model.ImageModel.Base64StringData)"
+                     class="rounded mx-auto d-block img-fluid" alt="No image">
+            </figure>
+        </td>
+    </tr>
+}

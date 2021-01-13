@@ -5,6 +5,7 @@ using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
@@ -12,10 +13,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
     public class ProductController : Controller
     {
         private readonly IProductBiz _productBiz;
+        private readonly IReportBiz _reportBiz;
 
-        public ProductController(IProductBiz productBiz)
+        public ProductController(IProductBiz productBiz, IReportBiz reportBiz)
         {
             _productBiz = productBiz;
+            _reportBiz = reportBiz;
         }
 
         #region Products
@@ -113,6 +116,25 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         #endregion
 
+        #region Report
+
+        [HttpGet]
+        public IActionResult Report() => View(new ProductReportModel());
+
+
+        [HttpPost, ActionName("csv")]
+        public async Task<IActionResult> ProductCsvReport(ProductReportModel model)
+        {
+            var result = await _reportBiz.GenerateProductCsvReport(model);
+            if (!result.Success)
+            {
+                return null;
+            }
+            return File(Encoding.UTF8.GetBytes(result.Data), "text/csv", "Sample.csv");
+        }
+
+
+        #endregion
     }
 }
 

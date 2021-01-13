@@ -17,7 +17,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             this.reportBiz = reportBiz;
         }
 
-        public IActionResult Report() => View();
+        [HttpGet, ActionName("ProductReport")]
+        public IActionResult ProductReport() => View();
 
         #region product-pdf
 

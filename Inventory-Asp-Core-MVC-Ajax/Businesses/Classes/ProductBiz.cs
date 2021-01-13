@@ -126,7 +126,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 }
 
                 var newProduct = _mapper.Map<ProductModel, Product>(model);
-                newProduct.Image = _imageBiz.CreateImage(model.ProductPicture).Data;
+
+                //------- image -------
+                var imageResult = _imageBiz.CreateImage(model.ProductPicture);
+                if (!imageResult.Success)
+                {
+                    return Result.Failed(imageResult.Error);
+                }
+                newProduct.Image = imageResult.Data;
 
                 _repository.Add(newProduct);
                 await _repository.CommitAsync();
@@ -163,10 +170,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 product.CategoryId = model.CategoryId;
                 product.StorageId = model.StorageId;
                 product.SupplierId = model.SupplierId;
+
+                //----- image ------
                 if (model.ProductPicture != null)
                 {
+                    var imageResult = _imageBiz.CreateImage(model.ProductPicture);
+                    if (!imageResult.Success)
+                    {
+                        return Result.Failed(imageResult.Error);
+                    }
+                    product.Image = imageResult.Data;
                     product.Image.Id = Convert.ToInt32(model.ImageId);
-                    product.Image = _imageBiz.CreateImage(model.ProductPicture).Data;
                 }
 
                 _repository.Update(product);

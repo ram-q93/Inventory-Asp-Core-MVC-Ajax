@@ -1,4 +1,5 @@
 ﻿using AspNetCore.Lib.Models;
+using Inventory_Asp_Core_MVC_Ajax.Models;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Drawing;
@@ -11,64 +12,68 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
     {
         public const int ImageMinimumBytes = 512;
         public const int ImageMaximumBytes = 5000000;
-        public const int ImageMaximumWidth = 100;
-        public const int ImageMaximumHight = 100;
+        public const int ImageMaximumWidth = 500;      //pixels
+        public const int ImageMaximumHight = 500;      //pixels
 
         public static Result IsValidImage(this IFormFile postedFile)
         {
-            if(postedFile == null)
+            if (postedFile == null)
                 return Result.Successful();
 
-            //-------------------------------------------
+            //--------------------------------------------------------------------------------------------------
             //  Check the image mime types
-            //-------------------------------------------
+            //--------------------------------------------------------------------------------------------------
             if (postedFile.ContentType.ToLower() != "image/jpg" &&
                         postedFile.ContentType.ToLower() != "image/jpeg" &&
-                        postedFile.ContentType.ToLower() != "image/pjpeg" &&
-                        postedFile.ContentType.ToLower() != "image/gif" &&
-                        postedFile.ContentType.ToLower() != "image/x-png" &&
+                        //postedFile.ContentType.ToLower() != "image/pjpeg" &&
+                        //postedFile.ContentType.ToLower() != "image/gif" &&
+                        //postedFile.ContentType.ToLower() != "image/x-png" &&
                         postedFile.ContentType.ToLower() != "image/png")
             {
-                return Result.Failed(Error.WithData(4009, new[] { "Error in ContentType" }));
+                return Result.Failed(Error.WithData(ErrorCodes.ErrorInImageContentType,
+                    new[] { "Image content-type" }));
             }
 
-            //-------------------------------------------
+            //--------------------------------------------------------------------------------------------------
             //  Check the image extension  (jpg, png, jpeg, gif...)
-            //-------------------------------------------
+            //--------------------------------------------------------------------------------------------------
             if (Path.GetExtension(postedFile.FileName).ToLower() != ".jpg"
                 && Path.GetExtension(postedFile.FileName).ToLower() != ".png"
-                && Path.GetExtension(postedFile.FileName).ToLower() != ".gif"
+                //&& Path.GetExtension(postedFile.FileName).ToLower() != ".gif"
                 && Path.GetExtension(postedFile.FileName).ToLower() != ".jpeg")
             {
-                return Result.Failed(Error.WithData(4009, new[] { "Error in image extension  (jpg, png, jpeg...)" }));
+                return Result.Failed(Error.WithData(ErrorCodes.ErrorInImageExtension,
+                    new[] { "Image extension(jpg, png, jpeg)" }));
             }
 
-            //-------------------------------------------
+            //--------------------------------------------------------------------------------------------------
             //  Check the image Aspect ratio
-            //-------------------------------------------
+            //--------------------------------------------------------------------------------------------------
             using (var image = Image.FromStream(postedFile.OpenReadStream()))
             {
                 if (image.Width > ImageMaximumWidth || image.Height > ImageMaximumHight)
-                    return Result.Failed(Error.WithData(4009, new[] { "Error in image aspect ratio" }));
+                    return Result.Failed(Error.WithData(ErrorCodes.ErrorInImageAspectRatio,
+                        new[] { $"Image should be less than({ImageMaximumWidth}x{ImageMaximumHight} pixels)" }));
             }
 
 
-            //-------------------------------------------
+            //--------------------------------------------------------------------------------------------------
             //  Attempt to read the file and check the first bytes
-            //-------------------------------------------
+            //--------------------------------------------------------------------------------------------------
             try
             {
                 if (!postedFile.OpenReadStream().CanRead)
                 {
-                    return Result.Failed(Error.WithData(4009, new[] { "Error in image" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.ErrorInImageCanRead));
 
                 }
-                //------------------------------------------
+                //----------------------------------------------------------------------------------------------
                 //check whether the image size exceeding the limit
-                //------------------------------------------ 
+                //----------------------------------------------------------------------------------------------
                 if (postedFile.Length > ImageMaximumBytes)
                 {
-                    return Result.Failed(Error.WithData(4009, new[] { "Error :  image size exceeding the limit" }));
+                    return Result.Failed(Error.WithData(ErrorCodes.ErrorInImageSizeExceedingTheLimit,
+                        new[] { $"Image size should be less than {ImageMaximumBytes} bytes " }));
                 }
 
                 byte[] buffer = new byte[ImageMinimumBytes];
@@ -77,12 +82,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
                 if (Regex.IsMatch(content, @"<script|<html|<head|<title|<body|<pre|<table|<a\s+href|<img|<plaintext|<cross\-domain\-policy",
                     RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Multiline))
                 {
-                    return Result.Failed(Error.WithData(4009, new[] { "Error" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.ErrorInImageSizeMinimumLimit));
                 }
             }
             catch (Exception)
             {
-                return Result.Failed(Error.WithData(4009, new[] { "" })); ;
+                return Result.Failed(Error.WithCode(ErrorCodes.ExceptionInImage));
             }
 
             //-------------------------------------------
@@ -92,14 +97,14 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
 
             try
             {
-                using (var bitmap = new System.Drawing.Bitmap(postedFile.OpenReadStream()))
-                {
-                }
+                //using (var bitmap = new System.Drawing.Bitmap(postedFile.OpenReadStream()))
+                //{
+                //}
             }
             catch (Exception)
             {
 
-                return Result.Failed(Error.WithData(4009, new[] { "Error " }));
+                return Result.Failed(Error.WithCode(ErrorCodes.ExceptionInImage));
             }
             finally
             {

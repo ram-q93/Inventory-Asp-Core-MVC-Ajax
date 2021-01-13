@@ -15,7 +15,7 @@
 
         <ul class="navbar-nav ml-auto">
             <div class="topbar-divider d-none d-sm-block">
-                <!-- Topbar Search -->
+                <!-- Search -->
                 <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border- " placeholder="Search by..."
@@ -28,8 +28,7 @@
                     </div>
                 </div>
 
-             
-
+                <!-- New Product -->
                 <a class="d-none d-sm-inline-block btn  my-btn-success shadow-sm "
                    onclick="showProductInPopup('0', 'New Product')">
                     <span class="icon text-white">
@@ -38,8 +37,11 @@
                     <span class="text text-white font-weight-bold">&nbsp;&nbsp;New Product</span>
                 </a>
 
-                <a href="#" class="d-none d-sm-inline-block btn  btn-primary shadow-sm">
-                    <i class="fas fa-download fa-sm text-white"></i> Generate Report
+                <!-- Report-->
+                <a onclick="showProductReportInPopup()"
+                   class="d-none d-sm-inline-block btn  btn-primary shadow-sm">
+                    <i class="fas fa-download fa-sm text-white"></i> 
+                    <span class="text text-white ">&nbsp;&nbsp;Generate Report</span>
                 </a>
             </div>
         </ul>

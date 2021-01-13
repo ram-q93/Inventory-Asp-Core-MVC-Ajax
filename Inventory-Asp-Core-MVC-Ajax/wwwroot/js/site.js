@@ -396,6 +396,52 @@ jQueryAjaxPostToDeleteProduct = (id) => {
     //to prevent default form submit event
     return false;
 };
+
+showProductReportInPopup = () => {
+    $.ajax({
+        type: 'Get',
+        url: '/product/Report',
+        success: function (response) {
+            $('#product-form-modal .modal-title').html('Report');
+            $('#product-form-modal .modal-body').html(response);
+            $('#product-form-modal').modal('show');
+        }
+    })
+}
+
+jQueryAjaxPostToProductReport = form => {
+    try {
+        console.log(form.action);
+        $.ajax({
+            type: 'Post',
+            url: form.action,
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+               // if (response.success) {
+                    $('#product-form-modal .modal-title').html('');
+                    $('#product-form-modal .modal-body').html('');
+                    $('#product-form-modal').modal('hide');
+                 
+                //    SweetAlertSubmitedSuccessfully();
+                //}
+                //else {
+                //    SweetAlertSubmitFailed(response.error)
+                //    $('#product-form-modal .modal-body').html(response.html);
+                //}
+            },
+            error: function (e) {
+                SweetAlertSubmitFailed('Error in Submitting product')
+                console.log(e);
+            }
+        })
+    } catch (e) {
+        console.log(e);
+    }
+    // to prevent default form submit event
+    return false;
+};
 //========================================================================== Product ========//
 
 
@@ -588,17 +634,17 @@ $(document).ready(function () {
         },
         columns: [
             { data: 'name', autoWidth: true },  
-            //{
-            //    data: 'description',
-            //    render: function (data, type, row) {
-            //        return `<div style="text-align:center">
-            //                    <a class="my-mousechange"  onclick="showCategoryDetailsInPopup(${data},'Description')">
-            //                         <i class="fas fa-info fa-1x" style="color:green"> Description </i>
-            //                    </a>
-            //                </div>`;
-            //    },
-            //    autoWidth: true
-            //},
+            {
+                data: 'id',
+                render: function (data, type, row) {
+                    return `<div style="text-align:center">
+                                <a class="my-mousechange"  onclick="showCategoryDetailsInPopup(${data},'Description')">
+                                     <i class="fas fa-info fa-1x" style="color:green"> Description </i>
+                                </a>
+                            </div>`;
+                },
+                autoWidth: true
+            },
             {
                 data: 'id',
                 render: function (data, type, row) {
@@ -629,9 +675,8 @@ SearchCategory = () => {
     categoryDataTable.search($('#search-category-input-id').val()).draw();
 }
 
-showCategoryDetailsInPopup = (description, title) => {
+showCategoryDetailsInPopup = (id,title) => {
 
-    SweetAlertSubmitFailed(description);
 };
 
 showCategoryInPopup = (id, title) => {

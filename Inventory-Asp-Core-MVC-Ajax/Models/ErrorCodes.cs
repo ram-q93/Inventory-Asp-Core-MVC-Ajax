@@ -45,7 +45,16 @@
         public const int ErrorInDashboardStatistics = 2061;
         #endregion
 
-     
+        #region Image (Prefix = 207)
+        public const int ErrorInImageContentType = 2071;
+        public const int ErrorInImageExtension = 2072;
+        public const int ErrorInImageAspectRatio= 2073;
+        public const int ErrorInImageCanRead = 2074;
+        public const int ErrorInImageSizeExceedingTheLimit = 2075;
+        public const int ErrorInImageSizeMinimumLimit = 2076;
+        public const int ExceptionInImage= 2077;
+        #endregion
+
 
         #region Auth
         public const int UserNameAlreadyExists = 4040;

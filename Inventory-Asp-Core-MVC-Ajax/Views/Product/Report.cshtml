@@ -1,0 +1,144 @@
+﻿@model Inventory_Asp_Core_MVC_Ajax.Models.Classes.ProductReportModel
+
+@{
+    ViewData["Title"] = "Report";
+    Layout = null;
+}
+<div class="row">
+    <div class="col-md-12">
+        <form id="form-product-report" onsubmit="return jQueryAjaxPostToProductReport(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label class="control-label">Quantity:</label>
+                </div>
+                <div class="form-group col-md-5">
+                    <input asp-for="MinQuantity" type="number" class="form-control">
+                    <span asp-validation-for="MinQuantity" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-5">
+                    <input asp-for="MaxQuantity" type="number" class="form-control">
+                    <span asp-validation-for="MaxQuantity" class="text-danger"></span>
+                </div>
+            </div>
+            </br>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label class="control-label">Unite Price:</label>
+                </div>
+                <div class="form-group col-md-5">
+                    <input asp-for="MinPrice" type="number" class="form-control">
+                    <span asp-validation-for="MinPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-5">
+                    <input asp-for="MaxPrice" type="number" class="form-control">
+                    <span asp-validation-for="MaxPrice" class="text-danger"></span>
+                </div>
+            </div>
+            </br>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label asp-for="Enabled" class="control-label">Status:</label>
+                </div>
+                <div class="form-group col-md-1">
+                    <input type="radio" asp-for="Enabled" id="active" value="true">
+                    <label for="active">Active</label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="radio" asp-for="Enabled" id="deactive" value="false">
+                    <label for="deactive">Deactive</label>
+                </div>
+            </div>
+            </br>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="control-label">Category</label>
+                    <select id="CategorySelectList" asp-for="CategoryId" class="form-control">
+                        <option value="@Model.CategoryId"> --- Select Category ---</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label">Storage</label>
+                    <select id="StorageSelectList" asp-for="StorageId" class="form-control">
+                        <option value="@Model.StorageId"> --- Select Storage ---</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label">Supplier</label>
+                    <select id="SupplierSelectList" asp-for="SupplierId" class="form-control">
+                        <option value="@Model.SupplierId"> --- Select Supplier ---</option>
+                    </select>
+                </div>
+            </div>
+            </br>  
+            </br>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <input type="submit" id="pdf" value="Pdf"
+                               class="btn btn-primary text-white btn-lg btn-block" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="submit" id="excell" value="Excell"
+                               class="btn btn-primary text-white btn-lg btn-block" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="submit" id="csv-input" value="Csv" 
+                               class="btn btn-primary text-white btn-lg btn-block" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    $('#csv-input').on('click', function () {
+        console.log('hereeeeeee');
+        $('#form-product-report').attr('controller', 'product');
+        $('#form-product-report').attr('action', 'csv');
+    });
+
+
+
+    $(document).ready(function () {
+        //category.click(function () {
+        $.ajax({
+            type: 'Get',
+            url: '/category/list-name',
+            contentType: 'application/json',
+            success: function (response) {
+                // category.empty();
+                $(response).each(function (index, item) {
+                    $('#CategorySelectList').append($('<option/>', { value: item.id, text: item.name }));
+                });
+            }
+        })
+
+        $.ajax({
+            type: 'Get',
+            url: '/storage/list-name',
+            contentType: 'application/json',
+            success: function (response) {
+                $(response).each(function (index, item) {
+                    $('#StorageSelectList').append($('<option/>', { value: item.id, text: item.name }));
+                });
+            }
+        })
+
+        $.ajax({
+            type: 'Get',
+            url: '/supplier/list-name',
+            contentType: 'application/json',
+            success: function (response) {
+                $(response).each(function (index, item) {
+                    $('#SupplierSelectList').append($('<option/>', { value: item.id, text: item.companyName }));
+                });
+            }
+        })
+
+        //})
+    });
+</script>
+
