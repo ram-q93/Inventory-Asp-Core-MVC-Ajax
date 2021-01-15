@@ -1,6 +1,6 @@
 ﻿using AspNetCore.Lib.Enums;
 using AspNetCore.Lib.Models;
-using AspNetCore.Lib.Services;
+using AspNetCore.Lib.Services.Interfaces;
 using AutoMapper;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess;
@@ -61,8 +61,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
                 if (!resultList.Success)
                 {
-                    return Result<object>.Failed(Error.WithData(ErrorCodes.CategoriesNotFound,
-                        new[] { "Some thing went wrong!" }));
+                    return Result<object>.Failed(Error.WithCode(ErrorCodes.CategoriesNotFound), "Some thing went wrong!");
                 }
 
                 var totalCount = (await _repository.CountAllAsync<Category>()).Data;
@@ -88,8 +87,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Category>(p => p.Id == id);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result<CategoryModel>.Failed(Error.WithData(ErrorCodes.CategoryNotFoundById,
-                        new[] { "Category not found!" }));
+                    return Result<CategoryModel>.Failed(Error.WithCode(ErrorCodes.CategoryNotFoundById), "Category not found!");
                 }
 
                 var productModel = _mapper.Map<Category, CategoryModel>(result.Data);
@@ -106,8 +104,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.Name)).Data)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.CategoryNameAlreadyInUse,
-                       new[] { "Category name already in use!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.CategoryNameAlreadyInUse), "Category name already in use!");
                 }
 
                 var newCategory = _mapper.Map<CategoryModel, Category>(model);
@@ -126,15 +123,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.Name, model.Id)).Data)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.CategoryNameAlreadyInUse,
-                      new[] { "Category name already in use!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.CategoryNameAlreadyInUse), "Category name already in use!");
                 }
 
                 var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Category>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.CategoryNotFoundById,
-                        new[] { "Category not found!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.CategoryNotFoundById), "Category not found!");
                 }
 
                 var category = result.Data;
@@ -156,8 +151,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Category>(p => p.Id == id);
                 if (!result.Success || result?.Data == null)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.CategoryNotFoundById,
-                        new[] { "Category not found!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.CategoryNotFoundById), "Category not found!");
                 }
 
                 _repository.Remove(result.Data);
@@ -174,7 +168,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             Result<bool>.TryAsync(async () =>
             {
                 var result = await _repository.ExistsAsync<Category>(s => s.Name == name &&
-                (id == null || s.Id != id)); 
+                (id == null || s.Id != id));
                 return Result<bool>.Successful(result.Data);
             });
 

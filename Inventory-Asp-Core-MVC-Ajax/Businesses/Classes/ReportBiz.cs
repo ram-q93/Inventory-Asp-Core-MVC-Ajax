@@ -1,5 +1,6 @@
 ﻿using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services;
+using AspNetCore.Lib.Services.Interfaces;
 using AutoMapper;
 using ClosedXML.Excel;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;

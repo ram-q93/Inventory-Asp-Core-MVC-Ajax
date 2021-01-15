@@ -1,6 +1,6 @@
 ﻿using AspNetCore.Lib.Enums;
 using AspNetCore.Lib.Models;
-using AspNetCore.Lib.Services;
+using AspNetCore.Lib.Services.Interfaces;
 using AutoMapper;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess;
@@ -70,8 +70,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
                 if (!resultList.Success)
                 {
-                    return Result<object>.Failed(
-                        Error.WithData(ErrorCodes.SuppliersNotFound, new[] { "Some thing went wrong!" }));
+                    return Result<object>.Failed(Error.WithCode(ErrorCodes.SuppliersNotFound), "Some thing went wrong!");
                 }
 
                 var totalFilteredCount = resultList.TotalCount;
@@ -97,8 +96,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == id);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result<SupplierModel>.Failed(
-                        Error.WithData(ErrorCodes.SupplierNotFoundById, new[] { "Supplier not found!" }));
+                    return Result<SupplierModel>.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById), "Supplier not found!");
                 }
                 return Result<SupplierModel>.Successful(_mapper.Map<Supplier, SupplierModel>(result.Data));
             });
@@ -112,9 +110,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.CompanyName)).Data)
                 {
-                    return Result.Failed(
-                       Error.WithData(ErrorCodes.SupplierNameAlreadyInUse,
-                       new[] { "Supplier name already in use!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyInUse), "Supplier name already in use!");
                 }
 
                 var supplier = _mapper.Map<SupplierModel, Supplier>(model);
@@ -133,14 +129,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.CompanyName, model.Id)).Data)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.SupplierNameAlreadyInUse,
-                      new[] { "Supplier name already in use!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.SupplierNameAlreadyInUse), "Supplier name already in use!");
                 }
+
                 var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.SupplierNotFoundById,
-                        new[] { "Supplier not found!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById), "Supplier not found!");
                 }
 
                 var supplier = _mapper.Map<SupplierModel, Supplier>(model);
@@ -160,9 +155,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var supplierResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Supplier>(p => p.Id == id);
                 if (!supplierResult.Success || supplierResult?.Data == null)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.SupplierNotFoundById,
-                        new[] { "Supplier not found!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.SupplierNotFoundById), "Supplier not found!");
                 }
+
                 _repository.Remove(supplierResult.Data);
                 await _repository.CommitAsync();
                 _logger.Warn($"Supplier Deleted: {supplierResult.Data.CompanyName}");

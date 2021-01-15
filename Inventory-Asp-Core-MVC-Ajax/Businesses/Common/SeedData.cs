@@ -1,5 +1,6 @@
 ﻿using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services;
+using AspNetCore.Lib.Services.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using System;
@@ -19,13 +20,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
     {
         private readonly IRepository _repository;
         private readonly InventoryDbContext _dbcontext;
-        private readonly ISerializer _serializer;
+        private readonly ISerializerService _serializer;
         private readonly ILogger _logger;
 
         public SeedData() { }
 
         public SeedData(IRepository repository, InventoryDbContext dbcontext,
-            ISerializer serializer, ILogger logger)
+            ISerializerService serializer, ILogger logger)
         {
             _repository = repository;
             _dbcontext = dbcontext;

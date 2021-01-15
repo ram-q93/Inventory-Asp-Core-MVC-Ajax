@@ -30,8 +30,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
                         //postedFile.ContentType.ToLower() != "image/x-png" &&
                         postedFile.ContentType.ToLower() != "image/png")
             {
-                return Result.Failed(Error.WithData(ErrorCodes.ErrorInImageContentType,
-                    new[] { "Image content-type" }));
+                return Result.Failed(Error.WithCode(ErrorCodes.ErrorInImageContentType), "Image content-type");
             }
 
             //--------------------------------------------------------------------------------------------------
@@ -42,8 +41,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
                 //&& Path.GetExtension(postedFile.FileName).ToLower() != ".gif"
                 && Path.GetExtension(postedFile.FileName).ToLower() != ".jpeg")
             {
-                return Result.Failed(Error.WithData(ErrorCodes.ErrorInImageExtension,
-                    new[] { "Image extension(jpg, png, jpeg)" }));
+                return Result.Failed(Error.WithCode(ErrorCodes.ErrorInImageExtension), "Image extension(jpg, png, jpeg)");
             }
 
             //--------------------------------------------------------------------------------------------------
@@ -52,8 +50,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
             using (var image = Image.FromStream(postedFile.OpenReadStream()))
             {
                 if (image.Width > ImageMaximumWidth || image.Height > ImageMaximumHight)
-                    return Result.Failed(Error.WithData(ErrorCodes.ErrorInImageAspectRatio,
-                        new[] { $"Image should be less than({ImageMaximumWidth}x{ImageMaximumHight} pixels)" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.ErrorInImageAspectRatio),
+                        $"Image should be less than({ImageMaximumWidth}x{ImageMaximumHight} pixels)");
             }
 
 
@@ -72,8 +70,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
                 //----------------------------------------------------------------------------------------------
                 if (postedFile.Length > ImageMaximumBytes)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.ErrorInImageSizeExceedingTheLimit,
-                        new[] { $"Image size should be less than {ImageMaximumBytes} bytes " }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.ErrorInImageSizeExceedingTheLimit),
+                        $"Image size should be less than {ImageMaximumBytes} bytes ");
                 }
 
                 byte[] buffer = new byte[ImageMinimumBytes];

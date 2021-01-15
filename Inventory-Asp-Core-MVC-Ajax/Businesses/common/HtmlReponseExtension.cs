@@ -24,8 +24,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
                 string error;
                 if (result == null)
                     error = "";
-                else if (result?.Error.Data != null && result?.Error.Data.Length > 0)
-                    error = $"Error ({result?.Error?.Code}) {result?.Error?.Data[0]}";
+                else if (!string.IsNullOrEmpty(result?.Message))
+                    error = $"Error ({result?.Error?.Code}) {result?.Message}";
                 else
                     error = $"Error ({result?.Error?.Code})";
 

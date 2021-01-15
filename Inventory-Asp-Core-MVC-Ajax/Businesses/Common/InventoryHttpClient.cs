@@ -3,6 +3,7 @@ using AspNetCore.Lib.Enums;
 using AspNetCore.Lib.HttpClients;
 using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services;
+using AspNetCore.Lib.Services.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using System;
 using System.Threading.Tasks;
@@ -14,11 +15,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
     {
         protected override string Host => "https://picsum.photos";
 
-        private readonly ISerializer serializer;
+        private readonly ISerializerService serializer;
         private readonly ILogger logger;
 
         public InventoryHttpClient(
-            ISerializer serializer,
+            ISerializerService serializer,
             ILogger logger,
             JsonSerializerType jsonSerializerType = JsonSerializerType.PascalCase)
             : base(serializer, jsonSerializerType)

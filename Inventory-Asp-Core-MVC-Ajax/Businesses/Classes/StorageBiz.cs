@@ -1,6 +1,6 @@
 ﻿using AspNetCore.Lib.Enums;
 using AspNetCore.Lib.Models;
-using AspNetCore.Lib.Services;
+using AspNetCore.Lib.Services.Interfaces;
 using AutoMapper;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
@@ -66,8 +66,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
                 if (!resultList.Success)
                 {
-                    return Result<object>.Failed(
-                        Error.WithData(ErrorCodes.StoragesNotFound, new[] { "Some thing went wrong!" }));
+                    return Result<object>.Failed(Error.WithCode(ErrorCodes.StoragesNotFound), "Some thing went wrong!");
                 }
 
                 var storageModels = _mapper.Map<IEnumerable<Storage>, IEnumerable<StorageModel>>(resultList.Items);
@@ -92,8 +91,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var result = await _repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result<StorageModel>.Failed(
-                        Error.WithData(ErrorCodes.StorageNotFoundById, new[] { "Storage not found!" }));
+                    return Result<StorageModel>.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById), "Storage not found!");
                 }
                 return Result<StorageModel>.Successful(_mapper.Map<Storage, StorageModel>(result.Data));
             });
@@ -107,8 +105,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.Name)).Data)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.StorageNameAlreadyInUse,
-                        new[] { "Storage name already in use!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyInUse), "Storage name already in use!");
                 }
                 var storage = _mapper.Map<StorageModel, Storage>(model);
                 _repository.Add(storage);
@@ -125,14 +122,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             {
                 if ((await IsNameInUse(model.Name, model.Id)).Data)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.StorageNameAlreadyInUse,
-                        new[] { "Storage name already in use!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNameAlreadyInUse), "Storage name already in use!");
                 }
                 var result = await _repository.FirstOrDefaultAsync<Storage>(p => p.Id == model.Id);
                 if (result?.Success != true || result?.Data == null)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.StorageNotFoundById,
-                        new[] { "Storage not found!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById), "Storage not found!");
                 }
 
                 result.Data.Name = model.Name;
@@ -155,8 +150,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var storageResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Storage>(p => p.Id == id);
                 if (!storageResult.Success || storageResult?.Data == null)
                 {
-                    return Result.Failed(Error.WithData(ErrorCodes.StorageNotFoundById,
-                        new[] { "Storage not found!" }));
+                    return Result.Failed(Error.WithCode(ErrorCodes.StorageNotFoundById), "Storage not found!");
                 }
 
                 _repository.Remove(storageResult.Data);
