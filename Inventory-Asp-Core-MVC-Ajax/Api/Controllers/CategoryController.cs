@@ -93,7 +93,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [AcceptVerbs("Get", "Post")]
         public async Task<JsonResult> IsNameAvailable(string name) =>
-            (await _categoryBiz.IsNameInUse(name)).Data ? Json($"Name {name} is already in use.") : Json(true);
+            (await _categoryBiz.IsNameInUse(name)).Data ? Json(false) : Json(true);
 
         #endregion
 
@@ -103,6 +103,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         {
             var result = _categoryBiz.ListName();
             return Json(result.Data);
+        }
+        #endregion
+
+        #region Details
+        [HttpGet, ActionName("Details")]
+        public async Task<IActionResult> Details(int id)
+        {
+            var result = await _categoryBiz.GetById(id);
+            return Json(new { description = result.Data.Description ?? "No description" });
         }
         #endregion
     }

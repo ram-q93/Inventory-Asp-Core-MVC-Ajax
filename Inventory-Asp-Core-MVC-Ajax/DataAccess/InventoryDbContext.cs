@@ -1,6 +1,6 @@
 ﻿
-using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
-using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
+using AspNetCore.Lib.Models;
+using AspNetCore.Lib.Services;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
 using Microsoft.EntityFrameworkCore;
 
@@ -43,11 +43,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = "ram";
+                        entry.Entity.CreatedBy = "ramin";
                         entry.Entity.Created = _dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = "qam";
+                        entry.Entity.LastModifiedBy = "q";
                         entry.Entity.LastModified = _dateTime.Now;
                         break;
                 }

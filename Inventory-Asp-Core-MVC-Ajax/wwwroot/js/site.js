@@ -49,6 +49,20 @@ function SweetAlertSubmitFailed(ErrorMessage) {  // confirmButtonText: 'Cool'
         title: '<span style="color:White" >' + ErrorMessage + '</span>'
     })
 };
+
+function SweetAlertInfo(message) {
+   return Swal.fire({
+       title: message, 
+       customClass: 'my-swal2-info-styling',
+       
+        //showClass: {
+        //    popup: 'animate__animated animate__fadeInDown'
+        //},
+        //hideClass: {
+        //    popup: 'animate__animated animate__fadeOutUp'
+        //}
+    })
+};
 //========================================= Global ==========================================//
 
 //======================================================= Storage ===========================//
@@ -420,9 +434,9 @@ jQueryAjaxPostToProductReport = form => {
             processData: false,
             success: function (response) {
                // if (response.success) {
-                    $('#product-form-modal .modal-title').html('');
-                    $('#product-form-modal .modal-body').html('');
-                    $('#product-form-modal').modal('hide');
+                    //$('#product-form-modal .modal-title').html('');
+                    //$('#product-form-modal .modal-body').html('');
+                    //$('#product-form-modal').modal('hide');
                  
                 //    SweetAlertSubmitedSuccessfully();
                 //}
@@ -675,8 +689,17 @@ SearchCategory = () => {
     categoryDataTable.search($('#search-category-input-id').val()).draw();
 }
 
-showCategoryDetailsInPopup = (id,title) => {
-
+showCategoryDetailsInPopup = (id) => {
+    $.ajax({
+        type: 'Get',
+        data: { 'id': id },
+        url: '/category/details',
+        success: function (response) {
+            $('#category-form-modal .modal-title').html('Description');
+            $('#category-form-modal .modal-body').html('<h5>' + response.description +'</h5>');
+            $('#category-form-modal').modal('show'); 
+        }
+    })
 };
 
 showCategoryInPopup = (id, title) => {

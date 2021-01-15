@@ -90,8 +90,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     var currentRow = 1;
                     worksheet.Cell(currentRow, 1).Value = "Name";
                     worksheet.Cell(currentRow, 2).Value = "Quantity";
-                    worksheet.Cell(currentRow, 3).Value = "Price";
-                    worksheet.Cell(currentRow, 4).Value = "IsAvailable";
+                    worksheet.Cell(currentRow, 3).Value = "UnitePrice";
+                    worksheet.Cell(currentRow, 4).Value = "Enabled";
                     foreach (var p in productModels)
                     {
                         currentRow++;
@@ -123,7 +123,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var productModels = result.Data.Select(p => mapper.Map<Product, ProductModel>(p)).ToList();
 
                 var builder = new StringBuilder();
-                builder.AppendLine("Name,Quantity,Price,IsAvailable");
+                builder.AppendLine("Name,Quantity,UnitePrice,Enabled");
                 foreach (var p in productModels)
                 {
                     builder.AppendLine($"{p.Name},{p.Quantity},{p.UnitePrice},{p.Enabled}");
@@ -139,15 +139,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         private Task<Result<IList<Product>>> GetProductListFromDB(ProductReportModel model) =>
            Result<IList<Product>>.TryAsync(async () => await
            repository.ListAsNoTrackingAsync<Product>(p =>
-                   //(model.IsAvailable == null || p.IsAvailable == model.IsAvailable) &&
-                   //(model.MaxPrice == null || p.Price <= model.MaxPrice) &&
-                   //(model.MinPrice == null || p.Price >= model.MinPrice) &&
-                   //(model.MaxQuantity == null || p.Quantity <= model.MaxQuantity) &&
-                   //(model.MinQuantity == null || p.Quantity >= model.MinQuantity) &&
-                   //(model.MaxPrice == null || p.Price <= model.MaxPrice) &&
+                   (model.Enabled == null || p.Enabled == model.Enabled) &&
+                   (model.MaxPrice == null || p.UnitePrice <= model.MaxPrice) &&
+                   (model.MinPrice == null || p.UnitePrice >= model.MinPrice) &&
+                   (model.MaxQuantity == null || p.Quantity <= model.MaxQuantity) &&
+                   (model.MinQuantity == null || p.Quantity >= model.MinQuantity) &&
                    (model.StorageId == null || p.StorageId == model.StorageId) &&
                    (model.SupplierId == null || p.SupplierId == model.SupplierId),
-                  p => p.Storage, p => p.Supplier));
+                  p => p.Storage, p => p.Supplier)
+           );
 
         #endregion
     }

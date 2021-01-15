@@ -75,11 +75,11 @@
             <div class="form-group">
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <input type="submit" id="pdf" value="Pdf"
+                        <input type="submit" id="pdf-input" value="Pdf"
                                class="btn btn-primary text-white btn-lg btn-block" />
                     </div>
                     <div class="form-group col-md-4">
-                        <input type="submit" id="excell" value="Excell"
+                        <input type="submit" id="excell-input" value="Excell"
                                class="btn btn-primary text-white btn-lg btn-block" />
                     </div>
                     <div class="form-group col-md-4">
@@ -95,21 +95,26 @@
 
 <script>
     $('#csv-input').on('click', function () {
-        console.log('hereeeeeee');
         $('#form-product-report').attr('controller', 'product');
         $('#form-product-report').attr('action', 'csv');
     });
 
+    $('#pdf-input').on('click', function () {
+        $('#form-product-report').attr('controller', 'product');
+        $('#form-product-report').attr('action', 'pdf');
+    });
 
+    $('#excell-input').on('click', function () {
+        $('#form-product-report').attr('controller', 'product');
+        $('#form-product-report').attr('action', 'excell');
+    });
 
     $(document).ready(function () {
-        //category.click(function () {
         $.ajax({
             type: 'Get',
             url: '/category/list-name',
             contentType: 'application/json',
             success: function (response) {
-                // category.empty();
                 $(response).each(function (index, item) {
                     $('#CategorySelectList').append($('<option/>', { value: item.id, text: item.name }));
                 });
@@ -137,8 +142,6 @@
                 });
             }
         })
-
-        //})
     });
 </script>
 

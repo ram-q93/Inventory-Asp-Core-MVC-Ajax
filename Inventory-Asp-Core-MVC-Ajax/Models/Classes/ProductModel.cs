@@ -1,6 +1,5 @@
 ﻿using AspNetCore.Lib.Attributes;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
-using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
+using AspNetCore.Lib.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;

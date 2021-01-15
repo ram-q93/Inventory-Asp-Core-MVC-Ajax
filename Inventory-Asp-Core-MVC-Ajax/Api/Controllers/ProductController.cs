@@ -5,6 +5,8 @@ using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.Models;
 using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using Microsoft.AspNetCore.Mvc;
+using Syncfusion.Pdf;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -96,7 +98,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [AcceptVerbs("Get", "Post")]
         public async Task<JsonResult> IsNameAvailable(string name) =>
-            (await _productBiz.IsNameInUse(name)).Data ? Json($"Name {name} is already in use.") : Json(true);
+            (await _productBiz.IsNameInUse(name)).Data ? Json(true) : Json(true);
 
         #endregion
 
@@ -133,6 +135,34 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             return File(Encoding.UTF8.GetBytes(result.Data), "text/csv", "Sample.csv");
         }
 
+     
+        [HttpGet, ActionName("pdf")]
+        public async Task<IActionResult> ProductPDFReport(ProductReportModel model)
+        {
+            var result = await _reportBiz.GenerateProductPdfReport(model);
+            if (!result.Success || result.Data == null)
+            {
+                return null;
+            }
+            PdfDocument pdfDocument = result.Data;
+            MemoryStream stream = new MemoryStream();
+            pdfDocument.Save(stream);
+            return File(stream.ToArray(), System.Net.Mime.MediaTypeNames.Application.Pdf, "Sample.pdf");
+        }
+
+        
+        [HttpGet, ActionName("excel")]
+        public async Task<IActionResult> ProductExcelReport(ProductReportModel model)
+        {
+            var result = await _reportBiz.GenerateProductExcelReport(model);
+            if (!result.Success)
+            {
+                return null;
+            }
+            return File(result.Data,
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+              "Sample.xlsx");
+        }
 
         #endregion
     }

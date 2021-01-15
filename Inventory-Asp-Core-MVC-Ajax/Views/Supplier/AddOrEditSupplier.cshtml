@@ -12,8 +12,9 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label asp-for="CompanyName" class="control-label"></label>
-                    <input asp-for="CompanyName" type="text" class="form-control">
+                    <input asp-for="CompanyName" type="text" class="form-control" id="txtName">
                     <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    <div id="divOutPut"></div>
                 </div>
                 <div class="form-group col-md-6">
                     <label asp-for="ContactName" class="control-label"></label>
@@ -81,3 +82,47 @@
         </form>
     </div>
 </div>
+
+
+<script>
+    function delay(callback, ms) {
+        var timer = 0;
+        return function () {
+            var context = this, args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                callback.apply(context, args);
+            }, ms || 0);
+        };
+    }
+
+    $(document).ready(function () {
+        $('#txtName').keyup(delay(function () {
+            var name = $(this).val();
+            var divElement = $('#divOutPut');
+            if (name.length == 0) {
+                divElement.text('');
+            }
+            if (name.length >= 3) {
+                $.ajax({
+                    type: 'Post',
+                    url: '/supplier/IsNameAvailable',
+                    data: { 'name': name },
+                    success: function (response) {
+                        if (response) {
+                            divElement.text('Available');
+                            divElement.css('color', 'green');
+                        } else {
+                            divElement.text('Not Available');
+                            divElement.css('color', 'red');
+                        }
+                    },
+                    error: function (e) {
+                        alert(e)
+                    }
+                });
+            }
+
+        }, 1500));
+    });
+</script>

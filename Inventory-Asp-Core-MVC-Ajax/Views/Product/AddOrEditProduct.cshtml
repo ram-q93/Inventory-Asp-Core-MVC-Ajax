@@ -14,8 +14,9 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" type="text" class="form-control">
+                    <input asp-for="Name" type="text" class="form-control" id="txtName">
                     <span asp-validation-for="Name" class="text-danger"></span>
+                    <div id="divOutPut"></div>
                 </div>
                 <div class="form-group col-md-6">
                     <label asp-for="Code" class="control-label"></label>
@@ -86,7 +87,7 @@
                     <select id="SupplierSelectList" asp-for="SupplierId" class="form-control">
                         @if (@Model.SupplierCompanyName == null)
                         {
-                        <option value="@Model.SupplierId"> --- Select Supplier ---</option>
+                            <option value="@Model.SupplierId"> --- Select Supplier ---</option>
                         }
                         else
                         {
@@ -111,7 +112,7 @@
                 <input type="submit" value="Submit" class="btn btn-primary text-white btn-lg btn-block" />
             </div>
         </form>
-       @* <img id="output-image" />*@
+        @* <img id="output-image" />*@
         <figure class="figure">
             <img id="output-image" src="data:image/jpeg;base64,@(Model.ImageModel?.Base64StringData)"
                  class="rounded mx-auto d-block img-fluid" alt="No image">
@@ -132,8 +133,8 @@
     };
 
 
+
     $(document).ready(function () {
-      
         //category.click(function () {
         $.ajax({
             type: 'Get',
@@ -171,5 +172,48 @@
 
         //})
     });
+
+
+    function delay(callback, ms) {
+        var timer = 0;
+        return function () {
+            var context = this, args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                callback.apply(context, args);
+            }, ms || 0);
+        };
+    }
+
+    $(document).ready(function () {
+        $('#txtName').keyup(delay(function () {
+            var name = $(this).val();
+            var divElement = $('#divOutPut');
+            if (name.length == 0) {
+                divElement.text('');
+            }
+            if (name.length >= 3) {
+                $.ajax({
+                    type: 'Post',
+                    url: '/category/IsNameAvailable',
+                    data: { 'name': name },
+                    success: function (response) {
+                        if (response) {
+                            divElement.text('Available');
+                            divElement.css('color', 'green');
+                        } else {
+                            divElement.text('Not Available');
+                            divElement.css('color', 'red');
+                        }
+                    },
+                    error: function (e) {
+                        alert(e)
+                    }
+                });
+            }
+
+        }, 1500));
+    });
 </script>
+
 

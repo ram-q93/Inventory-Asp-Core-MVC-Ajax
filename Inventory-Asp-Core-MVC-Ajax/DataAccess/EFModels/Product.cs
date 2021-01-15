@@ -1,5 +1,4 @@
-﻿using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
-using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
+﻿using AspNetCore.Lib.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

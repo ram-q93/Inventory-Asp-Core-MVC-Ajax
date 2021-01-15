@@ -203,12 +203,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 }
 
                 var product = result.Data;
-                if (product.ImageId != null)
-                {
-                    var imageResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Image>(i =>
-                     i.Id == product.ImageId);
-                    _repository.Remove(imageResult?.Data);
-                }
+                //if (product.ImageId != null)
+                //{
+                //    var imageResult = await _repository.FirstOrDefaultAsNoTrackingAsync<Image>(i =>
+                //     i.Id == product.ImageId);
+                //    _repository.Remove(imageResult?.Data);
+                //}
 
                 _repository.Remove(product);
                 await _repository.CommitAsync();

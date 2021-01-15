@@ -1,5 +1,4 @@
-﻿using Inventory_Asp_Core_MVC_Ajax.DataAccess.common;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

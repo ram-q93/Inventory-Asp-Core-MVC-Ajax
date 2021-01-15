@@ -92,7 +92,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
 
         [AcceptVerbs("Get", "Post")]
         public async Task<JsonResult> IsNameAvailable(string name) =>
-            (await _supplierBiz.IsNameInUse(name)).Data ? Json($"Name {name} is already in use.") : Json(true);
+            (await _supplierBiz.IsNameInUse(name)).Data ? Json(true) : Json(true);
 
         #endregion
 
