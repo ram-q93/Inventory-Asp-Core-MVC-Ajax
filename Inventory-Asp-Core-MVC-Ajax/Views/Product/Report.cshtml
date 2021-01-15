@@ -79,7 +79,7 @@
                                class="btn btn-primary text-white btn-lg btn-block" />
                     </div>
                     <div class="form-group col-md-4">
-                        <input type="submit" id="excell-input" value="Excell"
+                        <input type="submit" id="excel-input" value="Excel"
                                class="btn btn-primary text-white btn-lg btn-block" />
                     </div>
                     <div class="form-group col-md-4">
@@ -104,9 +104,9 @@
         $('#form-product-report').attr('action', 'pdf');
     });
 
-    $('#excell-input').on('click', function () {
+    $('#excel-input').on('click', function () {
         $('#form-product-report').attr('controller', 'product');
-        $('#form-product-report').attr('action', 'excell');
+        $('#form-product-report').attr('action', 'excel');
     });
 
     $(document).ready(function () {
