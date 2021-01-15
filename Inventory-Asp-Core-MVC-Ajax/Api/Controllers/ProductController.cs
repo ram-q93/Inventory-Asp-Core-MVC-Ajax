@@ -1,5 +1,6 @@
 ﻿using AspNetCore.Lib.Attributes;
 using AspNetCore.Lib.Models;
+using AspNetCore.Lib.Services.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.Models;
@@ -16,11 +17,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
     {
         private readonly IProductBiz _productBiz;
         private readonly IReportBiz _reportBiz;
+        private readonly ISerializerService s;
 
-        public ProductController(IProductBiz productBiz, IReportBiz reportBiz)
+        public ProductController(IProductBiz productBiz, IReportBiz reportBiz, ISerializerService s)
         {
             _productBiz = productBiz;
             _reportBiz = reportBiz;
+            this.s = s;
         }
 
         #region Products
@@ -135,7 +138,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             return File(Encoding.UTF8.GetBytes(result.Data), "text/csv", "Sample.csv");
         }
 
-     
+
         [HttpGet, ActionName("pdf")]
         public async Task<IActionResult> ProductPDFReport(ProductReportModel model)
         {
@@ -150,7 +153,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             return File(stream.ToArray(), System.Net.Mime.MediaTypeNames.Application.Pdf, "Sample.pdf");
         }
 
-        
+
         [HttpGet, ActionName("excel")]
         public async Task<IActionResult> ProductExcelReport(ProductReportModel model)
         {
