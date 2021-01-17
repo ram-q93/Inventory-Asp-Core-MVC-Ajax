@@ -1,5 +1,5 @@
 ﻿using AspNetCore.Lib.Models;
-using Inventory_Asp_Core_MVC_Ajax.Models;
+using Inventory_Asp_Core_MVC_Ajax.Core;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Drawing;

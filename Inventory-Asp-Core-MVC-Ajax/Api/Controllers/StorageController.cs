@@ -1,8 +1,8 @@
 ﻿using AspNetCore.Lib.Attributes;
 using AspNetCore.Lib.Models;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
-using Inventory_Asp_Core_MVC_Ajax.Models;
-using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
+using Inventory_Asp_Core_MVC_Ajax.Core;
+using Inventory_Asp_Core_MVC_Ajax.Core.Classes;
 using InventoryProject.Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

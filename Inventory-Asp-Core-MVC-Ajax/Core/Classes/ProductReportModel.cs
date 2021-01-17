@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
+namespace Inventory_Asp_Core_MVC_Ajax.Core.Classes
 {
     public class ProductReportModel
     {

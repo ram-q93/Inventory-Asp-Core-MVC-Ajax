@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Inventory_Asp_Core_MVC_Ajax.Models.Classes
+namespace Inventory_Asp_Core_MVC_Ajax.Core.Classes
 {
     public class DataTableParameters
     {

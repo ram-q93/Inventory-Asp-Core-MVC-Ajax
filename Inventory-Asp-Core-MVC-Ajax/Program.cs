@@ -1,9 +1,7 @@
 using AspNetCore.Lib.Configurations;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using System.Net;
 
 namespace Inventory_Asp_Core_MVC_Ajax
 {

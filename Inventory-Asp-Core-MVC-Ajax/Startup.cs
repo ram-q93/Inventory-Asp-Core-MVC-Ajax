@@ -1,8 +1,7 @@
-using Inventory_Asp_Core_MVC_Ajax.Api;
 using Inventory_Asp_Core_MVC_Ajax.Api.Middlewares;
 using Inventory_Asp_Core_MVC_Ajax.Businesses;
+using Inventory_Asp_Core_MVC_Ajax.Core;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess;
-using Inventory_Asp_Core_MVC_Ajax.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -25,8 +24,8 @@ namespace Inventory_Asp_Core_MVC_Ajax
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddBussinessLayer();
+            services.AddCoreLayer();
             services.AddDataAccessLayer(Configuration);
-            services.AddModelLayer();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);

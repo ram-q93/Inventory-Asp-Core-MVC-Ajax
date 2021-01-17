@@ -1,10 +1,9 @@
 ﻿using AspNetCore.Lib.Models;
-using AspNetCore.Lib.Services;
 using AspNetCore.Lib.Services.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
+using Inventory_Asp_Core_MVC_Ajax.Core.Classes;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
-using Inventory_Asp_Core_MVC_Ajax.Models.Classes;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
