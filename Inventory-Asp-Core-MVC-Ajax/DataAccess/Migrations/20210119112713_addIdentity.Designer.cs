@@ -4,14 +4,16 @@ using Inventory_Asp_Core_MVC_Ajax.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    partial class InventoryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210119112713_addIdentity")]
+    partial class addIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,9 +91,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
@@ -142,9 +141,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
@@ -220,9 +216,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
                         .HasColumnType("varchar(150)")
                         .HasMaxLength(150);
 
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("City")
                         .HasColumnType("varchar(100)");
 
@@ -267,9 +260,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
 
                     b.Property<string>("Address")
                         .HasColumnType("varchar(150)");
-
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
                         .HasColumnType("varchar(100)");

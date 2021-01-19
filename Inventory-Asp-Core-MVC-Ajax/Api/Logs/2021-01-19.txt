@@ -1,0 +1,118 @@
+===========================================================================
+Type: Info
+Date: 2021-01-19 15:43:09.260
+Message: suppliers persisted 
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-19 15:43:09.432
+Message: storages persisted 
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-19 15:43:09.531
+Message: images persisted 
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-19 15:43:09.681
+Message: categories persisted 
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-19 15:43:13.570
+Message: products persisted 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:43:13.991
+Message: Long Running Request:    (10113 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:43:14.799
+Message: Long Running Request:    (650 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:43:14.837
+Message: Long Running Request:    (685 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:43:14.896
+Message: Long Running Request:    (747 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:43:14.937
+Message: Long Running Request:    (769 milliseconds)  Request Path: /vendor/fontawesome-free/css/all.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:43:26.540
+Message: Long Running Request:    (567 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:43:27.571
+Message: Long Running Request:    (687 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-19 15:46:20.046
+Message: First Level Message: The entity type 'List<Business>' was not found. Ensure that the entity type has been added to the model.
+StackTrace:    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity)
+   at Microsoft.EntityFrameworkCore.DbContext.EntryWithoutDetectChanges[TEntity](TEntity entity)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState[TEntity](TEntity entity, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.DbContext.Add[TEntity](TEntity entity)
+   at AspNetCore.Lib.Services.Classes.Repository`1.Add[TEntity](TEntity entity) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Services\Classes\Repository.cs:line 27
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Common.SeedData.<LoadSampleData>b__6_0() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Common\SeedData.cs:line 63
+   at AspNetCore.Lib.Models.Result.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 74
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:46:21.786
+Message: Long Running Request:    (4945 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:46:22.860
+Message: Long Running Request:    (873 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:46:22.860
+Message: Long Running Request:    (873 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:46:22.860
+Message: Long Running Request:    (585 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-19 15:47:18.471
+Message:  persisted 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:47:19.437
+Message: Long Running Request:    (5033 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:47:20.576
+Message: Long Running Request:    (1009 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:47:20.576
+Message: Long Running Request:    (1026 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 15:47:20.695
+Message: Long Running Request:    (646 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================

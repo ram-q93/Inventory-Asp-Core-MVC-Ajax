@@ -56,6 +56,28 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
                     //await File.AppendAllTextAsync(path, imageJsonArray);
                     //---------- Request for image------------//
 
+                    var business = new Business()
+                    {
+                        Id = new Guid("AB28B6D7-C9E8-43DC-8F72-4B97F77399AB"),
+                        Name = "Pamir",
+                        Phone = "021-211232",
+                        EmergencyMobile = "0912-233423",
+                        Fax = "32332323",
+                        Addresses = new List<Address>(){new Address()
+                                    {
+                                        Country="Iran",
+                                        City="Tehran",
+                                        Region="Afsariye",
+                                        Street="bahar 32",
+                                        Number ="323",
+                                        PostalCode="77828762"
+                                    }
+                        }
+                    };
+                    _repository.Add(business);
+                    await _repository.CommitAsync();
+                    _logger.Info($"business persisted ");
+
                     string supplierFile = File.ReadAllText(Path.Combine(Environment.CurrentDirectory,
                         "wwwroot/seeddata/supplier.json"));
                     string productFile = File.ReadAllText(Path.Combine(Environment.CurrentDirectory,
@@ -73,21 +95,36 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
                     var categories = _serializer.DeserializeFromJson<IList<Category>>(categoryFile).ToList();
                     var images = _serializer.DeserializeFromJson<IList<Image>>(imageFile).ToList();
 
-                    //suppliers.ForEach(s => _repository.Add(s));
-                    //await _repository.CommitAsync();
-                    //_logger.Info($"suppliers persisted ");
+                    suppliers.ForEach(s =>
+                    {
+                        s.BusinessId = new Guid("AB28B6D7-C9E8-43DC-8F72-4B97F77399AB");
+                        _repository.Add(s);
+                    });
+                    await _repository.CommitAsync();
+                    _logger.Info($"suppliers persisted ");
 
-                    //storages.ForEach(s => _repository.Add(s));
-                    //await _repository.CommitAsync();
-                    //_logger.Info($"storages persisted ");
 
-                    //images.ForEach(s => _repository.Add(s));
-                    //await _repository.CommitAsync();
-                    //_logger.Info($"images persisted ");
+                    storages.ForEach(s =>
+                    {
+                        s.BusinessId = new Guid("AB28B6D7-C9E8-43DC-8F72-4B97F77399AB");
+                        _repository.Add(s);
+                    });
+                    await _repository.CommitAsync();
+                    _logger.Info($"storages persisted ");
 
-                    //categories.ForEach(s => _repository.Add(s));
-                    //await _repository.CommitAsync();
-                    //_logger.Info($"categories persisted ");
+
+                    images.ForEach(s => _repository.Add(s));
+                    await _repository.CommitAsync();
+                    _logger.Info($"images persisted ");
+
+
+                    categories.ForEach(s =>
+                    {
+                        s.BusinessId = new Guid("AB28B6D7-C9E8-43DC-8F72-4B97F77399AB");
+                        _repository.Add(s);
+                    });
+                    await _repository.CommitAsync();
+                    _logger.Info($"categories persisted ");
 
 
                     var storageIds = _dbcontext.Storages.Select(s => s.Id).ToList();
@@ -97,6 +134,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
 
                     products.ForEach(p =>
                     {
+                        p.BusinessId = new Guid("AB28B6D7-C9E8-43DC-8F72-4B97F77399AB");
                         p.ImageId = imageIds[new Random().Next(0, imageIds.Count())];
                         p.CategoryId = categoryIds[new Random().Next(0, categoryIds.Count())];
                         p.SupplierId = supplierIds[new Random().Next(0, supplierIds.Count())];

@@ -1,4 +1,5 @@
 ﻿using AspNetCore.Lib.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,6 +9,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels
     public class Product : AuditableEntity
     {
         public int Id { get; set; }
+
+        public Guid BusinessId { get; set; }
 
         [Required]
         [MaxLength(100)]
