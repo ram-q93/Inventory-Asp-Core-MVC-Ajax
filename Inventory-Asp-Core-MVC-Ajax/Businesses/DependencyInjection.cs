@@ -1,5 +1,6 @@
 ﻿using AspNetCore.Lib.Configurations;
 using AspNetCore.Lib.Enums;
+using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Reflection;
@@ -10,6 +11,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
     {
         public static IServiceCollection AddBussinessLayer(this IServiceCollection services)
         {
+            services.ConfigCultureRequest();
+
             var resultServices = TypeRegister
               .ScanAssemblyTypes(Assembly.GetExecutingAssembly())
               .Concat(new AspNetCore.Lib.Configurations.LayerServicesTypes().GetServices(null))

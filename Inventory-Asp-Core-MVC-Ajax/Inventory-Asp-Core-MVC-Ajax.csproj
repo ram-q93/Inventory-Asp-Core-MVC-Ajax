@@ -42,7 +42,6 @@
 
   <ItemGroup>
     <Folder Include="Businesses\Services\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

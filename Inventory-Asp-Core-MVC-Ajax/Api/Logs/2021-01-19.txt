@@ -116,3 +116,33 @@ Type: Warn
 Date: 2021-01-19 15:47:20.695
 Message: Long Running Request:    (646 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
 ===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 21:45:21.630
+Message: Long Running Request:    (5038 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 21:45:22.904
+Message: Long Running Request:    (909 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 21:45:22.904
+Message: Long Running Request:    (569 milliseconds)  Request Path: /vendor/fontawesome-free/webfonts/fa-solid-900.woff2
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 21:45:22.904
+Message: Long Running Request:    (926 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 21:45:25.122
+Message: Long Running Request:    (534 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-19 21:45:26.380
+Message: Long Running Request:    (952 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
