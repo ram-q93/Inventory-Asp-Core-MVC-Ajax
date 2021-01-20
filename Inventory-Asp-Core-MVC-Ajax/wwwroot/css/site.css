@@ -1,6 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+
+
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -53,16 +56,24 @@ button.accept-policy {
 
 /* Sticky footer styles
 -------------------------------------------------- */
+@font-face {
+    font-family: 'Sahel';
+    src: url('fonts/Sahel.eot');
+    src: url('fonts/Sahel.eot?#iefix') format('Shabnam-opentype'), url('fonts/Sahel.woff') format('woff'), url('fonts/Sahel.ttf') format('truetype');
+}
+
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-    
+    direction: rtl;
+    text-align: right;
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
-    font-family: 'Roboto', sans-serif;
+    /* margin-bottom: 60px;*/
+    /* font-family: 'Roboto', sans-serif;*/
+    font-family: 'Sahel';
 }
 .footer {
   position: absolute;
@@ -158,3 +169,16 @@ a.btn:hover {
     cursor: pointer;
 }
 
+
+
+table.dataTable thead .sorting_asc {
+    background: url("http://cdn.datatables.net/1.10.0/images/sort_asc.png") no-repeat center left;
+}
+
+table.dataTable thead .sorting_desc {
+    background: url("http://cdn.datatables.net/1.10.0/images/sort_desc.png") no-repeat center left;
+}
+
+table.dataTable thead .sorting {
+    background: url("http://cdn.datatables.net/1.10.0/images/sort_both.png") no-repeat center left;
+}

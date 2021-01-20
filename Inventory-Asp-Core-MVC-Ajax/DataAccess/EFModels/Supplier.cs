@@ -18,13 +18,13 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels
         public Guid BusinessId { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string CompanyName { get; set; }
 
-        [Column(TypeName = "varchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string ContactName { get; set; }
 
-        [Column(TypeName = "varchar(5)")]
+        [Column(TypeName = "nvarchar(5)")]
         public string ContactTitle { get; set; }
 
         [Required]
@@ -41,16 +41,16 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels
         [Column(TypeName = "varchar(14)")]
         public string Fax { get; set; }
 
-        [Column(TypeName = "varchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string Country { get; set; }
 
-        [Column(TypeName = "varchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string City { get; set; }
 
-        [Column(TypeName = "varchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string Region { get; set; }
 
-        [Column(TypeName = "varchar(150)")]
+        [Column(TypeName = "nvarchar(150)")]
         public string Address { get; set; }
 
         [Column(TypeName = "varchar(14)")]

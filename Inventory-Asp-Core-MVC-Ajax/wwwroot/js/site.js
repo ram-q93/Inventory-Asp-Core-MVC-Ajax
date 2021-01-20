@@ -12,13 +12,14 @@ $(function () {
 
 function DeletePopUp() {
     return Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'آیا مطمئن اید؟',
+        text: 'دیگر قادر به بازیابی این اطلاعات نیستید!',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        cancelButtonText:'انصراف',
+        confirmButtonText: 'بله، پاک شود !'
     });
 }
 
@@ -32,7 +33,7 @@ function SweetAlertSubmitedSuccessfully() {
         customClass: 'my-swal2-styling'
     }).fire({
         type: 'success',
-        title: '<span style="color:floralwhite">Submited Successfuly</span>'
+        title: '<span style="color:floralwhite">عملیات با موفقیت انجام شد</span>'
     })
 };
 
@@ -468,11 +469,14 @@ $(document).ready(function () {
         autoWidth: true,
         scrollX: true,
         scrollY: 300,
+        language: {
+           url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Persian.json'
+        },
         sDom: 'ltip',
         lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
         columnDefs: [
             {
-                'targets': [9, 10],
+                'targets': [8, 9],
                 'orderable': false,
                 'searchable': false
             }],
@@ -505,7 +509,6 @@ $(document).ready(function () {
             { data: 'city', autoWidth: true },
             { data: 'address', autoWidth: true },
             { data: 'postalCode', autoWidth: true },
-            { data: 'homePage', autoWidth: true },
             {
                 data: 'id',
                 render: function (data, type, row) {

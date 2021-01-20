@@ -9,7 +9,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">
             <a asp-controller="Supplier" asp-action="Suppliers">
-                @ViewData["Title"]
+                تامین کننده ها
                 <i class="fas fa-redo fa-xs" style="color:#224abe"></i>
             </a>
         </h1>
@@ -19,7 +19,7 @@
                 <!-- Topbar Search -->
                 <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border- " placeholder="Search by..."
+                        <input type="text" class="form-control bg-light border- " placeholder="جستجو ..."
                                aria-label="Search" aria-describedby="basic-addon2" id="search-supplier-input-id">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="submit" onclick="SearchSupplier()">
@@ -29,15 +29,15 @@
                     </div>
                 </div>
                 <a class="d-none d-sm-inline-block btn  my-btn-success shadow-sm "
-                   onclick="showSupplierInPopup('0', 'New Supplier')">
+                   onclick="showSupplierInPopup('0', 'اضافه کردن تامیین کننده جدید')">
                     <span class="icon text-white">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text text-white font-weight-bold">&nbsp;&nbsp;New Supplier</span>
+                    <span class="text text-white font-weight-bold">&nbsp;&nbsp;تامیین کننده جدید</span>
                 </a>
 
                 <a href="#" class="d-none d-sm-inline-block btn  btn-primary shadow-sm">
-                    <i class="fas fa-download fa-sm text-white"></i> Generate Report
+                    <i class="fas fa-download fa-sm text-white"></i> تهیه گزارش
                 </a>
             </div>
         </ul>
@@ -55,9 +55,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </button>*@
             </div>
             <div class="modal-body">
 
@@ -65,5 +65,4 @@
         </div>
     </div>
 </div>
-
 

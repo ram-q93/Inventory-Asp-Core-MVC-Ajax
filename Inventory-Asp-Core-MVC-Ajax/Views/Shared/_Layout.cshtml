@@ -18,7 +18,7 @@
         <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <!---------My custom CSS------------->
-        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -49,7 +49,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Inventory <sup>2020</sup></div>
+                <div class="sidebar-brand-text mx-3">سیستم انبارداری</div>
             </a>
 
             <!-- Divider -->
@@ -59,7 +59,7 @@
             <li class="nav-item active">
                 <a class="nav-link" asp-controller="dashboard" asp-action="statistics">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                    <span>داشبرد</span>
                 </a>
             </li>
 
@@ -67,16 +67,16 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Tables
-            </div>
+            @*<div class="sidebar-heading">
+                جداول
+            </div>*@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                    aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>مدیریت</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -96,7 +96,7 @@
             <li class="nav-item">
                 <a class="nav-link" asp-controller="storage" asp-action="storages">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Storages</span>
+                    <span>انبار</span>
                 </a>
             </li>
 
@@ -104,7 +104,7 @@
             <li class="nav-item">
                 <a class="nav-link" asp-controller="supplier" asp-action="suppliers">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Suppliers</span>
+                    <span>تامین کننده</span>
                 </a>
             </li>
 
@@ -112,7 +112,7 @@
             <li class="nav-item">
                 <a class="nav-link" asp-controller="product" asp-action="products">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Products</span>
+                    <span>محصولات</span>
                 </a>
             </li>
 
@@ -120,7 +120,7 @@
             <li class="nav-item">
                 <a class="nav-link" asp-controller="category" asp-action="categories">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Categories</span>
+                    <span>دسته بندی</span>
                 </a>
             </li>
 
@@ -152,10 +152,6 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-
-
-
                         <!-- Nav Item - User Information -->
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -192,15 +188,13 @@
                         else
                         {
                             <a asp-controller="Account" asp-action="Register" class="btn btn-primary btn-icon-split">
-                                <span class="text">Register</span>
+                                <span class="text">ثبت نام</span>
                             </a>
-
                             <div class="topbar-divider d-none d-sm-block"></div>
 
                             <a asp-controller="Account" asp-action="Login" class="btn btn-primary btn-icon-split">
-                                <span class="text">Login</span>
+                                <span class="text">ورود</span>
                             </a>
-
                         }
 
                     </ul>
@@ -231,15 +225,15 @@
     </div>
     <!-- End of Page Wrapper -->
     <!-- Scroll to Top Button-->
-    @*<a class="scroll-to-top rounded" href="#page-top">
+    <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
-    </a>*@
+    </a>
 
-    <footer class="border-top footer text-muted">
+    @*<footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - Pamir - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>*@
 
     <div class="loaderbody" id="loaderbody">
         <div class="loader"></div>

@@ -15,56 +15,56 @@ namespace Inventory_Asp_Core_MVC_Ajax.Core.Classes
         public int Id { get; set; }
 
         #region
-        [Remote(action: "IsNameInUse", controller: "Supplier")]
-        [Required(ErrorMessage = "You must provide a name.")]
-        [StringLength(100, ErrorMessage = "value cannot exceed 100 characters.")]
-        [Display(Name = "Company", Prompt = "Company")]
+        [Required(ErrorMessage = "یک نام باید انتخاب کنید")]
+        [StringLength(100, ErrorMessage = "نباید بیشتر از 100 کاراکتر باشد")]
+        [Display(Name = "شرکت", Prompt = "*شرکت")]
         #endregion
         public string CompanyName { get; set; }
 
         #region
-        [StringLength(100, ErrorMessage = "value cannot exceed 100 characters.")]
-        [Display(Name = "Contact", Prompt = "Contact")]
+        [StringLength(100, ErrorMessage = "نباید بیشتر از 100 کاراکتر باشد")]
+        [Display(Name = "مخاطب", Prompt = "مخاطب")]
         #endregion
         public string ContactName { get; set; }
 
         #region
-        [StringLength(14, ErrorMessage = "The Phone value cannot exceed 14 characters.")]
-        [Display(Name = "Emergency Mobile", Prompt = "Mobile (example: 0912-111-2233)")]
+        [StringLength(14, ErrorMessage = "نباید بیشتر از 14 کاراکتر باشد")]
+        [Display(Name = "موبایل", Prompt = "مثال:0912-23432332")]
         #endregion
         public string EmergencyMobile { get; set; }
 
         #region
-        [StringLength(16, ErrorMessage = "value cannot exceed 16 characters.")]
-        [Display(Name = "Phone", Prompt = "Phone (example: 021-1112223344)")]
+        [Required(ErrorMessage = "شماره تلفن ضروری است")]
+        [StringLength(16, ErrorMessage = "نباید بیشتر از 16 کاراکتر باشد")]
+        [Display(Name = "تلفن", Prompt = "مثال:021-6667723")]
         #endregion
         public string Phone { get; set; }
 
         #region
-        [StringLength(150, ErrorMessage = "The Address value cannot exceed 150 characters.")]
-        [Display(Name = "Address", Prompt = "Address")]
+        [StringLength(150, ErrorMessage = "نباید بیشتر از 150 کاراکتر باشد")]
+        [Display(Name = "آدرس", Prompt = "آدرس")]
         #endregion
         public string Address { get; set; }
 
         #region
-        [StringLength(100, ErrorMessage = "value cannot exceed 100 characters.")]
-        [Display(Name = "City", Prompt = "City")]
+        [StringLength(100, ErrorMessage = "نباید بیشتر از 100 کاراکتر باشد")]
+        [Display(Name = "شهر", Prompt = "شهر")]
         #endregion
         public string City { get; set; }
 
         #region
-        [StringLength(14, ErrorMessage = "value cannot exceed 14 characters.")]
-        [Display(Name = "Postal Code", Prompt = "Postal Code")]
+        [StringLength(14, ErrorMessage = "نباید بیشتر از 14 کاراکتر باشد")]
+        [Display(Name = "کد پستی", Prompt = "کد پستی")]
         #endregion
         public string PostalCode { get; set; }
 
         #region
-        [StringLength(100, ErrorMessage = "value cannot exceed 100 characters.")]
-        [Display(Name = "Home Page", Prompt = "Home Page")]
+        [StringLength(100, ErrorMessage = "نباید بیشتر از 100 کاراکتر باشد")]
+        [Display(Name = "وبسایت", Prompt = "وبسایت")]
         #endregion
         public string HomePage { get; set; }
 
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = true;
 
         public ICollection<ProductModel> ProductModels { get; set; }
 
