@@ -72,7 +72,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
 
             return base.SaveChanges();
         }
-
     }
 
     public interface IInventoryDbContext
