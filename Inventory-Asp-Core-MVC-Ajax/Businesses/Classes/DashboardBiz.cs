@@ -21,7 +21,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         public Task<Result<DashboardModel>> Statistics() => Result<DashboardModel>.TryAsync(async () =>
         {
-            await _seedData.LoadSampleData();
+           // await _seedData.LoadSampleData();
 
 
             return Result<DashboardModel>.Successful(new DashboardModel()

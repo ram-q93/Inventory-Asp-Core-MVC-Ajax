@@ -3,24 +3,31 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Commons
 {
     public static class MigrationManager
     {
-        public static IWebHost MigrateDatabase(this IWebHost host)
+        public static async Task<IWebHost> MigrateDatabase(IWebHost host)
         {
             using (var scope = host.Services.CreateScope())
             {
-                using (var appContext = scope.ServiceProvider.GetRequiredService<InventoryDbContext>())
+                var services = scope.ServiceProvider;
                 {
                     try
                     {
-                        appContext.Database.Migrate();
+                        //adding migrations
+                        services.GetRequiredService<InventoryDbContext>().Database.Migrate();
+
+                        //seeding sample data
+                        await services.GetRequiredService<ISampleDataSeeder>().SeedAllAsync(CancellationToken.None);
+
                     }
                     catch (Exception ex)
                     {
-                        scope.ServiceProvider.GetRequiredService<ILogger>().Exception(ex);
+                        services.GetRequiredService<ILogger>().Exception(ex);
                     }
                 }
             }

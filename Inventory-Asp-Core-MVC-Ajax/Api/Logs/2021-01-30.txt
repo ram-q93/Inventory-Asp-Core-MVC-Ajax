@@ -540,3 +540,122 @@ Type: Warn
 Date: 2021-01-30 20:52:23.070
 Message: Long Running Request:    (970 milliseconds)  Request Path: /Supplier/Suppliers
 ===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-01-30 21:49:17.102
+Message: First Level Message: The method or operation is not implemented.
+StackTrace:    at Inventory_Asp_Core_MVC_Ajax.DataAccess.Commons.SampleDataSeeder.SeedStoragesAsync(CancellationToken cancellationToken) in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\DataAccess\Commons\SampleDataSeeder.cs:line 70
+   at Inventory_Asp_Core_MVC_Ajax.DataAccess.Commons.SampleDataSeeder.SeedAllAsync(CancellationToken cancellationToken) in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\DataAccess\Commons\SampleDataSeeder.cs:line 36
+   at Inventory_Asp_Core_MVC_Ajax.DataAccess.Commons.MigrationManager.MigrateDatabase(IWebHost host) in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\DataAccess\Commons\MigrationManager.cs:line 25
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 21:49:23.750
+Message: Long Running Request:    (1670 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 21:49:24.746
+Message: Long Running Request:    (769 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 21:49:24.746
+Message: Long Running Request:    (783 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 21:49:24.832
+Message: Long Running Request:    (535 milliseconds)  Request Path: /js/site.js
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 21:49:25.258
+Message: Long Running Request:    (1058 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-30 22:08:40.615
+Message: business persisted 
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-30 22:08:41.206
+Message: suppliers persisted 
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-30 22:08:41.305
+Message: storages persisted 
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-30 22:08:41.385
+Message: images persisted 
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-30 22:08:41.462
+Message: categories persisted 
+===========================================================================
+===========================================================================
+Type: Info
+Date: 2021-01-30 22:08:45.223
+Message: products persisted 
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 22:08:50.507
+Message: Long Running Request:    (1148 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 22:08:53.566
+Message: Long Running Request:    (2501 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 22:08:53.566
+Message: Long Running Request:    (2463 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 22:08:53.756
+Message: Long Running Request:    (2612 milliseconds)  Request Path: /favicon.ico
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 22:08:53.836
+Message: Long Running Request:    (2811 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 22:08:53.836
+Message: Long Running Request:    (2693 milliseconds)  Request Path: /css/site.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 22:08:53.892
+Message: Long Running Request:    (2864 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 22:08:53.972
+Message: Long Running Request:    (2822 milliseconds)  Request Path: /css/fonts/Sahel.woff
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 22:08:54.834
+Message: Long Running Request:    (1267 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 22:08:56.463
+Message: Long Running Request:    (938 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-01-30 22:08:59.829
+Message: Long Running Request:    (612 milliseconds)  Request Path: /product/products
+===========================================================================
