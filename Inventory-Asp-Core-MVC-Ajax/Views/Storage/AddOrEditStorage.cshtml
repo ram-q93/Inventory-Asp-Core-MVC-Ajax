@@ -18,12 +18,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label asp-for="Phone" class="control-label"></label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">#</div>
-                        </div>
-                        <input asp-for="Phone" type="text" class="form-control">
-                    </div>
+                    <input asp-for="Phone" type="text" class="form-control">
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
             </div>
@@ -34,15 +29,15 @@
                     <span asp-validation-for="City" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label asp-for="Enabled" class="control-label">Status</label>
+                    <label asp-for="Enabled" class="control-label">وضعیت</label>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <input type="radio" asp-for="Enabled" id="active" value="true">
-                            <label for="active">Active</label>
+                            <label for="active">فعال</label>
                         </div>
                         <div class="form-group col-md-6">
                             <input type="radio" asp-for="Enabled" id="deactive" value="false">
-                            <label for="deactive">Deactive</label>
+                            <label for="deactive">غیر فعال</label>
                         </div>
                     </div>
                 </div>
@@ -53,8 +48,16 @@
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <br />
+            <br />
             <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-primary text-white btn-lg btn-block" />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input type="submit" value="تایید" class="btn btn-primary text-white btn-lg btn-block" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="submit" value="انصراف" class="btn btn-secondary text-white btn-lg btn-block" data-dismiss="modal" />
+                    </div>
+                </div>
             </div>
             <script src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.min.js")" type="text/javascript"></script>
             <script src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>

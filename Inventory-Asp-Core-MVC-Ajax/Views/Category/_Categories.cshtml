@@ -3,7 +3,7 @@
 @*For displaying category info*@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Category Table</h6>
+        <h6 class="m-0 font-weight-bold text-primary">جدول دسته بندی</h6>
     </div>
     <div class="card-body">
         <table class="table table-bordered table-sm table-hover table-condensed"
@@ -12,17 +12,17 @@
 
             <thead>
                 <tr>
-                    <th >
+                    <th>
                         <label asp-for="@Model.First().Name"></label>
                     </th>
-                    <th >
-                        <label>Description</label>
+                    <th>
+                        <label asp-for="@Model.First().Description"></label>
                     </th>
-                    <th style="width: 5%">
-                        <label>Edit</label>
+                    <th style="width: 4%">
+                        <label>ویرایش</label>
                     </th>
-                    <th style="width: 5%">
-                        <label>Delete</label>
+                    <th style="width: 4%">
+                        <label>حذف</label>
                     </th>
                 </tr>
             </thead>

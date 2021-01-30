@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Inventory_Asp_Core_MVC_Ajax.Core.Classes.SupplierModel>
 
 @{
-    ViewData["Title"] = "Suppliers";
+    ViewData["Title"] = "تامین کننده ها";
 }
 
 <div class="container-fluid">
@@ -9,7 +9,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">
             <a asp-controller="Supplier" asp-action="Suppliers">
-                تامین کننده ها
+                @ViewData["Title"]
                 <i class="fas fa-redo fa-xs" style="color:#224abe"></i>
             </a>
         </h1>
@@ -28,6 +28,7 @@
                                aria-label="Search" aria-describedby="basic-addon2" id="search-supplier-input-id">
                     </div>
                 </div>
+
                 <a class="d-none d-sm-inline-block btn  my-btn-success shadow-sm "
                    onclick="showSupplierInPopup('0', 'اضافه کردن تامیین کننده جدید')">
                     <span class="icon text-white">

@@ -13,36 +13,33 @@ namespace Inventory_Asp_Core_MVC_Ajax.Core.Classes
         public int Id { get; set; }
 
         #region
-        [Required(ErrorMessage = "You must provide a name.")]
-        [MaxLength(50, ErrorMessage = "The name value cannot exceed 50 characters.")]
-        [Display(Name = "Name", Prompt = "Name")]
-        [Remote(action: "IsNameAvailable", controller: "Storage")]
+        [Required(ErrorMessage = "یک نام باید انتخاب کنید")]
+        [StringLength(50, ErrorMessage = "نباید بیشتر از 50 کاراکتر باشد")]
+        [Display(Name = "نام انبار", Prompt = "نام انبار*")]
         #endregion
         public string Name { get; set; }
 
         #region
         //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
         //   ErrorMessage = "Not a valid phone number.")]
-        [StringLength(14, ErrorMessage = "The Phone value cannot exceed 14 characters.")]
-        [Display(Name = "Phone", Prompt = "Phone (example: 0000-000-0000)")]
+        [Required(ErrorMessage = "شماره تلفن ضروری است")]
+        [StringLength(14, ErrorMessage = "نباید بیشتر از 14 کاراکتر باشد")]
+        [Display(Name = "تلفن", Prompt = "مثال:021-6667723")]
         #endregion
         public string Phone { get; set; }
 
         #region
-        [StringLength(100, ErrorMessage = "The City value cannot exceed 100 characters.")]
-        [Display(Name = "City", Prompt = "City")]
+        [StringLength(100, ErrorMessage = "نباید بیشتر از 100 کاراکتر باشد")]
+        [Display(Name = "شهر", Prompt = "شهر")]
         #endregion
         public string City { get; set; }
 
         #region
-        [StringLength(150, ErrorMessage = "The Address value cannot exceed 150 characters.")]
-        [Display(Name = "Address", Prompt = "Address")]
+        [StringLength(150, ErrorMessage = "نباید بیشتر از 150 کاراکتر باشد")]
+        [Display(Name = "آدرس", Prompt = "آدرس")]
         #endregion
         public string Address { get; set; }
 
-        #region
-        [Display(Name = "Enabled", Prompt = "Enabled")]
-        #endregion
         public bool Enabled { get; set; } = true;
 
         #region

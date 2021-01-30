@@ -4,7 +4,7 @@
 @*For displaying storage info*@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Storage Table</h6>
+        <h6 class="m-0 font-weight-bold text-primary">جدول انبارها</h6>
     </div>
     <div class="card-body">
         <table class="table table-bordered table-sm table-hover table-condensed"
@@ -19,8 +19,8 @@
                     <th style="width: 10%">
                         <label asp-for="@Model.First().Phone"></label>
                     </th>
-                    <th style="width: 4%">
-                        <label>Status</label>
+                    <th style="width: 5%">
+                        <label>وضعیت</label>
                     </th>
                     <th style="width: 10%">
                         <label asp-for="@Model.First().City"></label>
@@ -29,10 +29,10 @@
                         <label asp-for="@Model.First().Address"></label>
                     </th>
                     <th style="width: 4%">
-                        <label>Edit</label>
+                        <label>ویرایش</label>
                     </th>
                     <th style="width: 4%">
-                        <label>Delete</label>
+                        <label>حذف</label>
                     </th>
                 </tr>
             </thead>

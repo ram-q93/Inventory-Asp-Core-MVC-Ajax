@@ -11,42 +11,38 @@ namespace Inventory_Asp_Core_MVC_Ajax.Core.Classes
         public int Id { get; set; }
 
         #region
-        [Remote(action: "IsNameInUse", controller: "Product")]
-        [Required(ErrorMessage = "You must provide a name.")]
-        [StringLength(100, ErrorMessage = "value cannot exceed 100 characters.")]
-        [Display(Name = "Name", Prompt = "Name *")]
+        [Required(ErrorMessage = "یک نام باید انتخاب کنید")]
+        [StringLength(100, ErrorMessage = "نباید بیشتر از 100 کاراکتر باشد")]
+        [Display(Name = "نام", Prompt = "*نام")]
         #endregion
         public string Name { get; set; }
 
         #region
-        [Required(ErrorMessage = "You must provide a Code.")]
-        [StringLength(20, ErrorMessage = "value cannot exceed 20 characters.")]
-        [Display(Name = "Code", Prompt = "Code *")]
+        [Required(ErrorMessage = "یک کد باید انتخاب کنید")]
+        [StringLength(20, ErrorMessage = "نباید بیشتر از 20 کاراکتر باشد")]
+        [Display(Name = "کد", Prompt = "*کد")]
         #endregion 
         public string Code { get; set; }
 
         #region
-        [Required(ErrorMessage = "You must provide Quantity.")]
-        [Display(Name = "Quantity", Prompt = "Quantity *")]
+        [Required(ErrorMessage = "تعداد باید انتخاب کنید")]
+        [Display(Name = "تعداد", Prompt = "*تعداد")]
         #endregion
         public int Quantity { get; set; }
 
         #region
-        [Required(ErrorMessage = "You must provide a price.")]
-        [PrecisionAndScale(8, 2, ErrorMessage = "Price must not exceed $999999.99")]
-        [Display(Name = "Price($)", Prompt = "Price($) *")]
+        [Required(ErrorMessage = "یک قیمت باید انتخاب کنید")]
+        [PrecisionAndScale(8, 2, ErrorMessage = "نباید بیشتر از 999999.99 ربال باشد")]
+        [Display(Name = "(قیمت(ریال", Prompt = "*(قیمت(ریال")]
         #endregion
         public decimal UnitePrice { get; set; }
 
         #region
-        [StringLength(1000, ErrorMessage = "value cannot exceed 1000 characters.")]
-        [Display(Name = "Description", Prompt = "Description")]
+        [StringLength(1000, ErrorMessage = "نباید بیشتر از 1000 کاراکتر باشد")]
+        [Display(Name = "توضیحات", Prompt = "توضیحات")]
         #endregion
         public string Description { get; set; }
 
-        #region
-        [Display(Name = "Enabled", Prompt = "Enabled")]
-        #endregion
         public bool Enabled { get; set; } = true;
 
         public int? StorageId { get; set; }
@@ -58,17 +54,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Core.Classes
         public int? CategoryId { get; set; }
 
         #region
-        [Display(Name = "Storage", Prompt = "Storage")]
+        [Display(Name = "انبار", Prompt = "انبار")]
         #endregion
         public string StorageName { get; set; }
 
         #region
-        [Display(Name = "Supplier", Prompt = "Supplier")]
+        [Display(Name = "تامیین کننده", Prompt = "تامیین کننده")]
         #endregion
         public string SupplierCompanyName { get; set; }
 
         #region
-        [Display(Name = "Category", Prompt = "Category")]
+        [Display(Name = "دسته بندی", Prompt = "دسته بندی")]
         #endregion
         public string CategoryName { get; set; }
 
@@ -82,7 +78,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Core.Classes
 
         //public Category Category { get; set; }
 
-        [Display(Name = "Product Picture")]
+        [Display(Name = "عکس محصول")]
         public IFormFile ProductPicture { get; set; }
 
     }

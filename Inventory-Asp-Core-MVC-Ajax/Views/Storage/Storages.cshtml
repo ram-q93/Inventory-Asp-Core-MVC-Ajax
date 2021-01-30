@@ -8,7 +8,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">
             <a asp-controller="Storage" asp-action="Storages">
-                @ViewData["Title"]
+                انبارها
                 <i class="fas fa-redo fa-xs" style="color:#224abe"></i>
             </a>
         </h1>
@@ -18,49 +18,26 @@
                 <!-- Topbar Search -->
                 <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border- " placeholder="Search by..."
-                               aria-label="Search" aria-describedby="basic-addon2" id="search-storage-input-id">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="submit" onclick="SearchStorage()">
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
+                        <input type="text" class="form-control bg-light border- " placeholder="جستجو ..."
+                               aria-label="Search" aria-describedby="basic-addon2" id="search-storage-input-id">
                     </div>
                 </div>
 
-                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                <!--<li class="nav-item dropdown no-arrow d-sm-none">
-                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-search fa-fw"></i>
-                    </a>-->
-                    <!-- Dropdown - Messages -->
-                    <!--<div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                        <form class="form-inline mr-auto w-100 navbar-search">
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small"
-                                       placeholder="Search for..." aria-label="Search"
-                                       aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>-->
-
                 <a class="d-none d-sm-inline-block btn  my-btn-success shadow-sm "
-                   onclick="showStorageInPopup('0', 'New Storage')">
+                   onclick="showStorageInPopup('0', 'اضافه کردن انبار جدید')">
                     <span class="icon text-white">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text text-white font-weight-bold">&nbsp;&nbsp;New Storage</span>
+                    <span class="text text-white font-weight-bold">&nbsp;&nbsp;انبار جدید</span>
                 </a>
 
                 <a href="#" class="d-none d-sm-inline-block btn  btn-primary shadow-sm">
-                    <i class="fas fa-download fa-sm text-white"></i> Generate Report
+                    <i class="fas fa-download fa-sm text-white"></i> تهیه گزارش
                 </a>
             </div>
         </ul>
@@ -76,9 +53,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                
             </div>
             <div class="modal-body">
 

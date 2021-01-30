@@ -78,6 +78,9 @@ $(document).ready(function () {
         scrollX: true,
         scrollY: 300,  //fixed width
         sDom: 'ltip',
+        language: {
+            url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Persian.json'
+        },
         lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
         columnDefs: [
             {
@@ -242,6 +245,9 @@ $(document).ready(function () {
         scrollY: 300,  //fixed width
         sDom: 'ltip',
         lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
+        language: {
+            url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Persian.json'
+        },
         columnDefs: [
             {
                 'targets': [8, 9, 10],
@@ -633,6 +639,9 @@ $(document).ready(function () {
         scrollX: true,
         scrollY: 300,  //fixed width
         sDom: 'ltip',
+        language: {
+            url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Persian.json'
+        },
         lengthMenu: [[8, 15, 20, 50], [8, 15, 20, 50]],
         columnDefs: [
             {

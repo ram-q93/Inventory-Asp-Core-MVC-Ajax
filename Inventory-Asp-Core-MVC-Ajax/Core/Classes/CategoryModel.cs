@@ -13,15 +13,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Core.Classes
         public int Id { get; set; }
 
         #region
-        [Required(ErrorMessage = "You must provide a name.")]
-        [MaxLength(100, ErrorMessage = "The name value cannot exceed 100 characters.")]
-        [Display(Name = "Name", Prompt = "Name")]
+        [Required(ErrorMessage = "یک نام باید انتخاب کنید")]
+        [StringLength(100, ErrorMessage = "نباید بیشتر از 100 کاراکتر باشد")]
+        [Display(Name = "نام", Prompt = "نام*")]
         #endregion
         public string Name { get; set; }
 
         #region
-        [MaxLength(1000, ErrorMessage = "Value cannot exceed 1000 characters.")]
-        [Display(Name = "Description", Prompt = "Description")]
+        [StringLength(1000, ErrorMessage = "نباید بیشتر از 1000 کاراکتر باشد")]
+        [Display(Name = "توضیحات", Prompt = "توضیحات")]
         #endregion
         public string Description { get; set; }
 
