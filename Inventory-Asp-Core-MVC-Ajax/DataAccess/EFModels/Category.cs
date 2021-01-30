@@ -19,11 +19,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels
 
         [Required]
         [MaxLength(100)]
-        [Column(TypeName = "varchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string Name { get; set; }
 
         [MaxLength(1000)]
-        [Column(TypeName = "varchar(1000)")]
+        [Column(TypeName = "nvarchar(1000)")]
         public string Description { get; set; }
 
         public ICollection<Product> Products { get; private set; }

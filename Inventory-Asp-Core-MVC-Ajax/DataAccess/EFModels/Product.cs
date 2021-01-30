@@ -14,12 +14,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels
 
         [Required]
         [MaxLength(100)]
-        [Column(TypeName = "varchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string Name { get; set; }
 
         [Required]
         [MaxLength(20)]
-        [Column(TypeName = "varchar(20)")]
+        [Column(TypeName = "nvarchar(20)")]
         public string Code { get; set; }
 
         [Required]
@@ -30,7 +30,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels
         public decimal UnitePrice { get; set; }
 
         [MaxLength(1000)]
-        [Column(TypeName = "varchar(1000)")]
+        [Column(TypeName = "nvarchar(1000)")]
         public string Description { get; set; }
 
         [Required]

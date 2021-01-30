@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
 {
-    public partial class addIdentity : Migration
+    public partial class initialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,7 +26,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Phone = table.Column<string>(type: "varchar(16)", nullable: false),
                     EmergencyMobile = table.Column<string>(type: "varchar(14)", nullable: true),
                     Fax = table.Column<string>(type: "varchar(14)", nullable: true)
@@ -46,8 +46,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
                     Created = table.Column<DateTime>(nullable: false),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     LastModified = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: true)
+                    BusinessId = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,10 +78,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
                     Created = table.Column<DateTime>(nullable: false),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     LastModified = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    BusinessId = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Phone = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: true),
                     City = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Address = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Enabled = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -98,16 +100,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
                     Created = table.Column<DateTime>(nullable: false),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     LastModified = table.Column<DateTime>(nullable: true),
-                    CompanyName = table.Column<string>(type: "varchar(100)", nullable: false),
-                    ContactName = table.Column<string>(type: "varchar(100)", nullable: true),
-                    ContactTitle = table.Column<string>(type: "varchar(5)", nullable: true),
+                    BusinessId = table.Column<Guid>(nullable: false),
+                    CompanyName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    ContactName = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    ContactTitle = table.Column<string>(type: "nvarchar(5)", nullable: true),
                     Phone = table.Column<string>(type: "varchar(16)", nullable: false),
                     EmergencyMobile = table.Column<string>(type: "varchar(14)", nullable: true),
                     Fax = table.Column<string>(type: "varchar(14)", nullable: true),
-                    Country = table.Column<string>(type: "varchar(100)", nullable: true),
-                    City = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Region = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Address = table.Column<string>(type: "varchar(150)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Region = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(150)", nullable: true),
                     PostalCode = table.Column<string>(type: "varchar(14)", nullable: true),
                     HomePage = table.Column<string>(type: "varchar(100)", nullable: true),
                     Enabled = table.Column<bool>(nullable: false)
@@ -144,12 +147,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Country = table.Column<string>(type: "varchar(50)", nullable: true),
-                    City = table.Column<string>(type: "varchar(50)", nullable: true),
-                    Region = table.Column<string>(type: "varchar(50)", nullable: true),
-                    Street = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Number = table.Column<string>(type: "varchar(5)", nullable: true),
-                    PostalCode = table.Column<string>(type: "varchar(14)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Region = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Number = table.Column<string>(type: "nvarchar(5)", nullable: true),
+                    PostalCode = table.Column<string>(type: "nvarchar(14)", nullable: true),
                     BusinessId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -205,11 +208,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.Migrations
                     Created = table.Column<DateTime>(nullable: false),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     LastModified = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    Code = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
+                    BusinessId = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     UnitePrice = table.Column<decimal>(type: "decimal(8, 2)", nullable: false),
-                    Description = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
                     Enabled = table.Column<bool>(nullable: false),
                     StorageId = table.Column<int>(nullable: true),
                     SupplierId = table.Column<int>(nullable: true),

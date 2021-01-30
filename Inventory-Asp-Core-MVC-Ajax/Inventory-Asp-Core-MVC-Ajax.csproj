@@ -42,6 +42,7 @@
 
   <ItemGroup>
     <Folder Include="Businesses\Services\" />
+    <Folder Include="DataAccess\Migrations\" />
   </ItemGroup>
 
 </Project>

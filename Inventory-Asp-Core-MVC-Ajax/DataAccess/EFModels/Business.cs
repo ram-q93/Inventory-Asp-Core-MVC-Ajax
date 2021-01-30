@@ -16,7 +16,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels
         public Guid Id { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string Name { get; set; }
 
         [Required]

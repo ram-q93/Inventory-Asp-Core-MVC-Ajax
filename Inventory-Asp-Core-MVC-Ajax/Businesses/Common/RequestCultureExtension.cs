@@ -1,23 +1,23 @@
-using System;
-using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Globalization;
 namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
 {
     #region PersianCultureInfo ...
-    public class PersianCultureInfo:CultureInfo
+    public class PersianCultureInfo : CultureInfo
     {
         public PersianCultureInfo()
-            :base("fa-IR", true)
+            : base("fa-IR", true)
         {
-            /*base.DateTimeFormat.MonthNames = new[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند", "" };
+            base.DateTimeFormat.MonthNames = new[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند", "" };
             DateTimeFormat.MonthGenitiveNames = new[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند", "" };
             DateTimeFormat.AbbreviatedMonthNames = new[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند", "" };
             DateTimeFormat.AbbreviatedMonthGenitiveNames = new[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند", "" };
             DateTimeFormat.AbbreviatedDayNames = new string[] { "ی", "د", "س", "چ", "پ", "ج", "ش" };
             DateTimeFormat.ShortestDayNames = new string[] { "ی", "د", "س", "چ", "پ", "ج", "ش" };
-            DateTimeFormat.DayNames = new string[] { "یکشنبه", "دوشنبه", "ﺳﻪشنبه", "چهارشنبه", "پنجشنبه", "جمعه", "شنبه" };*/
+            DateTimeFormat.DayNames = new string[] { "یکشنبه", "دوشنبه", "ﺳﻪشنبه", "چهارشنبه", "پنجشنبه", "جمعه", "شنبه" };
             DateTimeFormat.FirstDayOfWeek = DayOfWeek.Saturday;
             DateTimeFormat.AMDesignator = "ق.ظ";
             DateTimeFormat.PMDesignator = "ب.ظ";
@@ -26,10 +26,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
             DateTimeFormat.ShortTimePattern = "HH:mm tt";
             DateTimeFormat.LongTimePattern = "HH:mm:ss tt";
             DateTimeFormat.FullDateTimePattern = "HH:mm:ss tt dd (dddd) MMMM yyyy  ";
+          
         }
     }
     #endregion
-    
+
     public static class RequestCultureExtension
     {
         public static void ConfigCultureRequest(this IServiceCollection services)
@@ -41,7 +42,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
         }
         public static void UseWeboRequestLocalization(this IApplicationBuilder app)
         {
-            var supportedCultures = new[] {new PersianCultureInfo()};
+            var supportedCultures = new[] { new PersianCultureInfo() };
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(new PersianCultureInfo()),
@@ -51,7 +52,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Common
                 SupportedUICultures = supportedCultures
             });
 
-        } 
+        }
     }
-    
+
 }
