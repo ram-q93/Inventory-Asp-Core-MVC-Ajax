@@ -5,22 +5,28 @@ using AutoMapper;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.Core;
 using Inventory_Asp_Core_MVC_Ajax.Core.Classes;
+using Inventory_Asp_Core_MVC_Ajax.DataAccess;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 {
     public class ProductBiz : IProductBiz
     {
+        private readonly IInventoryDbContext _context;
         private readonly IRepository _repository;
         private readonly IImageBiz _imageBiz;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
 
-        public ProductBiz(IRepository repository, IImageBiz imageBiz, IMapper mapper, ILogger logger)
+        public ProductBiz(IInventoryDbContext context, IRepository repository,
+            IImageBiz imageBiz, IMapper mapper, ILogger logger)
         {
+            _context = context;
             _repository = repository;
             _imageBiz = imageBiz;
             _mapper = mapper;
@@ -65,6 +71,22 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                             p => p.Storage,
                             p => p.Supplier,
                             p => p.Category);
+
+                var s = _context.Products.AsNoTracking()
+                        .Where(p =>
+                           searchBy == null ||
+                           (p.Name != null && p.Name.Contains(searchBy)) ||
+                           (p.Code != null && p.Code.Contains(searchBy)) ||
+                           (p.Description != null && p.Description.Contains(searchBy)) ||
+                           (p.Storage != null && p.Storage.Name.Contains(searchBy)) ||
+                           (p.Supplier != null && p.Supplier.CompanyName.Contains(searchBy)))
+                        .Include(p=>p.Category)
+                        .Include(p => p.Storage)
+                        .Include(p => p.Supplier)
+                        .Select(p=> new
+                        {
+                            
+                        });
 
                 if (!resultList.Success)
                 {

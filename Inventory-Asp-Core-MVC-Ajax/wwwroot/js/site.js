@@ -441,10 +441,10 @@ jQueryAjaxPostToProductReport = form => {
             success: function (response) {
                 console.log('here');
                 console.log(response);
-                window.location.href = response;
+                //window.location.href = response;
                // if (response.success) {
                     //$('#product-form-modal .modal-title').html('');
-                    //$('#product-form-modal .modal-body').html('');
+               // $('#product-form-modal .modal-body').html(response);
                     //$('#product-form-modal').modal('hide');
                  
                     SweetAlertSubmitedSuccessfully();
