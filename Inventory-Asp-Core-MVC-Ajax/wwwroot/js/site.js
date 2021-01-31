@@ -432,7 +432,6 @@ showProductReportInPopup = () => {
 
 jQueryAjaxPostToProductReport = form => {
     try {
-        console.log(form.action);
         $.ajax({
             type: 'Post',
             url: form.action,
@@ -440,12 +439,15 @@ jQueryAjaxPostToProductReport = form => {
             contentType: false,
             processData: false,
             success: function (response) {
+                console.log('here');
+                console.log(response);
+                window.location.href = response;
                // if (response.success) {
                     //$('#product-form-modal .modal-title').html('');
                     //$('#product-form-modal .modal-body').html('');
                     //$('#product-form-modal').modal('hide');
                  
-                //    SweetAlertSubmitedSuccessfully();
+                    SweetAlertSubmitedSuccessfully();
                 //}
                 //else {
                 //    SweetAlertSubmitFailed(response.error)

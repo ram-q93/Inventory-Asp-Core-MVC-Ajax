@@ -10,7 +10,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-row">
                 <div class="form-group col-md-2">
-                    <label class="control-label">Quantity:</label>
+                    <label class="control-label">تعداد:</label>
                 </div>
                 <div class="form-group col-md-5">
                     <input asp-for="MinQuantity" type="number" class="form-control">
@@ -24,7 +24,7 @@
             </br>
             <div class="form-row">
                 <div class="form-group col-md-2">
-                    <label class="control-label">Unite Price:</label>
+                    <label class="control-label">قیمت:</label>
                 </div>
                 <div class="form-group col-md-5">
                     <input asp-for="MinPrice" type="number" class="form-control">
@@ -38,35 +38,35 @@
             </br>
             <div class="form-row">
                 <div class="form-group col-md-2">
-                    <label asp-for="Enabled" class="control-label">Status:</label>
+                    <label asp-for="Enabled" class="control-label">وضعیت:</label>
                 </div>
                 <div class="form-group col-md-1">
                     <input type="radio" asp-for="Enabled" id="active" value="true">
-                    <label for="active">Active</label>
+                    <label for="active">فعال</label>
                 </div>
                 <div class="form-group col-md-3">
                     <input type="radio" asp-for="Enabled" id="deactive" value="false">
-                    <label for="deactive">Deactive</label>
+                    <label for="deactive">غیرفعال</label>
                 </div>
             </div>
             </br>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label class="control-label">Category</label>
+                    <label class="control-label">دسته بندی</label>
                     <select id="CategorySelectList" asp-for="CategoryId" class="form-control">
-                        <option value="@Model.CategoryId"> --- Select Category ---</option>
+                        <option value="@Model.CategoryId"> --- انتخاب دسته بندی ---</option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="control-label">Storage</label>
+                    <label class="control-label">انبار</label>
                     <select id="StorageSelectList" asp-for="StorageId" class="form-control">
-                        <option value="@Model.StorageId"> --- Select Storage ---</option>
+                        <option value="@Model.StorageId"> --- انتخاب انبار ---</option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="control-label">Supplier</label>
+                    <label class="control-label">تامیین کننده</label>
                     <select id="SupplierSelectList" asp-for="SupplierId" class="form-control">
-                        <option value="@Model.SupplierId"> --- Select Supplier ---</option>
+                        <option value="@Model.SupplierId"> --- انتخاب تامیین کننده ---</option>
                     </select>
                 </div>
             </div>

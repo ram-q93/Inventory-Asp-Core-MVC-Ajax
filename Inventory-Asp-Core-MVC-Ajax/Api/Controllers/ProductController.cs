@@ -139,7 +139,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         }
 
 
-        [HttpGet, ActionName("pdf")]
+        [HttpPost, ActionName("pdf")]
         public async Task<IActionResult> ProductPDFReport(ProductReportModel model)
         {
             var result = await _reportBiz.GenerateProductPdfReport(model);
@@ -154,7 +154,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
         }
 
 
-        [HttpGet, ActionName("excel")]
+        [HttpPost, ActionName("excel")]
         public async Task<IActionResult> ProductExcelReport(ProductReportModel model)
         {
             var result = await _reportBiz.GenerateProductExcelReport(model);

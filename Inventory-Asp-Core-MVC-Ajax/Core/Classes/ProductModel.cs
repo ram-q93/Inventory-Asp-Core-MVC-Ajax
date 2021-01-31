@@ -70,14 +70,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Core.Classes
 
         public ImageModel ImageModel { get; set; }
 
-        //public StorageModel StorageModel { get; set; }
-
-        //public ImageModel ImageModel { get; set; }
-
-        //public SupplierModel SupplierModel { get; set; }
-
-        //public Category Category { get; set; }
-
         [Display(Name = "عکس محصول")]
         public IFormFile ProductPicture { get; set; }
 

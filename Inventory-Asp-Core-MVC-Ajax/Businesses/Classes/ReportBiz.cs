@@ -5,7 +5,8 @@ using ClosedXML.Excel;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.Core;
 using Inventory_Asp_Core_MVC_Ajax.Core.Classes;
-using Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels;
+using Inventory_Asp_Core_MVC_Ajax.DataAccess;
+using Microsoft.EntityFrameworkCore;
 using RazorLight;
 using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
@@ -19,15 +20,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 {
     public class ReportBiz : IReportBiz
     {
-        private readonly IRepository repository;
-        private readonly IMapper mapper;
-        private readonly ILogger logger;
+        private readonly IInventoryDbContext _context;
+        private readonly IRepository _repository;
+        private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
-        public ReportBiz(IRepository repository, IMapper mapper, ILogger logger)
+        public ReportBiz(IInventoryDbContext context, IRepository repository, IMapper mapper, ILogger logger)
         {
-            this.repository = repository;
-            this.mapper = mapper;
-            this.logger = logger;
+            _context = context;
+            _repository = repository;
+            _mapper = mapper;
+            _logger = logger;
         }
 
         #region GenerateProductPdfReport
@@ -35,12 +38,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result<PdfDocument>> GenerateProductPdfReport(ProductReportModel model) =>
             Result<PdfDocument>.TryAsync(async () =>
             {
-                var result = await GetProductListFromDB(model);
+                Result<IList<ProductModel>> result = await GetProductListFromDB(model);
                 if (!result.Success)
                 {
                     return Result<PdfDocument>.Failed(Error.WithCode(ErrorCodes.ErrorInProductReport));
                 }
-                var productModels = result.Data.Select(p => mapper.Map<Product, ProductModel>(p)).ToList();
+                var productModels = result.Data;
 
                 //Initialize HTML to PDF converter 
                 HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter()
@@ -66,7 +69,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 string resultt = await engine.CompileRenderAsync("ProductPdfReport.cshtml", productModels);
 
                 var pdfDocument = htmlToPdfConverter.Convert(resultt, $"www.google.com");
-                logger.Info("Product pdf report generated");
+                _logger.Info("Product pdf report generated");
                 return Result<PdfDocument>.Successful(pdfDocument);
             });
 
@@ -77,12 +80,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result<byte[]>> GenerateProductExcelReport(ProductReportModel model) =>
             Result<byte[]>.TryAsync(async () =>
             {
-                Result<IList<Product>> result = await GetProductListFromDB(model);
+                Result<IList<ProductModel>> result = await GetProductListFromDB(model);
                 if (!result.Success)
                 {
                     return Result<byte[]>.Failed(Error.WithCode(ErrorCodes.ErrorInProductReport));
                 }
-                var productModels = result.Data.Select(p => mapper.Map<Product, ProductModel>(p)).ToList();
+                var productModels = result.Data;
                 byte[] content;
                 using (var workbook = new XLWorkbook())
                 {
@@ -92,7 +95,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     worksheet.Cell(currentRow, 2).Value = "Quantity";
                     worksheet.Cell(currentRow, 3).Value = "UnitePrice";
                     worksheet.Cell(currentRow, 4).Value = "Enabled";
-                    foreach (var p in productModels)
+                    foreach (var p in result.Data)
                     {
                         currentRow++;
                         worksheet.Cell(currentRow, 1).Value = p.Name;
@@ -104,7 +107,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     workbook.SaveAs(stream);
                     content = stream.ToArray();
                 }
-                logger.Info("Product excel report generated");
+                _logger.Info("Product excel report generated");
                 return Result<byte[]>.Successful(content);
             });
 
@@ -115,12 +118,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
         public Task<Result<string>> GenerateProductCsvReport(ProductReportModel model) =>
             Result<string>.TryAsync(async () =>
             {
-                Result<IList<Product>> result = await GetProductListFromDB(model);
+                Result<IList<ProductModel>> result = await GetProductListFromDB(model);
                 if (!result.Success)
                 {
                     return Result<string>.Failed(Error.WithCode(ErrorCodes.ErrorInProductReport));
                 }
-                var productModels = result.Data.Select(p => mapper.Map<Product, ProductModel>(p)).ToList();
+                var productModels = result.Data;
 
                 var builder = new StringBuilder();
                 builder.AppendLine("Name,Quantity,UnitePrice,Enabled");
@@ -128,7 +131,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 {
                     builder.AppendLine($"{p.Name},{p.Quantity},{p.UnitePrice},{p.Enabled}");
                 }
-                logger.Info("Product csv report generated");
+                _logger.Info("Product csv report generated");
                 return Result<string>.Successful(builder.ToString());
             });
 
@@ -136,18 +139,35 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
         #region GetProductListFromDB
 
-        private Task<Result<IList<Product>>> GetProductListFromDB(ProductReportModel model) =>
-           Result<IList<Product>>.TryAsync(async () => await
-           repository.ListAsNoTrackingAsync<Product>(p =>
-                   (model.Enabled == null || p.Enabled == model.Enabled) &&
-                   (model.MaxPrice == null || p.UnitePrice <= model.MaxPrice) &&
-                   (model.MinPrice == null || p.UnitePrice >= model.MinPrice) &&
-                   (model.MaxQuantity == null || p.Quantity <= model.MaxQuantity) &&
-                   (model.MinQuantity == null || p.Quantity >= model.MinQuantity) &&
-                   (model.StorageId == null || p.StorageId == model.StorageId) &&
-                   (model.SupplierId == null || p.SupplierId == model.SupplierId),
-                  p => p.Storage, p => p.Supplier)
-           );
+        private Task<Result<IList<ProductModel>>> GetProductListFromDB(ProductReportModel model) =>
+           Result<IList<ProductModel>>.TryAsync(async () =>
+          {
+              var result = await _context.Products.AsNoTracking()
+              .Where(p =>
+                      (model.Enabled == null || p.Enabled == model.Enabled) &&
+                      (model.MaxPrice == null || p.UnitePrice <= model.MaxPrice) &&
+                      (model.MinPrice == null || p.UnitePrice >= model.MinPrice) &&
+                      (model.MaxQuantity == null || p.Quantity <= model.MaxQuantity) &&
+                      (model.MinQuantity == null || p.Quantity >= model.MinQuantity) &&
+                      (model.StorageId == null || p.StorageId == model.StorageId) &&
+                      (model.SupplierId == null || p.SupplierId == model.SupplierId) &&
+                      (model.CategoryId == null || p.CategoryId == model.CategoryId))
+               .Include(p => p.Category)
+               .Include(p => p.Storage)
+               .Include(p => p.Supplier)
+               .Select(p => new ProductModel
+               {
+                   Name = p.Name,
+                   Code = p.Code,
+                   UnitePrice = p.UnitePrice,
+                   Enabled = p.Enabled,
+                   CategoryName = p.Category.Name,
+                   StorageName = p.Storage.Name,
+                   SupplierCompanyName = p.Supplier.CompanyName
+               }).ToListAsync();
+
+              return Result<IList<ProductModel>>.Successful(result);
+          });
 
         #endregion
     }
