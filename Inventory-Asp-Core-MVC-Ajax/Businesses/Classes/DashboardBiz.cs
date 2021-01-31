@@ -20,7 +20,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
             .TryAsync(async () => Result<DashboardModel>.Successful(new DashboardModel()
             {
                 TotalStorages = (await _repository.CountAllAsync<Storage>()).Data,
-                TotalSuppliers = (await _repository.CountAllAsync<Supplier>(s => s.Enabled)).Data,
+                TotalSuppliers = (await _repository.CountAllAsync<Supplier>()).Data,
                 TotalProducts = (await _repository.CountAllAsync<Product>()).Data
             })
         );

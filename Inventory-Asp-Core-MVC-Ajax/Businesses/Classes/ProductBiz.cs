@@ -63,13 +63,15 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
 
 
                 IQueryable<ProductModel> query = _context.Products.AsNoTracking()
-                       .Where(p =>
-                          searchBy == null ||
-                          (p.Name != null && p.Name.Contains(searchBy)) ||
-                          (p.Code != null && p.Code.Contains(searchBy)) ||
-                          (p.Description != null && p.Description.Contains(searchBy)) ||
-                          (p.Storage != null && p.Storage.Name.Contains(searchBy)) ||
-                          (p.Supplier != null && p.Supplier.CompanyName.Contains(searchBy)))
+                        .Where(p =>
+                            p.Storage != null && p.Storage.Enabled &&
+                            p.Supplier != null && p.Supplier.Enabled &&
+                            (searchBy == null ||
+                            (p.Name != null && p.Name.Contains(searchBy)) ||
+                            (p.Code != null && p.Code.Contains(searchBy)) ||
+                            (p.Description != null && p.Description.Contains(searchBy)) ||
+                            (p.Storage != null && p.Storage.Name.Contains(searchBy)) ||
+                            (p.Supplier != null && p.Supplier.CompanyName.Contains(searchBy))))
                        .Include(p => p.Category)
                        .Include(p => p.Storage)
                        .Include(p => p.Supplier)
@@ -84,15 +86,17 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                            CategoryName = p.Category == null ? null : p.Category.Name,
                            StorageName = p.Storage == null ? null : p.Storage.Name,
                            SupplierCompanyName = p.Supplier == null ? null : p.Supplier.CompanyName
-                       }).SortByStringField(pagingModel);
+                       })
+                       .SortByStringField(pagingModel);
+
+                var totalFilteredCount = await query.CountAsync();
 
                 List<ProductModel> resultProductModels = await query
                         .Skip(pagingModel.PageNumber * pagingModel.PageSize)
                         .Take(pagingModel.PageSize).ToListAsync();
 
-                var totalFilteredCount = await query.CountAsync();
                 var totalCount = (await _repository.CountAllAsync<Product>()).Data;
-               
+
                 return Result<object>.Successful(new
                 {
                     draw = dtParameters.Draw,

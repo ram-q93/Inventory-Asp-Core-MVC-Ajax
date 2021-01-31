@@ -287,7 +287,7 @@ $(document).ready(function () {
                 data: 'id',
                 render: function (data, type, row) {
                     return `<div style="text-align:center">
-                                <a class="my-mousechange"  onclick="showProductDetailsInPopup(${data},'Product Details')">
+                                <a class="my-mousechange" onclick="showProductDetailsInPopup(${data},'Product Details')">
                                      <i class="fas fa-info fa-1x" style="color:green"></i>
                                 </a>
                             </div>`;
@@ -298,7 +298,7 @@ $(document).ready(function () {
                 data: 'id',
                 render: function (data, type, row) {
                     return `<div style="text-align:center">
-                                <a class="my-mousechange"  onclick="showProductInPopup(${data},'Edit Product')">
+                                <a class="my-mousechange" onclick="showProductInPopup(${data},'Edit Product')">
                                      <i class="fas fa-edit fa-1x" style="color:green"></i>
                                 </a>
                             </div>`;
