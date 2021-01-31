@@ -1,4 +1,5 @@
 ﻿using AspNetCore.Lib.Enums;
+using AspNetCore.Lib.Extensions;
 using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services.Interfaces;
 using AutoMapper;
@@ -60,49 +61,44 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                     SortDirection = orderAscendingDirection ? SortDirection.ASC : SortDirection.DESC
                 };
 
-                var resultList = await _repository.SortedPageListAsNoTrackingAsync<Product>(p =>
-                           searchBy == null ||
-                           (p.Name != null && p.Name.Contains(searchBy)) ||
-                           (p.Code != null && p.Code.Contains(searchBy)) ||
-                           (p.Description != null && p.Description.Contains(searchBy)),
-                            //(int.TryParse(searchBy, out q)  s.Quantity < q ) ||
-                            //(s.UnitePrice < Convert.ToDecimal(searchBy)))
-                            pagingModel,
-                            p => p.Storage,
-                            p => p.Supplier,
-                            p => p.Category);
 
-                var s = _context.Products.AsNoTracking()
-                        .Where(p =>
-                           searchBy == null ||
-                           (p.Name != null && p.Name.Contains(searchBy)) ||
-                           (p.Code != null && p.Code.Contains(searchBy)) ||
-                           (p.Description != null && p.Description.Contains(searchBy)) ||
-                           (p.Storage != null && p.Storage.Name.Contains(searchBy)) ||
-                           (p.Supplier != null && p.Supplier.CompanyName.Contains(searchBy)))
-                        .Include(p=>p.Category)
-                        .Include(p => p.Storage)
-                        .Include(p => p.Supplier)
-                        .Select(p=> new
-                        {
-                            
-                        });
+                IQueryable<ProductModel> query = _context.Products.AsNoTracking()
+                       .Where(p =>
+                          searchBy == null ||
+                          (p.Name != null && p.Name.Contains(searchBy)) ||
+                          (p.Code != null && p.Code.Contains(searchBy)) ||
+                          (p.Description != null && p.Description.Contains(searchBy)) ||
+                          (p.Storage != null && p.Storage.Name.Contains(searchBy)) ||
+                          (p.Supplier != null && p.Supplier.CompanyName.Contains(searchBy)))
+                       .Include(p => p.Category)
+                       .Include(p => p.Storage)
+                       .Include(p => p.Supplier)
+                       .Select(p => new ProductModel()
+                       {
+                           Name = p.Name,
+                           Code = p.Code,
+                           Quantity = p.Quantity,
+                           UnitePrice = p.UnitePrice,
+                           Description = p.Description,
+                           Enabled = p.Enabled,
+                           CategoryName = p.Category == null ? null : p.Category.Name,
+                           StorageName = p.Storage == null ? null : p.Storage.Name,
+                           SupplierCompanyName = p.Supplier == null ? null : p.Supplier.CompanyName
+                       }).SortByStringField(pagingModel);
 
-                if (!resultList.Success)
-                {
-                    return Result<object>.Failed(Error.WithCode(ErrorCodes.ProductsNotFound), "Some thing went wrong!");
-                }
+                List<ProductModel> resultProductModels = await query
+                        .Skip(pagingModel.PageNumber * pagingModel.PageSize)
+                        .Take(pagingModel.PageSize).ToListAsync();
 
+                var totalFilteredCount = await query.CountAsync();
                 var totalCount = (await _repository.CountAllAsync<Product>()).Data;
-                var totalFilteredCount = resultList.TotalCount;
-                var productModels = _mapper.Map<IEnumerable<ProductModel>>(resultList.Items);
-
+               
                 return Result<object>.Successful(new
                 {
                     draw = dtParameters.Draw,
                     recordsTotal = totalCount,
                     recordsFiltered = totalFilteredCount,
-                    data = productModels
+                    data = resultProductModels
                 });
             });
 
