@@ -1,7 +1,6 @@
 ﻿using AspNetCore.Lib.Models;
 using AspNetCore.Lib.Services.Interfaces;
-using AutoMapper;
-using ClosedXML.Excel;
+using DinkToPdf.Contracts;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Interfaces;
 using Inventory_Asp_Core_MVC_Ajax.Core;
 using Inventory_Asp_Core_MVC_Ajax.Core.Classes;
@@ -11,7 +10,6 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using RazorLight;
 using Syncfusion.HtmlConverter;
-using Syncfusion.Pdf;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -24,27 +22,25 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
     public class ReportBiz : IReportBiz
     {
         private readonly IInventoryDbContext _context;
-        private readonly IRepository _repository;
-        private readonly IMapper _mapper;
         private readonly ILogger _logger;
+        private readonly IConverter _converter;
 
-        public ReportBiz(IInventoryDbContext context, IRepository repository, IMapper mapper, ILogger logger)
+        public ReportBiz(IInventoryDbContext context, ILogger logger, IConverter converter)
         {
             _context = context;
-            _repository = repository;
-            _mapper = mapper;
             _logger = logger;
+            _converter = converter;
         }
 
         #region GenerateProductPdfReport
 
-        public Task<Result<PdfDocument>> GenerateProductPdfReport(ProductReportModel model) =>
-            Result<PdfDocument>.TryAsync(async () =>
+        public Task<Result<byte[]>> GenerateProductPdfReport(ProductReportModel model) =>
+            Result<byte[]>.TryAsync(async () =>
             {
                 Result<IList<ProductModel>> result = await GetProductListFromDB(model);
                 if (!result.Success)
                 {
-                    return Result<PdfDocument>.Failed(Error.WithCode(ErrorCodes.ErrorInProductReport));
+                    return Result<byte[]>.Failed(Error.WithCode(ErrorCodes.ErrorInProductReport));
                 }
                 var productModels = result.Data;
 
@@ -64,19 +60,80 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 };
 
                 string templatesPath = $"{Directory.GetCurrentDirectory()}" +
-                    $"{Path.DirectorySeparatorChar}Api" +
-                    $"{Path.DirectorySeparatorChar}Resources";
+                                   $"{Path.DirectorySeparatorChar}Businesses" +
+                                   $"{Path.DirectorySeparatorChar}Resources" +
+                                   $"{Path.DirectorySeparatorChar}ReportTemplates";
 
                 RazorLightEngine engine = new RazorLightEngineBuilder().UseFileSystemProject(templatesPath)
                     .UseMemoryCachingProvider().Build();
                 string resultt = await engine.CompileRenderAsync("ProductPdfReport.cshtml", productModels);
 
                 var pdfDocument = htmlToPdfConverter.Convert(resultt, $"www.google.com");
+                MemoryStream stream = new MemoryStream();
+                pdfDocument.Save(stream);
+
+
                 _logger.Info("Product pdf report generated");
-                return Result<PdfDocument>.Successful(pdfDocument);
+                return Result<byte[]>.Successful(stream.ToArray());
             });
 
         #endregion
+
+        //#region GenerateProductPdfReport
+
+        //public Task<Result<byte[]>> GenerateProductPdfReport(ProductReportModel model) =>
+        //    Result<byte[]>.TryAsync(async () =>
+        //    {
+        //        Result<IList<ProductModel>> result = await GetProductListFromDB(model);
+        //        if (!result.Success)
+        //        {
+        //            return Result<byte[]>.Failed(Error.WithCode(ErrorCodes.ErrorInProductReport));
+        //        }
+        //        var productModels = result.Data;
+
+        //        string reportTemplatesPath = $"{Directory.GetCurrentDirectory()}" +
+        //                   $"{Path.DirectorySeparatorChar}Businesses" +
+        //                   $"{Path.DirectorySeparatorChar}Resources" +
+        //                   $"{Path.DirectorySeparatorChar}ReportTemplates";
+        //        RazorLightEngine engine = new RazorLightEngineBuilder().UseFileSystemProject(reportTemplatesPath)
+        //            .UseMemoryCachingProvider().Build();
+        //        string resultt = await engine.CompileRenderAsync("ProductPdfReport.cshtml", productModels);
+
+
+        //        var globalSettings = new GlobalSettings
+        //        {
+
+        //            ColorMode = ColorMode.Color,
+        //            Orientation = Orientation.Portrait,
+        //            PaperSize = PaperKind.A4,
+        //            Margins = new MarginSettings { Top = 10 },
+        //            DocumentTitle = "PDF Report",
+        //            //  Out = @"D:\PDFCreator\Employee_Report.pdf"
+        //        };
+        //        var objectSettings = new ObjectSettings
+        //        {
+        //            PagesCount = true,
+        //            HtmlContent = resultt,
+        //            WebSettings = { DefaultEncoding = "utf-8",
+        //                UserStyleSheet = reportTemplatesPath + $"{Path.DirectorySeparatorChar}styles.css"},
+        //            HeaderSettings = { FontName = "Arial", FontSize = 9,
+        //                Right = "Page [page] of [toPage]", Line = true },
+        //            FooterSettings = { FontName = "Arial", FontSize = 9,
+        //                Line = true, Center = "Report Footer" }
+        //        };
+        //        var pdf = new HtmlToPdfDocument()
+        //        {
+        //            GlobalSettings = globalSettings,
+        //            Objects = { objectSettings }
+        //        };
+
+        //        var byteArray = _converter.Convert(pdf);
+
+        //        _logger.Info("Product pdf report generated");
+        //        return Result<byte[]>.Successful(byteArray);
+        //    });
+
+        //#endregion
 
         #region GenerateProductExcelReport
 
@@ -90,7 +147,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 }
 
                 var productModels = result.Data;
-                
+
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using var stream = new MemoryStream();
                 using var package = new ExcelPackage(stream);
@@ -170,7 +227,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                    CategoryName = p.Category.Name,
                    StorageName = p.Storage.Name,
                    SupplierCompanyName = p.Supplier.CompanyName
-               }).OrderBy(p=>p.Name).ToListAsync();
+               }).OrderBy(p => p.Name).ToListAsync();
 
               return Result<IList<ProductModel>>.Successful(result);
           });

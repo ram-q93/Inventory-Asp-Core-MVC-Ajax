@@ -1,5 +1,7 @@
 ﻿using AspNetCore.Lib.Configurations;
 using AspNetCore.Lib.Enums;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Inventory_Asp_Core_MVC_Ajax.Businesses.Common;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
@@ -12,6 +14,8 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses
         public static IServiceCollection AddBussinessLayer(this IServiceCollection services)
         {
             services.ConfigCultureRequest();
+
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
             var resultServices = TypeRegister
               .ScanAssemblyTypes(Assembly.GetExecutingAssembly())

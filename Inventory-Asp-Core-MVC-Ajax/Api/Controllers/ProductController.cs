@@ -133,7 +133,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             var result = await _reportBiz.GenerateProductCsvReport(model);
             if (!result.Success)
             {
-                return null;
+                return NotFound();
             }
             return File(Encoding.UTF8.GetBytes(result.Data), "text/csv", "Sample.csv");
         }
@@ -145,12 +145,9 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             var result = await _reportBiz.GenerateProductPdfReport(model);
             if (!result.Success || result.Data == null)
             {
-                return null;
+                return NotFound();
             }
-            PdfDocument pdfDocument = result.Data;
-            MemoryStream stream = new MemoryStream();
-            pdfDocument.Save(stream);
-            return File(stream.ToArray(), System.Net.Mime.MediaTypeNames.Application.Pdf, "Sample.pdf");
+            return File(result.Data, System.Net.Mime.MediaTypeNames.Application.Pdf, "Sample.pdf");
         }
 
 
@@ -160,7 +157,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Api.Controllers
             var result = await _reportBiz.GenerateProductExcelReport(model);
             if (!result.Success)
             {
-                return null;
+                return NotFound();
             }
             return File(result.Data,
               "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",

@@ -1,19 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@model IList<Inventory_Asp_Core_MVC_Ajax.Core.Classes.ProductModel>
+@{
+    var Index = 1;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    Product Report
 </head>
 <body>
-
-    @model IList<Inventory_Asp_Core_MVC_Ajax.Core.Classes.ProductModel>
-    @{
-        var Index = 1;
-    }
-
     @* For displaying products *@
-    @if (Model.First().Id == 0)
+    @if (Model.Count == 0)
     {
         <div class="alert alert-info">No Products Availale</div> }
     else
@@ -65,8 +62,6 @@
                 </tbody>
             </table>
         </div>}
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
