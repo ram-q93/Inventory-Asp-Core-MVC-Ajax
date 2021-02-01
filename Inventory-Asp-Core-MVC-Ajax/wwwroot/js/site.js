@@ -418,53 +418,54 @@ jQueryAjaxPostToDeleteProduct = (id) => {
     return false;
 };
 
-showProductReportInPopup = () => {
-    $.ajax({
-        type: 'Get',
-        url: '/product/Report',
-        success: function (response) {
-            $('#product-form-modal .modal-title').html('Report');
-            $('#product-form-modal .modal-body').html(response);
-            $('#product-form-modal').modal('show');
-        }
-    })
-}
+//showProductReportInPopup = () => {
+//    $.ajax({
+//        type: 'Get',
+//        url: '/product/Report',
+//        success: function (response) {
+//            $('#product-form-modal .modal-title').html('Report');
+//            $('#product-form-modal .modal-body').html(response);
+//            $('#product-form-modal').modal('show');
+//        }
+//    })
+//}
 
-jQueryAjaxPostToProductReport = form => {
-    try {
-        $.ajax({
-            type: 'Post',
-            url: form.action,
-            data: new FormData(form),
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                console.log('here');
-                console.log(response);
-                //window.location.href = response;
-               // if (response.success) {
-                    //$('#product-form-modal .modal-title').html('');
-               // $('#product-form-modal .modal-body').html(response);
-                    //$('#product-form-modal').modal('hide');
+//jQueryAjaxPostToProductReport = form => {
+//    try {
+//        $.ajax({
+//            type: 'Post',
+//            url: form.action,
+//            data: new FormData(form),
+//            contentType: false,
+//            processData: false,
+//            success: function (response) {
+//                console.log('here');
+//                console.log(response);
+//                //window.location.href = response;
+//               // if (response.success) {
+//                    //$('#product-form-modal .modal-title').html('');
+//               // $('#product-form-modal .modal-body').html(response);
+//                    //$('#product-form-modal').modal('hide');
                  
-                    SweetAlertSubmitedSuccessfully();
-                //}
-                //else {
-                //    SweetAlertSubmitFailed(response.error)
-                //    $('#product-form-modal .modal-body').html(response.html);
-                //}
-            },
-            error: function (e) {
-                SweetAlertSubmitFailed('Error in Submitting product')
-                console.log(e);
-            }
-        })
-    } catch (e) {
-        console.log(e);
-    }
-    // to prevent default form submit event
-    return false;
-};
+//                SweetAlertSubmitedSuccessfully();
+            
+//                //}
+//                //else {
+//                //    SweetAlertSubmitFailed(response.error)
+//                //    $('#product-form-modal .modal-body').html(response.html);
+//                //}
+//            },
+//            error: function (e) {
+//                SweetAlertSubmitFailed('Error in Submitting product')
+//                console.log(e);
+//            }
+//        })
+//    } catch (e) {
+//        console.log(e);
+//    }
+//    // to prevent default form submit event
+//    return false;
+//};
 //========================================================================== Product ========//
 
 

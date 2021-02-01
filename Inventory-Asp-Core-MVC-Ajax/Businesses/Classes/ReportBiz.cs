@@ -7,10 +7,13 @@ using Inventory_Asp_Core_MVC_Ajax.Core;
 using Inventory_Asp_Core_MVC_Ajax.Core.Classes;
 using Inventory_Asp_Core_MVC_Ajax.DataAccess;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using RazorLight;
 using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -85,30 +88,31 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 {
                     return Result<byte[]>.Failed(Error.WithCode(ErrorCodes.ErrorInProductReport));
                 }
+
                 var productModels = result.Data;
-                byte[] content;
-                using (var workbook = new XLWorkbook())
-                {
-                    var worksheet = workbook.Worksheets.Add("Products");
-                    var currentRow = 1;
-                    worksheet.Cell(currentRow, 1).Value = "Name";
-                    worksheet.Cell(currentRow, 2).Value = "Quantity";
-                    worksheet.Cell(currentRow, 3).Value = "UnitePrice";
-                    worksheet.Cell(currentRow, 4).Value = "Enabled";
-                    foreach (var p in result.Data)
-                    {
-                        currentRow++;
-                        worksheet.Cell(currentRow, 1).Value = p.Name;
-                        worksheet.Cell(currentRow, 2).Value = p.Quantity;
-                        worksheet.Cell(currentRow, 3).Value = p.UnitePrice;
-                        worksheet.Cell(currentRow, 4).Value = p.Enabled;
-                    }
-                    using var stream = new MemoryStream();
-                    workbook.SaveAs(stream);
-                    content = stream.ToArray();
-                }
+                
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                using var stream = new MemoryStream();
+                using var package = new ExcelPackage(stream);
+
+                var ws = package.Workbook.Worksheets.Add("Product Report Sheet");
+                var range = ws.Cells["A2"].LoadFromCollection(productModels, true);
+                range.AutoFitColumns();
+
+                // Formats the header
+                ws.Cells["A1"].Value = "Product Report";
+                ws.Cells["A1:M1"].Merge = true;
+                ws.Column(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Row(1).Style.Font.Size = 24;
+                ws.Row(1).Style.Font.Color.SetColor(Color.Blue);
+
+                ws.Row(2).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Row(2).Style.Font.Bold = true;
+                ws.Column(3).Width = 20;
+                await package.SaveAsync();
+
                 _logger.Info("Product excel report generated");
-                return Result<byte[]>.Successful(content);
+                return Result<byte[]>.Successful(stream.ToArray());
             });
 
         #endregion
@@ -126,10 +130,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var productModels = result.Data;
 
                 var builder = new StringBuilder();
-                builder.AppendLine("Name,Quantity,UnitePrice,Enabled");
+                builder.AppendLine("Name,Code,Quantity,UnitePrice,Enabled,Category,Storage,Supplier");
                 foreach (var p in productModels)
                 {
-                    builder.AppendLine($"{p.Name},{p.Quantity},{p.UnitePrice},{p.Enabled}");
+                    builder.AppendLine($"{p.Name},{p.Code},{p.Quantity},{p.UnitePrice}," +
+                        $"{p.Enabled},{p.CategoryName},{p.StorageName},{p.SupplierCompanyName}");
                 }
                 _logger.Info("Product csv report generated");
                 return Result<string>.Successful(builder.ToString());
@@ -160,11 +165,12 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                    Name = p.Name,
                    Code = p.Code,
                    UnitePrice = p.UnitePrice,
+                   Quantity = p.Quantity,
                    Enabled = p.Enabled,
                    CategoryName = p.Category.Name,
                    StorageName = p.Storage.Name,
                    SupplierCompanyName = p.Supplier.CompanyName
-               }).ToListAsync();
+               }).OrderBy(p=>p.Name).ToListAsync();
 
               return Result<IList<ProductModel>>.Successful(result);
           });

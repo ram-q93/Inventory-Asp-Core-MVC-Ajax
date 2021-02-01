@@ -38,9 +38,14 @@
                 </a>
 
                 <!-- Report-->
-                <a onclick="showProductReportInPopup()"
+                @*<a onclick="showProductReportInPopup()"
+           class="d-none d-sm-inline-block btn  btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white"></i>
+            <span class="text text-white ">&nbsp;&nbsp;تهیه گزارش</span>
+        </a>*@
+                <a asp-controller="product" asp-action="Report"
                    class="d-none d-sm-inline-block btn  btn-primary shadow-sm">
-                    <i class="fas fa-download fa-sm text-white"></i> 
+                    <i class="fas fa-download fa-sm text-white"></i>
                     <span class="text text-white ">&nbsp;&nbsp;تهیه گزارش</span>
                 </a>
             </div>
