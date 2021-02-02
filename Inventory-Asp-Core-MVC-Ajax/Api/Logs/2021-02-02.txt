@@ -332,3 +332,67 @@ Type: Warn
 Date: 2021-02-02 03:22:02.101
 Message: Long Running Request:    (4907 milliseconds)  Request Path: /product/pdf
 ===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-02-02 03:27:21.878
+Message: Long Running Request:    (1518 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-02-02 03:27:23.631
+Message: Long Running Request:    (959 milliseconds)  Request Path: /css/sb-admin-2.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-02-02 03:27:23.631
+Message: Long Running Request:    (1532 milliseconds)  Request Path: /lib/bootstrap/dist/css/bootstrap.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-02-02 03:27:23.631
+Message: Long Running Request:    (1529 milliseconds)  Request Path: /css/sweetalert2.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-02-02 03:27:23.673
+Message: Long Running Request:    (1571 milliseconds)  Request Path: /css/dataTables.bootstrap4.min.css
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-02-02 03:27:24.918
+Message: Long Running Request:    (1000 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-02-02 03:27:26.677
+Message: Long Running Request:    (1393 milliseconds)  Request Path: /product/products
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-02-02 03:27:51.079
+Message: First Level Message: WebKit assemblies are missing at C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\bin\Debug\netcoreapp3.1\QtBinariesWindows\
+StackTrace:    at Syncfusion.HtmlConverter.HtmlConverter.ConvertHtmlToPdf(String url, Int32 width, Int32 height, String tempFile)
+   at Syncfusion.HtmlConverter.HtmlToPdfConverter.Convert(String url)
+   at Syncfusion.HtmlConverter.HtmlToPdfConverter.Convert(String html, String baseurl)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ReportBiz.<>c__DisplayClass4_0.<<GenerateProductPdfReport>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ReportBiz.cs:line 71
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Exception
+Date: 2021-02-02 03:27:52.116
+Message: First Level Message: WebKit assemblies are missing at C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\bin\Debug\netcoreapp3.1\QtBinariesWindows\
+StackTrace:    at Syncfusion.HtmlConverter.HtmlConverter.ConvertHtmlToPdf(String url, Int32 width, Int32 height, String tempFile)
+   at Syncfusion.HtmlConverter.HtmlToPdfConverter.Convert(String url)
+   at Syncfusion.HtmlConverter.HtmlToPdfConverter.Convert(String html, String baseurl)
+   at Inventory_Asp_Core_MVC_Ajax.Businesses.Classes.ReportBiz.<>c__DisplayClass4_0.<<GenerateProductPdfReport>b__0>d.MoveNext() in C:\Users\ramin\source\repos\Inventory-Asp-Core-MVC-Ajax\Inventory-Asp-Core-MVC-Ajax\Businesses\Classes\ReportBiz.cs:line 71
+--- End of stack trace from previous location where exception was thrown ---
+   at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
+
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-02-02 03:27:52.165
+Message: Long Running Request:    (21425 milliseconds)  Request Path: /error/404
+===========================================================================
