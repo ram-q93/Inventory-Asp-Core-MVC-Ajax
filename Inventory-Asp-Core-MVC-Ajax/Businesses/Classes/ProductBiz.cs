@@ -77,6 +77,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                        .Include(p => p.Supplier)
                        .Select(p => new ProductModel()
                        {
+                           Id = p.Id,
                            Name = p.Name,
                            Code = p.Code,
                            Quantity = p.Quantity,
