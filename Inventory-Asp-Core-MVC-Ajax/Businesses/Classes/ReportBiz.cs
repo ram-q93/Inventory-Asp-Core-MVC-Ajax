@@ -60,7 +60,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 };
 
                 string templatesPath = $"{Directory.GetCurrentDirectory()}" +
-                                   $"{Path.DirectorySeparatorChar}Businesses" +
+                                   $"{Path.DirectorySeparatorChar}wwwroot" +
                                    $"{Path.DirectorySeparatorChar}Resources" +
                                    $"{Path.DirectorySeparatorChar}ReportTemplates";
 
@@ -71,7 +71,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.Businesses.Classes
                 var pdfDocument = htmlToPdfConverter.Convert(resultt, $"www.google.com");
                 MemoryStream stream = new MemoryStream();
                 pdfDocument.Save(stream);
-
 
                 _logger.Info("Product pdf report generated");
                 return Result<byte[]>.Successful(stream.ToArray());

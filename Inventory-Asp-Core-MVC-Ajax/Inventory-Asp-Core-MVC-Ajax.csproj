@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Businesses\Resources\ReportTemplates\ProductPdfReport.cshtml">
+    <Content Update="wwwroot\Resources\ReportTemplates\ProductPdfReport.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -43,6 +43,12 @@
   <ItemGroup>
     <Folder Include="Businesses\Services\" />
     <Folder Include="DataAccess\Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Resources\EmailTemplates\EmailConfirm.html" />
+    <None Include="wwwroot\Resources\EmailTemplates\ForgotPassword.html" />
+    <None Include="wwwroot\Resources\ReportTemplates\styles.css" />
   </ItemGroup>
 
 </Project>
