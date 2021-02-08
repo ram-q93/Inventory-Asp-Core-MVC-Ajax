@@ -10,7 +10,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels
         public Business()
         {
             Addresses = new HashSet<Address>();
-            Users = new HashSet<User>();
+            AppUsers = new HashSet<AppUser>();
         }
 
         public Guid Id { get; set; }
@@ -32,6 +32,6 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess.EFModels
         public string Fax { get; set; }
 
         public ICollection<Address> Addresses { get; set; }
-        public ICollection<User> Users { get; set; }
+        public ICollection<AppUser> AppUsers { get; set; }
     }
 }

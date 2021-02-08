@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
 {
-    public class InventoryDbContext : IdentityDbContext<User>, IInventoryDbContext
+    public class InventoryDbContext : IdentityDbContext<AppUser>, IInventoryDbContext
     {
         private readonly IMachineDateTime _dateTime;
 

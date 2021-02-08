@@ -22,7 +22,7 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
                options.UseSqlServer(configuration.GetConnectionString("Default")));
             services.AddScoped<IRepository, Repository<InventoryDbContext>>();
 
-            services.AddIdentity<User, IdentityRole>(options =>
+            services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
