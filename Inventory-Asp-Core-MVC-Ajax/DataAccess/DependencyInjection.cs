@@ -26,13 +26,11 @@ namespace Inventory_Asp_Core_MVC_Ajax.DataAccess
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
-                options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 3;
                 options.Password.RequiredUniqueChars = 3;
-            });
-
+            }).AddEntityFrameworkStores<InventoryDbContext>();
 
             return services;
         }
