@@ -418,3 +418,18 @@ StackTrace:    at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(
    at AspNetCore.Lib.Models.Result`1.TryAsync(Func`1 func, Action onException) in C:\Users\ramin\source\repos\AspNetCore.Lib.V3.1.9\AspNetCore.Lib\Models\Result.cs:line 174
 
 ===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-03-23 22:39:54.941
+Message: Long Running Request:    (980 milliseconds)  Request Path: /
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-03-23 22:40:06.226
+Message: Long Running Request:    (657 milliseconds)  Request Path: /supplier/suppliers
+===========================================================================
+===========================================================================
+Type: Warn
+Date: 2021-03-23 22:40:09.446
+Message: Long Running Request:    (1281 milliseconds)  Request Path: /Supplier/Suppliers
+===========================================================================
